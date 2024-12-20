@@ -1,21 +1,14 @@
-import React from "react";
-import Header from "./components/Header";
-import Menu from "./components/Menu";
-import Footer from "./components/Footer";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
 
 const App = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
-      <Header />
-      <main className="flex-grow">
-        <Menu />
-      </main>
-      <Footer />
-
-      <div className="bg-blue-500 text-white p-4 text-center">
-        Tailwind CSS 적용 확인
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* 다른 기능별 페이지 추가 */}
+      </Routes>
+    </Router>
   );
 };
 
