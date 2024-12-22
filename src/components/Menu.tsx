@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { getLatestRounds, getLatestRoundsNumbers } from "../api/axios/lottoApi";
 
 type Option = {
   label: string;
@@ -32,20 +33,17 @@ const options: Option[] = [
 const Menu = () => {
   const navigate = useNavigate();
 
-  const mockRecentNumbers = [
-    { round: 1020, numbers: [3, 8, 15, 22, 31, 38] },
-    { round: 1019, numbers: [4, 11, 23, 28, 35, 44] },
-    { round: 1018, numbers: [2, 7, 13, 29, 37, 41] },
-    { round: 1017, numbers: [1, 14, 19, 24, 36, 42] },
-    { round: 1016, numbers: [5, 12, 20, 27, 33, 45] },
-  ];
 
-  const handleRecentNumbers = (path: Path) => {
+
+  const handleRecentNumbers = async (path: Path) => {
     // 1부터 45까지의 번호 중 최근 당첨 번호를 제외한 번호 리스트
     const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
-    const recentNumbersFlat = mockRecentNumbers
+
+    const recentNumbers = (await getLatestRounds()).map(String);
+    const numbers = await getLatestRoundsNumbers(recentNumbers);
+    const recentNumbersFlat = numbers
       .flat()
-      .map((v) => v.numbers)
+      .map((v) => v)
       .flat(); // 최근 5회차 당첨 번호 플랫화
     const excludedNumbers = allNumbers.filter(
       (num) => !recentNumbersFlat.includes(num)
