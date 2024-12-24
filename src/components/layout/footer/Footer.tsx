@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Footer.module.scss";
 
 const Footer = () => {
   const footerOptions = [
@@ -10,12 +11,9 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-300 p-4 flex justify-around">
+    <footer className={styles.footer}>
       {footerOptions.map((option, index) => (
-        <button
-          key={index}
-          className="text-gray-600 hover:text-yellow-400 text-sm font-medium transition"
-        >
+        <button key={index} className={styles.button}>
           {option}
         </button>
       ))}
