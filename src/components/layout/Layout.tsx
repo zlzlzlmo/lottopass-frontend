@@ -1,6 +1,7 @@
 import React from "react";
+
+import styles from "./Layout.module.scss";
 import Header from "./header/Header";
-import Container from "./container/Container";
 import Footer from "./footer/Footer";
 
 type LayoutProps = {
@@ -9,11 +10,11 @@ type LayoutProps = {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <Container>
+    <div className={styles.layout}>
       <Header />
-      {children}
+      <main className={styles.content}>{children}</main>
       <Footer />
-    </Container>
+    </div>
   );
 };
 
