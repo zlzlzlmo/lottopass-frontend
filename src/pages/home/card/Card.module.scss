@@ -1,0 +1,60 @@
+.cardContainer {
+  margin-bottom: 3rem;
+}
+
+.card {
+  background-color: #facc15;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+.round {
+  font-weight: bold;
+  color: #333;
+}
+
+.result {
+  font-size: 0.875rem;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.numbersContainer {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bonus {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+.prizeInfo {
+  font-size: 0.875rem;
+  color: #333;
+}
