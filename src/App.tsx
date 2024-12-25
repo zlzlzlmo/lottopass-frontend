@@ -3,20 +3,26 @@ import Home from "./pages/home/Home";
 import NumberGeneration from "./pages/numberGeneration/NumberGeneration";
 import ExcludeNumbers from "./pages/excludedNumbers/ExcludeNumbers";
 import Result from "./pages/result/Result";
-import { LottoNumberProvider } from "./context/lottoNumbers";
+import { ROUTES } from "./constants/routes";
+import NotFound from "./pages/notFound/NotFound";
+import { AppProviders } from "./context/AppProviders";
 
 const App = () => {
   return (
-    <LottoNumberProvider>
+    <AppProviders>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/number-generation" element={<NumberGeneration />} />
-          <Route path="/exclude-numbers" element={<ExcludeNumbers />} />
-          <Route path="/result" element={<Result />} />
+          <Route path={ROUTES.HOME} element={<Home />} />
+          <Route
+            path={ROUTES.NUMBER_GENERATION}
+            element={<NumberGeneration />}
+          />
+          <Route path={ROUTES.EXCLUDE_NUMBERS} element={<ExcludeNumbers />} />
+          <Route path={ROUTES.RESULT} element={<Result />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
-    </LottoNumberProvider>
+    </AppProviders>
   );
 };
 
