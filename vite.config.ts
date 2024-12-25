@@ -17,4 +17,8 @@ export default defineConfig({
       },
     },
   },
+  server: {
+    host: true, // 외부에서 접속 가능하도록 설정
+    port: 5173, // 기본 포트
+  },
 });
