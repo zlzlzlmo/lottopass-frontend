@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./styles/global.scss";
 import Home from "./pages/home/Home";
 import NumberGeneration from "./pages/numberGeneration/NumberGeneration";
 
