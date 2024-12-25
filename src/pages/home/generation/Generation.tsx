@@ -9,7 +9,7 @@ const Generation = () => {
   const navigate = useNavigate();
 
   const handleStartClick = () => {
-    navigate("/generate-numbers"); // 원하는 라우트로 이동
+    navigate("/number-generation"); // 원하는 라우트로 이동
   };
 
   // 1~45 사이의 랜덤 숫자 생성
