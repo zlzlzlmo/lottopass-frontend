@@ -6,7 +6,7 @@ type RoundsContextType = {
   rounds: LottoDraw[];
   latestRound: LottoDraw | null;
   isLoading: boolean;
-  error: string;
+  error: string | null;
 };
 
 const RoundsContext = createContext<RoundsContextType | null>(null);
@@ -17,7 +17,7 @@ export const RoundsProvider: React.FC<{ children: React.ReactNode }> = ({
   const [rounds, setRounds] = useState<LottoDraw[]>([]);
   const [latestRound, setLatestRound] = useState<LottoDraw | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string>("알 수 없는 에러 발생");
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchRounds = async () => {
@@ -26,6 +26,7 @@ export const RoundsProvider: React.FC<{ children: React.ReactNode }> = ({
         if (result.status === "success") {
           setRounds(result.data);
           setLatestRound(result.data[result.data.length - 1]);
+          console.log(result.data);
         } else {
           throw new Error(result.message || "Failed to fetch data");
         }
