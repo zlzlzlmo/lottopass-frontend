@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useCallback, useContext, useState } from "react";
 
 interface LottoNumberContextType {
   excludedNumbers: number[];
@@ -32,9 +32,12 @@ export const LottoNumberProvider: React.FC<{ children: React.ReactNode }> = ({
     return randomNumbers.sort((a, b) => a - b); // 정렬
   };
 
-  const resetExcludedNumbers = () => {
-    setExcludedNumbers([]); // 초기화
-  };
+  const resetExcludedNumbers = useCallback(() => {
+    setExcludedNumbers(() => {
+      // 기존 상태 초기화 로직
+      return [];
+    });
+  }, []); // 의존성 배열을 비워 메모이제이션
 
   return (
     <LottoNumberContext.Provider
