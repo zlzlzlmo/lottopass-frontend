@@ -1,4 +1,3 @@
-import React from "react";
 import Banner from "./banner/Banner";
 import styles from "./Home.module.scss";
 import Card from "./card/Card";

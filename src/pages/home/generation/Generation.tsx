@@ -56,7 +56,7 @@ const Generation = () => {
         </Sphere>
 
         {/* 로또볼 */}
-        {Array.from({ length: 20 }).map((_, index) => {
+        {Array.from({ length: 45 }).map((_, index) => {
           const randomNumber = getRandomNumber();
           const randomColor =
             ballColors[Math.floor(Math.random() * ballColors.length)];
