@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./NumbersGrid.module.scss";
+import Button from "../../../components/common/button/Button";
 
 interface NumbersGridProps {
   maxSelection: number;
@@ -36,13 +37,10 @@ const NumbersGrid: React.FC<NumbersGridProps> = ({ maxSelection }) => {
           </button>
         ))}
       </div>
-      <button
-        className={styles.confirmButton}
+      <Button
         onClick={handleConfirm}
-        disabled={selectedNumbers.length === 0}
-      >
-        확인
-      </button>
+        disabled={selectedNumbers.length >= maxSelection}
+      />
     </>
   );
 };
