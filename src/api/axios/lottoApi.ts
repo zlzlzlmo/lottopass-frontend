@@ -1,15 +1,9 @@
-import { API_URLS } from '../../constants/apiUrls';
-import axiosInstance from './axiosConfig';
+// import { FindAllResponse } from "lottopass-shared";
+import { FindAllResponse } from "lottopass-shared";
+import { API_URLS } from "../../constants/apiUrls";
+import axiosInstance from "./axiosConfig";
 
-// 직전 5개의 회차
-export const getLatestRounds = async (): Promise<number[]> => {
-  const response = await axiosInstance.get(API_URLS.LATEST_ROUNDS);
-  return response.data;
-};
-
-export const getLatestRoundsNumbers = async (drwNos: string[]): Promise<number[]> => {
-  const response = await axiosInstance.post(API_URLS.LATEST_ROUNDS_NUMBERS, {
-    drwNos
-  });
+export const getAllRounds = async (): Promise<FindAllResponse> => {
+  const response = await axiosInstance.get(API_URLS.ALL_ROUNDS);
   return response.data;
 };
