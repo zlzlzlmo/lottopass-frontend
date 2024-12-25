@@ -10,11 +10,11 @@ interface NumbersGridProps {
 
 const NumbersGrid: React.FC<NumbersGridProps> = ({ maxSelection }) => {
   const [selectedNumbers, setSelectedNumbers] = useState<number[]>([]);
-  const { setExcludedNumbers } = useLottoNumber();
+  const { handleExcludedNumbers } = useLottoNumber();
   const navigate = useNavigate();
 
   const handleConfirm = () => {
-    setExcludedNumbers(selectedNumbers);
+    handleExcludedNumbers(selectedNumbers);
     navigate("/result");
   };
 
