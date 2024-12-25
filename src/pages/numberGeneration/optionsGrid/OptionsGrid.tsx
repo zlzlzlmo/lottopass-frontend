@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const OptionsGrid: React.FC = () => {
   const navigate = useNavigate();
+
   const options = [
     { label: "제외 번호\n직접 선택", rank: null, path: "/exclude-numbers" },
     { label: "최근 당첨\n번호 조합", rank: null },

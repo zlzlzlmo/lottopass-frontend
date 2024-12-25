@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styles from "./NumbersGrid.module.scss";
 import Button from "../../../components/common/button/Button";
+import { useLottoNumber } from "../../../context/lottoNumbers";
+import { useNavigate } from "react-router-dom";
 
 interface NumbersGridProps {
   maxSelection: number;
@@ -8,10 +10,12 @@ interface NumbersGridProps {
 
 const NumbersGrid: React.FC<NumbersGridProps> = ({ maxSelection }) => {
   const [selectedNumbers, setSelectedNumbers] = useState<number[]>([]);
+  const { setExcludedNumbers } = useLottoNumber();
+  const navigate = useNavigate();
 
   const handleConfirm = () => {
-    console.log("선택된 번호:", selectedNumbers);
-    // 로직 처리 후 다음 단계로 이동
+    setExcludedNumbers(selectedNumbers);
+    navigate("/result");
   };
 
   const handleNumberClick = (number: number) => {
@@ -39,7 +43,7 @@ const NumbersGrid: React.FC<NumbersGridProps> = ({ maxSelection }) => {
       </div>
       <Button
         onClick={handleConfirm}
-        disabled={selectedNumbers.length >= maxSelection}
+        disabled={selectedNumbers.length > maxSelection}
       />
     </>
   );

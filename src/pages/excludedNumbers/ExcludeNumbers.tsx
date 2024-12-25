@@ -3,7 +3,7 @@ import Layout from "../../components/layout/Layout";
 import NumbersGrid from "./numbersGrid/NumbersGrid";
 
 const ExcludeNumbers = () => {
-  const maxSelection = 10;
+  const maxSelection = 45 - 6;
 
   return (
     <Layout>
