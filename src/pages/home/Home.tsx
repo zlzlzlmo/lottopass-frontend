@@ -3,14 +3,17 @@ import Banner from "./banner/Banner";
 import styles from "./Home.module.scss";
 import Card from "./card/Card";
 import Generation from "./generation/Generation";
+import Layout from "../../components/layout/Layout";
 
 const Home = () => {
   return (
-    <div className={styles.container}>
-      <Banner />
-      <Card />
-      <Generation />
-    </div>
+    <Layout>
+      <div className={styles.container}>
+        <Banner />
+        <Card />
+        <Generation />
+      </div>
+    </Layout>
   );
 };
 
