@@ -1,11 +1,11 @@
 .cardContainer {
-  margin-bottom: 3rem;
+  margin-bottom: 48px;
 }
 
 .card {
   background-color: #facc15;
-  padding: 1rem;
-  border-radius: 0.5rem;
+  padding: 16px;
+  border-radius: 8px;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -13,8 +13,8 @@
 .cardHeader {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1rem;
-  font-size: 0.875rem;
+  margin-bottom: 16px;
+  font-size: 14px;
 }
 
 .round {
@@ -23,7 +23,7 @@
 }
 
 .result {
-  font-size: 0.875rem;
+  font-size: 14px;
   color: #007bff;
   cursor: pointer;
 }
@@ -31,19 +31,19 @@
 .numbersContainer {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  gap: 8px;
+  margin-bottom: 16px;
 }
 
 .number {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: #ffffff;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: bold;
   color: #333;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -55,6 +55,6 @@
 }
 
 .prizeInfo {
-  font-size: 0.875rem;
+  font-size: 14px;
   color: #333;
 }
