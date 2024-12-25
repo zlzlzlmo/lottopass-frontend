@@ -1,10 +1,18 @@
-import React, { createContext, useCallback, useContext, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 
 interface LottoNumberContextType {
   excludedNumbers: number[];
-  setExcludedNumbers: (numbers: number[]) => void;
+  requiredNumbers: number[];
+  handleExcludedNumbers: (numbers: number[]) => void;
+  handleRequiredNumbers: (numbers: number[]) => void;
   generateNumbers: () => number[]; // 결과 번호 생성 함수
-  resetExcludedNumbers: () => void;
+  resetNumbers: () => void;
 }
 
 const LottoNumberContext = createContext<LottoNumberContextType | undefined>(
@@ -15,13 +23,18 @@ export const LottoNumberProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [excludedNumbers, setExcludedNumbers] = useState<number[]>([]);
+  const [requiredNumbers, setRequiredNumbers] = useState<number[]>([]);
 
   // 제외된 번호를 뺀 나머지 번호들에서 번호 생성
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const generateNumbers = () => {
     const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
-    const availableNumbers = allNumbers.filter(
-      (num) => !excludedNumbers.includes(num)
-    );
+
+    const availableNumbers = allNumbers.filter((num) => {
+      if (requiredNumbers.length <= 0) return !excludedNumbers.includes(num);
+      return requiredNumbers.includes(num);
+    });
+
     const randomNumbers: number[] = [];
 
     while (randomNumbers.length < 6) {
@@ -29,25 +42,43 @@ export const LottoNumberProvider: React.FC<{ children: React.ReactNode }> = ({
       const number = availableNumbers[randomIndex];
       if (!randomNumbers.includes(number)) randomNumbers.push(number);
     }
+
     return randomNumbers.sort((a, b) => a - b); // 정렬
   };
 
-  const resetExcludedNumbers = useCallback(() => {
+  const handleExcludedNumbers = (numbers: number[]) => {
     setExcludedNumbers(() => {
-      // 기존 상태 초기화 로직
-      return [];
+      return numbers;
     });
-  }, []); // 의존성 배열을 비워 메모이제이션
+    setRequiredNumbers([]);
+  };
+
+  const handleRequiredNumbers = (numbers: number[]) => {
+    setRequiredNumbers(() => {
+      return numbers;
+    });
+    setExcludedNumbers([]);
+  };
+
+  const resetNumbers = useCallback(() => {
+    setExcludedNumbers([]);
+    setRequiredNumbers([]);
+  }, []);
+
+  const value = useMemo(
+    () => ({
+      excludedNumbers,
+      requiredNumbers,
+      handleExcludedNumbers,
+      handleRequiredNumbers,
+      generateNumbers,
+      resetNumbers,
+    }),
+    [excludedNumbers, requiredNumbers, generateNumbers, resetNumbers]
+  );
 
   return (
-    <LottoNumberContext.Provider
-      value={{
-        excludedNumbers,
-        setExcludedNumbers,
-        generateNumbers,
-        resetExcludedNumbers,
-      }}
-    >
+    <LottoNumberContext.Provider value={value}>
       {children}
     </LottoNumberContext.Provider>
   );
