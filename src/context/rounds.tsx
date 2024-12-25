@@ -7,6 +7,7 @@ type RoundsContextType = {
   latestRound: LottoDraw | null;
   isLoading: boolean;
   error: string | null;
+  getRecentRounds: (range: number) => LottoDraw[];
 };
 
 const RoundsContext = createContext<RoundsContextType | null>(null);
@@ -16,6 +17,7 @@ export const RoundsProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [rounds, setRounds] = useState<LottoDraw[]>([]);
   const [latestRound, setLatestRound] = useState<LottoDraw | null>(null);
+
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -41,8 +43,26 @@ export const RoundsProvider: React.FC<{ children: React.ReactNode }> = ({
     fetchRounds();
   }, []);
 
+  const getRecentRounds = (range: number): LottoDraw[] => {
+    if (rounds.length >= range) {
+      const from = rounds.length - range;
+      const divided = rounds.slice(from);
+      return divided;
+    }
+
+    return rounds;
+  };
+
   return (
-    <RoundsContext.Provider value={{ rounds, latestRound, isLoading, error }}>
+    <RoundsContext.Provider
+      value={{
+        rounds,
+        latestRound,
+        getRecentRounds,
+        isLoading,
+        error,
+      }}
+    >
       {children}
     </RoundsContext.Provider>
   );
