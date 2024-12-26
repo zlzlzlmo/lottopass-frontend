@@ -49,27 +49,24 @@ export const LottoNumberProvider: React.FC<{ children: React.ReactNode }> = ({
       randomCount
     );
 
-    const availableNumbers = new Set(
-      allNumbers.filter((num) => {
-        if (requiredNumbers.length <= 0) return !excludedNumbers.includes(num);
-        return uniquerRequiredNumbers.includes(num);
-      })
-    );
-
-    while (availableNumbers.size < 6) {
-      const randomNum = getRandomNum(1, 45);
-      availableNumbers.add(randomNum);
-    }
+    const availableNumbers = allNumbers.filter((num) => {
+      return !excludedNumbers.includes(num);
+    });
 
     const randomNumbers: number[] = [];
 
     while (randomNumbers.length < 6) {
-      const randomIndex = Math.floor(Math.random() * availableNumbers.size);
+      const randomIndex = Math.floor(Math.random() * availableNumbers.length);
       const number = [...availableNumbers][randomIndex];
       if (!randomNumbers.includes(number)) randomNumbers.push(number);
     }
 
-    return randomNumbers.sort((a, b) => a - b); // 정렬
+    const results = randomNumbers.map((num, i) => {
+      if (uniquerRequiredNumbers[i]) return uniquerRequiredNumbers[i];
+      return num;
+    });
+
+    return results.sort((a, b) => a - b); // 정렬
   };
 
   const handleExcludedNumbers = useCallback((numbers: number[]) => {
