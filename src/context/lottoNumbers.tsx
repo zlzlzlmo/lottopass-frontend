@@ -24,6 +24,8 @@ export const LottoNumberProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [excludedNumbers, setExcludedNumbers] = useState<number[]>([]);
   const [requiredNumbers, setRequiredNumbers] = useState<number[]>([]);
+  const [minimumRequiredCount, setMinimumRequiredCount] = useState<number>(3);
+  const [roundCount, setRoundCount] = useState<number>(5);
 
   // 제외된 번호를 뺀 나머지 번호들에서 번호 생성
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -46,23 +48,21 @@ export const LottoNumberProvider: React.FC<{ children: React.ReactNode }> = ({
     return randomNumbers.sort((a, b) => a - b); // 정렬
   };
 
-  const handleExcludedNumbers = (numbers: number[]) => {
-    setExcludedNumbers(() => {
-      return numbers;
-    });
-    setRequiredNumbers([]);
-  };
+  const handleExcludedNumbers = useCallback((numbers: number[]) => {
+    setExcludedNumbers(numbers);
+    setRequiredNumbers([]); // 필수 번호 초기화
+  }, []);
 
-  const handleRequiredNumbers = (numbers: number[]) => {
-    setRequiredNumbers(() => {
-      return numbers;
-    });
-    setExcludedNumbers([]);
-  };
+  const handleRequiredNumbers = useCallback((numbers: number[]) => {
+    setRequiredNumbers(numbers);
+    setExcludedNumbers([]); // 제외 번호 초기화
+  }, []);
 
   const resetNumbers = useCallback(() => {
     setExcludedNumbers([]);
     setRequiredNumbers([]);
+    setMinimumRequiredCount(3); // 기본값 초기화
+    setRoundCount(5); // 기본값 초기화
   }, []);
 
   const value = useMemo(
@@ -73,8 +73,21 @@ export const LottoNumberProvider: React.FC<{ children: React.ReactNode }> = ({
       handleRequiredNumbers,
       generateNumbers,
       resetNumbers,
+      setMinimumRequiredCount,
+      minimumRequiredCount,
+      setRoundCount,
+      roundCount,
     }),
-    [excludedNumbers, requiredNumbers, generateNumbers, resetNumbers]
+    [
+      excludedNumbers,
+      requiredNumbers,
+      handleExcludedNumbers,
+      handleRequiredNumbers,
+      generateNumbers,
+      resetNumbers,
+      minimumRequiredCount,
+      roundCount,
+    ]
   );
 
   return (
