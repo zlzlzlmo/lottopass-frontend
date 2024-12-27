@@ -8,33 +8,42 @@ interface PopupModalProps {
   onClose: () => void; // 닫기 버튼 또는 DIM 클릭 콜백
 }
 
+// Separate utility functions for increment and decrement logic
+const adjustValue = (
+  value: number,
+  type: "increment" | "decrement",
+  min: number,
+  max: number
+): number => {
+  if (type === "increment") return Math.min(value + 1, max);
+  return Math.max(value - 1, min);
+};
+
 const PopupModal: React.FC<PopupModalProps> = ({ onConfirm, onClose }) => {
   const {
-    minimumRequiredCount,
-    roundCount,
-    setRoundCount,
-    setMinimumRequiredCount,
+    state: { roundCount, minimumRequiredCount },
+    dispatch,
   } = useLottoNumber();
 
-  // 카운트 증감 핸들러
-  const handleIncrement = (
-    setter: React.Dispatch<React.SetStateAction<number>>,
-    max?: number
+  // Handlers for increment and decrement
+  const handleAdjustValue = (
+    type: "SET_ROUND_COUNT" | "SET_MINIMUM_REQUIRED_COUNT",
+    action: "increment" | "decrement",
+    min: number,
+    max: number
   ) => {
-    setter((prev) => (max && prev >= max ? prev : prev + 1));
+    const currentValue =
+      type === "SET_ROUND_COUNT" ? roundCount : minimumRequiredCount;
+    const newValue = adjustValue(currentValue, action, min, max);
+
+    dispatch({ type, payload: newValue });
   };
 
-  const handleDecrement = (
-    setter: React.Dispatch<React.SetStateAction<number>>,
-    min?: number
-  ) => {
-    setter((prev) => (min && prev <= min ? prev : prev - 1));
-  };
-
+  // Initialize values on mount
   useLayoutEffect(() => {
-    setRoundCount(5);
-    setMinimumRequiredCount(3);
-  }, [setMinimumRequiredCount, setRoundCount]);
+    dispatch({ type: "SET_ROUND_COUNT", payload: 5 });
+    dispatch({ type: "SET_MINIMUM_REQUIRED_COUNT", payload: 3 });
+  }, [dispatch]);
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
@@ -47,22 +56,27 @@ const PopupModal: React.FC<PopupModalProps> = ({ onConfirm, onClose }) => {
               type="number"
               value={roundCount}
               onChange={(e) =>
-                setRoundCount(
-                  Math.max(1, Math.min(10, Number(e.target.value))) // 최소 1, 최대 10
-                )
+                dispatch({
+                  type: "SET_ROUND_COUNT",
+                  payload: Math.max(1, Math.min(10, Number(e.target.value))),
+                })
               }
               className={styles.inputBox}
             />
             <div className={styles.arrowGroup}>
               <button
                 className={styles.arrowButton}
-                onClick={() => handleDecrement(setRoundCount, 1)}
+                onClick={() =>
+                  handleAdjustValue("SET_ROUND_COUNT", "decrement", 1, 10)
+                }
               >
                 &lt;
               </button>
               <button
                 className={styles.arrowButton}
-                onClick={() => handleIncrement(setRoundCount, 10)}
+                onClick={() =>
+                  handleAdjustValue("SET_ROUND_COUNT", "increment", 1, 10)
+                }
               >
                 &gt;
               </button>
@@ -75,22 +89,37 @@ const PopupModal: React.FC<PopupModalProps> = ({ onConfirm, onClose }) => {
               type="number"
               value={minimumRequiredCount}
               onChange={(e) =>
-                setMinimumRequiredCount(
-                  Math.max(1, Math.min(6, Number(e.target.value))) // 최소 1, 최대 6
-                )
+                dispatch({
+                  type: "SET_MINIMUM_REQUIRED_COUNT",
+                  payload: Math.max(1, Math.min(6, Number(e.target.value))),
+                })
               }
               className={styles.inputBox}
             />
             <div className={styles.arrowGroup}>
               <button
                 className={styles.arrowButton}
-                onClick={() => handleDecrement(setMinimumRequiredCount, 1)}
+                onClick={() =>
+                  handleAdjustValue(
+                    "SET_MINIMUM_REQUIRED_COUNT",
+                    "decrement",
+                    1,
+                    6
+                  )
+                }
               >
                 &lt;
               </button>
               <button
                 className={styles.arrowButton}
-                onClick={() => handleIncrement(setMinimumRequiredCount, 6)}
+                onClick={() =>
+                  handleAdjustValue(
+                    "SET_MINIMUM_REQUIRED_COUNT",
+                    "increment",
+                    1,
+                    6
+                  )
+                }
               >
                 &gt;
               </button>
