@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import styles from "./OptionsGrid.module.scss";
 import { useNavigate } from "react-router-dom";
 import PopupModal from "../../../components/common/popup/PopupModal";
-import useOptionsGrid from "./hooks/useOptionsGrid";
+import { useLottoNumber } from "../../../context/lottoNumbers";
+import { useRounds } from "../../../context/rounds";
+import { shuffle } from "../../../utils/number";
 
 // 옵션 타입 정의
 interface Option {
@@ -14,10 +16,28 @@ interface Option {
 
 const OptionsGrid: React.FC = () => {
   const navigate = useNavigate();
-  const { handleRecentRounds } = useOptionsGrid();
 
   const [showPopup, setShowPopup] = useState<boolean>(false); // 팝업 표시 여부
   const recentRoundsNum = 5;
+
+  const {
+    state: { roundCount },
+    dispatch,
+  } = useLottoNumber();
+
+  const { getRecentRounds } = useRounds();
+
+  const handleRecentRounds = () => {
+    const recentRounds = getRecentRounds(roundCount);
+
+    const recentWinningRounds = new Set(
+      recentRounds.flatMap((round) => round.winningNumbers)
+    );
+
+    const requiredNumbers = shuffle([...recentWinningRounds].map(Number));
+    dispatch({ type: "SET_REQUIRED_NUMBERS", payload: requiredNumbers });
+  };
+
   // 옵션 배열
   const options: Option[] = [
     {
@@ -48,11 +68,6 @@ const OptionsGrid: React.FC = () => {
     { label: "홀수 4개\n짝수 2개", rank: null, path: "/odd-4-even-2" },
     { label: "짝수 3개\n홀수 3개", rank: "3위", path: "/even-3-odd-3" },
   ];
-
-  // const handlePopupConfirm = (recentRounds: number, requiredCount: number) => {
-  //   setShowPopup(false);
-  //   navigate(`/result?n=${recentRounds}&k=${requiredCount}`); // N, K 값을 전달
-  // };
 
   return (
     <div className={styles.container}>

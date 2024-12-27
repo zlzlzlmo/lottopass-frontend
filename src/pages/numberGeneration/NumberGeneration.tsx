@@ -6,11 +6,11 @@ import OptionsGrid from "./optionsGrid/OptionsGrid";
 import { useLottoNumber } from "../../context/lottoNumbers";
 
 const NumberGeneration: React.FC = () => {
-  const { resetNumbers } = useLottoNumber();
+  const { dispatch } = useLottoNumber();
 
   useEffect(() => {
-    resetNumbers();
-  }, [resetNumbers]);
+    dispatch({ type: "RESET" });
+  }, [dispatch]);
 
   return (
     <Layout>

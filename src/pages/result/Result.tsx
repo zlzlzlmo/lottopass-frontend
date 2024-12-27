@@ -5,7 +5,11 @@ import { useLottoNumber } from "../../context/lottoNumbers";
 
 const Result: React.FC = () => {
   const maxResultsLen = 20; // 최대 결과 줄 수
-  const { generateNumbers, resetNumbers } = useLottoNumber();
+  const {
+    generateNumbers,
+    dispatch,
+    state: { excludedNumbers, requiredNumbers },
+  } = useLottoNumber();
 
   // 초기 결과 조합
   const [results, setResults] = useState<number[][]>(() =>
@@ -32,9 +36,9 @@ const Result: React.FC = () => {
   // 상태 초기화
   useEffect(() => {
     return () => {
-      resetNumbers();
+      dispatch({ type: "RESET" });
     };
-  }, [resetNumbers]);
+  }, [dispatch]);
 
   return (
     <Layout>
@@ -42,7 +46,7 @@ const Result: React.FC = () => {
         <h1 className={styles.title}>결과 페이지</h1>
 
         {/* 제외 번호 및 필수 번호 표시 */}
-        {/* <div className={styles.conditions}>
+        <div className={styles.conditions}>
           <h2>선택 조건</h2>
           <p>
             <strong>제외 번호:</strong>{" "}
@@ -56,7 +60,7 @@ const Result: React.FC = () => {
               ? requiredNumbers.join(", ")
               : "선택된 필수 번호 없음"}
           </p>
-        </div> */}
+        </div>
 
         {/* 결과 리스트 */}
         <div className={styles.list}>
