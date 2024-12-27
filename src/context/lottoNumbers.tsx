@@ -1,43 +1,75 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from "react";
+import React, { createContext, useReducer, useContext, useMemo } from "react";
 import { getRandomNum, shuffle } from "../utils/number";
 
-interface LottoNumberContextType {
-  roundCount: number;
-  minimumRequiredCount: number;
+// State and Action Types
+interface State {
   excludedNumbers: number[];
   requiredNumbers: number[];
-  handleExcludedNumbers: (numbers: number[]) => void;
-  handleRequiredNumbers: (numbers: number[]) => void;
-  generateNumbers: () => number[]; // 결과 번호 생성 함수
-  resetNumbers: () => void;
-  setRoundCount: React.Dispatch<React.SetStateAction<number>>;
-  setMinimumRequiredCount: React.Dispatch<React.SetStateAction<number>>;
+  roundCount: number;
+  minimumRequiredCount: number;
 }
 
-const LottoNumberContext = createContext<LottoNumberContextType | undefined>(
-  undefined
-);
+type Action =
+  | { type: "SET_EXCLUDED_NUMBERS"; payload: number[] }
+  | { type: "SET_REQUIRED_NUMBERS"; payload: number[] }
+  | { type: "SET_ROUND_COUNT"; payload: number }
+  | { type: "SET_MINIMUM_REQUIRED_COUNT"; payload: number }
+  | { type: "RESET" };
 
+// Initial State
+const initialState: State = {
+  excludedNumbers: [],
+  requiredNumbers: [],
+  roundCount: 5,
+  minimumRequiredCount: 3,
+};
+
+// Reducer Function
+const reducer = (state: State, action: Action): State => {
+  switch (action.type) {
+    case "SET_EXCLUDED_NUMBERS":
+      return {
+        ...state,
+        excludedNumbers: action.payload,
+        requiredNumbers: [],
+      };
+    case "SET_REQUIRED_NUMBERS":
+      return {
+        ...state,
+        requiredNumbers: action.payload,
+        excludedNumbers: [],
+      };
+    case "SET_ROUND_COUNT":
+      return {
+        ...state,
+        roundCount: action.payload,
+      };
+    case "SET_MINIMUM_REQUIRED_COUNT":
+      return {
+        ...state,
+        minimumRequiredCount: action.payload,
+      };
+    case "RESET":
+      return initialState;
+    default:
+      throw new Error("Unhandled action type");
+  }
+};
+
+// Context Creation
+const LottoNumberContext = createContext<{
+  state: State;
+  dispatch: React.Dispatch<Action>;
+  generateNumbers: () => number[];
+} | null>(null);
+
+// Provider Component
 export const LottoNumberProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const initialRoundCount = 5;
-  const initialMinimumRequiredCount = 6;
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { minimumRequiredCount, excludedNumbers, requiredNumbers } = state;
 
-  const [excludedNumbers, setExcludedNumbers] = useState<number[]>([]);
-  const [requiredNumbers, setRequiredNumbers] = useState<number[]>([]);
-  const [minimumRequiredCount, setMinimumRequiredCount] = useState<number>(
-    initialMinimumRequiredCount
-  );
-  const [roundCount, setRoundCount] = useState<number>(initialRoundCount);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const generateNumbers = () => {
     const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
 
@@ -58,7 +90,12 @@ export const LottoNumberProvider: React.FC<{ children: React.ReactNode }> = ({
     while (randomNumbers.length < 6) {
       const randomIndex = Math.floor(Math.random() * availableNumbers.length);
       const number = [...availableNumbers][randomIndex];
-      if (!randomNumbers.includes(number)) randomNumbers.push(number);
+
+      if (
+        !uniquerRequiredNumbers.includes(number) &&
+        !randomNumbers.includes(number)
+      )
+        randomNumbers.push(number);
     }
 
     const results = randomNumbers.map((num, i) => {
@@ -69,46 +106,13 @@ export const LottoNumberProvider: React.FC<{ children: React.ReactNode }> = ({
     return results.sort((a, b) => a - b); // 정렬
   };
 
-  const handleExcludedNumbers = useCallback((numbers: number[]) => {
-    setExcludedNumbers(numbers);
-    setRequiredNumbers([]);
-  }, []);
-
-  const handleRequiredNumbers = useCallback((numbers: number[]) => {
-    setRequiredNumbers(numbers);
-    setExcludedNumbers([]);
-  }, []);
-
-  const resetNumbers = useCallback(() => {
-    setExcludedNumbers([]);
-    setRequiredNumbers([]);
-    setMinimumRequiredCount(initialMinimumRequiredCount);
-    setRoundCount(initialRoundCount);
-  }, []);
-
-  const value = useMemo<LottoNumberContextType>(
+  const value = useMemo(
     () => ({
-      excludedNumbers,
-      requiredNumbers,
-      handleExcludedNumbers,
-      handleRequiredNumbers,
+      state,
+      dispatch,
       generateNumbers,
-      resetNumbers,
-      setMinimumRequiredCount,
-      minimumRequiredCount,
-      setRoundCount,
-      roundCount,
     }),
-    [
-      excludedNumbers,
-      requiredNumbers,
-      handleExcludedNumbers,
-      handleRequiredNumbers,
-      generateNumbers,
-      resetNumbers,
-      minimumRequiredCount,
-      roundCount,
-    ]
+    [state]
   );
 
   return (
@@ -118,6 +122,7 @@ export const LottoNumberProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
+// Custom Hook
 export const useLottoNumber = () => {
   const context = useContext(LottoNumberContext);
   if (!context) {
