@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useMemo,
+} from "react";
 import { getAllRounds } from "../api/axios/lottoApi";
 import { LottoDraw } from "lottopass-shared";
 
@@ -12,12 +18,12 @@ type RoundsContextType = {
 
 const RoundsContext = createContext<RoundsContextType | null>(null);
 
+// Rounds Provider
 export const RoundsProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [rounds, setRounds] = useState<LottoDraw[]>([]);
   const [latestRound, setLatestRound] = useState<LottoDraw | null>(null);
-
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -28,13 +34,11 @@ export const RoundsProvider: React.FC<{ children: React.ReactNode }> = ({
         if (result.status === "success") {
           setRounds(result.data);
           setLatestRound(result.data[result.data.length - 1]);
-          console.log(result.data);
         } else {
           throw new Error(result.message || "Failed to fetch data");
         }
-      } catch (error) {
-        console.error("Failed to fetch rounds", error);
-        setError("Failed to load rounds data");
+      } catch (err) {
+        setError((err as Error).message || "Failed to load rounds data");
       } finally {
         setIsLoading(false);
       }
@@ -44,25 +48,22 @@ export const RoundsProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const getRecentRounds = (range: number): LottoDraw[] => {
-    if (rounds.length >= range) {
-      const from = rounds.length - range;
-      const divided = rounds.slice(from);
-      return divided;
-    }
-
-    return rounds;
+    return rounds.slice(-range);
   };
 
+  const contextValue = useMemo(
+    () => ({
+      rounds,
+      latestRound,
+      getRecentRounds,
+      isLoading,
+      error,
+    }),
+    [rounds, latestRound, isLoading, error]
+  );
+
   return (
-    <RoundsContext.Provider
-      value={{
-        rounds,
-        latestRound,
-        getRecentRounds,
-        isLoading,
-        error,
-      }}
-    >
+    <RoundsContext.Provider value={contextValue}>
       {children}
     </RoundsContext.Provider>
   );
