@@ -9,11 +9,7 @@ const Result: React.FC = () => {
   const maxResultsLen = 20; // 최대 결과 줄 수
   const localStorageKey = "lottoResults";
 
-  const {
-    generateNumbers,
-    state: { excludedNumbers },
-    dispatch,
-  } = useLottoNumber();
+  const { generateNumbers, dispatch } = useLottoNumber();
 
   // 초기 결과 복원
   const [results, setResults] = useState<number[][]>(() =>
@@ -59,19 +55,7 @@ const Result: React.FC = () => {
   return (
     <Layout>
       <div className={styles.container}>
-        {/* 조건 표시 */}
-        <div className={styles.conditions}>
-          <p>
-            <strong>제외 번호:</strong>{" "}
-            {excludedNumbers.length
-              ? excludedNumbers.sort((a, b) => a - b).join(", ")
-              : "선택된 제외 번호 없음"}
-          </p>
-          <p>
-            <strong>필수 번호:</strong>{" "}
-          </p>
-        </div>
-
+        <h1 className={styles.title}>완성 조합</h1>
         {/* 결과 리스트 */}
         <div className={styles.list}>
           {results.map((result, index) => (

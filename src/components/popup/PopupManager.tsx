@@ -1,31 +1,19 @@
 import React from "react";
 import NumberSelectPopup from "./NumberSelectPopup";
+import NumberControlPopup from "./NumberControlPopup";
 // import RecentRoundsPopup from "./RecentRoundsPopup";
 
 // 공통 props
-interface BasePopupProps {
-  onClose: () => void;
-  onConfirm: (selectedNumbers: number[]) => void;
-}
-
-// NumberSelectPopup props
-interface NumberSelectPopupProps extends BasePopupProps {
-  popupType: "numberSelect";
-  maxSelection: number;
-  confirmType: "exclude" | "require";
-}
-
-// RecentRoundsPopup props
-interface RecentRoundsPopupProps extends BasePopupProps {
-  popupType: "recentRounds";
-  // rounds: number[];
-}
 
 // 모든 팝업 타입의 Union
-type PopupProps =
-  | NumberSelectPopupProps
-  | RecentRoundsPopupProps
-  | { popupType: null };
+interface PopupProps {
+  popupType: "numberSelect" | "numberControl";
+  onClose: () => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onConfirm: (...args: any[]) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
+}
 
 const PopupManager: React.FC<PopupProps> = (props) => {
   if (props.popupType === null) {
@@ -33,15 +21,23 @@ const PopupManager: React.FC<PopupProps> = (props) => {
     return null;
   }
 
-  const { popupType, onClose } = props;
+  const { popupType, onClose, onConfirm } = props;
 
   switch (popupType) {
     case "numberSelect":
       return (
         <NumberSelectPopup
           onClose={onClose}
-          onConfirm={props.onConfirm as (selectedNumbers: number[]) => void}
+          onConfirm={onConfirm}
           maxSelection={props.maxSelection ?? 39}
+          confirmType={props.confirmType}
+        />
+      );
+    case "numberControl":
+      return (
+        <NumberControlPopup
+          onClose={onClose}
+          onConfirm={onConfirm}
           confirmType={props.confirmType}
         />
       );

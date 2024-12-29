@@ -1,52 +1,36 @@
-import React, { useLayoutEffect } from "react";
+import React, { useState } from "react";
 import styles from "./NumberControlPopup.module.scss";
-import { useLottoNumber } from "../../context/lottoNumbers";
 import Button from "../common/button/Button";
+import { clearFromLocalStorage } from "../../utils/storage";
 
 interface PopupModalProps {
-  onConfirm: () => void; // 확인 버튼 콜백
+  onConfirm: (roundCount: number, minCount: number) => void; // 확인 버튼 콜백
   onClose: () => void; // 닫기 버튼 또는 DIM 클릭 콜백
+  confirmType: "require" | "exclude";
 }
 
-// Separate utility functions for increment and decrement logic
-const adjustValue = (
-  value: number,
-  type: "increment" | "decrement",
-  min: number,
-  max: number
-): number => {
-  if (type === "increment") return Math.min(value + 1, max);
-  return Math.max(value - 1, min);
+const clampValue = (value: number, min: number, max: number): number => {
+  return Math.max(min, Math.min(value, max));
 };
 
 const NumberControlPopup: React.FC<PopupModalProps> = ({
   onConfirm,
   onClose,
+  confirmType,
 }) => {
-  const {
-    state: { roundCount, minimumRequiredCount },
-    dispatch,
-  } = useLottoNumber();
+  const [roundCount, setRoundCount] = useState<number>(5);
+  const [minCount, setMinCount] = useState<number>(3);
 
-  // Handlers for increment and decrement
-  const handleAdjustValue = (
-    type: "SET_ROUND_COUNT" | "SET_MINIMUM_REQUIRED_COUNT",
-    action: "increment" | "decrement",
-    min: number,
-    max: number
-  ) => {
-    const currentValue =
-      type === "SET_ROUND_COUNT" ? roundCount : minimumRequiredCount;
-    const newValue = adjustValue(currentValue, action, min, max);
+  const ROUND_COUNT_MIN = 1;
+  const ROUND_COUNT_MAX = 10;
+  const MIN_COUNT_MIN = 1;
+  const MIN_COUNT_MAX = 39;
 
-    dispatch({ type, payload: newValue });
+  const handleConfirm = () => {
+    clearFromLocalStorage();
+    onConfirm(roundCount, minCount); // 부모 컴포넌트로 선택된 번호 전달
+    onClose(); // 팝업 닫기
   };
-
-  // Initialize values on mount
-  useLayoutEffect(() => {
-    dispatch({ type: "SET_ROUND_COUNT", payload: 5 });
-    dispatch({ type: "SET_MINIMUM_REQUIRED_COUNT", payload: 3 });
-  }, [dispatch]);
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
@@ -59,10 +43,13 @@ const NumberControlPopup: React.FC<PopupModalProps> = ({
               type="number"
               value={roundCount}
               onChange={(e) =>
-                dispatch({
-                  type: "SET_ROUND_COUNT",
-                  payload: Math.max(1, Math.min(10, Number(e.target.value))),
-                })
+                setRoundCount(
+                  clampValue(
+                    Number(e.target.value),
+                    ROUND_COUNT_MIN,
+                    ROUND_COUNT_MAX
+                  )
+                )
               }
               className={styles.inputBox}
             />
@@ -70,7 +57,9 @@ const NumberControlPopup: React.FC<PopupModalProps> = ({
               <button
                 className={styles.arrowButton}
                 onClick={() =>
-                  handleAdjustValue("SET_ROUND_COUNT", "decrement", 1, 10)
+                  setRoundCount((prev) =>
+                    clampValue(prev - 1, ROUND_COUNT_MIN, ROUND_COUNT_MAX)
+                  )
                 }
               >
                 &lt;
@@ -78,7 +67,9 @@ const NumberControlPopup: React.FC<PopupModalProps> = ({
               <button
                 className={styles.arrowButton}
                 onClick={() =>
-                  handleAdjustValue("SET_ROUND_COUNT", "increment", 1, 10)
+                  setRoundCount((prev) =>
+                    clampValue(prev + 1, ROUND_COUNT_MIN, ROUND_COUNT_MAX)
+                  )
                 }
               >
                 &gt;
@@ -90,12 +81,15 @@ const NumberControlPopup: React.FC<PopupModalProps> = ({
             <label className={styles.inputLabel}>최소 갯수</label>
             <input
               type="number"
-              value={minimumRequiredCount}
+              value={minCount}
               onChange={(e) =>
-                dispatch({
-                  type: "SET_MINIMUM_REQUIRED_COUNT",
-                  payload: Math.max(1, Math.min(6, Number(e.target.value))),
-                })
+                setMinCount(
+                  clampValue(
+                    Number(e.target.value),
+                    MIN_COUNT_MIN,
+                    MIN_COUNT_MAX
+                  )
+                )
               }
               className={styles.inputBox}
             />
@@ -103,11 +97,8 @@ const NumberControlPopup: React.FC<PopupModalProps> = ({
               <button
                 className={styles.arrowButton}
                 onClick={() =>
-                  handleAdjustValue(
-                    "SET_MINIMUM_REQUIRED_COUNT",
-                    "decrement",
-                    1,
-                    6
+                  setMinCount((prev) =>
+                    clampValue(prev - 1, MIN_COUNT_MIN, MIN_COUNT_MAX)
                   )
                 }
               >
@@ -116,11 +107,8 @@ const NumberControlPopup: React.FC<PopupModalProps> = ({
               <button
                 className={styles.arrowButton}
                 onClick={() =>
-                  handleAdjustValue(
-                    "SET_MINIMUM_REQUIRED_COUNT",
-                    "increment",
-                    1,
-                    6
+                  setMinCount((prev) =>
+                    clampValue(prev + 1, MIN_COUNT_MIN, MIN_COUNT_MAX)
                   )
                 }
               >
@@ -130,9 +118,10 @@ const NumberControlPopup: React.FC<PopupModalProps> = ({
           </div>
         </div>
         <p className={styles.exampleText}>
-          최근 N회차에서 최소 K개의 당첨번호를 포함한 조합을 생성합니다.
+          최근 N회차에서 최소 K개의 당첨번호를{" "}
+          {confirmType === "exclude" ? "제외한" : "포함한"} 조합을 생성합니다.
         </p>
-        <Button onClick={() => {}}>번호 생성</Button>
+        <Button onClick={handleConfirm}>번호 생성</Button>
 
         <button className={styles.closeButton} onClick={onClose}>
           ✖

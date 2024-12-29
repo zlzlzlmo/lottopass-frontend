@@ -1,24 +1,24 @@
 import { useReducer, useMemo, useContext, createContext } from "react";
-import { saveToLocalStorage, loadFromLocalStorage } from "../utils/storage";
-import { shuffle } from "../utils/number";
+import {
+  saveToLocalStorage,
+  loadFromLocalStorage,
+  clearFromLocalStorage,
+} from "../utils/storage";
+import { getRandomNum, shuffle } from "../utils/number";
 
 interface State {
   excludedNumbers: number[];
-  roundCount: number;
-  minimumRequiredCount: number;
+  minCount: number;
 }
 
 type Action =
   | { type: "SET_EXCLUDED_NUMBERS"; payload: number[] }
-  | { type: "SET_REQUIRED_NUMBERS"; payload: number[] }
-  | { type: "SET_ROUND_COUNT"; payload: number }
-  | { type: "SET_MINIMUM_REQUIRED_COUNT"; payload: number }
+  | { type: "SET_MIN_COUNT"; payload: number }
   | { type: "RESET" };
 
 const initialState: State = {
   excludedNumbers: [],
-  roundCount: Infinity,
-  minimumRequiredCount: 6,
+  minCount: 6,
 };
 
 const reducer = (state: State, action: Action): State => {
@@ -28,19 +28,14 @@ const reducer = (state: State, action: Action): State => {
         return {
           ...state,
           excludedNumbers: action.payload,
-          requiredNumbers: [],
         };
-      case "SET_REQUIRED_NUMBERS":
+      case "SET_MIN_COUNT":
         return {
           ...state,
-          requiredNumbers: action.payload,
-          excludedNumbers: [],
+          minCount: action.payload,
         };
-      case "SET_ROUND_COUNT":
-        return { ...state, roundCount: action.payload };
-      case "SET_MINIMUM_REQUIRED_COUNT":
-        return { ...state, minimumRequiredCount: action.payload };
       case "RESET":
+        clearFromLocalStorage();
         return initialState;
       default:
         throw new Error("Unhandled action type");
@@ -66,13 +61,13 @@ export const LottoNumberProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 
   const generateNumbers = () => {
-    // 필수번호 선택하면 필수 번호 제외한것이 제외번호지.
     const allNumbers = shuffle(Array.from({ length: 45 }, (_, i) => i + 1));
-    // const randomCount = getRandomNum(0, 6);
+
+    const randomIdx = getRandomNum(state.minCount, 6);
 
     const availableNumbers = shuffle(
       allNumbers.filter((num) => !state.excludedNumbers.includes(num))
-    );
+    ).slice(0, randomIdx);
 
     const unique = new Set([...availableNumbers, ...allNumbers]);
 
