@@ -44,10 +44,9 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #ffffff;
   font-size: 16px;
   font-weight: bold;
-  color: #333;
+  color: $white-color;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -56,11 +55,11 @@
 }
 
 .bonus {
-  background-color: #ef4444;
-  color: #fff;
+  background-color: $third-color;
+  color: $white-color;
 }
 
 .prizeInfo {
   font-size: 14px;
-  color: #333;
+  color: $text-color;
 }

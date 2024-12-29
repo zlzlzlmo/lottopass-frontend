@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Card.module.scss";
 import { useRounds } from "../../../context/rounds";
 import { formatNumberWithCommas } from "../../../utils/number";
+import { getBallColor } from "../../../utils/ballColor";
 
 const Card = () => {
   const { latestRound, isLoading, error } = useRounds();
@@ -20,6 +21,7 @@ const Card = () => {
         <div className={styles.numbersContainer}>
           {latestRound.winningNumbers.map((num, index) => (
             <div
+              style={{ backgroundColor: getBallColor(num) }}
               key={index}
               className={`${styles.number} ${index === 6 ? styles.bonus : ""}`}
             >
