@@ -1,5 +1,6 @@
 .cardContainer {
   margin-bottom: 48px;
+  width: 100%;
 }
 
 .card {
@@ -33,6 +34,7 @@
   justify-content: center;
   gap: 8px;
   margin-bottom: 16px;
+  align-items: center;
 }
 
 .number {
@@ -47,6 +49,10 @@
   font-weight: bold;
   color: #333;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bonusPlus {
+  font-size: 18px;
 }
 
 .bonus {

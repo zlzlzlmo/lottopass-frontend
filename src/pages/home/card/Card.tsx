@@ -16,13 +16,9 @@ const Card = () => {
           <span className={styles.round}>
             {latestRound.drawNumber}회 당첨번호 [{latestRound.date}]
           </span>
-          <span className={styles.result}>[당첨결과 +]</span>
         </div>
         <div className={styles.numbersContainer}>
-          {[
-            ...latestRound.winningNumbers, // 당첨 번호
-            `+${latestRound.bonusNumber}`, // 보너스 번호
-          ].map((num, index) => (
+          {latestRound.winningNumbers.map((num, index) => (
             <div
               key={index}
               className={`${styles.number} ${index === 6 ? styles.bonus : ""}`}
@@ -30,6 +26,10 @@ const Card = () => {
               {num}
             </div>
           ))}
+          <div className={styles.bonusPlus}>+</div>
+          <div className={`${styles.number} ${styles.bonus}`}>
+            {latestRound.bonusNumber}
+          </div>
         </div>
         <div className={styles.prizeInfo}>
           1등{" "}
