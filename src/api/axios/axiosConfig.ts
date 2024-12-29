@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000', // 프록시 서버 주소 나중에 env 변수 설정
+  baseURL: process.env.REACT_APP_API_BASE_URL,
   timeout: 5000,
 });
 
