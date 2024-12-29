@@ -2,19 +2,46 @@ import React, { useEffect, useState } from "react";
 import styles from "./Result.module.scss";
 import Layout from "../../components/layout/Layout";
 import { useLottoNumber } from "../../context/lottoNumbers";
+import { getBallColor } from "../../utils/ballColor";
+import {
+  saveToLocalStorage,
+  loadFromLocalStorage,
+  removeFromLocalStorage,
+} from "../../utils/storage";
 
 const Result: React.FC = () => {
   const maxResultsLen = 20; // 최대 결과 줄 수
+  const localStorageKey = "lottoResults";
+
   const {
     generateNumbers,
-    dispatch,
     state: { excludedNumbers, requiredNumbers },
+    dispatch,
   } = useLottoNumber();
 
-  // 초기 결과 조합
+  // 초기 결과 복원
   const [results, setResults] = useState<number[][]>(() =>
-    Array.from({ length: 5 }, () => generateNumbers())
+    loadFromLocalStorage<number[][]>(
+      localStorageKey,
+      Array.from({ length: 5 }, () => generateNumbers())
+    )
   );
+
+  // 결과 변경 시 로컬 스토리지에 저장
+  useEffect(() => {
+    const storageResults =
+      results.length <= 0
+        ? Array.from({ length: 5 }, () => generateNumbers())
+        : results;
+    saveToLocalStorage(localStorageKey, storageResults);
+  }, [results]);
+
+  // 컴포넌트 언마운트 시 상태 초기화
+  useEffect(() => {
+    return () => {
+      dispatch({ type: "RESET" });
+    };
+  }, [dispatch]);
 
   // 결과 추가
   const handleAddResult = () => {
@@ -33,31 +60,21 @@ const Result: React.FC = () => {
     setResults(updatedResults);
   };
 
-  // 상태 초기화
-  useEffect(() => {
-    return () => {
-      dispatch({ type: "RESET" });
-    };
-  }, [dispatch]);
-
   return (
     <Layout>
       <div className={styles.container}>
-        <h1 className={styles.title}>결과 페이지</h1>
-
-        {/* 제외 번호 및 필수 번호 표시 */}
+        {/* 조건 표시 */}
         <div className={styles.conditions}>
-          <h2>선택 조건</h2>
           <p>
             <strong>제외 번호:</strong>{" "}
             {excludedNumbers.length
-              ? excludedNumbers.join(", ")
+              ? excludedNumbers.sort((a, b) => a - b).join(", ")
               : "선택된 제외 번호 없음"}
           </p>
           <p>
             <strong>필수 번호:</strong>{" "}
             {requiredNumbers.length
-              ? requiredNumbers.join(", ")
+              ? requiredNumbers.sort((a, b) => a - b).join(", ")
               : "선택된 필수 번호 없음"}
           </p>
         </div>
@@ -70,17 +87,8 @@ const Result: React.FC = () => {
                 {result.map((num, idx) => (
                   <div
                     key={idx}
-                    className={`${styles.number} ${
-                      num <= 10
-                        ? styles.yellow
-                        : num <= 20
-                        ? styles.blue
-                        : num <= 30
-                        ? styles.red
-                        : num <= 40
-                        ? styles.gray
-                        : styles.green
-                    }`}
+                    className={`${styles.number}`}
+                    style={{ backgroundColor: getBallColor(num) }}
                   >
                     {num}
                   </div>
@@ -98,10 +106,12 @@ const Result: React.FC = () => {
           ))}
         </div>
 
-        {/* 결과 추가 버튼 */}
-        <button className={styles.addButton} onClick={handleAddResult}>
-          +
-        </button>
+        {/* 하단 버튼 */}
+        <div className={styles.footer}>
+          <button className={styles.addButton} onClick={handleAddResult}>
+            +
+          </button>
+        </div>
       </div>
     </Layout>
   );

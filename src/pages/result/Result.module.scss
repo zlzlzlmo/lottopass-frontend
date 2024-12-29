@@ -49,31 +49,7 @@
   font-size: 16px;
   font-weight: bold;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.yellow {
-  background-color: #facc15;
-  color: #333;
-}
-
-.blue {
-  background-color: #3b82f6;
-  color: #fff;
-}
-
-.red {
-  background-color: #ef4444;
-  color: #fff;
-}
-
-.gray {
-  background-color: #6b7280;
-  color: #fff;
-}
-
-.green {
-  background-color: #10b981;
-  color: #fff;
+  color: $white-color;
 }
 
 .deleteButton {
