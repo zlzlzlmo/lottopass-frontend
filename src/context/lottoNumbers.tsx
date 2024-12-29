@@ -1,12 +1,11 @@
 import { useReducer, useMemo, useContext, createContext } from "react";
-import { getRandomNum, shuffle } from "../utils/number";
 import { saveToLocalStorage, loadFromLocalStorage } from "../utils/storage";
+import { shuffle } from "../utils/number";
 
 interface State {
   excludedNumbers: number[];
-  requiredNumbers: number[];
-  // roundCount: number;
-  // minimumRequiredCount: number;
+  roundCount: number;
+  minimumRequiredCount: number;
 }
 
 type Action =
@@ -18,9 +17,8 @@ type Action =
 
 const initialState: State = {
   excludedNumbers: [],
-  requiredNumbers: [],
-  // roundCount: Infinity,
-  // minimumRequiredCount: 0,
+  roundCount: Infinity,
+  minimumRequiredCount: 6,
 };
 
 const reducer = (state: State, action: Action): State => {
@@ -68,36 +66,17 @@ export const LottoNumberProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 
   const generateNumbers = () => {
-    const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
+    // 필수번호 선택하면 필수 번호 제외한것이 제외번호지.
+    const allNumbers = shuffle(Array.from({ length: 45 }, (_, i) => i + 1));
     // const randomCount = getRandomNum(0, 6);
 
-    const shuffledRequiredNumbers = shuffle(state.requiredNumbers);
-    const uniqueRequiredNumbers = [...new Set(shuffledRequiredNumbers)].slice(
-      0,
-      shuffledRequiredNumbers.length
+    const availableNumbers = shuffle(
+      allNumbers.filter((num) => !state.excludedNumbers.includes(num))
     );
 
-    const availableNumbers = allNumbers.filter(
-      (num) => !state.excludedNumbers.includes(num)
-    );
+    const unique = new Set([...availableNumbers, ...allNumbers]);
 
-    const randomNumbers: number[] = [];
-
-    while (randomNumbers.length < 6) {
-      const randomIndex = Math.floor(Math.random() * availableNumbers.length);
-      const number = availableNumbers[randomIndex];
-
-      if (
-        !uniqueRequiredNumbers.includes(number) &&
-        !randomNumbers.includes(number)
-      ) {
-        randomNumbers.push(number);
-      }
-    }
-
-    const results = [...uniqueRequiredNumbers, ...randomNumbers]
-      .slice(0, 6)
-      .sort((a, b) => a - b);
+    const results = [...unique].slice(0, 6).sort((a, b) => a - b);
 
     return results;
   };

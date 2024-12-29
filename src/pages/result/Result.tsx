@@ -3,11 +3,7 @@ import styles from "./Result.module.scss";
 import Layout from "../../components/layout/Layout";
 import { useLottoNumber } from "../../context/lottoNumbers";
 import { getBallColor } from "../../utils/ballColor";
-import {
-  saveToLocalStorage,
-  loadFromLocalStorage,
-  removeFromLocalStorage,
-} from "../../utils/storage";
+import { saveToLocalStorage, loadFromLocalStorage } from "../../utils/storage";
 
 const Result: React.FC = () => {
   const maxResultsLen = 20; // 최대 결과 줄 수
@@ -15,7 +11,7 @@ const Result: React.FC = () => {
 
   const {
     generateNumbers,
-    state: { excludedNumbers, requiredNumbers },
+    state: { excludedNumbers },
     dispatch,
   } = useLottoNumber();
 
@@ -73,9 +69,6 @@ const Result: React.FC = () => {
           </p>
           <p>
             <strong>필수 번호:</strong>{" "}
-            {requiredNumbers.length
-              ? requiredNumbers.sort((a, b) => a - b).join(", ")
-              : "선택된 필수 번호 없음"}
           </p>
         </div>
 

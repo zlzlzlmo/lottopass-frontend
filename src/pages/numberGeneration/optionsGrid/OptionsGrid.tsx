@@ -4,14 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useLottoNumber } from "../../../context/lottoNumbers";
 import PopupManager from "../../../components/popup/PopupManager";
 
-// 옵션 타입 정의
 interface Option {
   label: string; // 옵션의 텍스트
-  rank: string | null; // 순위 표시 (예: "1위")
+  rank: string | null; // 순위 표시
   action?: () => void; // 실행할 작업
+  tooltip?: string; // 툴팁 내용
 }
 
-// PopupProps 타입 정의
 interface PopupProps {
   popupType: "numberSelect" | "recentRounds";
   maxSelection: number;
@@ -23,6 +22,7 @@ interface PopupProps {
 const OptionsGrid: React.FC = () => {
   const navigate = useNavigate();
   const [popupProps, setPopupProps] = useState<PopupProps | null>(null);
+  const [tooltipIndex, setTooltipIndex] = useState<number | null>(null);
 
   const {
     state: { excludedNumbers },
@@ -36,7 +36,12 @@ const OptionsGrid: React.FC = () => {
     if (confirmType === "exclude") {
       dispatch({ type: "SET_EXCLUDED_NUMBERS", payload: selectedNumbers });
     } else if (confirmType === "require") {
-      dispatch({ type: "SET_REQUIRED_NUMBERS", payload: selectedNumbers });
+      const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
+      const excludedNums = allNumbers.filter(
+        (num) => !selectedNumbers.includes(num)
+      );
+
+      dispatch({ type: "SET_EXCLUDED_NUMBERS", payload: excludedNums });
     }
     navigate("/result");
   };
@@ -44,7 +49,6 @@ const OptionsGrid: React.FC = () => {
   const maxExcludeSelection = 45 - 6; // 제외 번호 최대 선택 가능 수
   const maxRequireSelection = Math.max(6 - excludedNumbers.length, 1); // 필수 번호 최대 선택 가능 수
 
-  // 옵션 배열
   const options: Option[] = [
     {
       label: "제외 번호\n직접 선택",
@@ -60,7 +64,7 @@ const OptionsGrid: React.FC = () => {
       },
     },
     {
-      label: `필수 번호\n직접 선택`,
+      label: "필수 번호\n직접 선택",
       rank: null,
       action: () => {
         setPopupProps({
@@ -71,6 +75,20 @@ const OptionsGrid: React.FC = () => {
           onConfirm: (numbers) => handleConfirm(numbers, "require"),
         });
       },
+    },
+    {
+      label: "미출현 번호\n조합",
+      rank: null,
+      action: () => {
+        setPopupProps({
+          popupType: "numberSelect",
+          maxSelection: maxRequireSelection,
+          confirmType: "require",
+          onClose: () => setPopupProps(null),
+          onConfirm: (numbers) => handleConfirm(numbers, "require"),
+        });
+      },
+      tooltip: "최근 N회차 동안 당첨되지 않은 번호를 제외한 조합",
     },
   ];
 
@@ -84,12 +102,14 @@ const OptionsGrid: React.FC = () => {
               key={index}
               className={styles.optionButton}
               onClick={() => {
-                if (option.action) option.action(); // 작업 실행
+                if (option.action) option.action();
               }}
+              onMouseEnter={() => setTooltipIndex(index)}
+              onMouseLeave={() => setTooltipIndex(null)}
             >
               <span>{option.label.replace("\\n", "\n")}</span>
-              {option.rank && (
-                <div className={styles.rankTag}>선택 {option.rank}</div>
+              {tooltipIndex === index && option.tooltip && (
+                <div className={styles.tooltip}>{option.tooltip}</div>
               )}
             </div>
           ))}
@@ -101,7 +121,6 @@ const OptionsGrid: React.FC = () => {
         </p>
       </div>
 
-      {/* PopupManager */}
       {popupProps && <PopupManager {...popupProps} />}
     </>
   );
