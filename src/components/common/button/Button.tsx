@@ -4,21 +4,25 @@ import styles from "./Button.module.scss";
 interface ButtonProps {
   onClick: () => void;
   disabled?: boolean;
-  text?: string;
+  className?: string;
+  children?: React.ReactNode;
 }
 
 const Button: React.FC<ButtonProps> = ({
   onClick,
   disabled = false,
-  text = "확인",
+  className = "",
+  children = "확인",
 }) => {
   return (
     <button
-      className={`${styles.button} ${disabled ? styles.disabled : ""}`}
+      className={`${styles.button} ${className} ${
+        disabled ? styles.disabled : ""
+      }`}
       onClick={onClick}
       disabled={disabled}
     >
-      {text}
+      {children}
     </button>
   );
 };
