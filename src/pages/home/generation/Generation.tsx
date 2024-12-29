@@ -5,7 +5,7 @@ import * as THREE from "three";
 import styles from "./Generation.module.scss";
 import { useNavigate } from "react-router-dom";
 import { shuffle } from "../../../utils/number";
-import { ballColors } from "../../../constants/\bballs";
+import { getBallColor } from "../../../utils/ballColor";
 
 const centralSpherePosition = new THREE.Vector3(0, 0, 0); // 중심 구체 위치
 const centralSphereMinDistance = 2; // 중심 구체와의 최소 거리
@@ -19,11 +19,6 @@ const Generation = () => {
 
   const lottoBalls = Array.from({ length: 45 }, (_, i) => i + 1);
   const shuffledLottoBalls = shuffle(lottoBalls);
-
-  const getBallColor = (ball: number): string => {
-    const idx = Math.floor((ball - 1) / 10);
-    return ballColors[idx];
-  };
 
   const generateNonOverlappingPositions = (
     ballCount: number,
