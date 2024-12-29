@@ -129,7 +129,7 @@ const PopupModal: React.FC<PopupModalProps> = ({ onConfirm, onClose }) => {
         <p className={styles.exampleText}>
           최근 N회차에서 최소 K개의 당첨번호를 포함한 조합을 생성합니다.
         </p>
-        <Button onClick={() => onConfirm()} text="번호 생성" />
+        <Button onClick={() => {}}>번호 생성</Button>
 
         <button className={styles.closeButton} onClick={onClose}>
           ✖
