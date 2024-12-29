@@ -1,4 +1,4 @@
-import Banner from "./banner/Banner";
+import Hero from "./hero/Hero";
 import styles from "./Home.module.scss";
 import Card from "./card/Card";
 import Generation from "./generation/Generation";
@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <Layout>
       <div className={styles.container}>
-        <Banner />
+        <Hero />
         <Card />
         <Generation />
       </div>
