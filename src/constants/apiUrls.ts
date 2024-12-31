@@ -1,3 +1,4 @@
 export const API_URLS = {
-  ALL_ROUNDS: "/lotto/all",
+  ALL_ROUNDS: "/all",
+  LATEST: "/latest",
 };
