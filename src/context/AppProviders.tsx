@@ -1,4 +1,3 @@
-import React from "react";
 import { LottoNumberProvider } from "./lottoNumbers";
 import { RoundsProvider } from "./rounds";
 

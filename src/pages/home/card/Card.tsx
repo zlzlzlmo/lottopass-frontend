@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Card.module.scss";
 import { useRounds } from "../../../context/rounds";
 import { formatNumberWithCommas } from "../../../utils/number";
