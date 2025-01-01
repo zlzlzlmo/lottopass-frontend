@@ -118,30 +118,7 @@ npm run build
   }
   ```
 
-### 2. 최신 로또 추첨 데이터 가져오기
-
-- **URL**: `/api/lotto/latest`
-- **Method**: `GET`
-- **Response**:
-  ```json
-  {
-    "status": "success",
-    "data": {
-      "drawNumber": 1000,
-      "date": "2023-12-31",
-      "winningNumbers": [10, 20, 30, 40, 41, 42],
-      "bonusNumber": 43,
-      "prizeStatistics": {
-        "totalPrize": 1500000000,
-        "firstWinAmount": 300000000,
-        "firstAccumAmount": 900000000,
-        "firstPrizeWinnerCount": 5
-      }
-    }
-  }
-  ```
-
-### 3. 특정 회차 로또 데이터 가져오기
+### 2. 특정 회차 로또 데이터 가져오기
 
 - **URL**: `/api/lotto/draw/:drawNumber`
 - **Method**: `GET`
