@@ -102,8 +102,18 @@ npm run build
   {
     "status": "success",
     "data": [
-      { "drawNumber": 1, "winningNumbers": [1, 2, 3, 4, 5, 6], "bonus": 7 },
-      ...
+      {
+        "drawNumber": 1,
+        "date": "2023-01-01",
+        "winningNumbers": [1, 2, 3, 4, 5, 6],
+        "bonusNumber": 7,
+        "prizeStatistics": {
+          "totalPrize": 1000000000,
+          "firstWinAmount": 200000000,
+          "firstAccumAmount": 600000000,
+          "firstPrizeWinnerCount": 3
+        }
+      }
     ]
   }
   ```
@@ -118,8 +128,15 @@ npm run build
     "status": "success",
     "data": {
       "drawNumber": 1000,
+      "date": "2023-12-31",
       "winningNumbers": [10, 20, 30, 40, 41, 42],
-      "bonus": 43
+      "bonusNumber": 43,
+      "prizeStatistics": {
+        "totalPrize": 1500000000,
+        "firstWinAmount": 300000000,
+        "firstAccumAmount": 900000000,
+        "firstPrizeWinnerCount": 5
+      }
     }
   }
   ```
@@ -134,8 +151,15 @@ npm run build
     "status": "success",
     "data": {
       "drawNumber": 123,
+      "date": "2022-03-01",
       "winningNumbers": [5, 8, 13, 22, 29, 33],
-      "bonus": 10
+      "bonusNumber": 10,
+      "prizeStatistics": {
+        "totalPrize": 800000000,
+        "firstWinAmount": 160000000,
+        "firstAccumAmount": 480000000,
+        "firstPrizeWinnerCount": 3
+      }
     }
   }
   ```
