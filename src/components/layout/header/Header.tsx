@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Header.module.scss";
+import { ROUTES } from "../../../constants/routes";
 
 const Header: React.FC = () => {
   const [isMobileNavVisible, setMobileNavVisible] = useState(false);
@@ -16,29 +17,29 @@ const Header: React.FC = () => {
       </NavLink>
       <nav className={styles.nav}>
         <NavLink
-          to="/generate"
+          to={ROUTES.NUMBER_GENERATION}
           className={({ isActive }) =>
             isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
           }
         >
           번호 생성
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/history"
           className={({ isActive }) =>
             isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
           }
         >
           회차 기록
-        </NavLink>
-        <NavLink
+        </NavLink> */}
+        {/* <NavLink
           to="/about"
           className={({ isActive }) =>
             isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
           }
         >
           서비스 소개
-        </NavLink>
+        </NavLink> */}
       </nav>
       <div
         className={styles.hamburgerMenu}
@@ -55,26 +56,26 @@ const Header: React.FC = () => {
         }
       >
         <NavLink
-          to="/generate"
+          to={ROUTES.NUMBER_GENERATION}
           className={styles.mobileNavLink}
           onClick={() => setMobileNavVisible(false)}
         >
           번호 생성
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/history"
           className={styles.mobileNavLink}
           onClick={() => setMobileNavVisible(false)}
         >
           회차 기록
-        </NavLink>
-        <NavLink
+        </NavLink> */}
+        {/* <NavLink
           to="/about"
           className={styles.mobileNavLink}
           onClick={() => setMobileNavVisible(false)}
         >
           서비스 소개
-        </NavLink>
+        </NavLink> */}
       </nav>
     </header>
   );
