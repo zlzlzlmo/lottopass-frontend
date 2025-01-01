@@ -7,7 +7,7 @@ import { useLotto } from "../../context/lottoNumber/lottoNumberContext";
 import { resetLottoNumber } from "../../context/lottoNumber/lottoNumberActions";
 
 const Result: React.FC = () => {
-  const maxResultsLen = 20; // 최대 결과 줄 수
+  const maxResultsLen = 20;
   const localStorageKey = "lottoResults";
 
   const { generateNumbers, dispatch } = useLotto();

@@ -13,7 +13,7 @@ const Generation = () => {
   const navigate = useNavigate();
 
   const handleStartClick = () => {
-    navigate("/number-generation"); // 원하는 라우트로 이동
+    navigate("/number-generation");
   };
 
   const lottoBalls = Array.from({ length: 45 }, (_, i) => i + 1);
