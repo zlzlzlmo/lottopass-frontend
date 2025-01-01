@@ -1,12 +1,12 @@
-import { LottoNumberProvider } from "./lottoNumbers";
-import { RoundsProvider } from "./rounds";
+import { LottoProvider } from "./lottoNumber/lottoNumberContext";
+import { RoundsProvider } from "./rounds/roundsContext";
 
 export const AppProviders: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   return (
     <RoundsProvider>
-      <LottoNumberProvider>{children}</LottoNumberProvider>
+      <LottoProvider>{children}</LottoProvider>
     </RoundsProvider>
   );
 };

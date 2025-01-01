@@ -2,10 +2,14 @@
 import React, { useState } from "react";
 import styles from "./OptionsGrid.module.scss";
 import { useNavigate } from "react-router-dom";
-import { useLottoNumber } from "../../../context/lottoNumbers";
 import PopupManager from "../../../components/popup/PopupManager";
-import { useRounds } from "../../../context/rounds";
 import { shuffle } from "../../../utils/number";
+import { useRounds } from "../../../context/rounds/roundsContext";
+import { useLotto } from "../../../context/lottoNumber/lottoNumberContext";
+import {
+  setExcludeNumbers,
+  setMinCount,
+} from "../../../context/lottoNumber/lottoNumberActions";
 
 interface Option {
   label: string; // 옵션의 텍스트
@@ -23,25 +27,30 @@ interface PopupProps {
 
 const OptionsGrid: React.FC = () => {
   const navigate = useNavigate();
-  const { getRecentRounds } = useRounds();
+  const { allRounds } = useRounds();
   const [popupProps, setPopupProps] = useState<PopupProps | null>(null);
   const [tooltipIndex, setTooltipIndex] = useState<number | null>(null);
 
-  const { dispatch } = useLottoNumber();
+  const { dispatch } = useLotto();
 
   const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
+
+  const getRecentRounds = (roundCount: number) => {
+    return allRounds.slice(-roundCount);
+  };
 
   const handleConfirm = (
     selectedNumbers: number[],
     confirmType: "exclude" | "require"
   ) => {
     if (confirmType === "exclude") {
-      dispatch({ type: "SET_EXCLUDED_NUMBERS", payload: selectedNumbers });
+      dispatch(setExcludeNumbers(selectedNumbers));
     } else {
       const excludedNums = allNumbers.filter(
         (num) => !selectedNumbers.includes(num)
       );
-      dispatch({ type: "SET_EXCLUDED_NUMBERS", payload: excludedNums });
+
+      dispatch(setExcludeNumbers(excludedNums));
     }
     navigate("/result");
   };
@@ -69,9 +78,9 @@ const OptionsGrid: React.FC = () => {
     }
 
     const excludedNums = shuffle(filteredNumbers);
+    dispatch(setMinCount(minCount));
+    dispatch(setExcludeNumbers(excludedNums));
 
-    dispatch({ type: "SET_MIN_COUNT", payload: minCount });
-    dispatch({ type: "SET_EXCLUDED_NUMBERS", payload: excludedNums });
     navigate("/result");
   };
 

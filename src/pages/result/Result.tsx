@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Result.module.scss";
 import Layout from "../../components/layout/Layout";
-import { useLottoNumber } from "../../context/lottoNumbers";
 import { getBallColor } from "../../utils/ballColor";
 import { saveToLocalStorage, loadFromLocalStorage } from "../../utils/storage";
+import { useLotto } from "../../context/lottoNumber/lottoNumberContext";
+import { resetLottoNumber } from "../../context/lottoNumber/lottoNumberActions";
 
 const Result: React.FC = () => {
   const maxResultsLen = 20; // 최대 결과 줄 수
   const localStorageKey = "lottoResults";
 
-  const { generateNumbers, dispatch } = useLottoNumber();
+  const { generateNumbers, dispatch } = useLotto();
 
   // 초기 결과 복원
   const [results, setResults] = useState<number[][]>(() =>
@@ -31,7 +32,7 @@ const Result: React.FC = () => {
   // 컴포넌트 언마운트 시 상태 초기화
   useEffect(() => {
     return () => {
-      dispatch({ type: "RESET" });
+      dispatch(resetLottoNumber());
     };
   }, [dispatch]);
 

@@ -2,13 +2,14 @@
 import React, { useEffect } from "react";
 import Layout from "../../components/layout/Layout";
 import OptionsGrid from "./optionsGrid/OptionsGrid";
-import { useLottoNumber } from "../../context/lottoNumbers";
+import { useLotto } from "../../context/lottoNumber/lottoNumberContext";
+import { resetLottoNumber } from "../../context/lottoNumber/lottoNumberActions";
 
 const NumberGeneration: React.FC = () => {
-  const { dispatch } = useLottoNumber();
+  const { dispatch } = useLotto();
 
   useEffect(() => {
-    dispatch({ type: "RESET" });
+    dispatch(resetLottoNumber());
   }, [dispatch]);
 
   return (
