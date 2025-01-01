@@ -1,60 +1,165 @@
-# Lotto Pass MVP 프론트엔드
+# LottoPass Frontend
 
-이 프로젝트는 로또 번호 생성 및 분석을 위한 웹 애플리케이션인 Lotto Pass의 MVP(최소 기능 제품) 프론트엔드입니다. 현재 개발 초기 단계로, 기본적인 프로젝트 개요와 설정 정보를 포함하고 있습니다.
+> **당신의 로또 번호를 똑똑하게 관리하고 분석할 수 있는 프론트엔드 애플리케이션**
 
----
-
-## **프로젝트 개요**
-
-Lotto Pass는 사용자 맞춤형 로또 번호 생성 및 분석 기능을 제공하는 웹 애플리케이션입니다. MVP 단계에서는 다음과 같은 핵심 기능을 목표로 합니다:
-
-- **로또 번호 생성 옵션**: 특정 번호 제외, 조합 방식 선택 등.
-- **결과 페이지**: 사용자 입력에 따라 로또 번호를 동적으로 생성 및 표시.
+LottoPass는 로또 번호 생성 및 데이터 분석 도구를 제공하는 플랫폼입니다. 이 레포지토리는 LottoPass의 프론트엔드 애플리케이션을 위한 코드베이스를 포함합니다.
 
 ---
 
-## **기술 스택**
+**현재 버전**: 0.1.0
 
-- **React**: 사용자 인터페이스를 구축하기 위한 프레임워크.
-- **React Router**: 라우팅을 통해 페이지 간 이동 관리.
-- **Tailwind CSS**: 간결하고 효율적인 CSS 스타일링.
+## 🚀 **프로젝트 미리보기**
+
+[LottoPass 배포 사이트](https://lottopass.co.kr)
 
 ---
 
-## **설치 및 실행**
+## 📌 **주요 기능**
 
-### **1. 사전 준비**
+- **로또 번호 생성**: 조건에 맞는 로또 번호를 추천.
+- **사용자 친화적인 UI**: 직관적인 디자인으로 누구나 쉽게 사용 가능.
 
-- Node.js (v16 이상)
-- npm (v7 이상)
+---
 
-### **2. 저장소 복제**
+## 🛠 **기술 스택**
 
-```bash
-git clone https://github.com/your-repository-url/lotto-pass-frontend.git
-cd lotto-pass-frontend
+- **React**: 사용자 인터페이스 개발
+- **TypeScript**: 타입 안전성을 보장하는 JavaScript 확장
+- **Vite**: 빠른 개발 환경
+- **Context + Reducer**: 상태 관리
+- **Axios**: API 통신
+- **Three.js**: 3D 렌더링
+- **SCSS MODULE**: 스타일링
+
+---
+
+## 📂 **프로젝트 구조**
+
+```
+lottopass-frontend/
+├── public/            # 정적 파일
+├── src/
+│   ├── api/          # API 요청 모듈
+│   ├── assets/       # 이미지 및 정적 자원
+│   ├── components/   # 재사용 가능한 UI 컴포넌트
+│   │   ├── common/   # 공통 컴포넌트 (버튼 등)
+│   │   └── layout/   # 레이아웃 컴포넌트 (헤더, 푸터 등)
+│   ├── constants/    # 상수 및 설정값
+│   ├── context/      # 전역 상태 관리 (React Context API)
+│   ├── pages/        # 주요 화면 구성 (홈, 결과 페이지 등)
+│   ├── styles/       # SCSS 스타일 파일
+│   ├── utils/        # 유틸리티 함수
+│   └── App.tsx       # 메인 App 컴포넌트
+├── .env       # 환경 변수 샘플
+└── package.json       # 프로젝트 의존성 관리
 ```
 
-### **3. 의존성 설치**
+---
+
+## 🧑‍💻 **설치 및 실행**
+
+### 1. 레포지토리 클론
+
+```bash
+git clone https://github.com/zlzlzlmo/lottopass-frontend.git
+cd lottopass-frontend
+```
+
+### 2. 의존성 설치
 
 ```bash
 npm install
 ```
 
-### **4. 개발 서버 실행**
+### 3. 환경 변수 설정
+
+`.env` 파일을 생성하고 필요한 값을 입력하세요.
+
+### 4. 개발 서버 실행
 
 ```bash
 npm run dev
 ```
 
-- 애플리케이션은 `http://localhost:5173`에서 실행됩니다.
+### 5. 빌드
+
+```bash
+npm run build
+```
 
 ---
 
-## **향후 개발 계획**
+## 📡 **API 명세**
 
-1. **메뉴 페이지**: 다양한 로또 번호 생성 옵션을 사용자에게 제공.
-2. **번호 제외 페이지**: 사용자 정의 제외 번호 입력 기능 구현.
-3. **결과 페이지**: 제외 번호 및 입력값을 기반으로 동적 로또 번호 생성.
-4. **UI 개선**: 모바일 및 다양한 해상도에 적합한 반응형 디자인 구현.
-5. **추가 기능**: 사용자 맞춤형 데이터 저장 및 통계 제공.
+프론트엔드는 다음 API와 통신합니다:
+
+### 1. 전체 로또 추첨 데이터 가져오기
+
+- **URL**: `/api/lotto/all`
+- **Method**: `GET`
+- **Response**:
+  ```json
+  {
+    "status": "success",
+    "data": [
+      { "drawNumber": 1, "winningNumbers": [1, 2, 3, 4, 5, 6], "bonus": 7 },
+      ...
+    ]
+  }
+  ```
+
+### 2. 최신 로또 추첨 데이터 가져오기
+
+- **URL**: `/api/lotto/latest`
+- **Method**: `GET`
+- **Response**:
+  ```json
+  {
+    "status": "success",
+    "data": {
+      "drawNumber": 1000,
+      "winningNumbers": [10, 20, 30, 40, 41, 42],
+      "bonus": 43
+    }
+  }
+  ```
+
+### 3. 특정 회차 로또 데이터 가져오기
+
+- **URL**: `/api/lotto/draw/:drawNumber`
+- **Method**: `GET`
+- **Response**:
+  ```json
+  {
+    "status": "success",
+    "data": {
+      "drawNumber": 123,
+      "winningNumbers": [5, 8, 13, 22, 29, 33],
+      "bonus": 10
+    }
+  }
+  ```
+
+---
+
+## ✨ **향후 업데이트**
+
+- **로또 번호 저장 기능**
+- **유저 인증 및 데이터 관리**
+- **더 정교한 통계 분석**
+- **데이터 시각화**
+- **로또 당첨 지역 위치 안내 및 네비게이션**
+
+---
+
+## 📜 **라이센스**
+
+이 프로젝트는 MIT 라이센스를 따릅니다. 자세한 내용은 [LICENSE](./LICENSE) 파일을 참고하세요.
+
+---
+
+## 📬 **문의**
+
+프로젝트와 관련된 문의 사항은 다음 이메일로 연락주세요:
+
+- Email: zlzlzlmo60@gmail.com
