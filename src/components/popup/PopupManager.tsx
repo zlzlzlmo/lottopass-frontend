@@ -1,22 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import NumberSelectPopup from "./NumberSelectPopup";
 import NumberControlPopup from "./NumberControlPopup";
-// import RecentRoundsPopup from "./RecentRoundsPopup";
-
-// 공통 props
-
-// 모든 팝업 타입의 Union
 interface PopupProps {
   popupType: "numberSelect" | "numberControl";
   onClose: () => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onConfirm: (...args: any[]) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
 const PopupManager: React.FC<PopupProps> = (props) => {
   if (props.popupType === null) {
-    // popupType이 null인 경우 아무것도 렌더링하지 않음
     return null;
   }
 
