@@ -1,12 +1,22 @@
 import styles from "./Card.module.scss";
-import { useRounds } from "../../../context/rounds";
 import { formatNumberWithCommas } from "../../../utils/number";
 import { getBallColor } from "../../../utils/ballColor";
+import { useRounds } from "../../../context/rounds/roundsContext";
 
 const Card = () => {
   const { latestRound, isLoading, error } = useRounds();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div className={styles.cardContainer}>
+        <div className={`${styles.card} ${styles.skeleton}`}>
+          <div className={styles.skeletonHeader}></div>
+          <div className={styles.skeletonNumbers}></div>
+          <div className={styles.skeletonPrize}></div>
+        </div>
+      </div>
+    );
+
   if (error || !latestRound) return <div>Error: {error}</div>;
 
   return (

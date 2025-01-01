@@ -11,6 +11,44 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.card.skeleton {
+  background-color: #f4f4f4;
+}
+
+.skeletonHeader,
+.skeletonNumbers,
+.skeletonPrize {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.skeletonHeader {
+  height: 16px;
+  width: 80%;
+  margin: 0 auto 16px auto;
+}
+
+.skeletonNumbers {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+}
+
+.skeletonNumbers div {
+  background-color: #e0e0e0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.skeletonPrize {
+  height: 14px;
+  width: 60%;
+  margin: 0 auto;
+}
+
 .cardHeader {
   display: flex;
   justify-content: space-between;
@@ -21,12 +59,6 @@
 .round {
   font-weight: bold;
   color: #333;
-}
-
-.result {
-  font-size: 14px;
-  color: #007bff;
-  cursor: pointer;
 }
 
 .numbersContainer {
