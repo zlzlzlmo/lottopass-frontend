@@ -14,8 +14,7 @@
   margin-bottom: 20px;
 }
 
-.selectBox,
-.searchBox {
+.selectBox {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
@@ -29,53 +28,105 @@
   font-size: 16px;
 }
 
-.searchInput {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid $gray-color;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-.searchButton,
-.sortButton {
-  padding: 10px;
-  background-color: $primary-color;
-  color: $white-color;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
 .storeList {
   list-style: none;
+  margin-top: 20px;
   padding: 0;
 }
 
 .storeCard {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   border: 1px solid $gray-color;
   padding: 15px;
   border-radius: 5px;
   margin-bottom: 10px;
+  background-color: $white-color;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.storeActions {
+.cardHeader {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
   gap: 5px;
 }
 
-.favoriteButton {
-  background-color: $secondary-color;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-  cursor: pointer;
+.tag {
+  background-color: $primary-color;
+  color: $white-color;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
 }
 
-.favoriteButton.active {
-  background-color: $third-color;
+.storeInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.storeName {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.storeAddress {
+  font-size: 14px;
+  color: $gray-color;
+  margin-bottom: 5px;
+}
+
+.storeDistance {
+  font-size: 14px;
+  color: $secondary-color;
+}
+
+.navigateButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: $secondary-color;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: darken($secondary-color, 10%);
+  }
+}
+
+.materialIcons {
+  font-size: 24px;
+  color: $white-color;
+}
+
+@media (max-width: $max-mobile-width) {
+  .storeCard {
+    padding: 10px;
+  }
+
+  .storeInfo {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .navigateButton {
+    align-self: flex-end;
+  }
 }

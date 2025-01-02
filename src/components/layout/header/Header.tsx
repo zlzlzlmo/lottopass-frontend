@@ -24,6 +24,14 @@ const Header: React.FC = () => {
         >
           번호 생성
         </NavLink>
+        <NavLink
+          to={ROUTES.STORE_INFO}
+          className={({ isActive }) =>
+            isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+          }
+        >
+          당첨점 확인
+        </NavLink>
         {/* <NavLink
           to="/history"
           className={({ isActive }) =>
@@ -61,6 +69,9 @@ const Header: React.FC = () => {
           onClick={() => setMobileNavVisible(false)}
         >
           번호 생성
+        </NavLink>
+        <NavLink to={ROUTES.STORE_INFO} className={styles.mobileNavLink}>
+          당첨점 확인
         </NavLink>
         {/* <NavLink
           to="/history"

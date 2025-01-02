@@ -5,6 +5,7 @@ import styles from "./Footer.module.scss";
 const Footer = () => {
   const footerOptions = [
     { path: ROUTES.NUMBER_GENERATION, text: "번호생성" },
+    { path: ROUTES.STORE_INFO, text: "당첨점 확인" },
     // "고객센터",
     // "로또 DATA",
 

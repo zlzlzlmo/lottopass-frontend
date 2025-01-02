@@ -5,6 +5,8 @@ interface ButtonProps {
   disabled?: boolean;
   className?: string;
   children?: React.ReactNode;
+  width?: string;
+  height?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -12,6 +14,8 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   className = "",
   children = "확인",
+  width,
+  height,
 }) => {
   return (
     <button
@@ -20,6 +24,7 @@ const Button: React.FC<ButtonProps> = ({
       }`}
       onClick={onClick}
       disabled={disabled}
+      style={{ width, height }}
     >
       {children}
     </button>
