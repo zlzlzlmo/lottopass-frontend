@@ -5,7 +5,7 @@ import Result from "./pages/result/Result";
 import { ROUTES } from "./constants/routes";
 import NotFound from "./pages/notFound/NotFound";
 import { AppProviders } from "./context/AppProviders";
-
+import "./styles/global.scss";
 const App = () => {
   return (
     <AppProviders>
