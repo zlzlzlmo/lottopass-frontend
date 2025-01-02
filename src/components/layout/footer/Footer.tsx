@@ -16,7 +16,7 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       {footerOptions.map((option, index) => (
-        <NavLink to={option.path}>
+        <NavLink key={index} to={option.path}>
           <button key={index} className={styles.button}>
             {option.text}
           </button>

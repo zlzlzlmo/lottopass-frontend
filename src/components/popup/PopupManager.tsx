@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import NumberSelectPopup from "./NumberSelectPopup";
 import NumberControlPopup from "./NumberControlPopup";
 interface PopupProps {

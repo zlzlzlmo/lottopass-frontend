@@ -36,7 +36,7 @@ const NumberControlPopup: React.FC<PopupModalProps> = ({
     <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <div className={styles.inputGroup}>
-          {/* 최근 회차 */}
+          {}
           <div className={styles.inputWrapper}>
             <label className={styles.inputLabel}>최근 회차</label>
             <input
@@ -76,7 +76,7 @@ const NumberControlPopup: React.FC<PopupModalProps> = ({
               </button>
             </div>
           </div>
-          {/* 최소 갯수 */}
+          {}
           <div className={styles.inputWrapper}>
             <label className={styles.inputLabel}>최소 갯수</label>
             <input
