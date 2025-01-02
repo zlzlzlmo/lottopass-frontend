@@ -1,0 +1,61 @@
+.cardContainer {
+  width: 100%;
+}
+
+.card {
+  background-color: $secondary-color;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card.skeleton {
+  background: #f4f4f4;
+  overflow: hidden;
+  position: relative;
+}
+
+.skeletonHeader,
+.skeletonNumbers div,
+.skeletonPrize {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f4f4f4 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite ease-in-out;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.skeletonHeader {
+  height: 16px;
+  width: 80%;
+  margin: 0 auto 16px auto;
+}
+
+.skeletonNumbers {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+}
+
+.skeletonNumbers div {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.skeletonPrize {
+  height: 14px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

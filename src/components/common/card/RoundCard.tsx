@@ -21,17 +21,6 @@ const RoundCard: React.FC<RoundCardProps> = ({
   linkText,
   linkAction,
 }) => {
-  //   if (isLoading)
-  //     return (
-  //       <div className={styles.cardContainer}>
-  //         <div className={`${styles.card} ${styles.skeleton}`}>
-  //           <div className={styles.skeletonHeader}></div>
-  //           <div className={styles.skeletonNumbers}></div>
-  //           <div className={styles.skeletonPrize}></div>
-  //         </div>
-  //       </div>
-  //     );
-
   //   if (error || !latestRound) return <div>Error: {error}</div>;
 
   return (
