@@ -1,0 +1,96 @@
+.storeCard {
+  display: flex;
+  flex-direction: column; /* 카드 레이아웃을 세로로 정렬 */
+  border: 1px solid $gray-color;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: $white-color;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between; /* 태그와 여백을 균등하게 배치 */
+  align-items: flex-start;
+  flex-wrap: wrap; /* 태그가 좁은 화면에서 줄바꿈 가능 */
+  margin-bottom: 10px;
+  gap: 10px; /* 태그 간격 조정 */
+}
+
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap; /* 태그가 줄바꿈될 수 있도록 설정 */
+  gap: 5px;
+}
+
+.tag {
+  background-color: $primary-color; /* 태그 배경색 */
+  color: $white-color; /* 태그 텍스트 색상 */
+  padding: 5px 10px; /* 태그 내부 여백 */
+  border-radius: 15px;
+  font-size: 12px; /* 태그 텍스트 크기 */
+  font-weight: bold;
+}
+
+.storeInfo {
+  display: flex;
+  justify-content: space-between; /* 매장 정보와 내비게이션 버튼을 양쪽에 배치 */
+  align-items: center;
+  gap: 10px;
+}
+
+.storeName {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.storeAddress {
+  font-size: 14px;
+  color: $gray-color;
+  margin-bottom: 5px;
+}
+
+.storeDistance {
+  font-size: 14px;
+  color: $secondary-color;
+}
+
+.navigateButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: $secondary-color;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: darken($secondary-color, 10%);
+  }
+}
+
+.materialIcons {
+  font-size: 24px;
+  color: $white-color;
+}
+
+@media (max-width: $max-mobile-width) {
+  .storeCard {
+    padding: 10px; /* 모바일에서 여백 조정 */
+  }
+
+  .storeInfo {
+    flex-direction: row; /* 모바일에서 가로 배치 */
+    align-items: flex-start;
+  }
+
+  .navigateButton {
+    align-self: flex-end; /* 버튼을 오른쪽 아래로 정렬 */
+  }
+}

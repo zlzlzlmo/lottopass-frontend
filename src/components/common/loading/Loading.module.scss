@@ -1,0 +1,29 @@
+@keyframes wave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+}
+
+.loadingLogo {
+  font-size: 2rem; /* 로고 크기 */
+  font-weight: bold; /* 로고 폰트 스타일 */
+  color: #3b82f6; /* 로고 색상 */
+  display: inline-block;
+  animation: wave 1.5s ease-in-out infinite;
+  transform-origin: center; /* 애니메이션 회전 중심 */
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 화면 전체 높이 */
+  background-color: #f9fafb; /* 배경색 */
+}
