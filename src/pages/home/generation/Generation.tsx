@@ -59,10 +59,10 @@ const Generation = () => {
       <Canvas
         style={{ width: "100%", height: "400px", backgroundColor: "#f8f9fa" }}
       >
-        {/* 카메라 컨트롤 */}
+        {}
         <OrbitControls enableZoom={false} />
 
-        {/* 조명 */}
+        {}
         <ambientLight intensity={2.0} color="#ffffff" />
         <directionalLight
           position={[2, 5, 2]}
@@ -75,7 +75,7 @@ const Generation = () => {
           color="#ffffff"
         />
 
-        {/* 중앙 구체 */}
+        {}
         <Sphere args={[1, 32, 32]} position={centralSpherePosition}>
           <meshPhongMaterial color="#ffcc00" shininess={50} />
           <Html center>
@@ -85,7 +85,7 @@ const Generation = () => {
           </Html>
         </Sphere>
 
-        {/* 로또볼 */}
+        {}
         {shuffledLottoBalls.map((ball, index) => {
           const color = getBallColor(ball);
           const position = positions[index];

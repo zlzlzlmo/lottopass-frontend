@@ -1,41 +1,41 @@
 .storeCard {
   display: flex;
-  flex-direction: column; /* 카드 레이아웃을 세로로 정렬 */
+  flex-direction: column;
   border: 1px solid $gray-color;
   padding: 15px;
   border-radius: 5px;
   margin-bottom: 10px;
   background-color: $white-color;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .cardHeader {
   display: flex;
-  justify-content: space-between; /* 태그와 여백을 균등하게 배치 */
+  justify-content: space-between;
   align-items: flex-start;
-  flex-wrap: wrap; /* 태그가 좁은 화면에서 줄바꿈 가능 */
+  flex-wrap: wrap;
   margin-bottom: 10px;
-  gap: 10px; /* 태그 간격 조정 */
+  gap: 10px;
 }
 
 .tagContainer {
   display: flex;
-  flex-wrap: wrap; /* 태그가 줄바꿈될 수 있도록 설정 */
+  flex-wrap: wrap;
   gap: 5px;
 }
 
 .tag {
-  background-color: $primary-color; /* 태그 배경색 */
-  color: $white-color; /* 태그 텍스트 색상 */
-  padding: 5px 10px; /* 태그 내부 여백 */
+  background-color: $primary-color;
+  color: $white-color;
+  padding: 5px 10px;
   border-radius: 15px;
-  font-size: 12px; /* 태그 텍스트 크기 */
+  font-size: 12px;
   font-weight: bold;
 }
 
 .storeInfo {
   display: flex;
-  justify-content: space-between; /* 매장 정보와 내비게이션 버튼을 양쪽에 배치 */
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
 }
@@ -82,15 +82,15 @@
 
 @media (max-width: $max-mobile-width) {
   .storeCard {
-    padding: 10px; /* 모바일에서 여백 조정 */
+    padding: 10px;
   }
 
   .storeInfo {
-    flex-direction: row; /* 모바일에서 가로 배치 */
+    flex-direction: row;
     align-items: flex-start;
   }
 
   .navigateButton {
-    align-self: flex-end; /* 버튼을 오른쪽 아래로 정렬 */
+    align-self: flex-end;
   }
 }

@@ -69,6 +69,8 @@ export const useStoreInfo = () => {
 
   // 검색 및 거리 계산
   const handleSearchAndSort = async () => {
+    if (!state.selectedRegion) alert("도/시를 선택하세요");
+    else if (!state.selectedCity) alert("시(구/군)을 선택하세요");
     if (!state.selectedRegion || !state.selectedCity) return;
 
     try {

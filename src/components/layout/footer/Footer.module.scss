@@ -1,11 +1,10 @@
-/* Footer.module.scss */
 .footer {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   background-color: #ffffff;
-  border-top: 1px solid #d1d5db; /* gray-300 */
+  border-top: 1px solid #d1d5db;
   padding: 16px;
   display: flex;
   justify-content: space-around;
@@ -13,12 +12,12 @@
 }
 
 .button {
-  color: #4b5563; /* gray-600 */
-  font-size: 14px; /* text-sm */
-  font-weight: 500; /* font-medium */
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 500;
   transition: color 0.2s ease;
 
   &:hover {
-    color: #fbbf24; /* yellow-400 */
+    color: #fbbf24;
   }
 }
