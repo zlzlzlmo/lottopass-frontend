@@ -1,10 +1,10 @@
 .layout {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* 전체 화면을 채움 */
+  min-height: 100vh;
 }
 
 .content {
-  flex: 1; /* 본문 영역이 남은 공간을 차지 */
-  padding: 60px 0; /* Header와 Footer 높이만큼 패딩 추가 */
+  flex: 1;
+  padding-top: 60px;
 }

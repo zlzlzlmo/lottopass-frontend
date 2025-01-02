@@ -1,27 +1,15 @@
-import { NavLink } from "react-router-dom";
-import { ROUTES } from "../../../constants/routes";
 import styles from "./Footer.module.scss";
 
 const Footer = () => {
-  const footerOptions = [
-    { path: ROUTES.NUMBER_GENERATION, text: "번호생성" },
-    { path: ROUTES.STORE_INFO, text: "당첨점 확인" },
-    // "고객센터",
-    // "로또 DATA",
-
-    // "MY LOTTO",
-    // "전체메뉴",
-  ];
-
   return (
     <footer className={styles.footer}>
-      {footerOptions.map((option, index) => (
-        <NavLink to={option.path}>
-          <button key={index} className={styles.button}>
-            {option.text}
-          </button>
-        </NavLink>
-      ))}
+      <div className={styles.info}>
+        <p className={styles.companyName}>LottoPass © 2025</p>
+      </div>
+      <div className={styles.contact}>
+        <p>고객센터: zlzlzlmo60@gmail.com</p>
+        <p>문의사항이 있다면 이메일로 연락주세요!</p>
+      </div>
     </footer>
   );
 };
