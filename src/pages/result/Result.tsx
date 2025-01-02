@@ -57,7 +57,7 @@ const Result: React.FC = () => {
     <Layout>
       <div className={styles.container}>
         <h1 className={styles.title}>완성 조합</h1>
-        {/* 결과 리스트 */}
+        {}
         <div className={styles.list}>
           {results.map((result, index) => (
             <div key={index} className={styles.card}>
@@ -84,7 +84,7 @@ const Result: React.FC = () => {
           ))}
         </div>
 
-        {/* 하단 버튼 */}
+        {}
         <div className={styles.footer}>
           <button className={styles.addButton} onClick={handleAddResult}>
             +

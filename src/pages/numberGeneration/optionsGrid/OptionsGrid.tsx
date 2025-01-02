@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import styles from "./OptionsGrid.module.scss";
 import { useNavigate } from "react-router-dom";
