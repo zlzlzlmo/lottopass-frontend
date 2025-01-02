@@ -14,7 +14,7 @@ const Header: React.FC = () => {
     <header className={styles.header}>
       {/* 로고 */}
       <NavLink to={ROUTES.HOME.path} className={styles.logo}>
-        {ROUTES.HOME.label}
+        LOTTO PASS
       </NavLink>
 
       {/* 데스크탑 네비게이션 */}
