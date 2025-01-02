@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import postcssPxtorem from "postcss-pxtorem"; // px-to-rem 변환 플러그인
+import postcssPxtorem from "postcss-pxtorem";
 
 export default defineConfig({
   plugins: [react()],
@@ -36,5 +36,13 @@ export default defineConfig({
   server: {
     host: true, // 외부에서 접속 가능하도록 설정
     port: 5173, // 기본 포트
+  },
+  build: {
+    outDir: "dist", // Vite의 기본 출력 폴더
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "index.html"), // index.html을 기본 엔트리로 설정
+      },
+    },
   },
 });
