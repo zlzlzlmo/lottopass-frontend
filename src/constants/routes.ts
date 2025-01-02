@@ -1,7 +1,7 @@
 export const ROUTES = {
-  HOME: "/",
-  NUMBER_GENERATION: "/number-generation",
-  STORE_INFO: "/store-info",
-  HISTORY: "/history",
-  RESULT: "/result",
+  HOME: { path: "/", label: "HOME" },
+  NUMBER_GENERATION: { path: "/number-generation", label: "번호 생성" },
+  STORE_INFO: { path: "/store-info", label: "당첨점 확인" },
+  HISTORY: { path: "/history", label: "당첨회차 확인" },
+  RESULT: { path: "/result", label: "" },
 };

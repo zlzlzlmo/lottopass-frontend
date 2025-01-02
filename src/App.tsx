@@ -11,22 +11,31 @@ const NumberGeneration = lazy(
 );
 const Result = lazy(() => import("./pages/result/Result"));
 const StoreInfo = lazy(() => import("./pages/storeInfo/StoreInfo"));
+const History = lazy(() => import("./pages/history/History"));
 const NotFound = lazy(() => import("./pages/notFound/NotFound"));
 
 const App: React.FC = () => {
+  const routes = [
+    { path: ROUTES.HOME.path, element: <Home /> },
+    { path: ROUTES.NUMBER_GENERATION.path, element: <NumberGeneration /> },
+    { path: ROUTES.STORE_INFO.path, element: <StoreInfo /> },
+    { path: ROUTES.HISTORY.path, element: <History /> },
+    { path: ROUTES.RESULT.path, element: <Result /> },
+    { path: "*", element: <NotFound /> },
+  ];
+
   return (
     <AppProviders>
       <Router>
         <Suspense fallback={<Loading />}>
           <Routes>
-            <Route path={ROUTES.HOME} element={<Home />} />
-            <Route
-              path={ROUTES.NUMBER_GENERATION}
-              element={<NumberGeneration />}
-            />
-            <Route path={ROUTES.STORE_INFO} element={<StoreInfo />} />
-            <Route path={ROUTES.RESULT} element={<Result />} />
-            <Route path="*" element={<NotFound />} />
+            {routes.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.element}
+              />
+            ))}
           </Routes>
         </Suspense>
       </Router>
