@@ -1,15 +1,35 @@
 import Hero from "./hero/Hero";
 import styles from "./Home.module.scss";
-import Card from "./card/Card";
+
 import Generation from "./generation/Generation";
 import Layout from "../../components/layout/Layout";
+import RoundCard from "../../components/common/card/RoundCard";
+import { useRounds } from "../../context/rounds/roundsContext";
+import SkeletonRoundCard from "../../components/common/skeleton/SkeletonRoundCard";
+import Margin from "../../components/common/gap/Margin";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const { latestRound, isLoading } = useRounds();
+  const navigate = useNavigate();
   return (
     <Layout>
       <div className={styles.container}>
         <Hero />
-        <Card />
+        {isLoading ? (
+          <SkeletonRoundCard />
+        ) : latestRound ? (
+          <RoundCard
+            {...latestRound}
+            linkAction={() => {
+              navigate("/history");
+            }}
+            linkText="모든 회차 보기 >"
+          />
+        ) : (
+          <div>Error</div>
+        )}
+        <Margin size={20} />
         <Generation />
       </div>
     </Layout>

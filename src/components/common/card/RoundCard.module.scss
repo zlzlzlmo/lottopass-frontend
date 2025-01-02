@@ -1,52 +1,13 @@
 .cardContainer {
-  margin-bottom: 48px;
   width: 100%;
 }
 
 .card {
-  background-color: #facc15;
+  background-color: $secondary-color;
   padding: 16px;
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.card.skeleton {
-  background-color: #f4f4f4;
-}
-
-.skeletonHeader,
-.skeletonNumbers,
-.skeletonPrize {
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  margin-bottom: 16px;
-}
-
-.skeletonHeader {
-  height: 16px;
-  width: 80%;
-  margin: 0 auto 16px auto;
-}
-
-.skeletonNumbers {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  height: 40px;
-}
-
-.skeletonNumbers div {
-  background-color: #e0e0e0;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
-.skeletonPrize {
-  height: 14px;
-  width: 60%;
-  margin: 0 auto;
 }
 
 .cardHeader {
@@ -54,6 +15,7 @@
   justify-content: space-between;
   margin-bottom: 16px;
   font-size: 14px;
+  align-items: center;
 }
 
 .round {
@@ -94,4 +56,24 @@
 .prizeInfo {
   font-size: 14px;
   color: $text-color;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: $primary-color; /* 주 색상 */
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s;
+
+  &:hover {
+    color: darken($primary-color, 10%);
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: lighten($primary-color, 10%);
+  }
 }

@@ -12,43 +12,29 @@ const Header: React.FC = () => {
 
   return (
     <header className={styles.header}>
-      <NavLink to="/" className={styles.logo}>
-        LOTTO PASS
+      {/* 로고 */}
+      <NavLink to={ROUTES.HOME.path} className={styles.logo}>
+        {ROUTES.HOME.label}
       </NavLink>
+
+      {/* 데스크탑 네비게이션 */}
       <nav className={styles.nav}>
-        <NavLink
-          to={ROUTES.NUMBER_GENERATION}
-          className={({ isActive }) =>
-            isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
-          }
-        >
-          번호 생성
-        </NavLink>
-        <NavLink
-          to={ROUTES.STORE_INFO}
-          className={({ isActive }) =>
-            isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
-          }
-        >
-          당첨점 확인
-        </NavLink>
-        {/* <NavLink
-          to="/history"
-          className={({ isActive }) =>
-            isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
-          }
-        >
-          회차 기록
-        </NavLink> */}
-        {/* <NavLink
-          to="/about"
-          className={({ isActive }) =>
-            isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
-          }
-        >
-          서비스 소개
-        </NavLink> */}
+        {Object.values(ROUTES)
+          .filter((route) => route.path !== "/") // 홈 경로 제외
+          .map((route) => (
+            <NavLink
+              key={route.path}
+              to={route.path}
+              className={({ isActive }) =>
+                isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+              }
+            >
+              {route.label}
+            </NavLink>
+          ))}
       </nav>
+
+      {/* 모바일 네비게이션 토글 */}
       <div
         className={styles.hamburgerMenu}
         onClick={toggleMobileNav}
@@ -56,6 +42,8 @@ const Header: React.FC = () => {
       >
         ☰
       </div>
+
+      {/* 모바일 네비게이션 */}
       <nav
         className={
           isMobileNavVisible
@@ -63,30 +51,18 @@ const Header: React.FC = () => {
             : styles.mobileNav
         }
       >
-        <NavLink
-          to={ROUTES.NUMBER_GENERATION}
-          className={styles.mobileNavLink}
-          onClick={() => setMobileNavVisible(false)}
-        >
-          번호 생성
-        </NavLink>
-        <NavLink to={ROUTES.STORE_INFO} className={styles.mobileNavLink}>
-          당첨점 확인
-        </NavLink>
-        {/* <NavLink
-          to="/history"
-          className={styles.mobileNavLink}
-          onClick={() => setMobileNavVisible(false)}
-        >
-          회차 기록
-        </NavLink> */}
-        {/* <NavLink
-          to="/about"
-          className={styles.mobileNavLink}
-          onClick={() => setMobileNavVisible(false)}
-        >
-          서비스 소개
-        </NavLink> */}
+        {Object.values(ROUTES)
+          .filter((route) => route.label !== "")
+          .map((route) => (
+            <NavLink
+              key={route.path}
+              to={route.path}
+              className={styles.mobileNavLink}
+              onClick={() => setMobileNavVisible(false)}
+            >
+              {route.label}
+            </NavLink>
+          ))}
       </nav>
     </header>
   );
