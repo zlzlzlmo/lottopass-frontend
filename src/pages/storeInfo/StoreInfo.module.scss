@@ -1,0 +1,81 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Noto Sans KR", sans-serif;
+  color: $text-color;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: $primary-color;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.selectBox,
+.searchBox {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.select {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid $gray-color;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid $gray-color;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.searchButton,
+.sortButton {
+  padding: 10px;
+  background-color: $primary-color;
+  color: $white-color;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.storeList {
+  list-style: none;
+  padding: 0;
+}
+
+.storeCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid $gray-color;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.storeActions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.favoriteButton {
+  background-color: $secondary-color;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.favoriteButton.active {
+  background-color: $third-color;
+}

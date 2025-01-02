@@ -6,6 +6,7 @@ import { ROUTES } from "./constants/routes";
 import NotFound from "./pages/notFound/NotFound";
 import { AppProviders } from "./context/AppProviders";
 import "./styles/global.scss";
+import StoreInfo from "./pages/storeInfo/StoreInfo";
 const App = () => {
   return (
     <AppProviders>
@@ -16,6 +17,7 @@ const App = () => {
             path={ROUTES.NUMBER_GENERATION}
             element={<NumberGeneration />}
           />
+          <Route path={ROUTES.STORE_INFO} element={<StoreInfo />} />
           <Route path={ROUTES.RESULT} element={<Result />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
