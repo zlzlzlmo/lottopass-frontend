@@ -1,4 +1,5 @@
 export const API_URLS = {
-  ALL_ROUNDS: "/all",
-  LATEST: "/latest",
+  ALL_ROUNDS: "/lotto/all",
+  LATEST: "/lotto/latest",
+  ALL_UNIQUE_REGIONS: "region/unique/all",
 };

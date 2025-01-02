@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./StoreInfo.module.scss";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import Layout from "../../components/layout/Layout";
+import { getUniqueRegions } from "../../api/axios/regionApi";
 
 interface Location {
   id: number;
@@ -18,21 +19,46 @@ interface Location {
 }
 
 const StoreInfo: React.FC = () => {
-  const [locations, setLocations] = useState<Location[]>([]);
   const [currentLocation, setCurrentLocation] = useState<{
     lat: number;
     lng: number;
   } | null>(null);
+  const [uniqueRegion, setUniqueRegion] = useState<Record<string, string[]>>(
+    {}
+  );
   const [selectedRegion, setSelectedRegion] = useState<string>("");
   const [selectedCity, setSelectedCity] = useState<string>("");
   const [filteredCities, setFilteredCities] = useState<string[]>([]);
   const [sortedLocations, setSortedLocations] = useState<Location[]>([]);
   const [searchKeyword, setSearchKeyword] = useState<string>("");
 
-  const cityData: { [key: string]: string[] } = {
-    서울: ["강남구", "송파구", "서초구"],
-    부산: ["해운대구", "수영구", "동래구"],
-  };
+  useEffect(() => {
+    const getRegions = async () => {
+      try {
+        const result = await getUniqueRegions();
+        if (result.status === "success") {
+          const regions: Record<string, string[]> = {};
+
+          for (const region of result.data) {
+            if (!regions[region.province]) {
+              regions[region.province] = [];
+            }
+            if (!regions[region.province].includes(region.city)) {
+              regions[region.province].push(region.city);
+            }
+          }
+
+          setUniqueRegion(regions); // 상태 업데이트
+        } else {
+          console.error("Failed to fetch regions:", result.message);
+        }
+      } catch (error) {
+        console.error("Error fetching regions:", error);
+      }
+    };
+
+    getRegions();
+  }, []);
 
   // 사용자 위치 가져오기
   useEffect(() => {
@@ -47,51 +73,17 @@ const StoreInfo: React.FC = () => {
         console.error("위치를 가져오지 못했습니다.");
       }
     );
-
-    // 예시 매장 데이터
-    setLocations([
-      {
-        id: 1,
-        name: "강남점",
-        address: "서울 강남구 테헤란로 123",
-        phone: "010-1234-5678",
-        coordinates: { lat: 37.4979, lng: 127.0276 },
-        hours: "09:00 ~ 22:00",
-        region: "서울",
-        city: "강남구",
-      },
-      {
-        id: 2,
-        name: "송파점",
-        address: "서울 송파구 올림픽로 321",
-        phone: "010-2345-6789",
-        coordinates: { lat: 37.5141, lng: 127.1046 },
-        hours: "10:00 ~ 21:00",
-        region: "서울",
-        city: "송파구",
-      },
-      {
-        id: 3,
-        name: "해운대점",
-        address: "부산 해운대구 해운대로 456",
-        phone: "010-3456-7890",
-        coordinates: { lat: 35.1631, lng: 129.1635 },
-        hours: "10:00 ~ 20:00",
-        region: "부산",
-        city: "해운대구",
-      },
-    ]);
   }, []);
 
   // 시/도 선택 시 동(구/군) 옵션 업데이트
   useEffect(() => {
     if (selectedRegion) {
-      setFilteredCities(cityData[selectedRegion] || []);
+      setFilteredCities(uniqueRegion[selectedRegion] || []);
       setSelectedCity(""); // 시/도를 바꾸면 동 초기화
     } else {
       setFilteredCities([]);
     }
-  }, [selectedRegion]);
+  }, [selectedRegion, uniqueRegion]);
 
   // 거리 계산 함수
   const calculateDistance = (
@@ -113,6 +105,7 @@ const StoreInfo: React.FC = () => {
 
   // 검색 및 정렬 기능
   const handleSearchAndSort = () => {
+    const locations: Location[] = []; // 실제 데이터를 여기에 넣어야 함
     const filtered = locations.filter(
       (location) =>
         (selectedRegion ? location.region === selectedRegion : true) &&
@@ -140,8 +133,8 @@ const StoreInfo: React.FC = () => {
             value={selectedRegion}
             onChange={(e) => setSelectedRegion(e.target.value)}
           >
-            <option value="">시/도를 선택하세요</option>
-            {Object.keys(cityData).map((region) => (
+            <option value="">도/시를 선택하세요</option>
+            {Object.keys(uniqueRegion).map((region) => (
               <option key={region} value={region}>
                 {region}
               </option>
@@ -153,7 +146,7 @@ const StoreInfo: React.FC = () => {
             onChange={(e) => setSelectedCity(e.target.value)}
             disabled={!filteredCities.length}
           >
-            <option value="">동(구/군)을 선택하세요</option>
+            <option value="">시(구/군)을 선택하세요</option>
             {filteredCities.map((city) => (
               <option key={city} value={city}>
                 {city}
