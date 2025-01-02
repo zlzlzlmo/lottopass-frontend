@@ -9,6 +9,7 @@ import {
   setExcludeNumbers,
   setMinCount,
 } from "../../../context/lottoNumber/lottoNumberActions";
+import PageTitle from "../../../components/common/text/title/PageTitle";
 
 interface Option {
   label: string; // 옵션의 텍스트
@@ -144,7 +145,7 @@ const OptionsGrid: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        <h2 className={styles.subtitle}>로또번호 생성 방식을 선택하세요.</h2>
+        <PageTitle>로또번호 생성 방식을 선택하세요</PageTitle>
         <div className={styles.optionsGrid}>
           {options.map((option, index) => (
             <div

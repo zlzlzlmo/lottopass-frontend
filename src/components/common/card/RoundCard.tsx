@@ -2,14 +2,10 @@ import styles from "./RoundCard.module.scss";
 import { formatNumberWithCommas } from "../../../utils/number";
 import { getBallColor } from "../../../utils/ballColor";
 import { LottoDraw } from "lottopass-shared";
-// winningNumbers
-// drawNumber
-// date
-// bonusNumber
-// prizeStatistics
+
 interface RoundCardProps extends LottoDraw {
-  linkText: string;
-  linkAction: () => void;
+  linkText?: string;
+  linkAction?: () => void;
 }
 
 const RoundCard: React.FC<RoundCardProps> = ({
@@ -21,8 +17,6 @@ const RoundCard: React.FC<RoundCardProps> = ({
   linkText,
   linkAction,
 }) => {
-  //   if (error || !latestRound) return <div>Error: {error}</div>;
-
   return (
     <div className={styles.cardContainer}>
       <div className={styles.card}>
@@ -30,9 +24,11 @@ const RoundCard: React.FC<RoundCardProps> = ({
           <span className={styles.round}>
             {drawNumber}회 당첨번호 [{date}]
           </span>
-          <span className={styles.link} onClick={linkAction} role="button">
-            {linkText}
-          </span>
+          {linkText && (
+            <span className={styles.link} onClick={linkAction} role="button">
+              {linkText}
+            </span>
+          )}
         </div>
         <div className={styles.numbersContainer}>
           {winningNumbers.map((num, index) => (

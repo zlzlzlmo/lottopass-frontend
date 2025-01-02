@@ -6,6 +6,7 @@ import Button from "../../components/common/button/Button";
 import { useStoreInfo } from "./hooks/useStoreInfo";
 import SelectBox from "./selectBox/SelectBox";
 import StoreList from "./storeList/StoreList";
+import PageTitle from "../../components/common/text/title/PageTitle";
 
 const StoreInfo: React.FC = () => {
   const { handleSearchAndSort } = useStoreInfo();
@@ -13,7 +14,7 @@ const StoreInfo: React.FC = () => {
   return (
     <Layout>
       <div className={styles.container}>
-        <h1 className={styles.title}>1등 당첨 지역 조회</h1>
+        <PageTitle>1등 당첨 지역 조회</PageTitle>
         <SelectBox />
         <Button
           width="100%"

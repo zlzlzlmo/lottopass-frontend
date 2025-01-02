@@ -19,7 +19,7 @@ export const RoundsProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     const fetchLatestRound = async () => {
-      dispatch(fetchInit()); // Loading 시작
+      dispatch(fetchInit());
 
       try {
         const latestRoundResult = await getLatestRound();
@@ -43,7 +43,11 @@ export const RoundsProvider: React.FC<{ children: React.ReactNode }> = ({
         const allRoundsResult = await getAllRounds();
 
         if (allRoundsResult.status === "success") {
-          dispatch(fetchSuccessAll(allRoundsResult.data));
+          dispatch(
+            fetchSuccessAll(
+              allRoundsResult.data.sort((a, b) => b.drawNumber - a.drawNumber)
+            )
+          );
         } else {
           throw new Error(
             allRoundsResult.message || "Failed to fetch all rounds"
