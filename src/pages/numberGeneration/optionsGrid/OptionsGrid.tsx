@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import styles from "./OptionsGrid.module.scss";
 import { useNavigate } from "react-router-dom";
@@ -27,7 +28,8 @@ interface PopupProps {
 
 const OptionsGrid: React.FC = () => {
   const navigate = useNavigate();
-  const { allRounds } = useRounds();
+  const { state } = useRounds();
+  const { allRounds } = state;
   const [popupProps, setPopupProps] = useState<PopupProps | null>(null);
   const [tooltipIndex, setTooltipIndex] = useState<number | null>(null);
 
