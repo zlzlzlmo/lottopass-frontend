@@ -34,7 +34,10 @@ const Detail: React.FC = () => {
 
   const round = isValidDrawNumber ? getRound(parsedDrawNumber) : null;
 
+  const [detailLoading, setDetailLoading] = useState<boolean>(true);
+
   const fetchDrawDetail = async () => {
+    setDetailLoading(true);
     const response = await getDrawDetail(parsedDrawNumber);
 
     if (response.status === "success") {
@@ -49,6 +52,7 @@ const Detail: React.FC = () => {
     } else {
       console.error("Error fetching draw details:", response.message);
     }
+    setDetailLoading(false);
   };
 
   const fetchWinningStores = async () => {
@@ -103,6 +107,7 @@ const Detail: React.FC = () => {
         <div className={styles.prizesTable}>
           <h2 className={styles.sectionHeader}>순위별 당첨 정보</h2>
           <Table
+            loading={detailLoading}
             columns={columns}
             dataSource={drawDetail}
             pagination={false}
