@@ -20,10 +20,15 @@
     border-radius: 4px;
   }
 
+  .placeholder {
+    color: #9ca3af; /* gray-400 */
+    font-style: italic;
+  }
+
   p {
     font-size: 14px;
     margin: 4px 0;
-    color: #4b5563;
+    color: #4b5563; /* gray-600 */
   }
 
   .navigateButton {

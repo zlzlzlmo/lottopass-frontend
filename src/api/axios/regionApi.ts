@@ -16,14 +16,18 @@ export const getUniqueRegions = async (): Promise<
     };
   }
 };
-
 export const getWinningRegionsByLocation = async (
   province: string,
-  city: string
+  city?: string
 ): Promise<FindAllResponse<WinningRegion[]>> => {
   try {
+    const params: Record<string, string> = { province };
+    if (city) {
+      params.city = city;
+    }
+
     const response = await axiosInstance.get(API_URLS.WINNING_REGIONS, {
-      params: { province, city },
+      params,
     });
     return { status: "success", data: response.data };
   } catch (error) {

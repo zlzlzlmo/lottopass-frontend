@@ -1,5 +1,5 @@
 // API 관련 코드
-import { FindAllResponse, LottoDraw } from "lottopass-shared";
+import { FindAllResponse, LottoDraw, DetailDraw } from "lottopass-shared";
 import { API_URLS } from "../../constants/apiUrls";
 import axiosInstance from "./axiosConfig";
 
@@ -29,8 +29,7 @@ export const getLatestRound = async (): Promise<FindAllResponse<LottoDraw>> => {
 
 export const getDrawDetail = async (
   drawNumber: string | number
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-): Promise<FindAllResponse<any[]>> => {
+): Promise<FindAllResponse<DetailDraw[]>> => {
   if (isNaN(Number(drawNumber))) throw new Error("Not Allowd DrawNumber Type");
   try {
     const response = await axiosInstance.get(

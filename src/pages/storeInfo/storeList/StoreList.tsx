@@ -1,14 +1,17 @@
-import { useStore } from "../../../context/store/storeContext";
-import StoreCard from "./storeCard/StoreCard";
+import React from "react";
+import StoreCard from "../../../components/common/card/StoreCard";
+import { WinningRegion } from "lottopass-shared";
 import styles from "./StoreList.module.scss";
 
-const StoreList: React.FC = () => {
-  const { state } = useStore();
+interface StoreListProps {
+  data: WinningRegion[];
+}
 
+const StoreList: React.FC<StoreListProps> = ({ data }) => {
   return (
     <ul className={styles.storeList}>
-      {state.mergedLocations.map((location, index) => (
-        <StoreCard key={index} location={location} />
+      {data.map((region) => (
+        <StoreCard key={region.id} {...region} />
       ))}
     </ul>
   );

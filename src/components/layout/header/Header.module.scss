@@ -43,51 +43,26 @@
       display: none;
     }
   }
-
   .hamburgerMenu {
     display: none;
-    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    color: $gray-color;
     margin-left: auto;
     cursor: pointer;
 
+    /* Flex로 정렬 */
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+
+    border: 1px solid #ddd; /* 테두리 추가 */
+    border-radius: 4px; /* 둥근 테두리 */
+    background-color: #ffffff; /* 배경색 */
+
     @media (max-width: $max-mobile-width) {
-      display: block;
-    }
-  }
-}
-
-.mobileNav {
-  display: none;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-
-  @media (max-width: $max-mobile-width) {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background-color: $white-color;
-    padding: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-top: 1px solid $gray-color;
-  }
-
-  &.show {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .mobileNavLink {
-    display: block;
-    padding: 10px 0;
-    color: $text-color;
-    text-decoration: none;
-    font-weight: bold;
-
-    &:hover {
-      color: $primary-color;
+      display: flex;
     }
   }
 }

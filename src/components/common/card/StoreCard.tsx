@@ -31,21 +31,34 @@ const StoreCard: React.FC<Partial<WinningRegion>> = ({
     <Card
       className={styles.storeCard}
       hoverable
-      title={<span className={styles.storeName}>{storeName}</span>}
+      title={
+        storeName ? (
+          <span className={styles.storeName}>{storeName}</span>
+        ) : (
+          <span className={styles.placeholder}>매장 이름 없음</span>
+        )
+      }
       extra={
-        <span className={styles.methodTag}>
-          {method === "자동" ? "🌀 자동" : "✍ 수동"}
-        </span>
+        method ? (
+          <span className={styles.methodTag}>
+            {method === "자동" ? "🌀 자동" : "✍ 수동"}
+          </span>
+        ) : (
+          <span className={styles.placeholder}>방법 정보 없음</span>
+        )
       }
     >
       <p>
-        <strong>주소:</strong> {address}
+        <strong>주소:</strong>{" "}
+        {address || <span className={styles.placeholder}>주소 정보 없음</span>}
       </p>
       <p>
         {distance !== null ? (
           <strong>거리: {distance.toFixed(2)} km</strong>
         ) : (
-          "위치 정보를 활성화해주세요."
+          <span className={styles.placeholder}>
+            위치 정보를 활성화해주세요.
+          </span>
         )}
       </p>
       <Button
@@ -54,6 +67,7 @@ const StoreCard: React.FC<Partial<WinningRegion>> = ({
         onClick={openMap}
         className={styles.navigateButton}
         block
+        disabled={!coordinates}
       >
         길찾기
       </Button>

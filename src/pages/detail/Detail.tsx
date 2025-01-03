@@ -11,22 +11,14 @@ import StoreCard from "../../components/common/card/StoreCard";
 import { getWinningRegionsByDrawNumber } from "../../api/axios/regionApi";
 import FlexContainer from "../../components/common/container/FlexContainer";
 import LocationButton from "../../components/common/button/location/LocationButton";
-import { WinningRegion } from "lottopass-shared";
-
-interface Prize {
-  id: number;
-  drawNumber: number;
-  rank: number;
-  totalPrize: string;
-  winnerCount: number;
-  prizePerWinner: string;
-}
+import { DetailDraw, WinningRegion } from "lottopass-shared";
 
 const Detail: React.FC = () => {
   const { drawNumber } = useParams<{ drawNumber: string }>();
   const { getRound } = useRounds();
-
-  const [drawDetail, setDrawDetail] = useState<Prize[]>([]);
+  const [formattedDrawDetail, setFormattedDrawDetail] = useState<DetailDraw[]>(
+    []
+  );
   const [winningStores, setWinningStores] = useState<WinningRegion[]>([]);
 
   const parsedDrawNumber = Number(drawNumber);
@@ -43,12 +35,11 @@ const Detail: React.FC = () => {
     if (response.status === "success") {
       const formatted = response.data.map((detail) => ({
         ...detail,
-        winnerCount: formatNumberWithCommas(detail.winnerCount),
+        winnerCount: formatNumberWithCommas(Number(detail.winnerCount)),
         totalPrize: `${Number(detail.totalPrize).toLocaleString()}원`,
         prizePerWinner: `${Number(detail.prizePerWinner).toLocaleString()}원`,
       }));
-
-      setDrawDetail(formatted);
+      setFormattedDrawDetail(formatted);
     } else {
       console.error("Error fetching draw details:", response.message);
     }
@@ -109,7 +100,7 @@ const Detail: React.FC = () => {
           <Table
             loading={detailLoading}
             columns={columns}
-            dataSource={drawDetail}
+            dataSource={formattedDrawDetail}
             pagination={false}
             bordered
             rowKey={(record) => record.id.toString()}
