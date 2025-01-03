@@ -4,7 +4,7 @@ import { getBallColor } from "../../../utils/ballColor";
 import { LottoDraw } from "lottopass-shared";
 import styles from "./RoundCard.module.scss";
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 interface RoundCardProps extends LottoDraw {
   linkText?: string;
