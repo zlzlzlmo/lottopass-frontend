@@ -10,7 +10,8 @@ import Margin from "../../components/common/gap/Margin";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const { latestRound, isLoading } = useRounds();
+  const { state } = useRounds();
+  const { latestRound, isLoading } = state;
   const navigate = useNavigate();
   return (
     <Layout>
