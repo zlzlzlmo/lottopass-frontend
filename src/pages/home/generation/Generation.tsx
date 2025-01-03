@@ -78,9 +78,9 @@ const Generation = () => {
         {}
         <Sphere args={[1, 32, 32]} position={centralSpherePosition}>
           <meshPhongMaterial color="#ffcc00" shininess={50} />
-          <Html center>
+          <Html center transform={false} zIndexRange={[0, 10]}>
             <button className={styles.startButton} onClick={handleStartClick}>
-              START
+              <strong>Start!</strong>
             </button>
           </Html>
         </Sphere>
