@@ -21,7 +21,7 @@ const App: React.FC = () => {
     { path: ROUTES.NUMBER_GENERATION.path, element: <NumberGeneration /> },
     { path: ROUTES.STORE_INFO.path, element: <StoreInfo /> },
     { path: ROUTES.HISTORY.path, element: <History /> },
-    { path: ROUTES.DETAIL.path, element: <Detail /> },
+    { path: ROUTES.HISTORY_DETAIL.path, element: <Detail /> },
     { path: ROUTES.RESULT.path, element: <Result /> },
     { path: "*", element: <NotFound /> },
   ];

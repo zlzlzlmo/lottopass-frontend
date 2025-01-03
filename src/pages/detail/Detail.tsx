@@ -5,8 +5,15 @@ import RoundCard from "../../components/common/card/RoundCard";
 import PageTitle from "../../components/common/text/title/PageTitle";
 import StoreCard from "../storeInfo/storeList/storeCard/StoreCard";
 import { Table } from "antd";
+import { useParams } from "react-router-dom";
+import { useRounds } from "../../context/rounds/roundsContext";
 
 const Detail: React.FC = () => {
+  const { drawNumber } = useParams<{ drawNumber: string }>();
+  const { getRound } = useRounds();
+  if (isNaN(Number(drawNumber)) || !drawNumber) return;
+  const round = getRound(drawNumber);
+  if (!round) return;
   // 더미 데이터
   // 순위별 당첨 데이터 (더미)
   const prizes = [
@@ -93,20 +100,9 @@ const Detail: React.FC = () => {
   return (
     <Layout>
       <div className={styles.detailContainer}>
-        <PageTitle>1152회차 정보</PageTitle>
+        <PageTitle>{drawNumber ?? "-"}</PageTitle>
         {/* 상단: 카드 컴포넌트 */}
-        <RoundCard
-          drawNumber={1152}
-          date="2022"
-          prizeStatistics={{
-            totalPrize: 0,
-            firstAccumAmount: 0,
-            firstPrizeWinnerCount: 0,
-            firstWinAmount: 0,
-          }}
-          winningNumbers={[30, 31, 32, 35, 36, 37]}
-          bonusNumber={5}
-        />
+        <RoundCard {...round} />
 
         {/* 중단: 순위별 당첨금 테이블 */}
         <div className={styles.prizesTable}>
