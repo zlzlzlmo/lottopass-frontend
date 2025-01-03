@@ -30,7 +30,6 @@ const OptionsGrid: React.FC = () => {
   const { state } = useRounds();
   const { allRounds } = state;
   const [popupProps, setPopupProps] = useState<PopupProps | null>(null);
-  const [tooltipIndex, setTooltipIndex] = useState<number | null>(null);
 
   const { dispatch } = useLotto();
 
@@ -133,7 +132,6 @@ const OptionsGrid: React.FC = () => {
         (roundCount: number, minCount: number) =>
           handleControlConfirm(roundCount, minCount, "exclude")
       ),
-      tooltip: "최근 N회차 동안 미출현 번호를 포함한 조합",
     },
     {
       label: "출현 번호\n조합",
@@ -144,7 +142,6 @@ const OptionsGrid: React.FC = () => {
         (roundCount: number, minCount: number) =>
           handleControlConfirm(roundCount, minCount, "require")
       ),
-      tooltip: "최근 N회차 동안 당첨된 번호를 포함한 조합",
     },
   ];
 
@@ -158,13 +155,8 @@ const OptionsGrid: React.FC = () => {
               key={index}
               className={styles.optionButton}
               onClick={option.action}
-              onMouseEnter={() => setTooltipIndex(index)}
-              onMouseLeave={() => setTooltipIndex(null)}
             >
               <span>{option.label.replace("\\n", "\n")}</span>
-              {tooltipIndex === index && option.tooltip && (
-                <div className={styles.tooltip}>{option.tooltip}</div>
-              )}
             </div>
           ))}
         </div>
