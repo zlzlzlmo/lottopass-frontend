@@ -1,40 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./Result.module.scss";
 import Layout from "../../components/layout/Layout";
 import { getBallColor } from "../../utils/ballColor";
-import { saveToLocalStorage, loadFromLocalStorage } from "../../utils/storage";
 import { useLotto } from "../../context/lottoNumber/lottoNumberContext";
-import { resetLottoNumber } from "../../context/lottoNumber/lottoNumberActions";
 
 const Result: React.FC = () => {
   const maxResultsLen = 20;
-  const localStorageKey = "lottoResults";
 
-  const { generateNumbers, dispatch } = useLotto();
+  const { generateNumbers } = useLotto();
 
   // 초기 결과 복원
   const [results, setResults] = useState<number[][]>(() =>
-    loadFromLocalStorage<number[][]>(
-      localStorageKey,
-      Array.from({ length: 5 }, () => generateNumbers())
-    )
+    Array.from({ length: 5 }, () => generateNumbers())
   );
-
-  // 결과 변경 시 로컬 스토리지에 저장
-  useEffect(() => {
-    const storageResults =
-      results.length <= 0
-        ? Array.from({ length: 5 }, () => generateNumbers())
-        : results;
-    saveToLocalStorage(localStorageKey, storageResults);
-  }, [results]);
-
-  // 컴포넌트 언마운트 시 상태 초기화
-  useEffect(() => {
-    return () => {
-      dispatch(resetLottoNumber());
-    };
-  }, [dispatch]);
 
   // 결과 추가
   const handleAddResult = () => {

@@ -3,12 +3,11 @@ import React, { useState } from "react";
 import styles from "./OptionsGrid.module.scss";
 import { useNavigate } from "react-router-dom";
 import PopupManager from "../../../components/popup/PopupManager";
-import { shuffle } from "../../../utils/number";
 import { useRounds } from "../../../context/rounds/roundsContext";
 import { useLotto } from "../../../context/lottoNumber/lottoNumberContext";
 import {
-  setExcludeNumbers,
   setMinCount,
+  setRequiredNumbers,
 } from "../../../context/lottoNumber/lottoNumberActions";
 import PageTitle from "../../../components/common/text/title/PageTitle";
 
@@ -35,25 +34,23 @@ const OptionsGrid: React.FC = () => {
 
   const { dispatch } = useLotto();
 
-  const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
-
   const getRecentRounds = (roundCount: number) => {
-    return allRounds.slice(-roundCount);
+    return allRounds.slice(0, roundCount);
   };
 
-  const handleConfirm = (
+  const handleSelectConfirm = (
     selectedNumbers: number[],
     confirmType: "exclude" | "require"
   ) => {
-    if (confirmType === "exclude") {
-      dispatch(setExcludeNumbers(selectedNumbers));
-    } else {
-      const excludedNums = allNumbers.filter(
-        (num) => !selectedNumbers.includes(num)
-      );
+    const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
+    const nonSelectedNumbers = allNumbers.filter(
+      (num) => !selectedNumbers.includes(num)
+    );
 
-      dispatch(setExcludeNumbers(excludedNums));
-    }
+    const res =
+      confirmType === "require" ? selectedNumbers : nonSelectedNumbers;
+
+    dispatch(setRequiredNumbers(res));
     navigate("/result");
   };
 
@@ -62,26 +59,33 @@ const OptionsGrid: React.FC = () => {
     minCount: number,
     confirmType: "exclude" | "require"
   ) => {
+    // 그냥 미출현은 미출현 데이터가, 출현은 출현데이터가 필수 넘버면됨
+    // 그리고 minCount는 그냥 따로 저장해서 minCount ~ 6개의 넘버로 랜덤뽑고
+    // required를 shuffled하고 slice를 하면됨
+    // 이걸 available에 저장하고, 뒤에 allNumber 중복값 제거해서 붙이고 slice 0 6하면됨.
+
+    // 최근 N회차 데이터 가져오기
     const recentRounds = getRecentRounds(roundCount);
-    const recentNumbers = shuffle(
-      recentRounds.flatMap((round) => round.winningNumbers)
+
+    // 최근 N회차 당첨 번호 추출
+    const recentNumbers = [
+      ...new Set(recentRounds.flatMap((round) => round.winningNumbers)),
+    ];
+    console.log("Recent Numbers:", recentNumbers);
+
+    // 전체 번호: 1~45
+    const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
+
+    // 미출현 번호 = 전체 번호 - 최근 N회차 당첨 번호
+    const nonRecentNumbers = allNumbers.filter(
+      (num) => !recentNumbers.includes(num)
     );
 
-    const uniqueNumbers = [...new Set(recentNumbers)];
+    // const randomCount = getRandomNum(minCount, len);
 
-    let filteredNumbers;
-
-    if (confirmType === "exclude") {
-      filteredNumbers = allNumbers.filter((num) => uniqueNumbers.includes(num));
-    } else {
-      filteredNumbers = allNumbers.filter(
-        (num) => !uniqueNumbers.includes(num)
-      );
-    }
-
-    const excludedNums = shuffle(filteredNumbers);
+    const res = confirmType === "require" ? recentNumbers : nonRecentNumbers;
+    dispatch(setRequiredNumbers(res));
     dispatch(setMinCount(minCount));
-    dispatch(setExcludeNumbers(excludedNums));
 
     navigate("/result");
   };
@@ -108,7 +112,7 @@ const OptionsGrid: React.FC = () => {
       action: createPopupAction(
         "numberSelect",
         "exclude",
-        (numbers: number[]) => handleConfirm(numbers, "exclude")
+        (numbers: number[]) => handleSelectConfirm(numbers, "exclude")
       ),
     },
     {
@@ -117,7 +121,7 @@ const OptionsGrid: React.FC = () => {
       action: createPopupAction(
         "numberSelect",
         "require",
-        (numbers: number[]) => handleConfirm(numbers, "require")
+        (numbers: number[]) => handleSelectConfirm(numbers, "require")
       ),
     },
     {
