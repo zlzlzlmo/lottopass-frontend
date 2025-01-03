@@ -7,9 +7,12 @@ import { useState, useEffect } from "react";
 import useIntersection from "../../hooks/useIntersection";
 import { LottoDraw } from "lottopass-shared";
 import PageTitle from "../../components/common/text/title/PageTitle";
+import { useNavigate } from "react-router-dom";
 
 const History = () => {
-  const { allRounds, isLoading, error } = useRounds();
+  const navigate = useNavigate();
+  const { state } = useRounds();
+  const { allRounds, isLoading, error } = state;
   const [visibleRounds, setVisibleRounds] = useState<LottoDraw[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -78,7 +81,12 @@ const History = () => {
         <PageTitle>전 회차 당첨번호</PageTitle>
         <div className={styles.cards}>
           {visibleRounds.map((round) => (
-            <RoundCard key={round.drawNumber} {...round} />
+            <RoundCard
+              key={round.drawNumber}
+              {...round}
+              linkAction={() => navigate(`/history/${round.drawNumber}`)}
+              linkText="자세히보기 >"
+            />
           ))}
 
           {hasMore &&

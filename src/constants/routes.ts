@@ -3,5 +3,6 @@ export const ROUTES = {
   NUMBER_GENERATION: { path: "/number-generation", label: "번호 생성" },
   STORE_INFO: { path: "/store-info", label: "당첨점 확인" },
   HISTORY: { path: "/history", label: "당첨회차 확인" },
+  HISTORY_DETAIL: { path: "/history/:drawNumber", label: "" },
   RESULT: { path: "/result", label: "" },
 };

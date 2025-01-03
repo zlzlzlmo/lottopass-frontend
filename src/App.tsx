@@ -4,6 +4,7 @@ import { ROUTES } from "./constants/routes";
 import { AppProviders } from "./context/AppProviders";
 import "./styles/global.scss";
 import Loading from "./components/common/loading/Loading";
+import Detail from "./pages/\bdetail/Detail";
 
 const Home = lazy(() => import("./pages/home/Home"));
 const NumberGeneration = lazy(
@@ -20,6 +21,7 @@ const App: React.FC = () => {
     { path: ROUTES.NUMBER_GENERATION.path, element: <NumberGeneration /> },
     { path: ROUTES.STORE_INFO.path, element: <StoreInfo /> },
     { path: ROUTES.HISTORY.path, element: <History /> },
+    { path: ROUTES.HISTORY_DETAIL.path, element: <Detail /> },
     { path: ROUTES.RESULT.path, element: <Result /> },
     { path: "*", element: <NotFound /> },
   ];

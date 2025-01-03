@@ -3,4 +3,5 @@ export const API_URLS = {
   LATEST: "/lotto/latest",
   ALL_UNIQUE_REGIONS: "region/unique/all",
   WINNING_REGIONS: "region/winning",
+  DRAW_DETAIL: "lotto/draw",
 };

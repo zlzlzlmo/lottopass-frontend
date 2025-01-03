@@ -7,8 +7,12 @@ import {
 } from "./roundsActions";
 import { initialState, roundsReducer, State } from "./roundsReducer";
 import { getAllRounds, getLatestRound } from "../../api/axios/lottoApi";
+import { LottoDraw } from "lottopass-shared";
 
-type RoundsContextType = State;
+type RoundsContextType = {
+  state: State;
+  getRound: (drawNumber: string | number) => LottoDraw | undefined;
+};
 
 const RoundsContext = createContext<RoundsContextType | undefined>(undefined);
 
@@ -65,8 +69,17 @@ export const RoundsProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   }, []);
 
+  const getRound = (drawNumber: string | number) => {
+    if (isNaN(Number(drawNumber))) return;
+    return state.allRounds.find(
+      (round) => round.drawNumber === Number(drawNumber)
+    );
+  };
+
   return (
-    <RoundsContext.Provider value={state}>{children}</RoundsContext.Provider>
+    <RoundsContext.Provider value={{ state, getRound }}>
+      {children}
+    </RoundsContext.Provider>
   );
 };
 

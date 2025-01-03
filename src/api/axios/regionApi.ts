@@ -33,3 +33,19 @@ export const getWinningRegionsByLocation = async (
     };
   }
 };
+
+export const getWinningRegionsByDrawNumber = async (
+  drawNumber: number
+): Promise<FindAllResponse<WinningRegion[]>> => {
+  try {
+    const response = await axiosInstance.get(
+      `${API_URLS.WINNING_REGIONS}/${drawNumber}`
+    );
+    return { status: "success", data: response.data };
+  } catch (error) {
+    return {
+      status: "error",
+      message: (error as Error).message || "Failed to fetch winning regions",
+    };
+  }
+};

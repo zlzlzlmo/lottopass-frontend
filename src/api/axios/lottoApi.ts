@@ -26,3 +26,21 @@ export const getLatestRound = async (): Promise<FindAllResponse<LottoDraw>> => {
     };
   }
 };
+
+export const getDrawDetail = async (
+  drawNumber: string | number
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+): Promise<FindAllResponse<any[]>> => {
+  if (isNaN(Number(drawNumber))) throw new Error("Not Allowd DrawNumber Type");
+  try {
+    const response = await axiosInstance.get(
+      `${API_URLS.DRAW_DETAIL}/${drawNumber}`
+    );
+    return response.data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: (error as Error).message || "Failed to fetch the latest round",
+    };
+  }
+};

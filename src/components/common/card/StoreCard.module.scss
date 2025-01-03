@@ -1,0 +1,32 @@
+.storeCard {
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .ant-card-head-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1f2937;
+  }
+
+  .methodTag {
+    font-size: 12px;
+    border: 1px solid $gray-color;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+
+  p {
+    font-size: 14px;
+    margin: 4px 0;
+    color: #4b5563;
+  }
+
+  .navigateButton {
+    margin-top: 12px;
+  }
+}
