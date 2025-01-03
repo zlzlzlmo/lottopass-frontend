@@ -1,55 +1,50 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Drawer, Button } from "antd";
+import { MenuOutlined } from "@ant-design/icons";
 import styles from "./Header.module.scss";
 import { ROUTES } from "../../../constants/routes";
 
 const Header: React.FC = () => {
-  const [isMobileNavVisible, setMobileNavVisible] = useState(false);
+  const [isDrawerVisible, setDrawerVisible] = useState(false);
 
-  const toggleMobileNav = () => {
-    setMobileNavVisible((prev) => !prev);
+  const toggleDrawer = () => {
+    setDrawerVisible((prev) => !prev);
   };
 
   return (
     <header className={styles.header}>
-      {/* 로고 */}
       <NavLink to={ROUTES.HOME.path} className={styles.logo}>
         LOTTO PASS
       </NavLink>
 
-      {/* 데스크탑 네비게이션 */}
-      <nav className={styles.nav}>
-        {Object.values(ROUTES)
-          .filter((route) => route.path !== "/") // 홈 경로 제외
-          .map((route) => (
-            <NavLink
-              key={route.path}
-              to={route.path}
-              className={({ isActive }) =>
-                isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
-              }
-            >
-              {route.label}
-            </NavLink>
-          ))}
-      </nav>
-
-      {/* 모바일 네비게이션 토글 */}
       <div
         className={styles.hamburgerMenu}
-        onClick={toggleMobileNav}
+        onClick={toggleDrawer}
         aria-label="Toggle navigation"
       >
-        ☰
+        <MenuOutlined />
       </div>
 
-      {/* 모바일 네비게이션 */}
-      <nav
-        className={
-          isMobileNavVisible
-            ? `${styles.mobileNav} ${styles.show}`
-            : styles.mobileNav
+      <Drawer
+        title={
+          <span
+            style={{ fontSize: "20px", fontWeight: "bold", color: "#3b82f6" }}
+          >
+            LOTTO PASS
+          </span>
         }
+        placement="right"
+        closable={true}
+        onClose={toggleDrawer}
+        visible={isDrawerVisible}
+        bodyStyle={{
+          padding: "16px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          backgroundColor: "#f9f9f9",
+        }}
       >
         {Object.values(ROUTES)
           .filter((route) => route.label !== "")
@@ -57,13 +52,23 @@ const Header: React.FC = () => {
             <NavLink
               key={route.path}
               to={route.path}
-              className={styles.mobileNavLink}
-              onClick={() => setMobileNavVisible(false)}
+              style={{ textDecoration: "none" }}
+              onClick={() => setDrawerVisible(false)}
             >
-              {route.label}
+              <Button
+                block
+                style={{
+                  height: "48px",
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  color: "#3b82f6",
+                }}
+              >
+                {route.label}
+              </Button>
             </NavLink>
           ))}
-      </nav>
+      </Drawer>
     </header>
   );
 };
