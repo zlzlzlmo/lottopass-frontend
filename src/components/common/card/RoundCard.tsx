@@ -1,7 +1,10 @@
-import styles from "./RoundCard.module.scss";
+import { Card, Button, Typography, Tag, Space } from "antd";
 import { formatNumberWithCommas } from "../../../utils/number";
 import { getBallColor } from "../../../utils/ballColor";
 import { LottoDraw } from "lottopass-shared";
+import styles from "./RoundCard.module.scss";
+
+const { Title, Text } = Typography;
 
 interface RoundCardProps extends LottoDraw {
   linkText?: string;
@@ -18,39 +21,53 @@ const RoundCard: React.FC<RoundCardProps> = ({
   linkAction,
 }) => {
   return (
-    <div className={styles.cardContainer}>
-      <div className={styles.card}>
+    <Card
+      title={
         <div className={styles.cardHeader}>
-          <span className={styles.round}>
-            {drawNumber}회 당첨번호 [{date}]
-          </span>
-          {linkText && (
-            <span className={styles.link} onClick={linkAction} role="button">
-              {linkText}
-            </span>
-          )}
+          <Text strong>{drawNumber}회 당첨번호</Text>
+          <Text type="secondary">[{date}]</Text>
         </div>
-        <div className={styles.numbersContainer}>
-          {winningNumbers.map((num, index) => (
-            <div
-              style={{ backgroundColor: getBallColor(num) }}
-              key={index}
-              className={`${styles.number} ${index === 6 ? styles.bonus : ""}`}
-            >
-              {num}
-            </div>
-          ))}
-          <div className={styles.bonusPlus}>+</div>
-          <div className={`${styles.number} ${styles.bonus}`}>
-            {bonusNumber}
-          </div>
-        </div>
-        <div className={styles.prizeInfo}>
-          1등 {formatNumberWithCommas(prizeStatistics.firstPrizeWinnerCount)}명
-          | {formatNumberWithCommas(prizeStatistics.firstWinAmount)}원
-        </div>
+      }
+      extra={
+        linkText && (
+          <Button type="link" onClick={linkAction} size="small">
+            {linkText}
+          </Button>
+        )
+      }
+      className={styles.card}
+    >
+      {/* 당첨 번호 */}
+      <Space className={styles.numbersContainer} wrap>
+        {winningNumbers.map((num, index) => (
+          <Tag
+            color={getBallColor(num)}
+            key={index}
+            className={`${styles.number} ${index === 6 ? styles.bonus : ""}`}
+          >
+            {num}
+          </Tag>
+        ))}
+        <Text className={styles.bonusPlus}>+</Text>
+        <Tag color="magenta" className={`${styles.number} ${styles.bonus}`}>
+          {bonusNumber}
+        </Tag>
+      </Space>
+
+      {/* 1등 정보 */}
+      <div className={styles.prizeInfo}>
+        <Text>
+          1등{" "}
+          <Text strong>
+            {formatNumberWithCommas(prizeStatistics.firstPrizeWinnerCount)}명
+          </Text>{" "}
+          |{" "}
+          <Text strong>
+            {formatNumberWithCommas(prizeStatistics.firstWinAmount)}원
+          </Text>
+        </Text>
       </div>
-    </div>
+    </Card>
   );
 };
 
