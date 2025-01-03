@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import styles from "./OptionsGrid.module.scss";
 import { useNavigate } from "react-router-dom";
+import { Col, Row, Typography, Card } from "antd";
 import PopupManager from "../../../components/popup/PopupManager";
 import { useRounds } from "../../../context/rounds/roundsContext";
 import { useLotto } from "../../../context/lottoNumber/lottoNumberContext";
@@ -11,18 +12,19 @@ import {
 } from "../../../context/lottoNumber/lottoNumberActions";
 import PageTitle from "../../../components/common/text/title/PageTitle";
 
+const { Text } = Typography;
+
 interface Option {
-  label: string; // 옵션의 텍스트
-  rank: string | null; // 순위 표시
-  action?: () => void; // 실행할 작업
-  tooltip?: string; // 툴팁 내용
+  label: string;
+  action?: () => void;
+  tooltip?: string;
 }
 
 interface PopupProps {
   popupType: "numberSelect" | "numberControl";
   onClose: () => void;
   onConfirm: (...args: any[]) => void;
-  [key: string]: any; // 추가 속성 허용
+  [key: string]: any;
 }
 
 const OptionsGrid: React.FC = () => {
@@ -58,29 +60,17 @@ const OptionsGrid: React.FC = () => {
     minCount: number,
     confirmType: "exclude" | "require"
   ) => {
-    // 그냥 미출현은 미출현 데이터가, 출현은 출현데이터가 필수 넘버면됨
-    // 그리고 minCount는 그냥 따로 저장해서 minCount ~ 6개의 넘버로 랜덤뽑고
-    // required를 shuffled하고 slice를 하면됨
-    // 이걸 available에 저장하고, 뒤에 allNumber 중복값 제거해서 붙이고 slice 0 6하면됨.
-
-    // 최근 N회차 데이터 가져오기
     const recentRounds = getRecentRounds(roundCount);
 
-    // 최근 N회차 당첨 번호 추출
     const recentNumbers = [
       ...new Set(recentRounds.flatMap((round) => round.winningNumbers)),
     ];
-    console.log("Recent Numbers:", recentNumbers);
 
-    // 전체 번호: 1~45
     const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
 
-    // 미출현 번호 = 전체 번호 - 최근 N회차 당첨 번호
     const nonRecentNumbers = allNumbers.filter(
       (num) => !recentNumbers.includes(num)
     );
-
-    // const randomCount = getRandomNum(minCount, len);
 
     const res = confirmType === "require" ? recentNumbers : nonRecentNumbers;
     dispatch(setRequiredNumbers(res));
@@ -107,7 +97,6 @@ const OptionsGrid: React.FC = () => {
   const options: Option[] = [
     {
       label: "제외 번호\n직접 선택",
-      rank: null,
       action: createPopupAction(
         "numberSelect",
         "exclude",
@@ -116,7 +105,6 @@ const OptionsGrid: React.FC = () => {
     },
     {
       label: "필수 번호\n직접 선택",
-      rank: null,
       action: createPopupAction(
         "numberSelect",
         "require",
@@ -125,7 +113,6 @@ const OptionsGrid: React.FC = () => {
     },
     {
       label: "미출현 번호\n조합",
-      rank: null,
       action: createPopupAction(
         "numberControl",
         "exclude",
@@ -135,7 +122,6 @@ const OptionsGrid: React.FC = () => {
     },
     {
       label: "출현 번호\n조합",
-      rank: null,
       action: createPopupAction(
         "numberControl",
         "require",
@@ -149,24 +135,26 @@ const OptionsGrid: React.FC = () => {
     <>
       <div className={styles.container}>
         <PageTitle>로또번호 생성 방식을 선택하세요</PageTitle>
-        <div className={styles.optionsGrid}>
+        <Row gutter={[16, 16]} justify="center">
           {options.map((option, index) => (
-            <div
-              key={index}
-              className={styles.optionButton}
-              onClick={option.action}
-            >
-              <span>{option.label.replace("\\n", "\n")}</span>
-            </div>
+            <Col key={index} xs={24} sm={12} md={8}>
+              <Card
+                hoverable
+                className={styles.optionCard}
+                onClick={option.action}
+              >
+                <Text strong>{option.label.replace("\\n", "\n")}</Text>
+              </Card>
+            </Col>
           ))}
-        </div>
-
+        </Row>
         <p className={styles.note}>
-          <span className={styles.highlight}>1~45</span>의 모든 번호에서
-          생성합니다.
+          <Text strong className={styles.highlight}>
+            1~45
+          </Text>
+          의 모든 번호에서 생성합니다.
         </p>
       </div>
-
       {popupProps && <PopupManager {...popupProps} />}
     </>
   );
