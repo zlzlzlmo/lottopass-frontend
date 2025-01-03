@@ -7,41 +7,18 @@
     max-width: 800px;
     margin: 0 auto;
 
-    h1 {
+    .heroTitle {
       font-family: "Poppins", sans-serif;
-      font-size: 2rem;
+      font-size: 30px;
       font-weight: bold;
-      margin-bottom: 20px;
       color: $primary-color;
     }
 
-    p {
+    .heroText {
       font-family: "Roboto", sans-serif;
       font-size: 1.2rem;
       line-height: 1.6;
-      margin-bottom: 30px;
       color: darken($text-color, 20%);
-
-      &:last-child {
-        margin-bottom: 0px;
-      }
-    }
-
-    .ctaButton {
-      padding: 15px 30px;
-      background-color: $secondary-color;
-      color: $white-color;
-      font-family: "Poppins", sans-serif;
-      font-size: 1rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-
-      &:hover {
-        background-color: lighten($secondary-color, 10%);
-      }
     }
   }
 }
