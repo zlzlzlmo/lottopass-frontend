@@ -1,133 +1,36 @@
 .container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: "Noto Sans KR", sans-serif;
-  color: $text-color;
-}
-
-.title {
-  font-size: 24px;
-  font-weight: bold;
-  color: $primary-color;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.selectBox {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-
-.select {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid $gray-color;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-.storeList {
-  list-style: none;
-  margin-top: 20px;
-  padding: 0;
-}
-
-.storeCard {
   display: flex;
   flex-direction: column;
-  border: 1px solid $gray-color;
-  padding: 15px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  background-color: $white-color;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.cardHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
-  gap: 10px;
-}
-
-.tagContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-
-.tag {
-  background-color: $primary-color;
-  color: $white-color;
-  padding: 5px 10px;
-  border-radius: 15px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.storeInfo {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 24px; /* 간격 추가 */
+  padding: 20px;
+  max-width: 800px; /* 중앙 정렬을 위해 최대 너비 설정 */
+  margin: 0 auto;
 }
 
-.storeName {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.storeAddress {
-  font-size: 14px;
-  color: $gray-color;
-  margin-bottom: 5px;
-}
-
-.storeDistance {
-  font-size: 14px;
-  color: $secondary-color;
-}
-
-.navigateButton {
-  background: none;
-  border: none;
-  cursor: pointer;
+.controls {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: $secondary-color;
-  transition: background-color 0.3s ease-in-out;
-
-  &:hover {
-    background-color: darken($secondary-color, 10%);
-  }
+  flex-direction: column;
+  gap: 16px; /* 버튼과 셀렉트 박스 사이 간격 */
+  width: 100%;
 }
 
-.materialIcons {
-  font-size: 24px;
-  color: $white-color;
+.searchButton {
+  margin-top: 8px;
 }
 
-@media (max-width: $max-mobile-width) {
-  .storeCard {
-    padding: 10px;
-  }
+.results {
+  width: 100%;
+  margin-top: 16px;
+}
 
-  .storeInfo {
-    flex-direction: row;
-    align-items: flex-start;
-  }
+.loading {
+  text-align: center;
+  padding: 20px;
+}
 
-  .navigateButton {
-    align-self: flex-end;
-  }
+.error {
+  text-align: center;
+  color: red;
+  font-weight: bold;
 }

@@ -24,7 +24,7 @@ const RoundCard: React.FC<RoundCardProps> = ({
     <Card
       title={
         <div className={styles.cardHeader}>
-          <Text strong>{drawNumber}회 당첨번호</Text>
+          <Text strong>{drawNumber}회</Text>
           <Text type="secondary">[{date}]</Text>
         </div>
       }
