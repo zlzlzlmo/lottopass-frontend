@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, Card, Space, Row, Col, Spin, Select, Typography } from "antd";
+import React, { useEffect, useState } from "react";
+import { Button, Card, Space, Row, Col, Spin, Select } from "antd";
 import { EnvironmentOutlined, PhoneOutlined } from "@ant-design/icons";
 import RegionSelectBox from "../storeInfo/selectBox/RegionSelectBox";
 import LocationButton from "../../components/common/button/location/LocationButton";
@@ -20,7 +20,9 @@ const AllStores: React.FC = () => {
   const { currentLocation } = locationState;
   const { state } = useStore();
   const { selectedRegion, regionsByProvince } = state;
+  const [rawStores, setRawStores] = useState<StoreInfo[]>([]);
   const [stores, setStores] = useState<StoreWithDistance[]>([]);
+
   const [loading, setLoading] = useState<boolean>(false);
   const [sortOption, setSortOption] = useState<string>("distance");
 
@@ -56,6 +58,7 @@ const AllStores: React.FC = () => {
       );
 
       if (response.status === "success") {
+        setRawStores(response.data);
         const stores = addDistanceToStores(response.data, currentLocation);
         setStores(stores);
       }
@@ -72,6 +75,13 @@ const AllStores: React.FC = () => {
     if (sortOption === "name") return a.storeName.localeCompare(b.storeName);
     return 0;
   });
+
+  useEffect(() => {
+    if (rawStores.length <= 0) return;
+    const stores = addDistanceToStores(rawStores, currentLocation);
+    setStores(stores);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentLocation]);
 
   return (
     <Layout>
