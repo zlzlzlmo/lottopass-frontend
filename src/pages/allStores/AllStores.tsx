@@ -14,7 +14,6 @@ import Layout from "../../components/layout/Layout";
 type StoreWithDistance = StoreInfo & { distance: number | null };
 
 const { Option } = Select;
-const { Title } = Typography;
 
 const AllStores: React.FC = () => {
   const { state: locationState } = useGeoLocation();
@@ -77,10 +76,6 @@ const AllStores: React.FC = () => {
   return (
     <Layout>
       <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
-        <Title level={2} style={{ textAlign: "center", marginBottom: "20px" }}>
-          로또 판매점 찾기
-        </Title>
-
         <Space direction="vertical" size="large" style={{ width: "100%" }}>
           <RegionSelectBox />
 
