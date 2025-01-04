@@ -7,7 +7,17 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"), // @로 src 경로 참조
+      "@": path.resolve(__dirname, "src"),
+      "@api": path.resolve(__dirname, "src/api"),
+      "@assets": path.resolve(__dirname, "src/assets"),
+      "@components": path.resolve(__dirname, "src/components"),
+      "@constants": path.resolve(__dirname, "src/constants"),
+      "@context": path.resolve(__dirname, "src/context"),
+      "@features": path.resolve(__dirname, "src/features"),
+      "@hooks": path.resolve(__dirname, "src/hooks"),
+      "@pages": path.resolve(__dirname, "src/pages"),
+      "@styles": path.resolve(__dirname, "src/styles"),
+      "@utils": path.resolve(__dirname, "src/utils"),
     },
   },
   css: {
