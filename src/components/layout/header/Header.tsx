@@ -1,22 +1,36 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Drawer, Button } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
+import { MenuOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import styles from "./Header.module.scss";
 import { ROUTES } from "../../../constants/routes";
 
 const Header: React.FC = () => {
   const [isDrawerVisible, setDrawerVisible] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleDrawer = () => {
     setDrawerVisible((prev) => !prev);
   };
 
+  const isHomePage = location.pathname === ROUTES.HOME.path;
+
   return (
     <header className={styles.header}>
-      <NavLink to={ROUTES.HOME.path} className={styles.logo}>
-        LOTTO PASS
-      </NavLink>
+      {isHomePage ? (
+        <NavLink to={ROUTES.HOME.path} className={styles.logo}>
+          LOTTO PASS
+        </NavLink>
+      ) : (
+        <div
+          className={styles.backButton}
+          onClick={() => navigate(-1)}
+          aria-label="Go back"
+        >
+          <ArrowLeftOutlined />
+        </div>
+      )}
 
       <div
         className={styles.hamburgerMenu}
@@ -37,7 +51,7 @@ const Header: React.FC = () => {
         placement="right"
         closable={true}
         onClose={toggleDrawer}
-        visible={isDrawerVisible}
+        open={isDrawerVisible}
         bodyStyle={{
           padding: "16px",
           display: "flex",
