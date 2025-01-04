@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styles from "./StoreInfo.module.scss";
 import Layout from "../../components/layout/Layout";
-import SelectBox from "./selectBox/SelectBox";
 import { Button, Spin } from "antd";
 import { useStore } from "../../context/store/storeContext";
 import StoreList from "./storeList/StoreList";
 import { getWinningRegionsByLocation } from "../../api/axios/regionApi";
 import { WinningRegion } from "lottopass-shared";
 import LocationButton from "../../components/common/button/location/LocationButton";
+import RegionSelectBox from "./selectBox/RegionSelectBox";
 
 const StoreInfo: React.FC = () => {
   const { state } = useStore();
@@ -34,6 +34,7 @@ const StoreInfo: React.FC = () => {
       } else {
         setError(response.message || "데이터를 가져오는데 실패했습니다.");
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       setError("서버와 연결할 수 없습니다.");
     } finally {
@@ -45,7 +46,7 @@ const StoreInfo: React.FC = () => {
     <Layout>
       <div className={styles.container}>
         <div className={styles.controls}>
-          <SelectBox />
+          <RegionSelectBox />
           <Button
             type="primary"
             size="large"

@@ -33,3 +33,14 @@ td {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
 }
+
+.ant-row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Col 패딩 제거 */
+.ant-col {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}

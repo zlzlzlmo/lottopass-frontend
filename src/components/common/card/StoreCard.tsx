@@ -4,6 +4,7 @@ import { EnvironmentOutlined } from "@ant-design/icons";
 import { WinningRegion } from "lottopass-shared";
 import styles from "./StoreCard.module.scss";
 import { useGeoLocation } from "../../../context/\blocation/locationContext";
+import { openMap } from "../../../utils/map";
 
 const StoreCard: React.FC<Partial<WinningRegion>> = ({
   method,
@@ -14,12 +15,9 @@ const StoreCard: React.FC<Partial<WinningRegion>> = ({
   const { state, calculateDistanceFromMyLocation } = useGeoLocation();
   const { currentLocation } = state;
 
-  const openMap = () => {
+  const handleClick = () => {
     if (!coordinates) return;
-    window.open(
-      `https://map.kakao.com/link/map/${storeName},${coordinates.lat},${coordinates.lng}`,
-      "_blank"
-    );
+    openMap(storeName ?? "", coordinates);
   };
 
   const distance =
@@ -64,7 +62,7 @@ const StoreCard: React.FC<Partial<WinningRegion>> = ({
       <Button
         type="primary"
         icon={<EnvironmentOutlined />}
-        onClick={openMap}
+        onClick={handleClick}
         className={styles.navigateButton}
         block
         disabled={!coordinates}

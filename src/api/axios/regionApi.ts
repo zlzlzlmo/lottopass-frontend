@@ -1,5 +1,10 @@
 // API 관련 코드
-import { FindAllResponse, UniqueRegion, WinningRegion } from "lottopass-shared";
+import {
+  FindAllResponse,
+  StoreInfo,
+  UniqueRegion,
+  WinningRegion,
+} from "lottopass-shared";
 import { API_URLS } from "../../constants/apiUrls";
 import axiosInstance from "./axiosConfig";
 
@@ -50,6 +55,23 @@ export const getWinningRegionsByDrawNumber = async (
     return {
       status: "error",
       message: (error as Error).message || "Failed to fetch winning regions",
+    };
+  }
+};
+
+export const getAllStores = async (
+  province: string,
+  city: string
+): Promise<FindAllResponse<StoreInfo[]>> => {
+  try {
+    const response = await axiosInstance.get(API_URLS.ALL_STORES, {
+      params: { province, city },
+    });
+    return response.data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: (error as Error).message || "Failed to fetch stores",
     };
   }
 };
