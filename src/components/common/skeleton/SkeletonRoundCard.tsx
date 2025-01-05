@@ -1,18 +1,27 @@
+import React from "react";
+import { Card, Skeleton, Tag, Space } from "antd";
 import styles from "./SkeletonRoundCard.module.scss";
 
-const SkeletonRoundCard = () => {
+const SkeletonRoundCard: React.FC = () => {
   return (
-    <div className={styles.cardContainer}>
-      <div className={`${styles.card} ${styles.skeleton}`}>
-        <div className={styles.skeletonHeader}></div>
-        <div className={styles.skeletonNumbers}>
-          {Array.from({ length: 6 }).map((_, index) => (
-            <div key={index} className={styles.skeletonCircle}></div>
-          ))}
-        </div>
-        <div className={styles.skeletonPrize}></div>
+    <Card className={styles.card}>
+      <div className={styles.cardHeader}>
+        <Skeleton.Input active size="small" style={{ width: "50px" }} />
+        <Skeleton.Input active size="small" style={{ width: "100px" }} />
       </div>
-    </div>
+
+      <Space className={styles.numbersContainer} wrap>
+        {Array.from({ length: 6 }).map((_, index) => (
+          <Tag key={index} className={styles.skeletonCircle} />
+        ))}
+        <span className={styles.bonusPlus}>+</span>
+        <Tag className={`${styles.skeletonCircle} ${styles.bonus}`} />
+      </Space>
+
+      <div className={styles.prizeInfo}>
+        <Skeleton.Input active size="small" style={{ width: "70%" }} />
+      </div>
+    </Card>
   );
 };
 

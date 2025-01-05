@@ -1,61 +1,52 @@
-.cardContainer {
-  width: 100%;
-}
-
 .card {
-  background-color: $secondary-color;
-  padding: 16px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.card.skeleton {
-  background: #f4f4f4;
-  overflow: hidden;
-  position: relative;
-}
-
-.skeletonHeader,
-.skeletonNumbers div,
-.skeletonPrize {
-  background: linear-gradient(90deg, #e0e0e0 25%, #f4f4f4 50%, #e0e0e0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite ease-in-out;
-  border-radius: 4px;
+  width: 100%;
   margin-bottom: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.skeletonHeader {
-  height: 16px;
-  width: 80%;
-  margin: 0 auto 16px auto;
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .ant-skeleton-input {
+    border-radius: 4px;
+  }
 }
 
-.skeletonNumbers {
+.numbersContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 8px;
-  height: 40px;
+  margin-top: 16px;
 }
 
-.skeletonNumbers div {
+.skeletonCircle {
   width: 40px;
   height: 40px;
+  background-color: #f5f5f5;
   border-radius: 50%;
+  display: inline-block;
 }
 
-.skeletonPrize {
-  height: 14px;
-  width: 60%;
-  margin: 0 auto;
+.bonusPlus {
+  font-size: 18px;
+  margin: 0 8px;
+  color: #ccc;
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
+.bonus {
+  background-color: #ffd6e7;
+}
+.prizeInfo {
+  margin-top: 16px;
+  text-align: center;
+
+  .ant-skeleton-input {
+    border-radius: 4px;
   }
 }
