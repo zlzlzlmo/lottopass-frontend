@@ -1,1 +1,1 @@
-export { default as NumberActionButtons } from "./NumberActionButtons/NumberActionButtons";
+export { default as NumberActionButtons } from "./numberActionButtons/NumberActionButtons";

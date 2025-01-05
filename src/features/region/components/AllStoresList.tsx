@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StoreInfo } from "lottopass-shared";
 import styles from "./AllStoresList.module.scss";
 import { useAppSelector } from "@/redux/hooks";
-import SortDropdown from "@/components/common/DropDown/SortDropDown";
+import SortDropdown from "@/components/common/dropDown/SortDropDown";
 import GeoLocationButton from "@/features/location/components/GeoLocationButton/GeoLocationButton";
 import FlexContainer from "@/components/common/container/FlexContainer";
 import AllStoreCard from "./AllStoreCard";

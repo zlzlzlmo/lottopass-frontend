@@ -1,0 +1,28 @@
+.link {
+  display: inline-flex; // 텍스트와 아이콘을 가로로 정렬
+  align-items: center; // 세로 정렬
+  text-decoration: none; // 밑줄 제거
+  cursor: pointer; // 포인터 변경
+  gap: 4px; // 텍스트와 아이콘 사이 간격
+}
+
+.text {
+  font-size: 12px; // 텍스트 크기
+  color: #8c8c8c; // 텍스트 색상
+  transition: color 0.3s ease; // 부드러운 색상 변화
+
+  &:hover {
+    color: #1890ff; // Hover 시 텍스트 색상 변경
+  }
+}
+
+.icon {
+  font-size: 10px; // 아이콘 크기
+  color: #8c8c8c; // 기본 색상
+  transition: transform 0.3s ease; // 아이콘 회전 트랜지션
+}
+
+.iconActive {
+  transform: rotate(180deg); // 드롭다운 활성 상태에서 아이콘 회전
+  color: #1890ff; // 활성 상태에서 색상 변경
+}
