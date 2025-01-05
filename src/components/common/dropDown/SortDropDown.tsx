@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Dropdown, Menu } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { Typography } from "antd";
-import styles from "./SortDropdown.module.scss";
+import styles from "./SortDropDown.module.scss";
 
 const { Text } = Typography;
 
