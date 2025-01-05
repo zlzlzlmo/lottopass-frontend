@@ -10,7 +10,7 @@ import FlexContainer from "@/components/common/container/FlexContainer";
 import { useWinningStoresByDrawNumber } from "@/features/region/hooks/useWinningStoresByDrawNumber";
 import StoreList from "../winningStores/storeList/StoreList";
 
-const Detail: React.FC = () => {
+const DetailPage: React.FC = () => {
   const { drawNumber: drawNumberStr } = useParams<{ drawNumber: string }>();
   const drawNumber = Number(drawNumberStr);
   const navigate = useNavigate();
@@ -95,4 +95,4 @@ const Detail: React.FC = () => {
     );
 };
 
-export default Detail;
+export default DetailPage;

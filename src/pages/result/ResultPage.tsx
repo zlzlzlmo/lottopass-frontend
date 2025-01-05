@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import styles from "./Result.module.scss";
+import styles from "./ResultPage.module.scss";
 import Layout from "../../components/layout/Layout";
 import { getRandomNum, shuffle } from "@/utils/number";
 import { useSearchParams } from "react-router-dom";
 import NumberContainer from "@/components/common/number/NumberContainer";
 
-const Result: React.FC = () => {
+const ResultPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const minCount = searchParams.get("minCount") ?? 6;
   const requiredNumbers =
@@ -76,4 +76,4 @@ const Result: React.FC = () => {
   );
 };
 
-export default Result;
+export default ResultPage;
