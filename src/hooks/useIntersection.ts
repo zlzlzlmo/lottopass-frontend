@@ -12,7 +12,11 @@ const useIntersection = (
     if (!targetRef.current) return;
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(callback);
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          callback(entry);
+        }
+      });
     }, options);
 
     observer.observe(targetRef.current);

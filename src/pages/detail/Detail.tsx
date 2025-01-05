@@ -4,7 +4,6 @@ import Layout from "../../components/layout/Layout";
 import RoundCard from "../../components/common/card/RoundCard";
 import { Table } from "antd";
 import { useParams } from "react-router-dom";
-import { useRounds } from "../../context/rounds/roundsContext";
 import { getDrawDetail } from "../../api/axios/lottoApi";
 import { formatNumberWithCommas } from "../../utils/number";
 import StoreCard from "../../components/common/card/StoreCard";
@@ -15,7 +14,7 @@ import GeoLocationButton from "@/features/location/components/GeoLocationButton/
 
 const Detail: React.FC = () => {
   const { drawNumber } = useParams<{ drawNumber: string }>();
-  const { getRound } = useRounds();
+
   const [formattedDrawDetail, setFormattedDrawDetail] = useState<DetailDraw[]>(
     []
   );

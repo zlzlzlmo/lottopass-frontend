@@ -18,7 +18,7 @@ const Result = lazy(() => import("./pages/result/Result"));
 const WinningStoresPage = lazy(
   () => import("./pages/winningStores/WinningStoresPage")
 );
-const History = lazy(() => import("./pages/history/History"));
+const HistoryPage = lazy(() => import("./pages/history/HistoryPage"));
 const NotFound = lazy(() => import("./pages/notFound/NotFound"));
 
 const App: React.FC = () => {
@@ -26,7 +26,7 @@ const App: React.FC = () => {
     { path: ROUTES.HOME.path, element: <HomePage /> },
     { path: ROUTES.NUMBER_GENERATION.path, element: <NumberGenerationPage /> },
     { path: ROUTES.STORE_INFO.path, element: <WinningStoresPage /> },
-    { path: ROUTES.HISTORY.path, element: <History /> },
+    { path: ROUTES.HISTORY.path, element: <HistoryPage /> },
     { path: ROUTES.HISTORY_DETAIL.path, element: <Detail /> },
     { path: ROUTES.ALL_STORES.path, element: <AllStores /> },
     { path: ROUTES.RESULT.path, element: <Result /> },
