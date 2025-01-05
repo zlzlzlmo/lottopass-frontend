@@ -7,25 +7,27 @@ import styles from "./SortDropdown.module.scss";
 const { Text } = Typography;
 
 interface SortDropdownProps {
+  currentSort: string;
   onSortChange: (sortKey: string) => void;
 }
 
-const SortDropdown: React.FC<SortDropdownProps> = ({ onSortChange }) => {
-  const [selectedSort, setSelectedSort] = useState<string>("distance");
-  const [isActive, setIsActive] = useState<boolean>(false); // 드롭다운 활성 상태
+const SortDropdown: React.FC<SortDropdownProps> = ({
+  currentSort,
+  onSortChange,
+}) => {
+  const [isActive, setIsActive] = useState<boolean>(false);
 
   const sortOptions = [
     { key: "distance", label: "거리순" },
     { key: "name", label: "이름순" },
-    { key: "draw", label: "당첨회차순" },
+    // { key: "draw", label: "당첨회차순" },
   ];
 
   const menu = (
     <Menu
       onClick={(e) => {
-        setSelectedSort(e.key); // 정렬 기준 업데이트
-        onSortChange(e.key); // 부모로 콜백 전달
-        setIsActive(false); // 드롭다운 닫힐 때 아이콘 복구
+        onSortChange(e.key); // 부모에 정렬 기준 전달
+        setIsActive(false);
       }}
     >
       {sortOptions.map((option) => (
@@ -38,15 +40,15 @@ const SortDropdown: React.FC<SortDropdownProps> = ({ onSortChange }) => {
     <Dropdown
       overlay={menu}
       trigger={["click"]}
-      onVisibleChange={(visible) => setIsActive(visible)} // 드롭다운 열림/닫힘 상태 관리
+      onVisibleChange={(visible) => setIsActive(visible)}
     >
-      <a onClick={(e) => e.preventDefault()} href="#" className={styles.link}>
+      <a href="#" className={styles.link}>
         <Text type="secondary" className={styles.text}>
-          {sortOptions.find((option) => option.key === selectedSort)?.label ||
+          {sortOptions.find((option) => option.key === currentSort)?.label ||
             "정렬 기준 선택"}
         </Text>
         <DownOutlined
-          className={`${styles.icon} ${isActive ? styles.iconActive : ""}`} // 활성 상태에 따른 스타일 변경
+          className={`${styles.icon} ${isActive ? styles.iconActive : ""}`}
         />
       </a>
     </Dropdown>

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import StoreCard from "../../../components/common/card/StoreCard";
 import { WinningRegion } from "lottopass-shared";
 import styles from "./StoreList.module.scss";
-import SortDropdown from "@/components/common/DropDown/SortDropDown";
 import { useAppSelector } from "@/redux/hooks";
+import SortDropdown from "@/components/common/DropDown/SortDropDown";
 
 interface ExtendedWinningRegion extends WinningRegion {
-  distance?: number; // 거리 속성 추가
+  distance?: number;
 }
 
 interface StoreListProps {
@@ -16,6 +16,9 @@ interface StoreListProps {
 const StoreList: React.FC<StoreListProps> = ({ data }) => {
   const myLocation = useAppSelector((state) => state.location.myLocation);
   const [sortedData, setSortedData] = useState<ExtendedWinningRegion[]>([]);
+  const [selectedSort, setSelectedSort] = useState<string>(
+    myLocation ? "distance" : "name" // 기본값 설정
+  );
 
   // 거리 계산 함수
   const calculateDistanceFromMyLocation = (target?: {
@@ -38,7 +41,7 @@ const StoreList: React.FC<StoreListProps> = ({ data }) => {
     return R * c;
   };
 
-  // 초기 데이터에 거리 계산 및 정렬
+  // 초기 데이터 준비 및 정렬
   useEffect(() => {
     const enrichedData = data.map((region) => ({
       ...region,
@@ -47,22 +50,16 @@ const StoreList: React.FC<StoreListProps> = ({ data }) => {
         : Infinity,
     }));
 
-    // myLocation이 없으면 이름순으로 정렬
-    const sorted =
-      myLocation === null
-        ? enrichedData.sort((a, b) =>
-            (a.storeName || "").localeCompare(b.storeName || "")
-          )
-        : enrichedData.sort(
-            (a, b) => (a.distance || Infinity) - (b.distance || Infinity)
-          );
-
-    setSortedData(sorted);
+    // 초기 정렬 실행
+    onSortChange(selectedSort, enrichedData);
   }, [data, myLocation]);
 
-  // 정렬 기준 변경 핸들러
-  const onSortChange = (sortKey: string) => {
-    const sorted = [...sortedData];
+  // 정렬 핸들러
+  const onSortChange = (
+    sortKey: string,
+    dataToSort: ExtendedWinningRegion[] = sortedData
+  ) => {
+    const sorted = [...dataToSort];
     switch (sortKey) {
       case "distance":
         sorted.sort(
@@ -74,19 +71,20 @@ const StoreList: React.FC<StoreListProps> = ({ data }) => {
           (a.storeName || "").localeCompare(b.storeName || "")
         );
         break;
-      case "draw":
-        sorted.sort((a, b) => (b.drawNumber || 0) - (a.drawNumber || 0));
-        break;
+      // case "draw":
+      //   sorted.sort((a, b) => (b.drawNumber || 0) - (a.drawNumber || 0));
+      //   break;
       default:
         break;
     }
-    setSortedData(sorted);
+    setSortedData(sorted); // 정렬된 데이터 업데이트
+    setSelectedSort(sortKey); // 선택된 정렬 기준 업데이트
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <SortDropdown onSortChange={onSortChange} />
+        <SortDropdown onSortChange={onSortChange} currentSort={selectedSort} />
       </div>
       <ul className={styles.storeList}>
         {sortedData.map((region) => (
