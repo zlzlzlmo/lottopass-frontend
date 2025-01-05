@@ -10,8 +10,8 @@ import { formatNumberWithCommas } from "../../utils/number";
 import StoreCard from "../../components/common/card/StoreCard";
 import { getWinningRegionsByDrawNumber } from "../../api/axios/regionApi";
 import FlexContainer from "../../components/common/container/FlexContainer";
-import LocationButton from "../../components/common/button/location/LocationButton";
 import { DetailDraw, WinningRegion } from "lottopass-shared";
+import GeoLocationButton from "@/features/location/components/GeoLocationButton/GeoLocationButton";
 
 const Detail: React.FC = () => {
   const { drawNumber } = useParams<{ drawNumber: string }>();
@@ -115,7 +115,7 @@ const Detail: React.FC = () => {
             className={styles.sectionHeader}
           >
             <h2>1등 당첨점 목록</h2>
-            <LocationButton />
+            <GeoLocationButton />
           </FlexContainer>
           <FlexContainer direction="column" gap={10}>
             {winningStores.map((store) => (

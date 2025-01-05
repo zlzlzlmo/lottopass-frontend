@@ -3,27 +3,22 @@ import { Card, Button } from "antd";
 import { EnvironmentOutlined } from "@ant-design/icons";
 import { WinningRegion } from "lottopass-shared";
 import styles from "./StoreCard.module.scss";
-import { useGeoLocation } from "../../../context/\blocation/locationContext";
 import { openMap } from "../../../utils/map";
+import { useAppSelector } from "@/redux/hooks";
 
-const StoreCard: React.FC<Partial<WinningRegion>> = ({
+const StoreCard: React.FC<{ distance?: number } & Partial<WinningRegion>> = ({
   method,
   storeName,
   address,
   coordinates,
+  distance,
 }) => {
-  const { state, calculateDistanceFromMyLocation } = useGeoLocation();
-  const { currentLocation } = state;
+  const myLocation = useAppSelector((state) => state.location.myLocation);
 
   const handleClick = () => {
     if (!coordinates) return;
     openMap(storeName ?? "", coordinates);
   };
-
-  const distance =
-    currentLocation && coordinates
-      ? calculateDistanceFromMyLocation(coordinates)
-      : null;
 
   return (
     <Card
@@ -51,8 +46,8 @@ const StoreCard: React.FC<Partial<WinningRegion>> = ({
         {address || <span className={styles.placeholder}>주소 정보 없음</span>}
       </p>
       <p>
-        {distance !== null ? (
-          <strong>거리: {distance.toFixed(2)} km</strong>
+        {myLocation !== null ? (
+          <strong>거리: {distance?.toFixed(2)} km</strong>
         ) : (
           <span className={styles.placeholder}>
             위치 정보를 활성화해주세요.

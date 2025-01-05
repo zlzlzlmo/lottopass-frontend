@@ -1,13 +1,9 @@
 import React, { createContext, useContext, useEffect, useReducer } from "react";
-import {
-  fetchInit,
-  fetchSuccessLatest,
-  fetchSuccessAll,
-  fetchFailure,
-} from "./roundsActions";
+import { fetchSuccessAll, fetchFailure } from "./roundsActions";
 import { initialState, roundsReducer, State } from "./roundsReducer";
-import { getAllRounds, getLatestRound } from "../../api/axios/lottoApi";
+import { getAllRounds } from "../../api/axios/lottoApi";
 import { LottoDraw } from "lottopass-shared";
+import { drawService } from "@/api";
 
 type RoundsContextType = {
   state: State;
@@ -22,26 +18,6 @@ export const RoundsProvider: React.FC<{ children: React.ReactNode }> = ({
   const [state, dispatch] = useReducer(roundsReducer, initialState);
 
   useEffect(() => {
-    const fetchLatestRound = async () => {
-      dispatch(fetchInit());
-
-      try {
-        const latestRoundResult = await getLatestRound();
-
-        if (latestRoundResult.status === "success") {
-          dispatch(fetchSuccessLatest(latestRoundResult.data));
-        } else {
-          throw new Error(
-            latestRoundResult.message || "Failed to fetch the latest round"
-          );
-        }
-      } catch (err) {
-        dispatch(
-          fetchFailure((err as Error).message || "Failed to load latest round")
-        );
-      }
-    };
-
     const fetchAllRounds = async () => {
       try {
         const allRoundsResult = await getAllRounds();
@@ -64,9 +40,7 @@ export const RoundsProvider: React.FC<{ children: React.ReactNode }> = ({
       }
     };
 
-    fetchLatestRound().then(() => {
-      fetchAllRounds();
-    });
+    fetchAllRounds();
   }, []);
 
   const getRound = (drawNumber: string | number) => {

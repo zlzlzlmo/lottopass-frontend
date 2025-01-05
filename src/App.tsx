@@ -6,21 +6,26 @@ import "./styles/global.scss";
 import Loading from "./components/common/loading/Loading";
 import Detail from "./pages/\bdetail/Detail";
 import AllStores from "./pages/allStores/AllStores";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-const Home = lazy(() => import("./pages/home/Home"));
-const NumberGeneration = lazy(
-  () => import("./pages/numberGeneration/NumberGeneration")
+const queryClient = new QueryClient();
+
+const HomePage = lazy(() => import("./pages/home/HomePage"));
+const NumberGenerationPage = lazy(
+  () => import("./pages/numberGeneration/NumberGenerationPage")
 );
 const Result = lazy(() => import("./pages/result/Result"));
-const StoreInfo = lazy(() => import("./pages/storeInfo/StoreInfo"));
+const WinningStoresPage = lazy(
+  () => import("./pages/winningStores/WinningStoresPage")
+);
 const History = lazy(() => import("./pages/history/History"));
 const NotFound = lazy(() => import("./pages/notFound/NotFound"));
 
 const App: React.FC = () => {
   const routes = [
-    { path: ROUTES.HOME.path, element: <Home /> },
-    { path: ROUTES.NUMBER_GENERATION.path, element: <NumberGeneration /> },
-    { path: ROUTES.STORE_INFO.path, element: <StoreInfo /> },
+    { path: ROUTES.HOME.path, element: <HomePage /> },
+    { path: ROUTES.NUMBER_GENERATION.path, element: <NumberGenerationPage /> },
+    { path: ROUTES.STORE_INFO.path, element: <WinningStoresPage /> },
     { path: ROUTES.HISTORY.path, element: <History /> },
     { path: ROUTES.HISTORY_DETAIL.path, element: <Detail /> },
     { path: ROUTES.ALL_STORES.path, element: <AllStores /> },
@@ -29,21 +34,23 @@ const App: React.FC = () => {
   ];
 
   return (
-    <AppProviders>
-      <Router>
-        <Suspense fallback={<Loading />}>
-          <Routes>
-            {routes.map((route) => (
-              <Route
-                key={route.path}
-                path={route.path}
-                element={route.element}
-              />
-            ))}
-          </Routes>
-        </Suspense>
-      </Router>
-    </AppProviders>
+    <QueryClientProvider client={queryClient}>
+      <AppProviders>
+        <Router>
+          <Suspense fallback={<Loading />}>
+            <Routes>
+              {routes.map((route) => (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={route.element}
+                />
+              ))}
+            </Routes>
+          </Suspense>
+        </Router>
+      </AppProviders>
+    </QueryClientProvider>
   );
 };
 

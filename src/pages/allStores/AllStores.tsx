@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Space, Row, Col, Spin, Select } from "antd";
 import { EnvironmentOutlined, PhoneOutlined } from "@ant-design/icons";
-import RegionSelectBox from "../storeInfo/selectBox/RegionSelectBox";
-import LocationButton from "../../components/common/button/location/LocationButton";
+import RegionSelectBox from "../winningStores/selectBox/RegionSelectBox";
 import { useStore } from "../../context/store/storeContext";
 import { getAllStores } from "../../api/axios/regionApi";
 import { calculateDistance } from "../../utils/distance";
@@ -10,6 +9,7 @@ import { StoreInfo } from "lottopass-shared";
 import { openMap } from "../../utils/map";
 import { useGeoLocation } from "../../context/\blocation/locationContext";
 import Layout from "../../components/layout/Layout";
+import GeoLocationButton from "@/features/location/components/GeoLocationButton/GeoLocationButton";
 
 type StoreWithDistance = StoreInfo & { distance: number | null };
 
@@ -91,7 +91,7 @@ const AllStores: React.FC = () => {
 
           <Row gutter={[16, 16]} align="middle">
             <Col xs={24} sm={8}>
-              <LocationButton />
+              <GeoLocationButton />
             </Col>
             <Col xs={24} sm={8}>
               <Select

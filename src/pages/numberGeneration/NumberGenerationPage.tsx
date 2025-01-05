@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { fetchAllDraws } from "@/features/draw/drawSlice";
 import { NumberActionButtons } from "./components";
 
-const NumberGeneration: React.FC = () => {
+const NumberGenerationPage: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -13,9 +13,8 @@ const NumberGeneration: React.FC = () => {
   return (
     <Layout>
       <NumberActionButtons />
-      {/* <OptionsGrid /> */}
     </Layout>
   );
 };
 
-export default NumberGeneration;
+export default NumberGenerationPage;
