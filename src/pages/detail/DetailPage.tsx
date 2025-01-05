@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Detail.module.scss";
+import styles from "./DetailPage.module.scss";
 import Layout from "../../components/layout/Layout";
 import RoundCard from "../../components/common/card/RoundCard";
 import { useNavigate, useParams } from "react-router-dom";
