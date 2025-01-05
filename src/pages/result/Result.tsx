@@ -1,13 +1,26 @@
 import React, { useState } from "react";
 import styles from "./Result.module.scss";
 import Layout from "../../components/layout/Layout";
-import { getBallColor } from "../../utils/ballColor";
-import { useLotto } from "../../context/lottoNumber/lottoNumberContext";
+import { getRandomNum, shuffle } from "@/utils/number";
+import { useSearchParams } from "react-router-dom";
+import NumberContainer from "@/components/common/number/NumberContainer";
 
 const Result: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const minCount = searchParams.get("minCount") ?? 6;
+  const requiredNumbers =
+    searchParams.get("requiredNumbers")?.split(",").map(Number) ?? [];
   const maxResultsLen = 20;
 
-  const { generateNumbers } = useLotto();
+  const generateNumbers = (): number[] => {
+    const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
+    const randomIdx = getRandomNum(Number(minCount), 6);
+    const availableNumbers = shuffle(requiredNumbers).slice(0, randomIdx);
+
+    return Array.from(new Set([...availableNumbers, ...shuffle(allNumbers)]))
+      .slice(0, 6)
+      .sort((a, b) => a - b);
+  };
 
   // 초기 결과 복원
   const [results, setResults] = useState<number[][]>(() =>
@@ -37,19 +50,9 @@ const Result: React.FC = () => {
         <h1 className={styles.title}>완성 조합</h1>
         {}
         <div className={styles.list}>
-          {results.map((result, index) => (
+          {results.map((numbers, index) => (
             <div key={index} className={styles.card}>
-              <div className={styles.numbers}>
-                {result.map((num, idx) => (
-                  <div
-                    key={idx}
-                    className={`${styles.number}`}
-                    style={{ backgroundColor: getBallColor(num) }}
-                  >
-                    {num}
-                  </div>
-                ))}
-              </div>
+              <NumberContainer numbers={numbers} />
               <div className={styles.actions}>
                 <button
                   className={styles.deleteButton}

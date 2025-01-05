@@ -17,13 +17,9 @@ export class BaseApiService {
   ): Promise<FindAllResponse<T>> {
     try {
       const response = await this.axiosInstance.get(url, { params });
-      if (!response.status)
-        throw new Error(
-          "Not proper data structure, Check controller return type"
-        );
-      return response.data as FindAllResponse<T>;
-    } catch (error) {
-      throw new Error((error as Error).message || "GET request failed");
+      return response.data;
+    } catch (error: any) {
+      throw new Error(error.message || "GET 요청 실패");
     }
   }
 
@@ -33,9 +29,20 @@ export class BaseApiService {
   ): Promise<FindAllResponse<T>> {
     try {
       const response = await this.axiosInstance.post(url, body);
-      return response.data as FindAllResponse<T>;
-    } catch (error) {
-      throw new Error((error as Error).message || "POST request failed");
+      return response.data;
+    } catch (error: any) {
+      throw new Error(error.message || "POST 요청 실패");
+    }
+  }
+
+  protected async handleResponse<T>(
+    promise: Promise<FindAllResponse<T>>
+  ): Promise<T> {
+    const response = await promise;
+    if (response.status === "success") {
+      return response.data;
+    } else {
+      throw new Error(response.message || "API 요청 실패");
     }
   }
 }

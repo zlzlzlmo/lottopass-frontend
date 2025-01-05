@@ -19,17 +19,13 @@ export const fetchAllDraws = createAsyncThunk(
   "draws/fetchAllDraws",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await drawService.getAllRounds();
-      if (response.status === "success") {
-        return response.data;
-      } else {
-        return rejectWithValue(response.message);
-      }
-    } catch (err: unknown) {
+      const data: LottoDraw[] = await drawService.getAllDraws();
+      return data;
+    } catch (err) {
       if (err instanceof Error) {
-        return rejectWithValue(err.message); // Error 객체
+        return rejectWithValue(err.message);
       }
-      return rejectWithValue("An unknown error occurred"); // 알 수 없는 에러
+      return rejectWithValue("An unknown error occurred");
     }
   }
 );

@@ -42,7 +42,11 @@ const SortDropdown: React.FC<SortDropdownProps> = ({
       trigger={["click"]}
       onVisibleChange={(visible) => setIsActive(visible)}
     >
-      <a href="#" className={styles.link}>
+      <a
+        href="#"
+        className={styles.link}
+        onClick={(e) => e.preventDefault()} // 기본 동작 방지
+      >
         <Text type="secondary" className={styles.text}>
           {sortOptions.find((option) => option.key === currentSort)?.label ||
             "정렬 기준 선택"}

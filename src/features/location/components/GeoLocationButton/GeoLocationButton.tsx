@@ -84,13 +84,11 @@ const GeoLocationButton: React.FC<GeoLocationButtonProps> = ({
           longitude,
         });
 
-        if (address.status === "success") {
-          const { province, city } = parseAddress(address.data);
+        const { province, city } = parseAddress(address);
 
-          // const matchedProvince = matchProvince(province);
-          onLocationSelect(matchProvince(province), city);
-          dispatch(setAddress(address.data));
-        }
+        // const matchedProvince = matchProvince(province);
+        onLocationSelect(matchProvince(province), city);
+        dispatch(setAddress(address));
       },
       (error) => {
         let errorMessage = "";

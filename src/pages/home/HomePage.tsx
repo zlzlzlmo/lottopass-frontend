@@ -6,11 +6,11 @@ import Layout from "../../components/layout/Layout";
 import RoundCard from "../../components/common/card/RoundCard";
 import Margin from "../../components/common/gap/Margin";
 import { useNavigate } from "react-router-dom";
-import { useLatestRound } from "@/features/draw/hooks/useLatestRound";
+import { useLatestDraw } from "@/features/draw/hooks/useLatestDraw";
 import { LoadingIndicator, ErrorMessage } from "@/components/common";
 
 const HomePage = () => {
-  const { data, isLoading, error } = useLatestRound();
+  const { data: latestRound, isLoading, isError } = useLatestDraw();
   const navigate = useNavigate();
 
   if (isLoading) {
@@ -21,23 +21,19 @@ const HomePage = () => {
     );
   }
 
-  if (error || (data && data.status === "error")) {
+  if (isError) {
     return (
       <Layout>
-        <ErrorMessage
-          message={data?.status === "error" ? data.message : undefined}
-        />
+        <ErrorMessage message={"데이터를 가져오는 중 문제가 발생했습니다."} />
       </Layout>
     );
   }
 
-  if (data && data.status === "success") {
-    // 성공 상태
-    const latestRound = data.data;
-    return (
-      <Layout>
-        <div className={styles.container}>
-          <Hero />
+  return (
+    <Layout>
+      <div className={styles.container}>
+        <Hero />
+        {latestRound && (
           <RoundCard
             {...latestRound}
             linkAction={() => {
@@ -45,14 +41,12 @@ const HomePage = () => {
             }}
             linkText="모든 회차 보기 >"
           />
-          <Margin size={20} />
-          <Generation />
-        </div>
-      </Layout>
-    );
-  }
-
-  return null;
+        )}
+        <Margin size={20} />
+        <Generation />
+      </div>
+    </Layout>
+  );
 };
 
 export default HomePage;

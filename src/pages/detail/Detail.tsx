@@ -1,64 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./Detail.module.scss";
 import Layout from "../../components/layout/Layout";
 import RoundCard from "../../components/common/card/RoundCard";
+import { useNavigate, useParams } from "react-router-dom";
+import { useOneDraw } from "@/features/draw/hooks/useOneDraw";
 import { Table } from "antd";
-import { useParams } from "react-router-dom";
-import { getDrawDetail } from "../../api/axios/lottoApi";
-import { formatNumberWithCommas } from "../../utils/number";
-import StoreCard from "../../components/common/card/StoreCard";
-import { getWinningRegionsByDrawNumber } from "../../api/axios/regionApi";
-import FlexContainer from "../../components/common/container/FlexContainer";
-import { DetailDraw, WinningRegion } from "lottopass-shared";
-import GeoLocationButton from "@/features/location/components/GeoLocationButton/GeoLocationButton";
+import { useDetailOneDraw } from "@/features/draw/hooks/useDetailOneDraw";
+import FlexContainer from "@/components/common/container/FlexContainer";
+import { useWinningStoresByDrawNumber } from "@/features/region/hooks/useWinningStoresByDrawNumber";
+import StoreList from "../winningStores/storeList/StoreList";
 
 const Detail: React.FC = () => {
-  const { drawNumber } = useParams<{ drawNumber: string }>();
+  const { drawNumber: drawNumberStr } = useParams<{ drawNumber: string }>();
+  const drawNumber = Number(drawNumberStr);
+  const navigate = useNavigate();
+  const {
+    data: oneDraw,
+    isLoading: drawLoading,
+    isError,
+  } = useOneDraw({ drawNumber });
+  const { data: detailDraw, isLoading: detailLoading } = useDetailOneDraw({
+    drawNumber,
+  });
 
-  const [formattedDrawDetail, setFormattedDrawDetail] = useState<DetailDraw[]>(
-    []
-  );
-  const [winningStores, setWinningStores] = useState<WinningRegion[]>([]);
+  const { data: winningStores } = useWinningStoresByDrawNumber({ drawNumber });
+
+  if (!drawNumber) {
+    navigate("/detail");
+    return;
+  }
 
   const parsedDrawNumber = Number(drawNumber);
   const isValidDrawNumber = !isNaN(parsedDrawNumber) && drawNumber;
-
-  const round = isValidDrawNumber ? getRound(parsedDrawNumber) : null;
-
-  const [detailLoading, setDetailLoading] = useState<boolean>(true);
-
-  const fetchDrawDetail = async () => {
-    setDetailLoading(true);
-    const response = await getDrawDetail(parsedDrawNumber);
-
-    if (response.status === "success") {
-      const formatted = response.data.map((detail) => ({
-        ...detail,
-        winnerCount: formatNumberWithCommas(Number(detail.winnerCount)),
-        totalPrize: `${Number(detail.totalPrize).toLocaleString()}원`,
-        prizePerWinner: `${Number(detail.prizePerWinner).toLocaleString()}원`,
-      }));
-      setFormattedDrawDetail(formatted);
-    } else {
-      console.error("Error fetching draw details:", response.message);
-    }
-    setDetailLoading(false);
-  };
-
-  const fetchWinningStores = async () => {
-    const response = await getWinningRegionsByDrawNumber(parsedDrawNumber);
-
-    if (response.status === "success") {
-      setWinningStores(response.data);
-    } else {
-      console.error("Error fetching winning stores:", response.message);
-    }
-  };
-
-  useEffect(() => {
-    fetchDrawDetail();
-    fetchWinningStores();
-  }, []);
 
   const columns = [
     {
@@ -88,49 +61,38 @@ const Detail: React.FC = () => {
   ];
 
   if (!isValidDrawNumber) return <div>잘못된 회차입니다.</div>;
-  if (!round) return <div>회차 정보를 찾을 수 없습니다.</div>;
 
-  return (
-    <Layout>
-      <div className={styles.detailContainer}>
-        <RoundCard {...round} />
-        <div className={styles.prizesTable}>
-          <h2 className={styles.sectionHeader}>순위별 당첨 정보</h2>
-          <Table
-            loading={detailLoading}
-            columns={columns}
-            dataSource={formattedDrawDetail}
-            pagination={false}
-            bordered
-            rowKey={(record) => record.id.toString()}
-            scroll={{ x: "100%" }}
-          />
-        </div>
+  if (drawLoading || isError) return <></>;
+  // if (!round) return <div>회차 정보를 찾을 수 없습니다.</div>;
+  if (oneDraw)
+    return (
+      <Layout>
+        <div className={styles.detailContainer}>
+          <RoundCard {...oneDraw} />
+          <div className={styles.prizesTable}>
+            <h2 className={styles.sectionHeader}>순위별 당첨 정보</h2>
+            <Table
+              loading={detailLoading}
+              columns={columns}
+              dataSource={detailDraw}
+              pagination={false}
+              bordered
+              rowKey={(record) => record.id.toString()}
+              scroll={{ x: "100%" }}
+            />
+          </div>
 
-        <div className={styles.winningLocations}>
-          <FlexContainer
-            justify="space-between"
-            align="center"
-            className={styles.sectionHeader}
-          >
-            <h2>1등 당첨점 목록</h2>
-            <GeoLocationButton />
-          </FlexContainer>
-          <FlexContainer direction="column" gap={10}>
-            {winningStores.map((store) => (
-              <StoreCard
-                key={store.id}
-                method={store.method}
-                address={store.address}
-                storeName={store.storeName}
-                coordinates={store.coordinates}
+          <div className={styles.winningLocations}>
+            <FlexContainer direction="column" gap={10}>
+              <StoreList
+                data={winningStores ?? []}
+                locationButtonVisible={true}
               />
-            ))}
-          </FlexContainer>
+            </FlexContainer>
+          </div>
         </div>
-      </div>
-    </Layout>
-  );
+      </Layout>
+    );
 };
 
 export default Detail;

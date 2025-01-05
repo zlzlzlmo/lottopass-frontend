@@ -13,6 +13,8 @@ export class LocationService extends BaseApiService {
     latitude: number;
     longitude: number;
   }) {
-    return await this.get<string>("/current", { latitude, longitude });
+    return await this.handleResponse(
+      this.get<string>("/current", { latitude, longitude })
+    );
   }
 }

@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "./PageTitle.module.scss";
+import { Divider } from "antd";
 
 interface PageTitleProps {
   children: string;
 }
 
 const PageTitle: React.FC<PageTitleProps> = ({ children }) => {
-  return <h1 className={styles.title}>{children}</h1>;
+  return <Divider plain>{children}</Divider>;
 };
 
 export default PageTitle;

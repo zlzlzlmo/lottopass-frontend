@@ -1,11 +1,11 @@
 import { drawService } from "@/api";
 import { useQuery } from "react-query";
 
-export const useLatestRound = () => {
+export const useLatestDraw = () => {
   return useQuery(
     "latestRound",
     async () => {
-      return await drawService.getLatestRound();
+      return await drawService.getLatestDraw();
     },
     {
       staleTime: Infinity,

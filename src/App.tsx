@@ -1,12 +1,13 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ROUTES } from "./constants/routes";
-import { AppProviders } from "./context/AppProviders";
 import "./styles/global.scss";
 import Loading from "./components/common/loading/Loading";
 import Detail from "./pages/\bdetail/Detail";
-import AllStores from "./pages/allStores/AllStores";
+import AllStoresPage from "./pages/allStores/AllStoresPage";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { fetchAllDraws } from "./features/draw/drawSlice";
+import { useAppDispatch } from "./redux/hooks";
 
 const queryClient = new QueryClient();
 
@@ -28,28 +29,32 @@ const App: React.FC = () => {
     { path: ROUTES.STORE_INFO.path, element: <WinningStoresPage /> },
     { path: ROUTES.HISTORY.path, element: <HistoryPage /> },
     { path: ROUTES.HISTORY_DETAIL.path, element: <Detail /> },
-    { path: ROUTES.ALL_STORES.path, element: <AllStores /> },
+    { path: ROUTES.ALL_STORES.path, element: <AllStoresPage /> },
     { path: ROUTES.RESULT.path, element: <Result /> },
     { path: "*", element: <NotFound /> },
   ];
 
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllDraws());
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
-      <AppProviders>
-        <Router>
-          <Suspense fallback={<Loading />}>
-            <Routes>
-              {routes.map((route) => (
-                <Route
-                  key={route.path}
-                  path={route.path}
-                  element={route.element}
-                />
-              ))}
-            </Routes>
-          </Suspense>
-        </Router>
-      </AppProviders>
+      <Router>
+        <Suspense fallback={<Loading />}>
+          <Routes>
+            {routes.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.element}
+              />
+            ))}
+          </Routes>
+        </Suspense>
+      </Router>
     </QueryClientProvider>
   );
 };

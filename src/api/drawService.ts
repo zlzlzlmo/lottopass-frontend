@@ -1,18 +1,37 @@
-import { LottoDraw } from "lottopass-shared";
+import { DetailDraw, LottoDraw } from "lottopass-shared";
 import { BaseApiService } from "./baseAPI";
+import { formatNumberWithCommas } from "@/utils/number";
 
 export class DrawService extends BaseApiService {
   constructor() {
     super(`${import.meta.env.VITE_API_BASE_URL}/draw`);
   }
 
-  // 모든 회차 가져오기
-  async getAllRounds() {
-    return await this.get<LottoDraw[]>("/all");
+  async getAllDraws(): Promise<LottoDraw[]> {
+    return this.handleResponse(this.get<LottoDraw[]>("/all"));
   }
 
-  // 최신 회차 가져오기
-  async getLatestRound() {
-    return await this.get<LottoDraw>("/latest");
+  async getLatestDraw(): Promise<LottoDraw> {
+    return this.handleResponse(this.get<LottoDraw>("/latest"));
+  }
+
+  async getOneDraw(drawNumber: number): Promise<LottoDraw> {
+    return this.handleResponse(this.get<LottoDraw>(`/${drawNumber}`));
+  }
+
+  async getDetailOneDraw(drawNumber: number): Promise<DetailDraw[]> {
+    const response = await this.handleResponse(
+      this.get<DetailDraw[]>(`/detail/${drawNumber}`)
+    );
+
+    // 데이터를 가공하여 반환
+    const formatted = response.map((detail) => ({
+      ...detail,
+      winnerCount: formatNumberWithCommas(Number(detail.winnerCount)),
+      totalPrize: `${Number(detail.totalPrize).toLocaleString()}원`,
+      prizePerWinner: `${Number(detail.prizePerWinner).toLocaleString()}원`,
+    }));
+
+    return formatted;
   }
 }

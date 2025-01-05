@@ -6,15 +6,9 @@ import { useQuery } from "react-query";
 const fetchRegions = async (): Promise<UniqueRegion[]> => {
   try {
     const response = await regionService.getAllRegions();
-
-    if (response.status === "success") {
-      return response.data; // 성공 시 데이터 반환
-    } else {
-      throw new Error(response.message || "Failed to fetch regions");
-    }
+    return response;
   } catch (error: unknown) {
     if (error instanceof Error) throw new Error(error.message);
-
     throw new Error('"An error occurred while fetching regions"');
   }
 };

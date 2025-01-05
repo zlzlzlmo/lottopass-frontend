@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
-import StoreCard from "../../../components/common/card/StoreCard";
-import { WinningRegion } from "lottopass-shared";
-import styles from "./StoreList.module.scss";
+import { StoreInfo } from "lottopass-shared";
+import styles from "./AllStoresList.module.scss";
 import { useAppSelector } from "@/redux/hooks";
 import SortDropdown from "@/components/common/DropDown/SortDropDown";
 import GeoLocationButton from "@/features/location/components/GeoLocationButton/GeoLocationButton";
 import FlexContainer from "@/components/common/container/FlexContainer";
+import AllStoreCard from "./AllStoreCard";
 
-interface ExtendedWinningRegion extends WinningRegion {
+interface ExtendedWinningRegion extends StoreInfo {
   distance?: number;
 }
 
-interface StoreListProps {
+interface AllStoresList {
   locationButtonVisible?: boolean;
-  data: WinningRegion[];
+  data: StoreInfo[];
 }
 
-const StoreList: React.FC<StoreListProps> = ({
+const AllStoresList: React.FC<AllStoresList> = ({
   data,
   locationButtonVisible = false,
 }) => {
@@ -25,6 +25,8 @@ const StoreList: React.FC<StoreListProps> = ({
   const [selectedSort, setSelectedSort] = useState<string>(
     myLocation ? "distance" : "name" // 기본값 설정
   );
+
+  console.log("data:", data);
 
   // 거리 계산 함수
   const calculateDistanceFromMyLocation = (target?: {
@@ -49,12 +51,18 @@ const StoreList: React.FC<StoreListProps> = ({
 
   // 초기 데이터 준비 및 정렬
   useEffect(() => {
-    const enrichedData = data.map((region) => ({
-      ...region,
-      distance: region.coordinates
-        ? calculateDistanceFromMyLocation(region.coordinates)
-        : Infinity,
-    }));
+    const enrichedData = data.map((region) => {
+      const coorditate = {
+        lat: region.latitude,
+        lng: region.longitude,
+      };
+      return {
+        ...region,
+        distance: coorditate
+          ? calculateDistanceFromMyLocation(coorditate)
+          : Infinity,
+      };
+    });
 
     // 초기 정렬 실행
     onSortChange(selectedSort, enrichedData);
@@ -87,6 +95,8 @@ const StoreList: React.FC<StoreListProps> = ({
     setSelectedSort(sortKey); // 선택된 정렬 기준 업데이트
   };
 
+  console.log("sortedData ; ", sortedData);
+
   return (
     <div className={styles.container}>
       <FlexContainer
@@ -101,12 +111,12 @@ const StoreList: React.FC<StoreListProps> = ({
         <SortDropdown onSortChange={onSortChange} currentSort={selectedSort} />
       </FlexContainer>
       <ul className={styles.storeList}>
-        {sortedData.map((region) => (
-          <StoreCard key={region.id} {...region} />
+        {sortedData.map((region, i) => (
+          <AllStoreCard key={i} {...region} />
         ))}
       </ul>
     </div>
   );
 };
 
-export default StoreList;
+export default AllStoresList;

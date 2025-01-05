@@ -1,0 +1,15 @@
+.container {
+  position: relative; // 내부 요소를 상대적으로 배치
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.storeList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
