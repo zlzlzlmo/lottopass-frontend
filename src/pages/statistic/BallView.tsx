@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Slider, Row, Col, InputNumber, Button, Space } from "antd";
 import BallSection from "./BallSection";
 import ChartSection from "./ChartSection";
@@ -16,22 +16,28 @@ interface BallViewProps {
 }
 
 const BallView: React.FC<BallViewProps> = ({ data }) => {
-  const maxDraw = Math.max(...data.map((draw) => draw.drawNumber));
-  const minDraw = Math.min(...data.map((draw) => draw.drawNumber));
-
-  const [range, setRange] = useState<[number, number]>([
-    Math.max(minDraw, maxDraw - 10),
-    maxDraw,
-  ]);
-  const [sortKey, setSortKey] = useState<"number" | "count">("number");
+  const [range, setRange] = useState<[number, number] | null>(null); // 초기값을 null로 설정
+  const [sortKey, setSortKey] = useState<"number" | "count">("count");
   const [currentView, setCurrentView] = useState<"balls" | "chart">("balls");
 
-  // 회차 범위에 따른 데이터 필터링
-  const filteredDraws = data.filter(
-    (draw) => draw.drawNumber >= range[0] && draw.drawNumber <= range[1]
-  );
+  const maxDraw =
+    data.length > 0 ? Math.max(...data.map((draw) => draw.drawNumber)) : 0;
+  const minDraw =
+    data.length > 0 ? Math.min(...data.map((draw) => draw.drawNumber)) : 0;
 
-  // 번호별 통계 계산
+  // 데이터가 로드된 후 초기값 설정
+  useEffect(() => {
+    if (data.length > 0 && range === null) {
+      setRange([Math.max(minDraw, maxDraw - 50), maxDraw]);
+    }
+  }, [data, range, minDraw, maxDraw]);
+
+  const filteredDraws = range
+    ? data.filter(
+        (draw) => draw.drawNumber >= range[0] && draw.drawNumber <= range[1]
+      )
+    : [];
+
   const calculateStatistics = () => {
     const counts: Record<number, number> = {};
     filteredDraws.forEach((draw) => {
@@ -53,10 +59,17 @@ const BallView: React.FC<BallViewProps> = ({ data }) => {
   };
 
   const handleInputChange = (value: number, index: 0 | 1) => {
-    const newRange = [...range] as [number, number];
-    newRange[index] = value;
-    setRange(newRange);
+    if (range) {
+      const newRange = [...range] as [number, number];
+      newRange[index] = value;
+      setRange(newRange);
+    }
   };
+
+  if (!range) {
+    return <div>데이터를 로드 중입니다...</div>;
+  }
+
   return (
     <div style={{ padding: "20px", maxWidth: "640px", margin: "0 auto" }}>
       {/* 회차 범위 선택 */}
@@ -95,6 +108,7 @@ const BallView: React.FC<BallViewProps> = ({ data }) => {
         </Col>
       </Row>
 
+      {/* 상단 메뉴 */}
       <div
         style={{
           display: "flex",
@@ -129,6 +143,7 @@ const BallView: React.FC<BallViewProps> = ({ data }) => {
         )}
       </div>
 
+      {/* 섹션 렌더링 */}
       {currentView === "balls" ? (
         <BallSection data={statistics} sortKey={sortKey} />
       ) : (
