@@ -1,0 +1,9 @@
+export { default as StatisticPage } from "./statistic/StatisticPage";
+export { default as HomePage } from "./home/HomePage";
+export { default as NumberGenerationPage } from "./numberGeneration/NumberGenerationPage";
+export { default as ResultPage } from "./result/ResultPage";
+export { default as DetailPage } from "./detail/DetailPage";
+export { default as WinningStoresPage } from "./winningStores/WinningStoresPage";
+export { default as AllStoresPage } from "./allStores/AllStoresPage";
+export { default as HistoryPage } from "./history/HistoryPage";
+export { default as NotFound } from "./notFound/NotFound";
