@@ -7,6 +7,11 @@ import SortDropdown from "@/components/common/dropDown/SortDropDown";
 import GeoLocationButton from "@/features/location/components/GeoLocationButton/GeoLocationButton";
 import FlexContainer from "@/components/common/container/FlexContainer";
 
+const sortOptions = [
+  { key: "distance", label: "거리순" },
+  { key: "name", label: "이름순" },
+  // { key: "draw", label: "당첨회차순" },
+];
 interface ExtendedWinningRegion extends WinningRegion {
   distance?: number;
 }
@@ -98,7 +103,11 @@ const StoreList: React.FC<StoreListProps> = ({
           <GeoLocationButton onLocationSelect={() => {}} />
         )}
 
-        <SortDropdown onSortChange={onSortChange} currentSort={selectedSort} />
+        <SortDropdown
+          onSortChange={onSortChange}
+          currentSort={selectedSort}
+          sortOptions={sortOptions}
+        />
       </FlexContainer>
       <ul className={styles.storeList}>
         {sortedData.map((region) => (

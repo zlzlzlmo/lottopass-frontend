@@ -7,6 +7,7 @@ import Loading from "./components/common/loading/Loading";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { fetchAllDraws } from "./features/draw/drawSlice";
 import { useAppDispatch } from "./redux/hooks";
+import StatisticPage from "./pages/statistic/StatisticPage";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ const App: React.FC = () => {
     { path: ROUTES.HISTORY_DETAIL.path, element: <DetailPage /> },
     { path: ROUTES.ALL_STORES.path, element: <AllStoresPage /> },
     { path: ROUTES.RESULT.path, element: <ResultPage /> },
+    { path: ROUTES.STATISTIC.path, element: <StatisticPage /> },
     { path: "*", element: <NotFound /> },
   ];
 
