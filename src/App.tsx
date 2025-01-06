@@ -8,10 +8,10 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { fetchAllDraws } from "./features/draw/drawSlice";
 import { useAppDispatch } from "./redux/hooks";
 import StatisticPage from "./pages/statistic/StatisticPage";
+import HomePage from "./pages/home/HomePage";
 
 const queryClient = new QueryClient();
 
-const HomePage = lazy(() => import("./pages/home/HomePage"));
 const NumberGenerationPage = lazy(
   () => import("./pages/numberGeneration/NumberGenerationPage")
 );
