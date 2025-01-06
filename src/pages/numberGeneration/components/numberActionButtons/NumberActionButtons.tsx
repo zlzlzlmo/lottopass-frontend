@@ -36,7 +36,8 @@ const NumberActionButtons = () => {
     const recentNumbers = getRecentDraws(allDraws, roundCount).flatMap(
       (round) => round.winningNumbers
     );
-    const uniqueNumbers = Array.from(new Set(recentNumbers));
+    const uniqueNumbers = Array.from(new Set(recentNumbers)).map(Number);
+
     const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
     const res =
       confirmType === "require"

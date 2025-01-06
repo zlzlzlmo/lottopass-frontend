@@ -13,8 +13,8 @@ const NumberControlPopup: React.FC<NumberControlPopupProps> = ({
   onClose,
   onConfirm,
 }) => {
-  const [roundCount, setRoundCount] = useState<number>(5); // 기본값: 최근 5회차
-  const [minCount, setMinCount] = useState<number>(2); // 기본값: 최소 2개 포함
+  const [roundCount, setRoundCount] = useState<number>(5);
+  const [minCount, setMinCount] = useState<number>(3);
 
   const handleConfirm = () => {
     onConfirm(roundCount, minCount);
@@ -27,15 +27,18 @@ const NumberControlPopup: React.FC<NumberControlPopupProps> = ({
         번호 조합 설정
       </Title>
 
-      {/* 수평 정렬된 컨트롤 그룹 */}
       <div className={styles.controlGroup}>
-        {/* 최근 회차 */}
         <div className={styles.controlItem}>
           <label>최근 회차</label>
           <div className={styles.controls}>
             <Button
               size="small"
-              onClick={() => setRoundCount((prev) => Math.max(1, prev - 1))}
+              onClick={() => {
+                setRoundCount((prev) => {
+                  const next = Math.max(1, prev - 1);
+                  return next;
+                });
+              }}
             >
               -
             </Button>
@@ -56,7 +59,6 @@ const NumberControlPopup: React.FC<NumberControlPopupProps> = ({
           </div>
         </div>
 
-        {/* 최소 포함 번호 */}
         <div className={styles.controlItem}>
           <label>최소 포함 번호 갯수</label>
           <div className={styles.controls}>
@@ -68,7 +70,7 @@ const NumberControlPopup: React.FC<NumberControlPopupProps> = ({
             </Button>
             <InputNumber
               min={1}
-              max={10}
+              max={6}
               value={minCount}
               onChange={(value) => setMinCount(value || 1)}
               className={styles.inputNumber}
@@ -76,7 +78,7 @@ const NumberControlPopup: React.FC<NumberControlPopupProps> = ({
             />
             <Button
               size="small"
-              onClick={() => setMinCount((prev) => Math.min(10, prev + 1))}
+              onClick={() => setMinCount((prev) => Math.min(6, prev + 1))}
             >
               +
             </Button>

@@ -16,7 +16,9 @@ const ResultPage: React.FC = () => {
 
   const generateNumbers = (): number[] => {
     const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
-    const randomIdx = getRandomNum(Number(minCount), 6);
+    const len = requiredNumbers.length;
+    const randomIdx = getRandomNum(Math.min(Number(minCount), len), len);
+
     const availableNumbers = shuffle(requiredNumbers).slice(0, randomIdx);
 
     return Array.from(new Set([...availableNumbers, ...shuffle(allNumbers)]))
