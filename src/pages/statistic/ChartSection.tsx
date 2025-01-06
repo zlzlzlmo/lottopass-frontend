@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,7 +10,9 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { Modal, Button } from "antd";
 
+// Chart.js 구성 요소 등록
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -31,6 +33,8 @@ interface ChartSectionProps {
 }
 
 const ChartSection: React.FC<ChartSectionProps> = ({ data }) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   const chartData = {
     labels: data.map((stat) => stat.number),
     datasets: [
@@ -47,6 +51,7 @@ const ChartSection: React.FC<ChartSectionProps> = ({ data }) => {
 
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: true,
@@ -74,9 +79,50 @@ const ChartSection: React.FC<ChartSectionProps> = ({ data }) => {
     },
   };
 
+  const chartStyle = {
+    minWidth: "600px",
+    height: "300px",
+  };
+
+  const showModal = () => setIsModalVisible(true);
+  const closeModal = () => setIsModalVisible(false);
+
   return (
-    <div style={{ maxWidth: "640px", margin: "0 auto" }}>
-      <Line data={chartData} options={chartOptions} />
+    <div>
+      <div
+        style={{
+          overflowX: "auto",
+          paddingBottom: "10px",
+          maxWidth: "640px",
+          margin: "0 auto",
+        }}
+      >
+        <div
+          style={{
+            ...chartStyle,
+          }}
+        >
+          <Line data={chartData} options={chartOptions} />
+        </div>
+      </div>
+
+      <div style={{ textAlign: "right", marginTop: "10px" }}>
+        <Button type="dashed" onClick={showModal}>
+          전체 화면 보기
+        </Button>
+      </div>
+
+      <Modal
+        visible={isModalVisible}
+        title="전체 화면 차트"
+        footer={null}
+        onCancel={closeModal}
+        width={800} // 모달 크기
+      >
+        <div style={{ width: "100%", height: "500px" }}>
+          <Line data={chartData} options={chartOptions} />
+        </div>
+      </Modal>
     </div>
   );
 };
