@@ -12,12 +12,11 @@ export const useAllStoresByRegion = () => {
     setIsError(false);
 
     try {
-      // API 호출
       const result = await regionService.getAllStoresByRegion(province, city);
-      setData(result); // 성공한 데이터 상태 업데이트
+      setData(result);
     } catch (error) {
       setIsError(true);
-      console.error(error); // 에러 처리 (로그)
+      console.error(error);
     } finally {
       setIsLoading(false);
     }

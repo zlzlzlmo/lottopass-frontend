@@ -5,9 +5,15 @@ import { Spin } from "antd";
 import StoreList from "./storeList/StoreList";
 import { useWinningStoresByRegion } from "@/features/region/hooks/useWinningStoresByRegion";
 import SearchRegions from "@/features/region/components/SearchRegions";
+import { showError } from "@/utils/error";
 
 const WinningStoresPage: React.FC = () => {
   const { data, isLoading, isError, handleClick } = useWinningStoresByRegion();
+
+  if (isError) {
+    showError();
+    return;
+  }
 
   return (
     <Layout pageTitle="당첨점 확인">
@@ -19,7 +25,7 @@ const WinningStoresPage: React.FC = () => {
               <Spin size="large" tip="로딩 중..." />
             </div>
           )}
-          {isError && <p className={styles.error}>에러</p>}
+
           {!isLoading && data.length > 0 && <StoreList data={data} />}
         </div>
       </div>
