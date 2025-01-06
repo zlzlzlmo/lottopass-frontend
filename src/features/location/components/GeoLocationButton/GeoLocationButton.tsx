@@ -64,6 +64,7 @@ const GeoLocationButton: React.FC<GeoLocationButtonProps> = ({
       async (position) => {
         const { latitude, longitude } = position.coords;
         dispatch(setLocation({ latitude, longitude }));
+
         setIsFetching(false);
 
         const address = await locationService.getCurrentMyLocation({
@@ -72,14 +73,13 @@ const GeoLocationButton: React.FC<GeoLocationButtonProps> = ({
         });
 
         const { province, city } = parseAddress(address);
-
         onLocationSelect(province, city);
         dispatch(setAddress(address));
       },
       (error) => {
         const errorMessage = getErrorMessage(error.code, locationErrorMessages);
         dispatch(setError(errorMessage));
-        showError(errorMessage); // 에러 표시
+        showError(errorMessage);
         setIsFetching(false);
       }
     );
@@ -97,10 +97,9 @@ const GeoLocationButton: React.FC<GeoLocationButtonProps> = ({
           {myLocation ? "위치 재설정하기" : "내 위치 가져오기"}
         </Button>
 
-        {myLocation && (
+        {myAddress && (
           <Text type="secondary" style={{ fontSize: "12px", display: "block" }}>
-            현재 위치:{" "}
-            {myAddress ?? `${myLocation.latitude} ${myLocation.longitude}`}
+            현재 위치: {myAddress ?? myAddress}
           </Text>
         )}
       </Space>
