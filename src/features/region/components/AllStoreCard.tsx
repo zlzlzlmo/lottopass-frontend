@@ -3,6 +3,7 @@ import { Card, Button, Typography, Space } from "antd";
 import { PhoneOutlined, EnvironmentOutlined } from "@ant-design/icons";
 import styles from "./AllStoreCard.module.scss";
 import { useAppSelector } from "@/redux/hooks";
+import { getDistanceText } from "@/utils/distance";
 
 const { Title, Text } = Typography;
 
@@ -46,7 +47,7 @@ const AllStoreCard: React.FC<StoreCardProps> = ({
           {fullAddress}
         </Text>
         <Text type="secondary" className={styles.distance}>
-          거리: {distance?.toFixed(2)}km
+          {getDistanceText(distance)}
         </Text>
       </Space>
       <div className={styles.actions}>

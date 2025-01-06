@@ -15,3 +15,8 @@ export const calculateDistance = (
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c;
 };
+
+export const getDistanceText = (distance?: number) => {
+  if (!distance) return null;
+  return isFinite(distance) ? `${distance.toFixed(2)} km` : null;
+};

@@ -5,9 +5,15 @@ import { Spin } from "antd";
 import SearchRegions from "@/features/region/components/SearchRegions";
 import { useAllStoresByRegion } from "@/features/region/hooks/useAllStoresByRegion";
 import AllStoresList from "@/features/region/components/AllStoresList";
+import { showError } from "@/utils/error";
 
 const AllStoresPage: React.FC = () => {
   const { data, isLoading, isError, handleClick } = useAllStoresByRegion();
+
+  if (isError) {
+    showError();
+    return;
+  }
 
   return (
     <Layout pageTitle="로또 판매점 확인">
@@ -19,7 +25,6 @@ const AllStoresPage: React.FC = () => {
               <Spin size="large" tip="로딩 중..." />
             </div>
           )}
-          {isError && <p className={styles.error}>에러</p>}
           {!isLoading && data.length > 0 && <AllStoresList data={data} />}
         </div>
       </div>
