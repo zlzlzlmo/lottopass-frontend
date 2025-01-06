@@ -7,19 +7,28 @@ import RoundCard from "../../components/common/card/RoundCard";
 import Margin from "../../components/common/gap/Margin";
 import { useNavigate } from "react-router-dom";
 import { useLatestDraw } from "@/features/draw/hooks/useLatestDraw";
-import { LoadingIndicator, ErrorMessage } from "@/components/common";
+import { ErrorMessage } from "@/components/common";
+import SkeletonRoundCard from "@/components/common/skeleton/SkeletonRoundCard";
 
 const HomePage = () => {
   const { data: latestRound, isLoading, isError } = useLatestDraw();
   const navigate = useNavigate();
 
-  if (isLoading) {
-    return (
-      <Layout>
-        <LoadingIndicator />
-      </Layout>
-    );
-  }
+  const renderCard = () => {
+    if (isLoading) {
+      return <SkeletonRoundCard />;
+    } else if (latestRound) {
+      return (
+        <RoundCard
+          {...latestRound}
+          linkAction={() => {
+            navigate("/history");
+          }}
+          linkText="모든 회차 보기 >"
+        />
+      );
+    }
+  };
 
   if (isError) {
     return (
@@ -33,15 +42,7 @@ const HomePage = () => {
     <Layout>
       <div className={styles.container}>
         <Hero />
-        {latestRound && (
-          <RoundCard
-            {...latestRound}
-            linkAction={() => {
-              navigate("/history");
-            }}
-            linkText="모든 회차 보기 >"
-          />
-        )}
+        {renderCard()}
         <Margin size={20} />
         <Generation />
       </div>
