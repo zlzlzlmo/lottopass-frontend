@@ -8,6 +8,11 @@ import { showError, getErrorMessage } from "@/utils/error";
 
 const { Text } = Typography;
 
+type AddressParts = {
+  province: string; // 도/특별시
+  city: string; // 시/군/구
+};
+
 const locationErrorMessages = [
   { code: 1, message: "위치 정보 접근이 거부되었습니다." },
   { code: 2, message: "위치 정보를 사용할 수 없습니다." },
@@ -26,6 +31,24 @@ const GeoLocationButton: React.FC<GeoLocationButtonProps> = ({
   const myLocation = useAppSelector((state) => state.location.myLocation);
   const myAddress = useAppSelector((state) => state.location.myAddress);
   const [isFetching, setIsFetching] = useState(false);
+
+  const parseAddress = (address: string): AddressParts => {
+    const parts = address.split(" ");
+
+    // 도와 시/구로 분리
+    const province = parts[0];
+    let city = "";
+
+    if (parts.length > 2) {
+      // 시/군/구가 2개 이상의 값으로 이루어진 경우
+      city = `${parts[1]} ${parts[2]}`;
+    } else {
+      // 시/군/구가 하나의 값으로만 이루어진 경우
+      city = parts[1];
+    }
+
+    return { province, city };
+  };
 
   const handleGetLocation = () => {
     if (!navigator.geolocation) {
@@ -48,9 +71,7 @@ const GeoLocationButton: React.FC<GeoLocationButtonProps> = ({
           longitude,
         });
 
-        const parts = address.split(" ");
-        const province = parts[0];
-        const city = parts.length > 2 ? `${parts[1]} ${parts[2]}` : parts[1];
+        const { province, city } = parseAddress(address);
 
         onLocationSelect(province, city);
         dispatch(setAddress(address));

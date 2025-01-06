@@ -5,6 +5,7 @@ import { WinningRegion } from "lottopass-shared";
 import styles from "./StoreCard.module.scss";
 import { openMap } from "../../../utils/map";
 import { useAppSelector } from "@/redux/hooks";
+import { getDistanceText } from "@/utils/distance";
 
 const StoreCard: React.FC<{ distance?: number } & Partial<WinningRegion>> = ({
   method,
@@ -47,7 +48,7 @@ const StoreCard: React.FC<{ distance?: number } & Partial<WinningRegion>> = ({
       </p>
       <p>
         {myLocation !== null ? (
-          <strong>거리: {distance?.toFixed(2)} km</strong>
+          <strong>{getDistanceText(distance)}</strong>
         ) : (
           <span className={styles.placeholder}>
             위치 정보를 활성화해주세요.

@@ -26,8 +26,6 @@ const AllStoresList: React.FC<AllStoresList> = ({
     myLocation ? "distance" : "name" // 기본값 설정
   );
 
-  console.log("data:", data);
-
   // 거리 계산 함수
   const calculateDistanceFromMyLocation = (target?: {
     lat: number;
@@ -94,8 +92,6 @@ const AllStoresList: React.FC<AllStoresList> = ({
     setSortedData(sorted); // 정렬된 데이터 업데이트
     setSelectedSort(sortKey); // 선택된 정렬 기준 업데이트
   };
-
-  console.log("sortedData ; ", sortedData);
 
   return (
     <div className={styles.container}>
