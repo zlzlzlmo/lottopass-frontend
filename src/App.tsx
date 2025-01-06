@@ -17,6 +17,7 @@ import {
   StatisticPage,
   WinningStoresPage,
 } from "./pages";
+import ScrollToTop from "./components/common/scroll/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +49,7 @@ const App: React.FC = () => {
           ))}
         </Routes>
       </Router>
+      <ScrollToTop />
     </QueryClientProvider>
   );
 };
