@@ -10,7 +10,7 @@ const AllStoresPage: React.FC = () => {
   const { data, isLoading, isError, handleClick } = useAllStoresByRegion();
 
   return (
-    <Layout pageTitle="당첨점 확인">
+    <Layout pageTitle="로또 판매점 확인">
       <div className={styles.container}>
         <SearchRegions handleClick={handleClick} />
         <div className={styles.results}>

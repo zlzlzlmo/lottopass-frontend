@@ -4,6 +4,7 @@ import Layout from "../../components/layout/Layout";
 import { getRandomNum, shuffle } from "@/utils/number";
 import { useSearchParams } from "react-router-dom";
 import NumberContainer from "@/components/common/number/NumberContainer";
+import PageTitle from "@/components/common/text/title/PageTitle";
 
 const ResultPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -47,7 +48,7 @@ const ResultPage: React.FC = () => {
   return (
     <Layout>
       <div className={styles.container}>
-        <h1 className={styles.title}>완성 조합</h1>
+        <PageTitle>완성된 번호 조합</PageTitle>
         {}
         <div className={styles.list}>
           {results.map((numbers, index) => (
