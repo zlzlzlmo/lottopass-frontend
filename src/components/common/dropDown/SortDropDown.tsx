@@ -16,7 +16,7 @@ interface SortDropdownProps<T> {
   sortOptions: SortOption<T>[];
 }
 
-const SortDropdown = <T extends string | number>({
+const SortDropDown = <T extends string | number>({
   currentSort,
   onSortChange,
   sortOptions,
@@ -60,4 +60,4 @@ const SortDropdown = <T extends string | number>({
   );
 };
 
-export default SortDropdown;
+export default SortDropDown;

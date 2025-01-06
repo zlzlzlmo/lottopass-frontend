@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Slider, Row, Col, InputNumber, Button, Space } from "antd";
+import { Button, Space } from "antd";
 import BallSection from "./BallSection";
 import ChartSection from "./ChartSection";
-import SortDropdown from "@/components/common/dropDown/SortDropDown";
+import { RangeSelector, SortDropDown } from "@/components/common";
 
 interface LottoDraw {
   drawNumber: number;
@@ -25,7 +25,6 @@ const BallView: React.FC<BallViewProps> = ({ data }) => {
   const minDraw =
     data.length > 0 ? Math.min(...data.map((draw) => draw.drawNumber)) : 0;
 
-  // 데이터가 로드된 후 초기값 설정
   useEffect(() => {
     if (data.length > 0 && range === null) {
       setRange([Math.max(minDraw, maxDraw - 50), maxDraw]);
@@ -58,14 +57,6 @@ const BallView: React.FC<BallViewProps> = ({ data }) => {
     setRange(value);
   };
 
-  const handleInputChange = (value: number, index: 0 | 1) => {
-    if (range) {
-      const newRange = [...range] as [number, number];
-      newRange[index] = value;
-      setRange(newRange);
-    }
-  };
-
   if (!range) {
     return <div>데이터를 로드 중입니다...</div>;
   }
@@ -76,37 +67,13 @@ const BallView: React.FC<BallViewProps> = ({ data }) => {
       <h3 style={{ fontWeight: "bold", marginBottom: "20px" }}>
         회차 범위 선택
       </h3>
-      <Slider
-        range
+
+      <RangeSelector
         min={minDraw}
         max={maxDraw}
         value={range}
-        onChange={(value) => handleRangeChange(value as [number, number])}
-        tooltip={{
-          formatter: (value) => `${value}회`,
-        }}
-        style={{ marginBottom: "20px" }}
+        onChange={handleRangeChange}
       />
-      <Row gutter={16} style={{ marginBottom: "20px" }}>
-        <Col span={12}>
-          <InputNumber
-            min={minDraw}
-            max={maxDraw}
-            value={range[0]}
-            onChange={(value) => handleInputChange(value || minDraw, 0)}
-            style={{ width: "100%" }}
-          />
-        </Col>
-        <Col span={12}>
-          <InputNumber
-            min={minDraw}
-            max={maxDraw}
-            value={range[1]}
-            onChange={(value) => handleInputChange(value || maxDraw, 1)}
-            style={{ width: "100%" }}
-          />
-        </Col>
-      </Row>
 
       {/* 상단 메뉴 */}
       <div
@@ -132,7 +99,7 @@ const BallView: React.FC<BallViewProps> = ({ data }) => {
           </Button>
         </Space>
         {currentView === "balls" && (
-          <SortDropdown
+          <SortDropDown
             currentSort={sortKey}
             onSortChange={setSortKey}
             sortOptions={[

@@ -3,7 +3,7 @@ import StoreCard from "../../../components/common/card/StoreCard";
 import { WinningRegion } from "lottopass-shared";
 import styles from "./StoreList.module.scss";
 import { useAppSelector } from "@/redux/hooks";
-import SortDropdown from "@/components/common/dropDown/SortDropDown";
+import SortDropDown from "@/components/common/dropDown/SortDropDown";
 import GeoLocationButton from "@/features/location/components/GeoLocationButton/GeoLocationButton";
 import FlexContainer from "@/components/common/container/FlexContainer";
 
@@ -103,7 +103,7 @@ const StoreList: React.FC<StoreListProps> = ({
           <GeoLocationButton onLocationSelect={() => {}} />
         )}
 
-        <SortDropdown
+        <SortDropDown
           onSortChange={onSortChange}
           currentSort={selectedSort}
           sortOptions={sortOptions}
