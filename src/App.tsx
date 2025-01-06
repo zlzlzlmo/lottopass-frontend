@@ -1,31 +1,24 @@
-import React, { Suspense, lazy, useEffect } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ROUTES } from "./constants/routes";
 import "./styles/global.scss";
-import Loading from "./components/common/loading/Loading";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 import { fetchAllDraws } from "./features/draw/drawSlice";
 import { useAppDispatch } from "./redux/hooks";
-import StatisticPage from "./pages/statistic/StatisticPage";
-import HomePage from "./pages/home/HomePage";
+import {
+  AllStoresPage,
+  DetailPage,
+  HistoryPage,
+  HomePage,
+  NotFound,
+  NumberGenerationPage,
+  ResultPage,
+  StatisticPage,
+  WinningStoresPage,
+} from "./pages";
 
 const queryClient = new QueryClient();
-
-const NumberGenerationPage = lazy(
-  () => import("./pages/numberGeneration/NumberGenerationPage")
-);
-
-const ResultPage = lazy(() => import("./pages/result/ResultPage"));
-const DetailPage = lazy(() => import("./pages/detail/DetailPage"));
-const WinningStoresPage = lazy(
-  () => import("./pages/winningStores/WinningStoresPage")
-);
-
-const AllStoresPage = lazy(() => import("./pages/allStores/AllStoresPage"));
-
-const HistoryPage = lazy(() => import("./pages/history/HistoryPage"));
-const NotFound = lazy(() => import("./pages/notFound/NotFound"));
 
 const App: React.FC = () => {
   const routes = [
@@ -44,22 +37,16 @@ const App: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchAllDraws());
-  }, []);
+  }, [dispatch]);
 
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        <Suspense fallback={<Loading />}>
-          <Routes>
-            {routes.map((route) => (
-              <Route
-                key={route.path}
-                path={route.path}
-                element={route.element}
-              />
-            ))}
-          </Routes>
-        </Suspense>
+        <Routes>
+          {routes.map((route) => (
+            <Route key={route.path} path={route.path} element={route.element} />
+          ))}
+        </Routes>
       </Router>
     </QueryClientProvider>
   );
