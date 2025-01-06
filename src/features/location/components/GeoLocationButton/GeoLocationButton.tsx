@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from "react";
 import { Button, Space, Typography } from "antd";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -67,14 +68,18 @@ const GeoLocationButton: React.FC<GeoLocationButtonProps> = ({
 
         setIsFetching(false);
 
-        const address = await locationService.getCurrentMyLocation({
-          latitude,
-          longitude,
-        });
-
-        const { province, city } = parseAddress(address);
-        onLocationSelect(province, city);
-        dispatch(setAddress(address));
+        try {
+          const address = await locationService.getCurrentMyLocation({
+            latitude,
+            longitude,
+          });
+          const { province, city } = parseAddress(address);
+          dispatch(setAddress(address));
+          onLocationSelect(province, city);
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (error: any) {
+          showError("KaKao API Error : 주소 변환 실패");
+        }
       },
       (error) => {
         const errorMessage = getErrorMessage(error.code, locationErrorMessages);
@@ -96,6 +101,12 @@ const GeoLocationButton: React.FC<GeoLocationButtonProps> = ({
         >
           {myLocation ? "위치 재설정하기" : "내 위치 가져오기"}
         </Button>
+
+        {myLocation && (
+          <Text type="secondary" style={{ fontSize: "12px", display: "block" }}>
+            현재 위도/경도: {myLocation.latitude}, {myLocation.longitude}
+          </Text>
+        )}
 
         {myAddress && (
           <Text type="secondary" style={{ fontSize: "12px", display: "block" }}>
