@@ -56,8 +56,9 @@ const NumberActionButtons = () => {
       .map(({ winningNumbers }) => winningNumbers)
       .flat()
       .map(Number);
-    const uniqueWinningNumbers = [...new Set(winningNumbers)];
-    console.log("winningNumbers :", uniqueWinningNumbers);
+    const res = [...new Set(winningNumbers)];
+    const queryParams = createSearchParams(res);
+    navigate(`/result?${queryParams.toString()}`);
   };
 
   return (
