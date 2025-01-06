@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion"; // Framer Motion 라이브러리 추가
 import styles from "./ResultPage.module.scss";
 import Layout from "../../components/layout/Layout";
 import { getRandomNum, shuffle } from "@/utils/number";
@@ -23,12 +24,10 @@ const ResultPage: React.FC = () => {
       .sort((a, b) => a - b);
   };
 
-  // 초기 결과 복원
   const [results, setResults] = useState<number[][]>(() =>
     Array.from({ length: 5 }, () => generateNumbers())
   );
 
-  // 결과 추가
   const handleAddResult = () => {
     if (results.length >= maxResultsLen) {
       alert(`최대 ${maxResultsLen}줄까지만 추가할 수 있습니다.`);
@@ -39,7 +38,6 @@ const ResultPage: React.FC = () => {
     setResults([...results, newResult]);
   };
 
-  // 특정 결과 삭제
   const handleDeleteResult = (index: number) => {
     const updatedResults = results.filter((_, i) => i !== index);
     setResults(updatedResults);
@@ -49,10 +47,17 @@ const ResultPage: React.FC = () => {
     <Layout>
       <div className={styles.container}>
         <PageTitle>완성된 번호 조합</PageTitle>
-        {}
+
         <div className={styles.list}>
           {results.map((numbers, index) => (
-            <div key={index} className={styles.card}>
+            <motion.div
+              key={index}
+              className={styles.card}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+            >
               <NumberContainer numbers={numbers} />
               <div className={styles.actions}>
                 <button
@@ -62,11 +67,10 @@ const ResultPage: React.FC = () => {
                   🗑
                 </button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {}
         <div className={styles.footer}>
           <button className={styles.addButton} onClick={handleAddResult}>
             +
