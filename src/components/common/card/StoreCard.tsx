@@ -47,7 +47,9 @@ const StoreCard: React.FC<{ distance?: number } & Partial<WinningRegion>> = ({
       </p>
       <p>
         {myLocation !== null ? (
-          <strong>거리: {distance?.toFixed(2)} km</strong>
+          (distance && isFinite(distance)) ?? (
+            <strong>거리: {distance?.toFixed(2)} km</strong>
+          )
         ) : (
           <span className={styles.placeholder}>
             위치 정보를 활성화해주세요.
