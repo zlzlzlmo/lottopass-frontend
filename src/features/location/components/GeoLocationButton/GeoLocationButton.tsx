@@ -102,6 +102,12 @@ const GeoLocationButton: React.FC<GeoLocationButtonProps> = ({
           {myLocation ? "위치 재설정하기" : "내 위치 가져오기"}
         </Button>
 
+        {myLocation && (
+          <Text type="secondary" style={{ fontSize: "12px", display: "block" }}>
+            현재 위도/경도: {myLocation.latitude}, {myLocation.longitude}
+          </Text>
+        )}
+
         {myAddress && (
           <Text type="secondary" style={{ fontSize: "12px", display: "block" }}>
             현재 위치: {myAddress ?? myAddress}
