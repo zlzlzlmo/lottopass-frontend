@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 interface Option {
   label: string;
   action?: () => void;
@@ -15,7 +16,8 @@ export const options = (
     minCount: number,
     confirmType: "exclude" | "require"
   ) => void,
-  setPopupProps: (props: any) => void
+  setPopupProps: (props: any) => void,
+  handleRangeSelect: (min: number, max: number) => void
 ): Option[] => [
   {
     label: "제외 번호\n직접 선택",
@@ -59,6 +61,16 @@ export const options = (
         onClose: () => setPopupProps(null),
         onConfirm: (roundCount: number, minCount: number) =>
           handleControlConfirm(roundCount, minCount, "require"),
+      }),
+  },
+  {
+    label: "특정 회차 번호 조합",
+    action: () =>
+      setPopupProps({
+        popupType: "rangeSelect",
+        confirmType: "require",
+        onClose: () => setPopupProps(null),
+        onConfirm: (min: number, max: number) => handleRangeSelect(min, max),
       }),
   },
 ];

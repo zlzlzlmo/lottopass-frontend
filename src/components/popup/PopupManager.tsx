@@ -3,9 +3,10 @@ import React from "react";
 import { Modal } from "antd";
 import NumberSelectPopup from "./NumberSelectPopup";
 import NumberControlPopup from "./NumberControlPopup";
+import DrawRangeSelectPopup from "./DrawRangeSelectPopup";
 
 interface PopupManagerProps {
-  popupType: "numberSelect" | "numberControl";
+  popupType: "numberSelect" | "numberControl" | "rangeSelect";
   onClose: () => void;
   onConfirm: (...args: any[]) => void;
   [key: string]: any;
@@ -35,6 +36,8 @@ const PopupManager: React.FC<PopupManagerProps> = ({
             {...rest}
           />
         );
+      case "rangeSelect":
+        return <DrawRangeSelectPopup onClose={onClose} onConfirm={onConfirm} />;
       default:
         return null;
     }

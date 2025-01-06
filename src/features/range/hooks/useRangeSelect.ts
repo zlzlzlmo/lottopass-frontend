@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 
 interface UseRangeSelectorProps<T> {
   data: T[];
+  defaultMinRange: number;
   getDrawNumber: (item: T) => number;
 }
 
 export const useRangeSelector = <T>({
   data,
+  defaultMinRange,
   getDrawNumber,
 }: UseRangeSelectorProps<T>) => {
   const [range, setRange] = useState<[number, number] | null>(null);
@@ -17,7 +19,7 @@ export const useRangeSelector = <T>({
 
   useEffect(() => {
     if (data.length > 0 && range === null) {
-      setRange([Math.max(minDraw, maxDraw - 50), maxDraw]);
+      setRange([Math.max(minDraw, maxDraw - defaultMinRange), maxDraw]);
     }
   }, [data, range, minDraw, maxDraw]);
 

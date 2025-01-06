@@ -20,6 +20,7 @@ const BallView: React.FC<BallViewProps> = ({ data }) => {
   const { minDraw, maxDraw, range, filteredDraws, handleRangeChange } =
     useRangeSelector<LottoDraw>({
       data,
+      defaultMinRange: 50,
       getDrawNumber: (item) => item.drawNumber,
     });
   const [sortKey, setSortKey] = useState<"number" | "count">("count");
