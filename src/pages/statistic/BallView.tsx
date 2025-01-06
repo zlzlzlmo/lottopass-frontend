@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Space } from "antd";
 import BallSection from "./BallSection";
 import ChartSection from "./ChartSection";
 import { RangeSelector, SortDropDown } from "@/components/common";
+import { useRangeSelector } from "@/features/range/hooks/useRangeSelect";
 
 interface LottoDraw {
   drawNumber: number;
@@ -16,26 +17,13 @@ interface BallViewProps {
 }
 
 const BallView: React.FC<BallViewProps> = ({ data }) => {
-  const [range, setRange] = useState<[number, number] | null>(null); // 초기값을 null로 설정
+  const { minDraw, maxDraw, range, filteredDraws, handleRangeChange } =
+    useRangeSelector<LottoDraw>({
+      data,
+      getDrawNumber: (item) => item.drawNumber,
+    });
   const [sortKey, setSortKey] = useState<"number" | "count">("count");
   const [currentView, setCurrentView] = useState<"balls" | "chart">("balls");
-
-  const maxDraw =
-    data.length > 0 ? Math.max(...data.map((draw) => draw.drawNumber)) : 0;
-  const minDraw =
-    data.length > 0 ? Math.min(...data.map((draw) => draw.drawNumber)) : 0;
-
-  useEffect(() => {
-    if (data.length > 0 && range === null) {
-      setRange([Math.max(minDraw, maxDraw - 50), maxDraw]);
-    }
-  }, [data, range, minDraw, maxDraw]);
-
-  const filteredDraws = range
-    ? data.filter(
-        (draw) => draw.drawNumber >= range[0] && draw.drawNumber <= range[1]
-      )
-    : [];
 
   const calculateStatistics = () => {
     const counts: Record<number, number> = {};
@@ -53,13 +41,11 @@ const BallView: React.FC<BallViewProps> = ({ data }) => {
 
   const statistics = calculateStatistics();
 
-  const handleRangeChange = (value: [number, number]) => {
-    setRange(value);
-  };
-
-  if (!range) {
+  if (!filteredDraws) {
     return <div>데이터를 로드 중입니다...</div>;
   }
+
+  if (!range) return <div>데이터가 존재하지 않습니다.</div>;
 
   return (
     <div style={{ padding: "20px", maxWidth: "640px", margin: "0 auto" }}>
