@@ -6,4 +6,5 @@ export const ROUTES = {
   HISTORY_DETAIL: { path: "/history/:drawNumber", label: "" },
   ALL_STORES: { path: "/all-stores", label: "판매점 찾기" },
   RESULT: { path: "/result", label: "" },
+  STATISTIC: { path: "/statistic", label: "번호 통계" },
 };
