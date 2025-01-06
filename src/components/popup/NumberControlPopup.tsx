@@ -58,7 +58,7 @@ const NumberControlPopup: React.FC<NumberControlPopupProps> = ({
 
         {/* 최소 포함 번호 */}
         <div className={styles.controlItem}>
-          <label>최소 포함 번호</label>
+          <label>최소 포함 번호 갯수</label>
           <div className={styles.controls}>
             <Button
               size="small"
