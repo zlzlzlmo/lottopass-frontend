@@ -1,32 +1,33 @@
 import React, { useState } from "react";
-import { Dropdown, Menu } from "antd";
+import { Dropdown, Menu, Typography } from "antd";
 import { DownOutlined } from "@ant-design/icons";
-import { Typography } from "antd";
 import styles from "./SortDropDown.module.scss";
 
 const { Text } = Typography;
 
-interface SortDropdownProps {
-  currentSort: string;
-  onSortChange: (sortKey: string) => void;
+interface SortOption<T> {
+  key: T;
+  label: string;
 }
 
-const SortDropdown: React.FC<SortDropdownProps> = ({
+interface SortDropdownProps<T> {
+  currentSort: T;
+  onSortChange: (sortKey: T) => void;
+  sortOptions: SortOption<T>[];
+}
+
+const SortDropdown = <T extends string | number>({
   currentSort,
   onSortChange,
-}) => {
+  sortOptions,
+}: SortDropdownProps<T>) => {
   const [isActive, setIsActive] = useState<boolean>(false);
-
-  const sortOptions = [
-    { key: "distance", label: "거리순" },
-    { key: "name", label: "이름순" },
-    // { key: "draw", label: "당첨회차순" },
-  ];
 
   const menu = (
     <Menu
       onClick={(e) => {
-        onSortChange(e.key); // 부모에 정렬 기준 전달
+        const selectedKey = e.key as T;
+        onSortChange(selectedKey);
         setIsActive(false);
       }}
     >
