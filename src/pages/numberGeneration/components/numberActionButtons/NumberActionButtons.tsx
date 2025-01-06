@@ -47,6 +47,20 @@ const NumberActionButtons = () => {
     navigate(`/result?${queryParams.toString()}`);
   };
 
+  const handleRangeSelect = (min: number, max: number) => {
+    const draws = allDraws.filter(
+      ({ drawNumber }) => drawNumber >= min && drawNumber <= max
+    );
+
+    const winningNumbers = draws
+      .map(({ winningNumbers }) => winningNumbers)
+      .flat()
+      .map(Number);
+    const res = [...new Set(winningNumbers)];
+    const queryParams = createSearchParams(res);
+    navigate(`/result?${queryParams.toString()}`);
+  };
+
   return (
     <>
       <div className={styles.container}>
@@ -54,7 +68,8 @@ const NumberActionButtons = () => {
           {options(
             handleSelectConfirm,
             handleControlConfirm,
-            setPopupProps
+            setPopupProps,
+            handleRangeSelect
           ).map((option, index) => (
             <Col key={index} xs={24} sm={12}>
               <Card
