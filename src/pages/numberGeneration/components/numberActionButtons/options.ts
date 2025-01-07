@@ -1,76 +1,87 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { PopupManagerProps } from "@/components/popup/PopupManager";
 
 interface Option {
   label: string;
-  action?: () => void;
-  tooltip?: string;
+  action: () => void;
 }
 
-export const options = (
-  handleSelectConfirm: (
-    numbers: number[],
-    confirmType: "exclude" | "require"
-  ) => void,
-  handleControlConfirm: (
-    roundCount: number,
-    minCount: number,
-    confirmType: "exclude" | "require"
-  ) => void,
-  setPopupProps: (props: any) => void,
-  handleRangeSelect: (min: number, max: number) => void
+type ConfirmNumberSelection = (
+  numbers: number[],
+  confirmType: "exclude" | "require"
+) => void;
+
+type ConfirmMinCountDrawsSelection = (
+  drawCount: number,
+  minCount: number,
+  confirmType: "exclude" | "require"
+) => void;
+
+type GenerateRangeNumbers = (min: number, max: number) => void;
+
+type SetPopupProps = (props: PopupManagerProps | null) => void;
+
+export const generateOptions = (
+  confirmNumberSelection: ConfirmNumberSelection,
+  confirmMinCountDrawSelection: ConfirmMinCountDrawsSelection,
+  generateRangeNumbers: GenerateRangeNumbers,
+  setPopupProps: SetPopupProps
 ): Option[] => [
   {
-    label: "제외 번호\n직접 선택",
+    label: "제외 번호 직접 선택",
     action: () =>
       setPopupProps({
+        label: "제외 번호 직접 선택",
         popupType: "numberSelect",
         confirmType: "exclude",
         onClose: () => setPopupProps(null),
         onConfirm: (numbers: number[]) =>
-          handleSelectConfirm(numbers, "exclude"),
+          confirmNumberSelection(numbers, "exclude"),
       }),
   },
   {
-    label: "필수 번호\n직접 선택",
+    label: "필수 번호 직접 선택",
     action: () =>
       setPopupProps({
+        label: "필수 번호 직접 선택",
         popupType: "numberSelect",
         confirmType: "require",
         onClose: () => setPopupProps(null),
         onConfirm: (numbers: number[]) =>
-          handleSelectConfirm(numbers, "require"),
+          confirmNumberSelection(numbers, "require"),
       }),
   },
   {
-    label: "미출현 번호\n조합",
+    label: "미출현 번호 조합",
     action: () =>
       setPopupProps({
+        label: "미출현 번호 조합",
         popupType: "numberControl",
         confirmType: "exclude",
         onClose: () => setPopupProps(null),
-        onConfirm: (roundCount: number, minCount: number) =>
-          handleControlConfirm(roundCount, minCount, "exclude"),
+        onConfirm: (drawNum: number, minCount: number) =>
+          confirmMinCountDrawSelection(drawNum, minCount, "exclude"),
       }),
   },
   {
-    label: "출현 번호\n조합",
+    label: "출현 번호 조합",
     action: () =>
       setPopupProps({
+        label: "출현 번호 조합",
         popupType: "numberControl",
         confirmType: "require",
         onClose: () => setPopupProps(null),
-        onConfirm: (roundCount: number, minCount: number) =>
-          handleControlConfirm(roundCount, minCount, "require"),
+        onConfirm: (drawNum: number, minCount: number) =>
+          confirmMinCountDrawSelection(drawNum, minCount, "require"),
       }),
   },
   {
     label: "특정 회차 번호 조합",
     action: () =>
       setPopupProps({
+        label: "특정 회차 번호 조합",
         popupType: "rangeSelect",
-        confirmType: "require",
         onClose: () => setPopupProps(null),
-        onConfirm: (min: number, max: number) => handleRangeSelect(min, max),
+        onConfirm: (min: number, max: number) => generateRangeNumbers(min, max),
       }),
   },
 ];
