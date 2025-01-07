@@ -49,14 +49,10 @@ const PopupManager: React.FC<PopupManagerProps> = ({
   };
 
   const renderHelpContent = () => {
-    if (popupType === "numberSelect") {
-    }
     switch (popupType) {
       case "numberSelect":
         return `
           사용자가 원하는 번호를 직접 선택할 수 있는 기능입니다.
-
-          
         `;
       case "numberControl":
         return `
