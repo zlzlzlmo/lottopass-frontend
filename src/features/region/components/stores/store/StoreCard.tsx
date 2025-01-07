@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Button, Typography, Space } from "antd";
 import { PhoneOutlined, EnvironmentOutlined } from "@ant-design/icons";
-import styles from "./AllStoreCard.module.scss";
+import styles from "./StoreCard.module.scss";
 import { useAppSelector } from "@/redux/hooks";
 import { getDistanceText } from "@/utils/distance";
 
@@ -17,7 +17,7 @@ interface StoreCardProps {
   distance?: number;
 }
 
-const AllStoreCard: React.FC<StoreCardProps> = ({
+const StoreCard: React.FC<StoreCardProps> = ({
   storeName,
   fullAddress,
   phone,
@@ -72,4 +72,4 @@ const AllStoreCard: React.FC<StoreCardProps> = ({
   );
 };
 
-export default AllStoreCard;
+export default StoreCard;

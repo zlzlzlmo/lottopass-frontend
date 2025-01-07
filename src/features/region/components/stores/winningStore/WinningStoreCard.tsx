@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Card, Button, Modal } from "antd";
 import { EnvironmentOutlined } from "@ant-design/icons";
 import { WinningRegion } from "lottopass-shared";
-import styles from "./StoreCard.module.scss";
-import { openMap } from "../../../utils/map";
+import styles from "./WinningStoreCard.module.scss";
+import { openMap } from "../../../../../utils/map";
 import { useAppSelector } from "@/redux/hooks";
 import { getDistanceText } from "@/utils/distance";
-import TagList from "./TagList";
+import TagList from "../../../../../components/common/card/TagList";
 
-const StoreCard: React.FC<
+const WinningStoreCard: React.FC<
   {
     distance?: number;
     drawNumbers?: number[];
@@ -108,4 +108,4 @@ const StoreCard: React.FC<
   );
 };
 
-export default StoreCard;
+export default WinningStoreCard;

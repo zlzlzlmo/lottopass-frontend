@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import StoreCard from "../../../components/common/card/StoreCard";
+import WinningStoreCard from "./WinningStoreCard";
 import { WinningRegion } from "lottopass-shared";
-import styles from "./StoreList.module.scss";
+import styles from "./WinningStoreList.module.scss";
 import { useAppSelector } from "@/redux/hooks";
 import SortDropDown from "@/components/common/dropDown/SortDropDown";
 import GeoLocationButton from "@/features/location/components/GeoLocationButton/GeoLocationButton";
@@ -24,7 +24,7 @@ interface StoreListProps {
   data: WinningRegion[];
 }
 
-const StoreList: React.FC<StoreListProps> = ({
+const WinningStoreList: React.FC<StoreListProps> = ({
   data,
   locationButtonVisible = false,
 }) => {
@@ -135,7 +135,7 @@ const StoreList: React.FC<StoreListProps> = ({
       </FlexContainer>
       <ul className={styles.storeList}>
         {sortedData.map((region) => (
-          <StoreCard
+          <WinningStoreCard
             key={region.id}
             {...region}
             drawNumbers={region.drawNumbers}
@@ -147,4 +147,4 @@ const StoreList: React.FC<StoreListProps> = ({
   );
 };
 
-export default StoreList;
+export default WinningStoreList;
