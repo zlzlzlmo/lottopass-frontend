@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { Button, Space } from "antd";
 import BallSection from "./BallSection";
 import ChartSection from "./ChartSection";
-import { RangeSelector, SortDropDown } from "@/components/common";
+import {
+  LoadingIndicator,
+  RangeSelector,
+  SortDropDown,
+} from "@/components/common";
 import { useRangeSelector } from "@/features/range/hooks/useRangeSelect";
+import Layout from "@/components/layout/Layout";
 
 interface LottoDraw {
   drawNumber: number;
@@ -46,7 +51,12 @@ const BallView: React.FC<BallViewProps> = ({ data }) => {
     return <div>데이터를 로드 중입니다...</div>;
   }
 
-  if (!range) return <div>데이터가 존재하지 않습니다.</div>;
+  if (!range)
+    return (
+      <Layout>
+        <LoadingIndicator />
+      </Layout>
+    );
 
   return (
     <div style={{ padding: "20px", maxWidth: "640px", margin: "0 auto" }}>
