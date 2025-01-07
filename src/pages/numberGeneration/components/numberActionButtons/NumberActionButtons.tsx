@@ -5,7 +5,7 @@ import styles from "./NumberActionButtons.module.scss";
 import PopupManager from "@/components/popup/PopupManager";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "@/redux/hooks";
-import { options } from "./options.ts";
+import { generateOptions } from "./options.ts";
 import { createSearchParams, getRecentDraws } from "./utils.ts";
 
 const { Text } = Typography;
@@ -15,40 +15,48 @@ const NumberActionButtons = () => {
   const navigate = useNavigate();
   const [popupProps, setPopupProps] = useState<any | null>(null);
 
-  const handleSelectConfirm = (
-    selectedNumbers: number[],
-    confirmType: "exclude" | "require"
-  ) => {
-    const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
-    const res =
-      confirmType === "require"
-        ? selectedNumbers
-        : allNumbers.filter((num) => !selectedNumbers.includes(num));
-    const queryParams = createSearchParams(res);
+  const TOTAL_NUMBERS = Array.from({ length: 45 }, (_, i) => i + 1);
+
+  const navigateToResult = (numbers: number[], minCount?: number) => {
+    const queryParams = createSearchParams(numbers, minCount);
     navigate(`/result?${queryParams.toString()}`);
   };
 
-  const handleControlConfirm = (
-    roundCount: number,
+  const filterNumbers = (
+    sourceNumbers: number[],
+    confirmType: "exclude" | "require"
+  ): number[] => {
+    return confirmType === "require"
+      ? sourceNumbers
+      : TOTAL_NUMBERS.filter((num) => !sourceNumbers.includes(num));
+  };
+
+  // 번호 직접 선택
+  const confirmNumberSelection = (
+    numbers: number[],
+    confirmType: "exclude" | "require"
+  ) => {
+    const filteredNumbers = filterNumbers(numbers, confirmType);
+    navigateToResult(filteredNumbers);
+  };
+
+  // 회차와 최소 포함 개수 설정
+  const confirmMinCountDrawSelection = (
+    drawCount: number,
     minCount: number,
     confirmType: "exclude" | "require"
   ) => {
-    const recentNumbers = getRecentDraws(allDraws, roundCount).flatMap(
+    const recentNumbers = getRecentDraws(allDraws, drawCount).flatMap(
       (round) => round.winningNumbers
     );
     const uniqueNumbers = Array.from(new Set(recentNumbers)).map(Number);
+    const filteredNumbers = filterNumbers(uniqueNumbers, confirmType);
 
-    const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
-    const res =
-      confirmType === "require"
-        ? uniqueNumbers
-        : allNumbers.filter((num) => !uniqueNumbers.includes(num));
-
-    const queryParams = createSearchParams(res, minCount);
-    navigate(`/result?${queryParams.toString()}`);
+    navigateToResult(filteredNumbers, minCount);
   };
 
-  const handleRangeSelect = (min: number, max: number) => {
+  // 특정 회차 범위의 번호 생성
+  const generateRangeNumbers = (min: number, max: number) => {
     const draws = allDraws.filter(
       ({ drawNumber }) => drawNumber >= min && drawNumber <= max
     );
@@ -57,21 +65,23 @@ const NumberActionButtons = () => {
       .map(({ winningNumbers }) => winningNumbers)
       .flat()
       .map(Number);
-    const res = [...new Set(winningNumbers)];
-    const queryParams = createSearchParams(res);
-    navigate(`/result?${queryParams.toString()}`);
+    const uniqueNumbers = [...new Set(winningNumbers)];
+
+    navigateToResult(uniqueNumbers);
   };
+
+  const options = generateOptions(
+    confirmNumberSelection,
+    confirmMinCountDrawSelection,
+    generateRangeNumbers,
+    setPopupProps
+  );
 
   return (
     <>
       <div className={styles.container}>
         <Row gutter={[24, 24]} justify="center">
-          {options(
-            handleSelectConfirm,
-            handleControlConfirm,
-            setPopupProps,
-            handleRangeSelect
-          ).map((option, index) => (
+          {options.map((option, index) => (
             <Col key={index} xs={24} sm={12}>
               <Card
                 hoverable

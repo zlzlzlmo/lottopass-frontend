@@ -6,9 +6,10 @@ import DrawRangeSelectPopup from "./DrawRangeSelectPopup";
 import NumberControlPopup from "./NumberControlPopup";
 import NumberSelectPopup from "./NumberSelectPopup";
 
-interface PopupManagerProps {
-  label: string;
-  popupType: "numberSelect" | "numberControl" | "rangeSelect";
+export type PopupType = "numberSelect" | "numberControl" | "rangeSelect";
+export interface PopupManagerProps {
+  popupType: PopupType;
+  confirmType?: "exclude" | "require";
   onClose: () => void;
   onConfirm: (...args: any[]) => void;
   [key: string]: any;
@@ -17,6 +18,7 @@ interface PopupManagerProps {
 const PopupManager: React.FC<PopupManagerProps> = ({
   label,
   popupType,
+  confirmType,
   onClose,
   onConfirm,
   ...rest
@@ -48,42 +50,54 @@ const PopupManager: React.FC<PopupManagerProps> = ({
     }
   };
 
-  const renderHelpContent = () => {
+  const renderHelpContent = (confirmType: string) => {
     switch (popupType) {
       case "numberSelect":
-        return `
-          사용자가 원하는 번호를 직접 선택할 수 있는 기능입니다.
-        `;
+        return confirmType === "exclude"
+          ? `
+            선택한 번호를 로또 번호 생성에서 제외합니다.
+  
+            예시:
+            - 선택한 번호: 5, 10, 15
+            -> 5, 10, 15를 제외한 번호로 조합됩니다.
+          `
+          : `
+            선택한 번호를 반드시 포함하여 로또 번호를 생성합니다.
+  
+            예시:
+            - 선택한 번호: 5, 10, 15
+            -> 조합된 번호에 항상 5, 10, 15가 포함됩니다.
+          `;
       case "numberControl":
-        return `
-          최근 회차와 최소 포함 번호 개수를 설정하여 로또 번호를 조합합니다.
-        `;
+        return confirmType === "exclude"
+          ? `
+            최근 N회차 동안 출현하지 않은 번호 중 최소 K개의 번호를 포함하여 로또 번호를 생성합니다.
+  
+            예시:
+            - 최근 10회차 미출현 번호: 2, 4, 6, 8 ...
+            - 최소 포함 번호: 2개
+            -> 조합된 번호에 2개 이상의 미출현 번호가 포함됩니다.
+          `
+          : `
+            최근 N회차 동안 당첨된 번호 중 최소 K개의 번호를 포함하여 로또 번호를 생성합니다.
+  
+            예시:
+            - 최근 10회차 출현 번호: 1, 3, 5, 7, 9 ...
+            - 최소 포함 번호: 3개
+            -> 조합된 번호에 3개 이상의 출현 번호가 포함됩니다.
+          `;
       case "rangeSelect":
         return `
-          특정 회차 범위를 지정해 번호를 선택할 수 있습니다.
+          특정 회차 범위를 지정해 해당 회차에 나온 번호를 기반으로 로또 번호를 생성합니다.
+  
+          예시:
+          - 범위: 50회차 ~ 60회차
+          - 번호 추출: 50~60회차의 당첨 번호만 포함하여 로또 번호를 생성.
         `;
       default:
         return "설명이 없습니다.";
     }
   };
-
-  <Modal
-    visible={isHelpModalVisible}
-    onCancel={() => setHelpModalVisible(false)}
-    footer={null}
-    centered
-    width={500}
-  >
-    <div
-      style={{
-        whiteSpace: "pre-line", // 줄바꿈과 공백 반영
-        fontSize: "16px", // 텍스트 스타일
-        lineHeight: "1.5", // 가독성을 위한 줄 간격
-      }}
-    >
-      {renderHelpContent()}
-    </div>
-  </Modal>;
 
   return (
     <>
@@ -144,7 +158,7 @@ const PopupManager: React.FC<PopupManagerProps> = ({
             lineHeight: "1.5",
           }}
         >
-          {renderHelpContent()}
+          {renderHelpContent(confirmType ?? "")}
         </div>
       </Modal>
 
