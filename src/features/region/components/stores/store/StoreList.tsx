@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { StoreInfo } from "lottopass-shared";
-import styles from "./AllStoresList.module.scss";
+import styles from "./StoreList.module.scss";
 import { useAppSelector } from "@/redux/hooks";
 import SortDropDown from "@/components/common/dropDown/SortDropDown";
 import GeoLocationButton from "@/features/location/components/GeoLocationButton/GeoLocationButton";
 import FlexContainer from "@/components/common/container/FlexContainer";
-import AllStoreCard from "./AllStoreCard";
+import StoreCard from "./StoreCard";
 
 const sortOptions = [
   { key: "distance", label: "거리순" },
   { key: "name", label: "이름순" },
-  // { key: "draw", label: "당첨회차순" },
 ];
 
 interface ExtendedWinningRegion extends StoreInfo {
@@ -22,7 +21,7 @@ interface AllStoresList {
   data: StoreInfo[];
 }
 
-const AllStoresList: React.FC<AllStoresList> = ({
+const StoreList: React.FC<AllStoresList> = ({
   data,
   locationButtonVisible = false,
 }) => {
@@ -118,11 +117,11 @@ const AllStoresList: React.FC<AllStoresList> = ({
       </FlexContainer>
       <ul className={styles.storeList}>
         {sortedData.map((region, i) => (
-          <AllStoreCard key={i} {...region} />
+          <StoreCard key={i} {...region} />
         ))}
       </ul>
     </div>
   );
 };
 
-export default AllStoresList;
+export default StoreList;

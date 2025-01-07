@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./WinningStoresPage.module.scss";
 import Layout from "../../components/layout/Layout";
 import { Spin } from "antd";
-import StoreList from "./storeList/StoreList";
+import WinningStoreList from "../../features/region/components/stores/winningStore/WinningStoreList";
 import { useWinningStoresByRegion } from "@/features/region/hooks/useWinningStoresByRegion";
 import SearchRegions from "@/features/region/components/SearchRegions";
 import { showError } from "@/utils/error";
@@ -26,7 +26,7 @@ const WinningStoresPage: React.FC = () => {
             </div>
           )}
 
-          {!isLoading && data.length > 0 && <StoreList data={data} />}
+          {!isLoading && data.length > 0 && <WinningStoreList data={data} />}
         </div>
       </div>
     </Layout>

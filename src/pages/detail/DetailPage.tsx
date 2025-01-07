@@ -8,7 +8,7 @@ import { Table } from "antd";
 import { useDetailOneDraw } from "@/features/draw/hooks/useDetailOneDraw";
 import FlexContainer from "@/components/common/container/FlexContainer";
 import { useWinningStoresByDrawNumber } from "@/features/region/hooks/useWinningStoresByDrawNumber";
-import StoreList from "../winningStores/storeList/StoreList";
+import WinningStoreList from "../../features/region/components/stores/winningStore/WinningStoreList";
 
 const DetailPage: React.FC = () => {
   const { drawNumber: drawNumberStr } = useParams<{ drawNumber: string }>();
@@ -84,7 +84,7 @@ const DetailPage: React.FC = () => {
 
           <div className={styles.winningLocations}>
             <FlexContainer direction="column" gap={10}>
-              <StoreList
+              <WinningStoreList
                 data={winningStores ?? []}
                 locationButtonVisible={true}
               />
