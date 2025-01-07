@@ -6,6 +6,7 @@ import { useAppSelector } from "@/redux/hooks";
 import SortDropDown from "@/components/common/dropDown/SortDropDown";
 import GeoLocationButton from "@/features/location/components/GeoLocationButton/GeoLocationButton";
 import FlexContainer from "@/components/common/container/FlexContainer";
+import { useLocation } from "react-router-dom";
 
 const sortOptions = [
   { key: "distance", label: "거리순" },
@@ -27,6 +28,7 @@ const StoreList: React.FC<StoreListProps> = ({
   data,
   locationButtonVisible = false,
 }) => {
+  const location = useLocation();
   const myLocation = useAppSelector((state) => state.location.myLocation);
   const [sortedData, setSortedData] = useState<ExtendedWinningRegion[]>([]);
   const [selectedSort, setSelectedSort] = useState<string>(
@@ -137,6 +139,7 @@ const StoreList: React.FC<StoreListProps> = ({
             key={region.id}
             {...region}
             drawNumbers={region.drawNumbers}
+            pathName={location.pathname}
           />
         ))}
       </ul>
