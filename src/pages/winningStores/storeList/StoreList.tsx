@@ -64,7 +64,7 @@ const StoreList: React.FC<StoreListProps> = ({
       if (!grouped[key]) {
         grouped[key] = {
           ...region,
-          drawNumbers: [region.drawNumber], // 초기화
+          drawNumbers: [region.drawNumber],
         };
       } else {
         grouped[key].drawNumbers?.push(region.drawNumber);
@@ -73,7 +73,7 @@ const StoreList: React.FC<StoreListProps> = ({
 
     return Object.values(grouped).map((region) => ({
       ...region,
-      drawNumbers: region.drawNumbers?.sort((a, b) => b - a), // 내림차순
+      drawNumbers: region.drawNumbers?.sort((a, b) => b - a),
     }));
   };
 
@@ -99,14 +99,14 @@ const StoreList: React.FC<StoreListProps> = ({
           (a, b) => (a.distance || Infinity) - (b.distance || Infinity)
         );
         break;
-      case "name":
-        sorted.sort((a, b) =>
-          (a.storeName || "").localeCompare(b.storeName || "")
-        );
-        break;
       case "count":
         sorted.sort(
           (a, b) => (b.drawNumbers?.length || 0) - (a.drawNumbers?.length || 0)
+        );
+        break;
+      case "name":
+        sorted.sort((a, b) =>
+          (a.storeName || "").localeCompare(b.storeName || "")
         );
         break;
       default:
