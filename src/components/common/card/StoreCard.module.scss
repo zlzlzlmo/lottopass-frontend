@@ -13,25 +13,60 @@
     color: #1f2937;
   }
 
-  .methodTag {
-    font-size: 12px;
-    border: 1px solid $gray-color;
-    padding: 4px 8px;
-    border-radius: 4px;
-  }
-
   .placeholder {
-    color: #9ca3af; /* gray-400 */
+    color: #9ca3af;
     font-style: italic;
   }
 
   p {
     font-size: 14px;
     margin: 4px 0;
-    color: #4b5563; /* gray-600 */
+    color: #4b5563;
   }
 
   .navigateButton {
     margin-top: 12px;
+  }
+
+  /* 회차 리스트 */
+  .drawContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+
+  .drawTag {
+    white-space: nowrap;
+    font-size: 12px;
+    line-height: 22px;
+  }
+
+  .moreButton {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    gap: 4px;
+    color: #1890ff;
+
+    &:hover {
+      color: #40a9ff;
+    }
+  }
+
+  .moreText {
+    display: block;
+    font-size: 12px;
+  }
+  .modalContent {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .modalTag {
+    margin-bottom: 5px;
+    font-size: 14px;
+    line-height: 22px;
   }
 }

@@ -6,14 +6,17 @@ import { useAppSelector } from "@/redux/hooks";
 import SortDropDown from "@/components/common/dropDown/SortDropDown";
 import GeoLocationButton from "@/features/location/components/GeoLocationButton/GeoLocationButton";
 import FlexContainer from "@/components/common/container/FlexContainer";
+import { useLocation } from "react-router-dom";
 
 const sortOptions = [
   { key: "distance", label: "거리순" },
   { key: "name", label: "이름순" },
-  // { key: "draw", label: "당첨회차순" },
+  { key: "count", label: "당첨 횟수순" },
 ];
+
 interface ExtendedWinningRegion extends WinningRegion {
   distance?: number;
+  drawNumbers?: number[];
 }
 
 interface StoreListProps {
@@ -25,48 +28,67 @@ const StoreList: React.FC<StoreListProps> = ({
   data,
   locationButtonVisible = false,
 }) => {
+  const location = useLocation();
   const myLocation = useAppSelector((state) => state.location.myLocation);
   const [sortedData, setSortedData] = useState<ExtendedWinningRegion[]>([]);
   const [selectedSort, setSelectedSort] = useState<string>(
-    myLocation ? "distance" : "name" // 기본값 설정
+    myLocation ? "distance" : "name"
   );
 
-  // 거리 계산 함수
   const calculateDistanceFromMyLocation = (target?: {
     lat: number;
     lng: number;
   }): number => {
-    if (!target) return Infinity;
-    if (!myLocation) return Infinity;
+    if (!target || !myLocation) return Infinity;
 
     const R = 6371; // 지구 반지름 (km)
     const dLat = ((target.lat - myLocation.latitude) * Math.PI) / 180;
     const dLng = ((target.lng - myLocation.longitude) * Math.PI) / 180;
     const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.sin(dLat / 2) ** 2 +
       Math.cos((myLocation.latitude * Math.PI) / 180) *
         Math.cos((target.lat * Math.PI) / 180) *
-        Math.sin(dLng / 2) *
-        Math.sin(dLng / 2);
+        Math.sin(dLng / 2) ** 2;
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
   };
 
-  // 초기 데이터 준비 및 정렬
+  const groupDataByStore = (data: WinningRegion[]): ExtendedWinningRegion[] => {
+    const grouped: { [key: string]: ExtendedWinningRegion } = {};
+
+    data.forEach((region) => {
+      const key = region.coordinates
+        ? `${region.coordinates.lat},${region.coordinates.lng}`
+        : region.address || region.uniqueIdentifier;
+
+      if (!grouped[key]) {
+        grouped[key] = {
+          ...region,
+          drawNumbers: [region.drawNumber], // 초기화
+        };
+      } else {
+        grouped[key].drawNumbers?.push(region.drawNumber);
+      }
+    });
+
+    return Object.values(grouped).map((region) => ({
+      ...region,
+      drawNumbers: region.drawNumbers?.sort((a, b) => b - a), // 내림차순
+    }));
+  };
+
   useEffect(() => {
-    const enrichedData = data.map((region) => ({
+    const groupedData = groupDataByStore(data).map((region) => ({
       ...region,
       distance: region.coordinates
         ? calculateDistanceFromMyLocation(region.coordinates)
         : Infinity,
     }));
 
-    // 초기 정렬 실행
-    onSortChange(selectedSort, enrichedData);
+    handleSortChange(selectedSort, groupedData);
   }, [data, myLocation]);
 
-  // 정렬 핸들러
-  const onSortChange = (
+  const handleSortChange = (
     sortKey: string,
     dataToSort: ExtendedWinningRegion[] = sortedData
   ) => {
@@ -82,14 +104,16 @@ const StoreList: React.FC<StoreListProps> = ({
           (a.storeName || "").localeCompare(b.storeName || "")
         );
         break;
-      // case "draw":
-      //   sorted.sort((a, b) => (b.drawNumber || 0) - (a.drawNumber || 0));
-      //   break;
+      case "count":
+        sorted.sort(
+          (a, b) => (b.drawNumbers?.length || 0) - (a.drawNumbers?.length || 0)
+        );
+        break;
       default:
         break;
     }
-    setSortedData(sorted); // 정렬된 데이터 업데이트
-    setSelectedSort(sortKey); // 선택된 정렬 기준 업데이트
+    setSortedData(sorted);
+    setSelectedSort(sortKey);
   };
 
   return (
@@ -104,14 +128,19 @@ const StoreList: React.FC<StoreListProps> = ({
         )}
 
         <SortDropDown
-          onSortChange={onSortChange}
+          onSortChange={handleSortChange}
           currentSort={selectedSort}
           sortOptions={sortOptions}
         />
       </FlexContainer>
       <ul className={styles.storeList}>
         {sortedData.map((region) => (
-          <StoreCard key={region.id} {...region} />
+          <StoreCard
+            key={region.id}
+            {...region}
+            drawNumbers={region.drawNumbers}
+            pathName={location.pathname}
+          />
         ))}
       </ul>
     </div>

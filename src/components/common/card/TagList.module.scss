@@ -1,0 +1,34 @@
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.tag {
+  white-space: nowrap;
+  font-size: 12px;
+  line-height: 22px;
+  margin-right: 0;
+}
+
+.moreButton {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 10px;
+  gap: 4px;
+  color: #1890ff;
+
+  &:hover {
+    color: #40a9ff;
+  }
+}
+
+.moreIcon {
+  font-size: 10px;
+}
+
+.moreText {
+  font-size: 12px;
+}
