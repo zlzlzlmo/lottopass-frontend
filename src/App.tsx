@@ -18,6 +18,9 @@ import {
   WinningStoresPage,
 } from "./pages";
 import ScrollToTop from "./components/common/scroll/ScrollToTop";
+import LoginPage from "./pages/auth/LoginPage";
+import CallbackPage from "./pages/auth/CallbackPage";
+import AppInitializer from "./AppInitializer";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +34,8 @@ const App: React.FC = () => {
     { path: ROUTES.ALL_STORES.path, element: <AllStoresPage /> },
     { path: ROUTES.RESULT.path, element: <ResultPage /> },
     { path: ROUTES.STATISTIC.path, element: <StatisticPage /> },
+    { path: ROUTES.LOGIN.path, element: <LoginPage /> },
+    { path: ROUTES.CALLBACK.path, element: <CallbackPage /> },
     { path: "*", element: <NotFound /> },
   ];
 
@@ -43,11 +48,17 @@ const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        <Routes>
-          {routes.map((route) => (
-            <Route key={route.path} path={route.path} element={route.element} />
-          ))}
-        </Routes>
+        <AppInitializer>
+          <Routes>
+            {routes.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.element}
+              />
+            ))}
+          </Routes>
+        </AppInitializer>
       </Router>
       <ScrollToTop />
     </QueryClientProvider>

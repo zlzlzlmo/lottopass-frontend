@@ -8,6 +8,7 @@ export class BaseApiService {
   constructor(baseURL: string) {
     this.axiosInstance = axios.create({
       baseURL,
+      withCredentials: true,
     });
   }
 

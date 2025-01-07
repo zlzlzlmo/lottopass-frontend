@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Drawer, Button } from "antd";
@@ -5,6 +7,7 @@ import { MenuOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import styles from "./Header.module.scss";
 import { ROUTES } from "../../../constants/routes";
 import { useAppSelector } from "@/redux/hooks";
+import { authService } from "@/api";
 
 const Header: React.FC = () => {
   const [isDrawerVisible, setDrawerVisible] = useState(false);
@@ -17,15 +20,20 @@ const Header: React.FC = () => {
   };
 
   const isHomePage = location.pathname === ROUTES.HOME.path;
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
 
-  const isLoggedIn = false;
   const handleLogin = () => {
     navigate("/login");
     setDrawerVisible(false);
   };
-  const handleLogout = () => {
+  const handleLogout = async () => {
     console.log("로그아웃");
-    setDrawerVisible(false);
+    try {
+      const res = await authService.getLogout();
+      if (res.status === "success") window.location.href = "/";
+    } catch (error: any) {
+      throw new Error("Failed to logout");
+    }
   };
 
   return (
@@ -96,20 +104,32 @@ const Header: React.FC = () => {
           ))}
 
         <div style={{ marginTop: "auto" }}>
-          <Button
-            type="primary"
-            block
-            style={{
-              height: "48px",
-              fontSize: "16px",
-              fontWeight: "bold",
-              backgroundColor: isLoggedIn ? "#FF4D4F" : "#3b82f6",
-              borderColor: isLoggedIn ? "#FF4D4F" : "#3b82f6",
-            }}
-            onClick={isLoggedIn ? handleLogout : handleLogin}
-          >
-            {isLoggedIn ? "로그아웃" : "로그인"}
-          </Button>
+          {isLoggedIn ? (
+            <Button
+              onClick={handleLogout}
+              style={{
+                marginRight: "8px",
+                width: "100%",
+                height: "50px",
+                fontSize: "17px",
+              }}
+            >
+              로그아웃
+            </Button>
+          ) : (
+            <Button
+              type="primary"
+              onClick={handleLogin}
+              style={{
+                marginRight: "8px",
+                width: "100%",
+                height: "50px",
+                fontSize: "17px",
+              }}
+            >
+              로그인
+            </Button>
+          )}
         </div>
       </Drawer>
     </header>

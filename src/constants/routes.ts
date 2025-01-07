@@ -7,4 +7,6 @@ export const ROUTES = {
   ALL_STORES: { path: "/all-stores", label: "판매점 찾기" },
   RESULT: { path: "/result", label: "" },
   STATISTIC: { path: "/statistic", label: "번호 통계" },
+  LOGIN: { path: "/login", label: "" },
+  CALLBACK: { path: "/auth/:provider/callback", label: "" },
 };

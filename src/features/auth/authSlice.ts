@@ -1,14 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface User {
-  email: string;
-  firstName: string;
-  lastName: string;
-  picture: string;
-}
+import { UserProfile } from "lottopass-shared";
 
 interface AuthState {
-  user: User | null;
+  user: UserProfile | null;
   isLoggedIn: boolean;
 }
 
@@ -21,7 +15,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<User>) => {
+    setUser: (state, action: PayloadAction<UserProfile>) => {
       state.user = action.payload;
       state.isLoggedIn = true;
     },
