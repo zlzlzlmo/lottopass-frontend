@@ -120,7 +120,6 @@ const LuckyNumberCard: React.FC<LuckyNumberCardProps> = ({
             onClick={() => onViewStatistics(index)}
             style={{
               flex: 1,
-              margin: "0 4px",
               whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",
@@ -131,9 +130,9 @@ const LuckyNumberCard: React.FC<LuckyNumberCardProps> = ({
           <Button
             icon={<ReloadOutlined />}
             onClick={() => onRegenerate(index)}
-            style={{ flex: 1, margin: "0 4px" }}
+            style={{ flex: 1 }}
           >
-            다시 생성
+            재생성
           </Button>
 
           <KakaoShareButton numbers={numbers} />
