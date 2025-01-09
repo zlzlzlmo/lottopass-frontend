@@ -107,7 +107,7 @@ const StatisticsPopup: React.FC<StatisticsProps> = ({
         for (let j = i + 1; j < relevantNumbers.length; j++) {
           const pairKey = [relevantNumbers[i], relevantNumbers[j]]
             .sort((a, b) => a - b)
-            .join(",");
+            .join(", ");
           pairCounts.set(pairKey, (pairCounts.get(pairKey) || 0) + 1);
         }
       }
@@ -136,7 +136,7 @@ const StatisticsPopup: React.FC<StatisticsProps> = ({
               relevantNumbers[k],
             ]
               .sort((a, b) => a - b)
-              .join(",");
+              .join(", ");
             tripleCounts.set(tripleKey, (tripleCounts.get(tripleKey) || 0) + 1);
           }
         }
