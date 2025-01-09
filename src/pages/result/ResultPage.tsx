@@ -10,10 +10,10 @@ import {
   DeleteOutlined,
   SaveOutlined,
   ReloadOutlined,
-  ShareAltOutlined,
 } from "@ant-design/icons";
 
 import { numberService } from "@/api";
+import KakaoShareButton from "./KakaoButton";
 
 const ResultPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -71,14 +71,6 @@ const ResultPage: React.FC = () => {
     );
     setResults(updatedResults);
     message.info("번호가 다시 생성되었습니다.");
-  };
-
-  const handleShare = (numbers: number[]) => {
-    const shareUrl = `${window.location.origin}/shared?numbers=${numbers.join(
-      ","
-    )}`;
-    navigator.clipboard.writeText(shareUrl);
-    message.success("공유 링크가 복사되었습니다!");
   };
 
   return (
@@ -190,13 +182,8 @@ const ResultPage: React.FC = () => {
                   >
                     다시 생성
                   </Button>
-                  <Button
-                    icon={<ShareAltOutlined />}
-                    onClick={() => handleShare(numbers)}
-                    style={{ flex: 1, margin: "0 4px" }}
-                  >
-                    공유
-                  </Button>
+
+                  <KakaoShareButton numbers={numbers} />
                 </Space>
               </Card>
             </motion.div>
