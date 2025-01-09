@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Space, Card } from "antd";
 import Layout from "@/components/layout/Layout";
 import { useLocation } from "react-router-dom";
+import { redirectPathStorage } from "@/utils/storage";
 
 interface LoginButtonProps {
   provider: string;
@@ -19,8 +20,7 @@ const LoginButton: React.FC<LoginButtonProps> = ({
   const location = useLocation();
   const handleLogin = () => {
     const from = location.state?.from.pathname ?? "";
-
-    sessionStorage.setItem("redirectPath", from);
+    redirectPathStorage.set(from);
 
     window.location.href = `${
       import.meta.env.VITE_API_BASE_URL

@@ -4,6 +4,7 @@ import { setUser, clearUser } from "@/features/auth/authSlice";
 import { authService } from "./api";
 import LogoLoading from "./components/common/loading/LogoLoading";
 import { useNavigate } from "react-router-dom";
+import { redirectPathStorage } from "./utils/storage";
 
 interface AppInitializerProps {
   children: React.ReactNode;
@@ -28,11 +29,10 @@ const AppInitializer: React.FC<AppInitializerProps> = ({ children }) => {
     };
 
     initializeAuth();
-    console.log("dafsad");
 
-    const redirectPath = sessionStorage.getItem("redirectPath") || "/";
-    sessionStorage.removeItem("redirectPath");
-    navigate(redirectPath);
+    const redirectPath = redirectPathStorage.get();
+    redirectPathStorage.remove();
+    navigate(redirectPath ?? "/");
   }, [dispatch]);
 
   if (isLoading) {
