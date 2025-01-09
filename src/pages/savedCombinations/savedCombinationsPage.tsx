@@ -1,28 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Layout from "../../components/layout/Layout";
 import { Button, Card, Space, message, Popconfirm } from "antd";
-import { DeleteOutlined, ShareAltOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 import NumberContainer from "@/components/common/number/NumberContainer";
 import KakaoShareButton from "../result/KakaoButton";
+import { NumberService, LottoCombination } from "@/api/numberService";
 
-const mockSavedCombinations = [
-  [1, 8, 15, 22, 30, 44],
-  [2, 7, 13, 28, 31, 42],
-  [3, 9, 18, 27, 33, 45],
-  [5, 11, 19, 26, 34, 40],
-  [6, 10, 21, 25, 32, 39],
-];
+const numberService = new NumberService();
 
 const SavedCombinationsPage: React.FC = () => {
-  const [savedCombinations, setSavedCombinations] = useState<number[][]>(
-    mockSavedCombinations
-  );
+  const [savedCombinations, setSavedCombinations] = useState<
+    LottoCombination[]
+  >([]);
 
-  const handleDeleteCombination = (index: number) => {
-    const updatedCombinations = savedCombinations.filter((_, i) => i !== index);
-    setSavedCombinations(updatedCombinations);
-    message.success("번호 조합이 삭제되었습니다.");
+  useEffect(() => {
+    const fetchSavedCombinations = async () => {
+      try {
+        const response = await numberService.getUserCombinations();
+        setSavedCombinations(response);
+      } catch (error) {
+        console.error("번호 조합을 불러오는 중 오류가 발생했습니다:", error);
+        message.error("번호 조합을 불러오는 데 실패했습니다.");
+      }
+    };
+
+    fetchSavedCombinations();
+  }, []);
+
+  const handleDeleteCombination = async (id: string) => {
+    try {
+      await numberService.deleteCombination(id);
+      setSavedCombinations((prev) => prev.filter((combo) => combo.id !== id));
+      message.success("번호 조합이 삭제되었습니다.");
+    } catch (error) {
+      console.error("번호 조합 삭제 중 오류 발생:", error);
+      message.error("번호 조합 삭제에 실패했습니다.");
+    }
   };
 
   return (
@@ -33,9 +47,9 @@ const SavedCombinationsPage: React.FC = () => {
         </h2>
 
         <Space direction="vertical" size="large" style={{ width: "100%" }}>
-          {savedCombinations.map((numbers, index) => (
+          {savedCombinations.map(({ id, combination }) => (
             <motion.div
-              key={index}
+              key={id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -57,7 +71,7 @@ const SavedCombinationsPage: React.FC = () => {
               >
                 <Popconfirm
                   title="번호를 삭제하시겠습니까?"
-                  onConfirm={() => handleDeleteCombination(index)}
+                  onConfirm={() => handleDeleteCombination(id)}
                   okText="네"
                   cancelText="아니오"
                 >
@@ -86,7 +100,7 @@ const SavedCombinationsPage: React.FC = () => {
                   </span>
                 </div>
 
-                <NumberContainer numbers={numbers} />
+                <NumberContainer numbers={combination} />
 
                 <Space
                   size="small"
@@ -97,7 +111,7 @@ const SavedCombinationsPage: React.FC = () => {
                     width: "100%",
                   }}
                 >
-                  <KakaoShareButton numbers={numbers} />
+                  <KakaoShareButton numbers={combination} />
                 </Space>
               </Card>
             </motion.div>

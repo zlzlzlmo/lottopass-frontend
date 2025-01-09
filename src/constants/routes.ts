@@ -8,6 +8,7 @@ export const ROUTES = {
   RESULT: { path: "/result", label: "" },
   STATISTIC: { path: "/statistic", label: "번호 통계" },
   LOGIN: { path: "/login", label: "" },
+  SIGN_UP: { path: "/signup", label: "회원가입" },
   CALLBACK: { path: "/auth/:provider/callback", label: "" },
   SAVED_COMBINATIONS: { path: "/saved-combinations", label: "내 번호" },
 };

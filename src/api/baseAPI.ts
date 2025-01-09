@@ -36,6 +36,15 @@ export class BaseApiService {
     }
   }
 
+  protected async delete<T>(url: string): Promise<FindAllResponse<T>> {
+    try {
+      const response = await this.axiosInstance.delete(url);
+      return response.data;
+    } catch (error: any) {
+      throw new Error(error.message || "DELETE 요청 실패");
+    }
+  }
+
   protected async handleResponse<T>(
     promise: Promise<FindAllResponse<T>>
   ): Promise<T> {

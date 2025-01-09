@@ -24,6 +24,7 @@ import AppInitializer from "./AppInitializer";
 import SavedCombinationsPage from "./pages/savedCombinations/savedCombinationsPage";
 import PrivateRoute from "./PrivateRoute";
 import CallbackPage from "./pages/auth/CallbackPage";
+import SignupPage from "./pages/auth/SignupPage";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App: React.FC = () => {
     { path: ROUTES.STATISTIC.path, element: <StatisticPage /> },
     { path: ROUTES.LOGIN.path, element: <LoginPage /> },
     { path: ROUTES.CALLBACK.path, element: <CallbackPage /> },
+    { path: ROUTES.SIGN_UP.path, element: <SignupPage /> },
     {
       path: ROUTES.SAVED_COMBINATIONS.path,
       element: (
