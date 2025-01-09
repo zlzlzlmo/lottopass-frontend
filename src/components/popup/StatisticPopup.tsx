@@ -242,7 +242,7 @@ const StatisticsPopup: React.FC<StatisticsProps> = ({
 
   const tripleColumns = [
     {
-      title: "번호 삼쌍",
+      title: "번호 세쌍",
       dataIndex: "triple",
       key: "triple",
     },
