@@ -10,6 +10,7 @@ import {
   DeleteOutlined,
   SaveOutlined,
   ReloadOutlined,
+  CheckOutlined,
 } from "@ant-design/icons";
 
 import { numberService } from "@/api";
@@ -38,6 +39,10 @@ const ResultPage: React.FC = () => {
     Array.from({ length: 5 }, () => generateNumbers())
   );
 
+  const [savedStatus, setSavedStatus] = useState<boolean[]>(
+    Array.from({ length: results.length }, () => false)
+  );
+
   const handleAddResult = () => {
     if (results.length >= maxResultsLen) {
       message.warning(`최대 ${maxResultsLen}줄까지만 추가할 수 있습니다.`);
@@ -46,22 +51,31 @@ const ResultPage: React.FC = () => {
 
     const newResult = generateNumbers();
     setResults([...results, newResult]);
+    setSavedStatus([...savedStatus, false]);
   };
 
   const handleDeleteResult = (index: number) => {
     const updatedResults = results.filter((_, i) => i !== index);
     setResults(updatedResults);
+
+    const updatedSavedStatus = savedStatus.filter((_, i) => i !== index);
+    setSavedStatus(updatedSavedStatus);
+
     message.success("번호 조합이 삭제되었습니다.");
   };
 
-  const handleSaveResult = async (numbers: number[]) => {
-    // 사용자 번호 저장 API 호출 로직
+  const handleSaveResult = async (numbers: number[], index: number) => {
     try {
-      const res = await numberService.setNumberCombination(numbers);
-      console.log("res : ", res);
+      await numberService.setNumberCombination(numbers);
+
+      const updatedSavedStatus = [...savedStatus];
+      updatedSavedStatus[index] = true;
+      setSavedStatus(updatedSavedStatus);
+
       message.success("번호 조합이 저장되었습니다.");
     } catch (error) {
       console.error("error :", error);
+      message.error("저장에 실패했습니다. 다시 시도해주세요.");
     }
   };
 
@@ -70,6 +84,11 @@ const ResultPage: React.FC = () => {
       i === index ? generateNumbers() : numbers
     );
     setResults(updatedResults);
+
+    const updatedSavedStatus = [...savedStatus];
+    updatedSavedStatus[index] = false;
+    setSavedStatus(updatedSavedStatus);
+
     message.info("번호가 다시 생성되었습니다.");
   };
 
@@ -169,11 +188,20 @@ const ResultPage: React.FC = () => {
                 >
                   <Button
                     type="primary"
-                    icon={<SaveOutlined />}
-                    onClick={() => handleSaveResult(numbers)}
-                    style={{ flex: 1, margin: "0 4px" }}
+                    icon={
+                      savedStatus[index] ? <CheckOutlined /> : <SaveOutlined />
+                    }
+                    onClick={() => handleSaveResult(numbers, index)}
+                    disabled={savedStatus[index]}
+                    style={{
+                      flex: 1,
+                      margin: "0 4px",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
                   >
-                    저장
+                    {savedStatus[index] ? "완료" : "저장"}
                   </Button>
                   <Button
                     icon={<ReloadOutlined />}
