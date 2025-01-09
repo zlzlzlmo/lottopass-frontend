@@ -3,6 +3,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { setUser, clearUser } from "@/features/auth/authSlice";
 import { authService } from "./api";
 import LogoLoading from "./components/common/loading/LogoLoading";
+import { useNavigate } from "react-router-dom";
 
 interface AppInitializerProps {
   children: React.ReactNode;
@@ -10,7 +11,7 @@ interface AppInitializerProps {
 
 const AppInitializer: React.FC<AppInitializerProps> = ({ children }) => {
   const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -27,6 +28,11 @@ const AppInitializer: React.FC<AppInitializerProps> = ({ children }) => {
     };
 
     initializeAuth();
+    console.log("dafsad");
+
+    const redirectPath = sessionStorage.getItem("redirectPath") || "/";
+    sessionStorage.removeItem("redirectPath");
+    navigate(redirectPath);
   }, [dispatch]);
 
   if (isLoading) {

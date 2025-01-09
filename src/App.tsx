@@ -19,10 +19,11 @@ import {
 } from "./pages";
 import ScrollToTop from "./components/common/scroll/ScrollToTop";
 import LoginPage from "./pages/auth/LoginPage";
-import CallbackPage from "./pages/auth/CallbackPage";
+
 import AppInitializer from "./AppInitializer";
 import SavedCombinationsPage from "./pages/savedCombinations/savedCombinationsPage";
 import PrivateRoute from "./PrivateRoute";
+import CallbackPage from "./pages/auth/CallbackPage";
 
 const queryClient = new QueryClient();
 

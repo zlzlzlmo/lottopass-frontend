@@ -18,7 +18,8 @@ const LoginButton: React.FC<LoginButtonProps> = ({
 }) => {
   const location = useLocation();
   const handleLogin = () => {
-    const from = location.state?.from?.pathname || "/";
+    const from = location.state?.from.pathname ?? "";
+
     sessionStorage.setItem("redirectPath", from);
 
     window.location.href = `${
