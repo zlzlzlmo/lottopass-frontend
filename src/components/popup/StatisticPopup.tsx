@@ -327,7 +327,7 @@ const StatisticsPopup: React.FC<StatisticsProps> = ({
       />
 
       <Title level={4} style={{ marginTop: 24 }}>
-        번호 삼쌍 빈도
+        번호 셋 쌍 빈도
         <Tooltip title="선택한 번호에서 세 개의 번호가 함께 등장한 빈도">
           <QuestionCircleOutlined style={{ marginLeft: 8 }} />
         </Tooltip>
