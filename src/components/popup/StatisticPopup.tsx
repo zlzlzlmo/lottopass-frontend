@@ -183,7 +183,7 @@ const StatisticsPopup: React.FC<StatisticsProps> = ({
       title: (
         <>
           평균 간격
-          <Tooltip title="번호가 출현하는 회차 간 평균 간격입니다.">
+          <Tooltip title="번호가 출현하는 회차 간 평균 간격(평균 회차 등장 간격)입니다.">
             <QuestionCircleOutlined style={{ marginLeft: 8 }} />
           </Tooltip>
         </>
@@ -207,7 +207,7 @@ const StatisticsPopup: React.FC<StatisticsProps> = ({
       title: (
         <>
           연속 출현 횟수
-          <Tooltip title="해당 번호가 연속으로 등장한 최대 횟수입니다.">
+          <Tooltip title="해당 번호가 역대 전 회차 중 연속으로 등장한 최대 횟수입니다.">
             <QuestionCircleOutlined style={{ marginLeft: 8 }} />
           </Tooltip>
         </>
