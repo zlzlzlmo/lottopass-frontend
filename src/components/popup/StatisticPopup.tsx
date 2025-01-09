@@ -53,14 +53,14 @@ const StatisticsPopup: React.FC<StatisticsProps> = ({
     const appearances = lottoHistory
       .filter((record) => record.winningNumbers.includes(number))
       .map((record) => record.drawNumber)
-      .sort((a, b) => a - b); // 오름차순 정렬
+      .sort((a, b) => a - b);
 
     if (appearances.length < 2) return 0;
 
     const gaps = appearances
       .slice(1)
       .map((draw, index) => draw - appearances[index]);
-    return Math.abs(gaps.reduce((sum, gap) => sum + gap, 0) / gaps.length); // 절대값으로 변환
+    return Math.abs(gaps.reduce((sum, gap) => sum + gap, 0) / gaps.length);
   };
 
   const getPositionAverage = (number: number): number => {
@@ -182,7 +182,7 @@ const StatisticsPopup: React.FC<StatisticsProps> = ({
     {
       title: (
         <>
-          평균 간격
+          재등장 평균 간격
           <Tooltip title="번호가 출현하는 회차 간 평균 간격(평균 회차 등장 간격)입니다.">
             <QuestionCircleOutlined style={{ marginLeft: 8 }} />
           </Tooltip>
