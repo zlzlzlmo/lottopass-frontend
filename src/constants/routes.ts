@@ -7,8 +7,8 @@ export const ROUTES = {
   ALL_STORES: { path: "/all-stores", label: "판매점 찾기" },
   RESULT: { path: "/result", label: "" },
   STATISTIC: { path: "/statistic", label: "번호 통계" },
-  LOGIN: { path: "/login", label: "" },
-  SIGN_UP: { path: "/signup", label: "회원가입" },
+  // LOGIN: { path: "/login", label: "" },
+  // SIGN_UP: { path: "/signup", label: "회원가입" },
   CALLBACK: { path: "/auth/:provider/callback", label: "" },
-  SAVED_COMBINATIONS: { path: "/saved-combinations", label: "내 번호" },
+  // SAVED_COMBINATIONS: { path: "/saved-combinations", label: "내 번호" },
 };

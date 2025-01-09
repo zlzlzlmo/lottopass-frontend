@@ -5,15 +5,9 @@ import Layout from "../../components/layout/Layout";
 import { getRandomNum, shuffle } from "@/utils/number";
 import { useSearchParams } from "react-router-dom";
 import NumberContainer from "@/components/common/number/NumberContainer";
-import { Button, Card, Space, message, Popconfirm } from "antd";
-import {
-  DeleteOutlined,
-  SaveOutlined,
-  ReloadOutlined,
-  CheckOutlined,
-} from "@ant-design/icons";
+import { Button, Card, Space, message } from "antd";
+import { DeleteOutlined, ReloadOutlined } from "@ant-design/icons";
 
-import { numberService } from "@/api";
 import KakaoShareButton from "./KakaoButton";
 
 const ResultPage: React.FC = () => {
@@ -64,20 +58,20 @@ const ResultPage: React.FC = () => {
     message.success("번호 조합이 삭제되었습니다.");
   };
 
-  const handleSaveResult = async (numbers: number[], index: number) => {
-    try {
-      await numberService.setNumberCombination(numbers);
+  // const handleSaveResult = async (numbers: number[], index: number) => {
+  //   try {
+  //     await numberService.setNumberCombination(numbers);
 
-      const updatedSavedStatus = [...savedStatus];
-      updatedSavedStatus[index] = true;
-      setSavedStatus(updatedSavedStatus);
+  //     const updatedSavedStatus = [...savedStatus];
+  //     updatedSavedStatus[index] = true;
+  //     setSavedStatus(updatedSavedStatus);
 
-      message.success("번호 조합이 저장되었습니다.");
-    } catch (error) {
-      console.error("error :", error);
-      message.error("저장에 실패했습니다. 다시 시도해주세요.");
-    }
-  };
+  //     message.success("번호 조합이 저장되었습니다.");
+  //   } catch (error) {
+  //     console.error("error :", error);
+  //     message.error("저장에 실패했습니다. 다시 시도해주세요.");
+  //   }
+  // };
 
   const handleRegenerate = (index: number) => {
     const updatedResults = results.map((numbers, i) =>
@@ -122,23 +116,17 @@ const ResultPage: React.FC = () => {
                   alignItems: "center",
                 }}
               >
-                <Popconfirm
-                  title="번호를 삭제하시겠습니까?"
-                  onConfirm={() => handleDeleteResult(index)}
-                  okText="네"
-                  cancelText="아니오"
-                >
-                  <Button
-                    type="text"
-                    danger
-                    icon={<DeleteOutlined />}
-                    style={{
-                      position: "absolute",
-                      top: 8,
-                      right: 8,
-                    }}
-                  />
-                </Popconfirm>
+                <Button
+                  type="text"
+                  danger
+                  onClick={() => handleDeleteResult(index)}
+                  icon={<DeleteOutlined />}
+                  style={{
+                    position: "absolute",
+                    top: 8,
+                    right: 8,
+                  }}
+                />
                 <div
                   style={{
                     display: "flex",
@@ -186,7 +174,7 @@ const ResultPage: React.FC = () => {
                     width: "100%",
                   }}
                 >
-                  <Button
+                  {/* <Button
                     type="primary"
                     icon={
                       savedStatus[index] ? <CheckOutlined /> : <SaveOutlined />
@@ -202,7 +190,7 @@ const ResultPage: React.FC = () => {
                     }}
                   >
                     {savedStatus[index] ? "완료" : "저장"}
-                  </Button>
+                  </Button> */}
                   <Button
                     icon={<ReloadOutlined />}
                     onClick={() => handleRegenerate(index)}
@@ -225,7 +213,7 @@ const ResultPage: React.FC = () => {
             size="large"
             onClick={handleAddResult}
           >
-            번호 추가
+            +
           </Button>
         </div>
       </div>
