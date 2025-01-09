@@ -9,13 +9,10 @@ import { useNavigate } from "react-router-dom";
 import { useLatestDraw } from "@/features/draw/hooks/useLatestDraw";
 import { ErrorMessage } from "@/components/common";
 import SkeletonRoundCard from "@/components/common/skeleton/SkeletonRoundCard";
-import StatisticsPopup from "@/components/popup/StatisticPopup";
-import { useAppSelector } from "@/redux/hooks";
 
 const HomePage = () => {
   const { data: latestRound, isLoading, isError } = useLatestDraw();
   const navigate = useNavigate();
-  const lottoHistory = useAppSelector((state) => state.draw.allDraws);
   const renderCard = () => {
     if (isLoading) {
       return <SkeletonRoundCard />;
@@ -44,12 +41,6 @@ const HomePage = () => {
     <Layout>
       <div className={styles.container}>
         <Hero />
-        <StatisticsPopup
-          lottoHistory={lottoHistory}
-          visible={false}
-          numbers={[6, 11, 17, 19, 40, 43]}
-          onClose={() => {}}
-        />
         {renderCard()}
         <Margin size={20} />
         <Generation />

@@ -59,7 +59,7 @@ const KakaoShareButton: React.FC<KakaoShareButtonProps> = ({ numbers }) => {
       <Button
         icon={<ShareAltOutlined />}
         onClick={handleKakaoShare}
-        style={{ flex: 1, margin: "0 4px" }}
+        style={{ flex: 1 }}
       >
         공유
       </Button>

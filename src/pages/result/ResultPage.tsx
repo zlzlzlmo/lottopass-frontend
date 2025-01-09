@@ -14,7 +14,7 @@ const ResultPage: React.FC = () => {
   const [numbers, setNumbers] = useState<number[]>([]);
   const [searchParams] = useSearchParams();
   const lottoHistory = useAppSelector((state) => state.draw.allDraws);
-
+  console.log("lottoHistory ; ", lottoHistory);
   const minCount = searchParams.get("minCount") ?? 6;
   const requiredNumbers =
     searchParams.get("requiredNumbers")?.split(",").map(Number) ?? [];
