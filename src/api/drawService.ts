@@ -8,7 +8,12 @@ export class DrawService extends BaseApiService {
   }
 
   async getAllDraws(): Promise<LottoDraw[]> {
-    return this.handleResponse(this.get<LottoDraw[]>("/all"));
+    const response = await this.handleResponse(this.get<LottoDraw[]>("/all"));
+
+    return response.map((draw) => ({
+      ...draw,
+      winningNumbers: draw.winningNumbers.map(Number),
+    }));
   }
 
   async getLatestDraw(): Promise<LottoDraw> {

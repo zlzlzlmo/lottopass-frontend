@@ -33,8 +33,6 @@ const StatisticsPopup: React.FC<StatisticsProps> = ({
   const lottoHistory = useAppSelector((state) => state.draw.allDraws);
 
   const getLastAppearance = (number: number): number | null => {
-    console.log("lottoHistory : ", lottoHistory);
-    console.log("numbers :", numbers);
     for (const record of lottoHistory) {
       if (record.winningNumbers.includes(number)) {
         return record.drawNumber;
