@@ -37,7 +37,6 @@ const RoundCard: React.FC<RoundCardProps> = ({
       }
       className={styles.card}
     >
-      {/* 당첨 번호 */}
       <Space className={styles.numbersContainer} wrap>
         {winningNumbers.map((num, index) => (
           <Tag

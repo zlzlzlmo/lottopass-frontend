@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import styles from "./ResultPage.module.scss";
 import Layout from "../../components/layout/Layout";
 import { getRandomNum, shuffle } from "@/utils/number";
 import { useSearchParams } from "react-router-dom";
-import NumberContainer from "@/components/common/number/NumberContainer";
-import { Button, Card, Space, message } from "antd";
-import { DeleteOutlined, ReloadOutlined } from "@ant-design/icons";
+import { Button, Space, message } from "antd";
 
-import KakaoShareButton from "./KakaoButton";
+import LuckyNumberCard from "@/components/common/card/LuckyNumberCard";
+import StatisticsPopup from "@/components/popup/StatisticPopup";
+import { useAppSelector } from "@/redux/hooks";
 
 const ResultPage: React.FC = () => {
+  const [visible, setVisible] = useState<boolean>(false);
+  const [numbers, setNumbers] = useState<number[]>([]);
   const [searchParams] = useSearchParams();
+  const lottoHistory = useAppSelector((state) => state.draw.allDraws);
+
   const minCount = searchParams.get("minCount") ?? 6;
   const requiredNumbers =
     searchParams.get("requiredNumbers")?.split(",").map(Number) ?? [];
@@ -86,6 +89,11 @@ const ResultPage: React.FC = () => {
     message.info("번호가 다시 생성되었습니다.");
   };
 
+  const handleViewStatistics = (index: number) => {
+    setNumbers(results[index]);
+    setVisible(true);
+  };
+
   return (
     <Layout>
       <div className={styles.container}>
@@ -95,116 +103,26 @@ const ResultPage: React.FC = () => {
           style={{ width: "100%", padding: "0 16px" }}
         >
           {results.map((numbers, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Card
-                style={{
-                  borderRadius: 8,
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                  marginBottom: 16,
-                  position: "relative",
-                }}
-                bodyStyle={{
-                  padding: "24px 16px 16px",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <Button
-                  type="text"
-                  danger
-                  onClick={() => handleDeleteResult(index)}
-                  icon={<DeleteOutlined />}
-                  style={{
-                    position: "absolute",
-                    top: 8,
-                    right: 8,
-                  }}
-                />
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginBottom: 12,
-                  }}
-                >
-                  <span style={{ fontWeight: "bold", marginRight: 8 }}>
-                    ✨ 이번 주 행운의 번호! ✨
-                  </span>
-                  <motion.div
-                    style={{
-                      background: "linear-gradient(45deg, #ff4d4f, #ffa39e)",
-                      borderRadius: "50%",
-                      width: 24,
-                      height: 24,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      color: "#fff",
-                      fontWeight: "bold",
-                      fontSize: 12,
-                      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                    }}
-                    animate={{ rotate: 360 }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                  >
-                    🎱
-                  </motion.div>
-                </div>
-
-                <NumberContainer numbers={numbers} />
-
-                <Space
-                  size="small"
-                  style={{
-                    marginTop: 16,
-                    display: "flex",
-                    justifyContent: "space-around",
-                    width: "100%",
-                  }}
-                >
-                  {/* <Button
-                    type="primary"
-                    icon={
-                      savedStatus[index] ? <CheckOutlined /> : <SaveOutlined />
-                    }
-                    onClick={() => handleSaveResult(numbers, index)}
-                    disabled={savedStatus[index]}
-                    style={{
-                      flex: 1,
-                      margin: "0 4px",
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    {savedStatus[index] ? "완료" : "저장"}
-                  </Button> */}
-                  <Button
-                    icon={<ReloadOutlined />}
-                    onClick={() => handleRegenerate(index)}
-                    style={{ flex: 1, margin: "0 4px" }}
-                  >
-                    다시 생성
-                  </Button>
-
-                  <KakaoShareButton numbers={numbers} />
-                </Space>
-              </Card>
-            </motion.div>
+            <LuckyNumberCard
+              numbers={numbers}
+              index={index}
+              onDelete={handleDeleteResult}
+              onViewStatistics={handleViewStatistics}
+              onRegenerate={handleRegenerate}
+            />
           ))}
         </Space>
+        {
+          <StatisticsPopup
+            visible={visible}
+            onClose={() => {
+              setVisible(false);
+              setNumbers([]);
+            }}
+            numbers={numbers}
+            lottoHistory={lottoHistory}
+          />
+        }
 
         <div style={{ marginTop: 20, textAlign: "center" }}>
           <Button
