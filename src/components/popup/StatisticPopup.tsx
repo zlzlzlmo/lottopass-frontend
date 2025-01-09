@@ -228,7 +228,7 @@ const StatisticsPopup: React.FC<StatisticsProps> = ({
     {
       title: (
         <>
-          연속 출현 횟수
+          최대 연속 출현 횟수
           <Tooltip title="해당 번호가 역대 전 회차 중 연속으로 등장한 최대 횟수입니다.">
             <QuestionCircleOutlined style={{ marginLeft: 8 }} />
           </Tooltip>
