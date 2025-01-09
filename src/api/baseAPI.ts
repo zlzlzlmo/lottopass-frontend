@@ -8,6 +8,7 @@ export class BaseApiService {
   constructor(baseURL: string) {
     this.axiosInstance = axios.create({
       baseURL,
+      withCredentials: true,
     });
   }
 
@@ -32,6 +33,15 @@ export class BaseApiService {
       return response.data;
     } catch (error: any) {
       throw new Error(error.message || "POST 요청 실패");
+    }
+  }
+
+  protected async delete<T>(url: string): Promise<FindAllResponse<T>> {
+    try {
+      const response = await this.axiosInstance.delete(url);
+      return response.data;
+    } catch (error: any) {
+      throw new Error(error.message || "DELETE 요청 실패");
     }
   }
 

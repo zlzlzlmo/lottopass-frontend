@@ -8,7 +8,6 @@ import {
   SortDropDown,
 } from "@/components/common";
 import { useRangeSelector } from "@/features/range/hooks/useRangeSelect";
-import Layout from "@/components/layout/Layout";
 
 interface LottoDraw {
   drawNumber: number;
@@ -53,9 +52,9 @@ const BallView: React.FC<BallViewProps> = ({ data }) => {
 
   if (!range)
     return (
-      <Layout>
+      <>
         <LoadingIndicator />
-      </Layout>
+      </>
     );
 
   return (

@@ -2,11 +2,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { drawService } from "@/api";
 import { LottoDraw } from "lottopass-shared";
 
-// 초기 상태 정의
 interface DrawState {
-  allDraws: LottoDraw[]; // 모든 회차 데이터
-  loading: boolean; // 로딩 상태
-  error: string | null; // 에러 메시지
+  allDraws: LottoDraw[];
+  loading: boolean;
+  error: string | null;
 }
 
 const initialState: DrawState = {

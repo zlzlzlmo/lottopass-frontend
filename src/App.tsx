@@ -18,6 +18,7 @@ import {
   WinningStoresPage,
 } from "./pages";
 import ScrollToTop from "./components/common/scroll/ScrollToTop";
+import AppInitializer from "./AppInitializer";
 
 const queryClient = new QueryClient();
 
@@ -43,11 +44,17 @@ const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        <Routes>
-          {routes.map((route) => (
-            <Route key={route.path} path={route.path} element={route.element} />
-          ))}
-        </Routes>
+        <AppInitializer>
+          <Routes>
+            {routes.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.element}
+              />
+            ))}
+          </Routes>
+        </AppInitializer>
       </Router>
       <ScrollToTop />
     </QueryClientProvider>

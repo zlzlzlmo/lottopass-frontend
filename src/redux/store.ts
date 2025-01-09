@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import drawReducer from "@/features/draw/drawSlice";
 import locationReducer from "@features/location/locationSlice";
+import authSlice from "@features/auth/authSlice";
 
 export const store = configureStore({
   reducer: {
     draw: drawReducer,
     location: locationReducer,
+    auth: authSlice,
   },
   devTools: process.env.NODE_ENV !== "production",
 });
