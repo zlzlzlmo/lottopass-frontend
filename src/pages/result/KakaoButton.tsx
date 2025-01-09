@@ -3,21 +3,19 @@ import { Button } from "antd";
 import { ShareAltOutlined } from "@ant-design/icons";
 
 interface KakaoShareButtonProps {
-  numbers: number[]; // 공유할 로또 번호 조합
+  numbers: number[];
 }
 
 const KakaoShareButton: React.FC<KakaoShareButtonProps> = ({ numbers }) => {
   useEffect(() => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init(import.meta.env.VITE_KAKAO_JAVASCRIPT_KEY);
-      console.log("Kakao SDK initialized:", window.Kakao.isInitialized());
     }
   }, []);
 
-  // 다음 추첨일 계산 로직 (예: 매주 토요일)
   const getNextDrawDate = (): string => {
     const today = new Date();
-    const dayOfWeek = today.getDay(); // 0: 일요일, 1: 월요일, ..., 6: 토요일
+    const dayOfWeek = today.getDay();
     const daysUntilSaturday = (6 - dayOfWeek + 7) % 7; // 다음 토요일까지 남은 일 수
     const nextDrawDate = new Date(today);
     nextDrawDate.setDate(today.getDate() + daysUntilSaturday);
@@ -30,9 +28,8 @@ const KakaoShareButton: React.FC<KakaoShareButtonProps> = ({ numbers }) => {
       return;
     }
 
-    // 로또 번호를 문자열로 변환
     const numbersText = numbers.join(", ");
-    const drawDate = getNextDrawDate(); // 동적으로 추첨일 계산
+    const drawDate = getNextDrawDate();
 
     window.Kakao.Share.sendDefault({
       objectType: "feed",
