@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Space, Card } from "antd";
 import Layout from "@/components/layout/Layout";
+import { useLocation } from "react-router-dom";
 
 interface LoginButtonProps {
   provider: string;
@@ -15,17 +16,22 @@ const LoginButton: React.FC<LoginButtonProps> = ({
   style,
   logo,
 }) => {
+  const location = useLocation();
   const handleLogin = () => {
-    const backendUrl = "http://localhost:3000";
-    window.location.href = `${backendUrl}/auth/${provider}`;
+    const from = location.state?.from?.pathname || "/";
+    sessionStorage.setItem("redirectPath", from);
+
+    window.location.href = `${
+      import.meta.env.VITE_API_BASE_URL
+    }/auth/${provider}`;
   };
 
   return (
     <Button
       style={{
         ...style,
-        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // 입체감 추가
-        borderRadius: 8, // 버튼에 곡선 추가
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        borderRadius: 8,
         height: 50,
       }}
       block

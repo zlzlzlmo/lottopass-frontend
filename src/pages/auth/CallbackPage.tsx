@@ -21,7 +21,9 @@ const CallbackPage: React.FC = () => {
 
           dispatch(setUser(parsedUser));
 
-          navigate("/");
+          const redirectPath = sessionStorage.getItem("redirectPath");
+          navigate(redirectPath ?? "/");
+          sessionStorage.removeItem("redirectPath");
         } else {
           throw new Error("User data is missing in the URL.");
         }

@@ -9,4 +9,5 @@ export const ROUTES = {
   STATISTIC: { path: "/statistic", label: "번호 통계" },
   LOGIN: { path: "/login", label: "" },
   CALLBACK: { path: "/auth/:provider/callback", label: "" },
+  SAVED_COMBINATIONS: { path: "/saved-combinations", label: "내 번호" },
 };
