@@ -1,8 +1,9 @@
 import React from "react";
-import { Modal, Table, Typography, List, Tooltip } from "antd";
+import { Modal, Table, Typography, Tooltip } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import NumberContainer from "../common/number/NumberContainer";
 import { useAppSelector } from "@/redux/hooks";
+import WinningHistory from "../common/card/\bWinningHistory";
 
 const { Title } = Typography;
 
@@ -31,6 +32,27 @@ const StatisticsPopup: React.FC<StatisticsProps> = ({
   onClose,
 }) => {
   const lottoHistory = useAppSelector((state) => state.draw.allDraws);
+
+  const checkWinningRank = (numbers: number[], record: LottoDraw) => {
+    const matched = record.winningNumbers.filter((num: number) =>
+      numbers.includes(num)
+    ).length;
+    const bonusMatched = numbers.includes(record.bonusNumber);
+
+    if (matched === 6) return "1등";
+    if (matched === 5 && bonusMatched) return "2등";
+    if (matched === 5) return "3등";
+    if (matched === 4) return "4등";
+    if (matched === 3) return "5등";
+    return null;
+  };
+
+  const winningResults = lottoHistory
+    .map((record) => ({
+      drawNumber: record.drawNumber,
+      rank: checkWinningRank(numbers, record),
+    }))
+    .filter((result) => result.rank !== null);
 
   const getLastAppearance = (number: number): number | null => {
     for (const record of lottoHistory) {
@@ -281,15 +303,15 @@ const StatisticsPopup: React.FC<StatisticsProps> = ({
           <QuestionCircleOutlined style={{ marginLeft: 8 }} />
         </Tooltip>
       </Title>
-      <List
-        dataSource={lottoHistory.filter((record) =>
-          numbers.every((num) => record.winningNumbers.includes(num))
-        )}
+
+      <WinningHistory results={winningResults} />
+      {/* <List
+        dataSource={winningResults}
         renderItem={(record) => (
-          <List.Item>{`제 ${record.drawNumber}회차: ${record.date}`}</List.Item>
+          <List.Item>{`제 ${record.drawNumber}회차: ${record}`}</List.Item>
         )}
         locale={{ emptyText: "과거 당첨 기록이 없습니다." }}
-      />
+      /> */}
 
       <Title level={4} style={{ marginTop: 24 }}>
         번호 쌍 빈도
