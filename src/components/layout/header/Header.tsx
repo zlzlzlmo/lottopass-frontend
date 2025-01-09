@@ -102,7 +102,7 @@ const Header: React.FC = () => {
               </Button>
             </NavLink>
           ))}
-
+        {/* 
         <div style={{ marginTop: "auto" }}>
           {isLoggedIn ? (
             <Button
@@ -130,7 +130,7 @@ const Header: React.FC = () => {
               로그인
             </Button>
           )}
-        </div>
+        </div> */}
       </Drawer>
     </header>
   );
