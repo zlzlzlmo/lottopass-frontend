@@ -2,6 +2,7 @@ import React from "react";
 import { Modal, Table, Typography, List, Tooltip } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import NumberContainer from "../common/number/NumberContainer";
+import { useAppSelector } from "@/redux/hooks";
 
 const { Title } = Typography;
 
@@ -21,17 +22,19 @@ export interface LottoDraw {
 interface StatisticsProps {
   visible: boolean;
   numbers: number[];
-  lottoHistory: LottoDraw[];
   onClose: () => void;
 }
 
 const StatisticsPopup: React.FC<StatisticsProps> = ({
   visible,
   numbers,
-  lottoHistory,
   onClose,
 }) => {
+  const lottoHistory = useAppSelector((state) => state.draw.allDraws);
+
   const getLastAppearance = (number: number): number | null => {
+    console.log("lottoHistory : ", lottoHistory);
+    console.log("numbers :", numbers);
     for (const record of lottoHistory) {
       if (record.winningNumbers.includes(number)) {
         return record.drawNumber;

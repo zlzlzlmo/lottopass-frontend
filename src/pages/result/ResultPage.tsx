@@ -7,14 +7,12 @@ import { Button, Space, message } from "antd";
 
 import LuckyNumberCard from "@/components/common/card/LuckyNumberCard";
 import StatisticsPopup from "@/components/popup/StatisticPopup";
-import { useAppSelector } from "@/redux/hooks";
 
 const ResultPage: React.FC = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [numbers, setNumbers] = useState<number[]>([]);
   const [searchParams] = useSearchParams();
-  const lottoHistory = useAppSelector((state) => state.draw.allDraws);
-  console.log("lottoHistory ; ", lottoHistory);
+
   const minCount = searchParams.get("minCount") ?? 6;
   const requiredNumbers =
     searchParams.get("requiredNumbers")?.split(",").map(Number) ?? [];
@@ -120,7 +118,6 @@ const ResultPage: React.FC = () => {
               setNumbers([]);
             }}
             numbers={numbers}
-            lottoHistory={lottoHistory}
           />
         }
 
