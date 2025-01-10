@@ -58,12 +58,7 @@ const BallView: React.FC<BallViewProps> = ({ data }) => {
     );
 
   return (
-    <div style={{ padding: "20px", maxWidth: "640px", margin: "0 auto" }}>
-      {/* 회차 범위 선택 */}
-      <h3 style={{ fontWeight: "bold", marginBottom: "20px" }}>
-        회차 범위 선택
-      </h3>
-
+    <>
       <RangeSelector
         min={minDraw}
         max={maxDraw}
@@ -112,7 +107,7 @@ const BallView: React.FC<BallViewProps> = ({ data }) => {
       ) : (
         <ChartSection data={statistics} />
       )}
-    </div>
+    </>
   );
 };
 
