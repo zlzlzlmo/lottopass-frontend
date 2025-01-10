@@ -19,7 +19,7 @@ import {
 } from "./pages";
 import ScrollToTop from "./components/common/scroll/ScrollToTop";
 import SimulationNumberGenrationPage from "./pages/simulationNumberGeneration/SimulationNumberGenrationPage";
-import SimulationResultPage from "./pages/result/SimulationResult";
+import SimulationResultPage from "./pages/result/simulation/SimulationResult";
 
 const queryClient = new QueryClient();
 

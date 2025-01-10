@@ -1,4 +1,3 @@
-/* eslint-disable no-constant-binary-expression */
 import React, { useState } from "react";
 import {
   Button,
@@ -8,28 +7,25 @@ import {
   Space,
   message,
   InputNumber,
-  Modal,
+  Select,
 } from "antd";
 import Layout from "@/components/layout/Layout";
 import { getRandomNum, shuffle } from "@/utils/number";
 import { useSearchParams } from "react-router-dom";
 import { useAppSelector } from "@/redux/hooks";
+import { parseQUeryParams } from "../../numberGeneration/components/numberActionButtons/utils";
+import { QueryParams, setRequiredNumbers } from "../result-service";
+import NumberContainer from "@/components/common/number/NumberContainer";
 
 const { Title, Text } = Typography;
+const { Option } = Select;
 
 const SimulationResultPage: React.FC = () => {
   const defaultMaxCount = 3000;
-  const maxSimulationLimit = 1000000; // 최대 시뮬레이션 제한
+  const maxSimulationLimit = 1000000;
 
-  const [searchParams] = useSearchParams();
-  const requiredNumbers =
-    searchParams.get("requiredNumbers")?.split(",").map(Number) ?? [];
-  const minCount = searchParams.get("minCount") ?? 6;
-  const standardIdx = Number(searchParams.get("standardIdx")) ?? 0;
-
-  const latestDraw = useAppSelector((state) => state.draw.allDraws)[
-    standardIdx + 1
-  ];
+  const allDraws = useAppSelector((state) => state.draw.allDraws); // 모든 회차 데이터 가져오기
+  const [selectedDraw, setSelectedDraw] = useState<number>(0); // 기본값: 1회차 (가장 최근)
 
   const [simulationRunning, setSimulationRunning] = useState(false);
   const [simulationCount, setSimulationCount] = useState(0);
@@ -41,17 +37,21 @@ const SimulationResultPage: React.FC = () => {
     fourth: 0,
     fifth: 0,
   });
-  const [maxCount, setMaxCount] = useState(defaultMaxCount); // 사용자 입력 시뮬레이션 횟수
+  const [maxCount, setMaxCount] = useState(defaultMaxCount);
 
-  // 로또 기본 확률
-  const lottoBaseProbabilities = {
-    first: 1 / 8145060,
-    second: 1 / 1357510,
-    third: 1 / 35712,
-    fourth: 1 / 733,
-    fifth: 1 / 45,
-  };
+  const [searchParams] = useSearchParams();
 
+  const queryParams = parseQUeryParams(searchParams) as QueryParams;
+
+  const latestDraw = allDraws[selectedDraw]; // 선택된 회차의 데이터 가져오기
+  const minCount = queryParams.minCount ?? 6;
+
+  const requiredNumbers = setRequiredNumbers(
+    queryParams,
+    allDraws.slice(selectedDraw + 1)
+  );
+
+  // 번호 생성 함수
   const generateNumbers = (): number[] => {
     const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
     const len = requiredNumbers.length;
@@ -84,6 +84,7 @@ const SimulationResultPage: React.FC = () => {
     return null; // 등수 없음
   };
 
+  // 시뮬레이션 실행 함수
   const handleSimulate = async () => {
     if (!latestDraw) {
       message.error("기준 회차 데이터가 없습니다. 다시 시도해주세요.");
@@ -126,54 +127,7 @@ const SimulationResultPage: React.FC = () => {
 
     setSimulationRunning(false);
 
-    Modal.info({
-      title: "시뮬레이션 결과",
-      content: (
-        <div>
-          <p>총 {maxCount.toLocaleString()}번의 시뮬레이션 결과:</p>
-          <p>
-            1등: {finalRankCounts.first.toLocaleString()}번 (
-            {((finalRankCounts.first / maxCount) * 100).toPrecision(2)}%)
-            <br />
-            <Text type="secondary">
-              기본 확률: {(lottoBaseProbabilities.first * 100).toPrecision(2)}%
-            </Text>
-          </p>
-          <p>
-            2등: {finalRankCounts.second.toLocaleString()}번 (
-            {((finalRankCounts.second / maxCount) * 100).toPrecision(2)}%)
-            <br />
-            <Text type="secondary">
-              기본 확률: {(lottoBaseProbabilities.second * 100).toPrecision(2)}%
-            </Text>
-          </p>
-          <p>
-            3등: {finalRankCounts.third.toLocaleString()}번 (
-            {((finalRankCounts.third / maxCount) * 100).toPrecision(2)}%)
-            <br />
-            <Text type="secondary">
-              기본 확률: {(lottoBaseProbabilities.third * 100).toPrecision(2)}%
-            </Text>
-          </p>
-          <p>
-            4등: {finalRankCounts.fourth.toLocaleString()}번 (
-            {((finalRankCounts.fourth / maxCount) * 100).toPrecision(2)}%)
-            <br />
-            <Text type="secondary">
-              기본 확률: {(lottoBaseProbabilities.fourth * 100).toPrecision(2)}%
-            </Text>
-          </p>
-          <p>
-            5등: {finalRankCounts.fifth.toLocaleString()}번 (
-            {((finalRankCounts.fifth / maxCount) * 100).toPrecision(2)}%)
-            <br />
-            <Text type="secondary">
-              기본 확률: {(lottoBaseProbabilities.fifth * 100).toPrecision(2)}%
-            </Text>
-          </p>
-        </div>
-      ),
-    });
+    message.success("시뮬레이션이 완료되었습니다!");
   };
 
   return (
@@ -184,17 +138,27 @@ const SimulationResultPage: React.FC = () => {
             type="secondary"
             style={{ display: "block", textAlign: "center", marginBottom: 20 }}
           >
-            로또 번호 조합 시뮬레이션을 통해 각 등수에 당첨된 횟수와 확률을
-            확인합니다.
+            로또 번호 조합 시뮬레이션을 통해 각 등수에 당첨된 횟수를 확인합니다.
           </Text>
 
           <Divider />
 
           <Space direction="vertical" size="middle" style={{ width: "100%" }}>
             <div>
-              <Text strong>기준 회차:</Text>{" "}
-              {latestDraw?.drawNumber ?? "데이터 없음"}
+              <Text strong>기준 회차:</Text>
+              <Select
+                style={{ marginLeft: "10px", width: "150px" }}
+                value={selectedDraw}
+                onChange={(value) => setSelectedDraw(value)}
+              >
+                {allDraws.map((draw, index) => (
+                  <Option key={draw.drawNumber} value={index}>
+                    {draw.drawNumber}회
+                  </Option>
+                ))}
+              </Select>
             </div>
+
             <div>
               <Text strong>당첨 번호:</Text>{" "}
               {latestDraw?.winningNumbers.join(", ") ?? "없음"}
@@ -232,8 +196,12 @@ const SimulationResultPage: React.FC = () => {
               type="primary"
               onClick={handleSimulate}
               disabled={simulationRunning}
-              shape="round"
-              size="large"
+              loading={simulationRunning}
+              style={{
+                fontWeight: "bold",
+                transition:
+                  "background-color 0.3s ease, border-color 0.3s ease",
+              }}
             >
               {simulationRunning ? "시뮬레이션 진행 중..." : "시뮬레이션 시작"}
             </Button>
@@ -251,7 +219,12 @@ const SimulationResultPage: React.FC = () => {
               }}
             >
               <div>현재 번호 조합</div>
-              <div>{simulatedNumbers}</div>
+              {
+                <NumberContainer
+                  numbers={simulatedNumbers.split(",").map(Number)}
+                />
+              }
+              {/* <div>{simulatedNumbers}</div> */}
             </div>
           </div>
 
@@ -259,30 +232,51 @@ const SimulationResultPage: React.FC = () => {
           <div style={{ textAlign: "center", marginTop: 20 }}>
             <Card
               style={{
-                borderRadius: "15px",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-                padding: "20px",
-                background: "linear-gradient(to bottom, #ffffff, #f1f1f1)",
+                borderRadius: "12px",
+                boxShadow: "0 6px 12px rgba(0, 0, 0, 0.1)",
+                padding: "24px",
+                background: "#f9f9f9",
+                textAlign: "left",
               }}
             >
-              <Title level={4} style={{ color: "#595959" }}>
-                실시간 결과
-              </Title>
-              <p style={{ fontSize: "16px", margin: "10px 0" }}>
-                1등: <strong>{rankCounts.first.toLocaleString()}</strong>번
-              </p>
-              <p style={{ fontSize: "16px", margin: "10px 0" }}>
-                2등: <strong>{rankCounts.second.toLocaleString()}</strong>번
-              </p>
-              <p style={{ fontSize: "16px", margin: "10px 0" }}>
-                3등: <strong>{rankCounts.third.toLocaleString()}</strong>번
-              </p>
-              <p style={{ fontSize: "16px", margin: "10px 0" }}>
-                4등: <strong>{rankCounts.fourth.toLocaleString()}</strong>번
-              </p>
-              <p style={{ fontSize: "16px", margin: "10px 0" }}>
-                5등: <strong>{rankCounts.fifth.toLocaleString()}</strong>번
-              </p>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "8px",
+                  padding: "8px 16px",
+                  backgroundColor: "#fff",
+                  borderRadius: "8px",
+                  border: "1px solid #e0e0e0",
+                }}
+              >
+                {[
+                  { rank: "1등", count: rankCounts.first, color: "#ff6f61" },
+                  { rank: "2등", count: rankCounts.second, color: "#ff914d" },
+                  { rank: "3등", count: rankCounts.third, color: "#ffc107" },
+                  { rank: "4등", count: rankCounts.fourth, color: "#8bc34a" },
+                  { rank: "5등", count: rankCounts.fifth, color: "#03a9f4" },
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      padding: "8px 12px",
+                      borderRadius: "6px",
+                      backgroundColor: item.color + "20",
+                    }}
+                  >
+                    <span style={{ fontWeight: "bold", color: item.color }}>
+                      {item.rank}
+                    </span>
+                    <span style={{ fontSize: "16px", fontWeight: "600" }}>
+                      {item.count.toLocaleString()}번
+                    </span>
+                  </div>
+                ))}
+              </div>
             </Card>
           </div>
         </Card>

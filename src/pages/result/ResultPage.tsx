@@ -7,15 +7,21 @@ import { Button, Space, message } from "antd";
 
 import LuckyNumberCard from "@/components/common/card/LuckyNumberCard";
 import StatisticsPopup from "@/components/popup/StatisticPopup";
+import { parseQUeryParams } from "../numberGeneration/components/numberActionButtons/utils";
+import { QueryParams, setRequiredNumbers } from "./result-service";
+import { useAppSelector } from "@/redux/hooks";
 
 const ResultPage: React.FC = () => {
+  const allDraws = useAppSelector((state) => state.draw.allDraws);
   const [visible, setVisible] = useState<boolean>(false);
   const [numbers, setNumbers] = useState<number[]>([]);
   const [searchParams] = useSearchParams();
 
-  const minCount = searchParams.get("minCount") ?? 6;
-  const requiredNumbers =
-    searchParams.get("requiredNumbers")?.split(",").map(Number) ?? [];
+  const queryParams = parseQUeryParams(searchParams) as QueryParams;
+
+  const minCount = queryParams.minCount ?? 6;
+  const requiredNumbers = setRequiredNumbers(queryParams, allDraws);
+
   const maxResultsLen = 20;
 
   const generateNumbers = (): number[] => {
@@ -58,21 +64,6 @@ const ResultPage: React.FC = () => {
 
     message.success("번호 조합이 삭제되었습니다.");
   };
-
-  // const handleSaveResult = async (numbers: number[], index: number) => {
-  //   try {
-  //     await numberService.setNumberCombination(numbers);
-
-  //     const updatedSavedStatus = [...savedStatus];
-  //     updatedSavedStatus[index] = true;
-  //     setSavedStatus(updatedSavedStatus);
-
-  //     message.success("번호 조합이 저장되었습니다.");
-  //   } catch (error) {
-  //     console.error("error :", error);
-  //     message.error("저장에 실패했습니다. 다시 시도해주세요.");
-  //   }
-  // };
 
   const handleRegenerate = (index: number) => {
     const updatedResults = results.map((numbers, i) =>
