@@ -22,7 +22,7 @@ const SimulationControls: React.FC<Props> = ({
   latestDraw,
 }) => {
   const maxSimulationLimit = 1000000;
-  const [maxCount, setMaxCount] = useState<number>(3000);
+  const [maxCount, setMaxCount] = useState<number>(1000);
 
   return (
     <div style={{ width: "100%", maxWidth: "400px", margin: "0 auto" }}>
