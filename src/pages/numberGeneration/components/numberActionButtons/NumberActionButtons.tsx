@@ -100,7 +100,7 @@ const NumberActionButtons = () => {
           의 모든 번호에서 생성합니다.
         </p>
       </div>
-      {popupProps && <PopupManager {...popupProps} />}
+      {popupProps && <PopupManager {...popupProps} draws={allDraws} />}
     </>
   );
 };

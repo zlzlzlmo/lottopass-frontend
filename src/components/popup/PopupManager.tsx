@@ -5,6 +5,7 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 import DrawRangeSelectPopup from "./DrawRangeSelectPopup";
 import NumberControlPopup from "./NumberControlPopup";
 import NumberSelectPopup from "./NumberSelectPopup";
+import { LottoDraw } from "lottopass-shared";
 
 export type PopupType = "numberSelect" | "numberControl" | "rangeSelect";
 export interface PopupManagerProps {
@@ -13,6 +14,7 @@ export interface PopupManagerProps {
   onClose: () => void;
   onConfirm: (...args: any[]) => void;
   [key: string]: any;
+  draws: LottoDraw[];
 }
 
 const PopupManager: React.FC<PopupManagerProps> = ({
@@ -21,6 +23,7 @@ const PopupManager: React.FC<PopupManagerProps> = ({
   confirmType,
   onClose,
   onConfirm,
+  draws,
   ...rest
 }) => {
   const [isHelpModalVisible, setHelpModalVisible] = React.useState(false);
@@ -44,7 +47,13 @@ const PopupManager: React.FC<PopupManagerProps> = ({
           />
         );
       case "rangeSelect":
-        return <DrawRangeSelectPopup onClose={onClose} onConfirm={onConfirm} />;
+        return (
+          <DrawRangeSelectPopup
+            onClose={onClose}
+            onConfirm={onConfirm}
+            draws={draws}
+          />
+        );
       default:
         return null;
     }

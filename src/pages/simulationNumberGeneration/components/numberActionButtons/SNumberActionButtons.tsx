@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
-import { Row, Col, Card, Typography } from "antd";
+import { useEffect, useState } from "react";
+import { Row, Col, Card, Typography, Select } from "antd";
 import styles from "./SNumberActionButtons.module.scss";
 import PopupManager from "@/components/popup/PopupManager";
 import { useNavigate } from "react-router-dom";
@@ -10,12 +10,17 @@ import {
   getRecentDraws,
 } from "@/pages/numberGeneration/components/numberActionButtons/utils";
 import { generateOptions } from "@/pages/numberGeneration/components/numberActionButtons/options";
+import { LottoDraw } from "lottopass-shared";
 
 const { Text } = Typography;
+const { Option } = Select;
 
 const SNumberActionButtons = () => {
   const nonRemovedAllDraws = useAppSelector((state) => state.draw.allDraws);
-  const allDraws = nonRemovedAllDraws.slice(1);
+  const [selectedIdx, setSelectedIdx] = useState<number>(0);
+  const [selectedDraws, setSelectedDraws] = useState<LottoDraw[]>(
+    nonRemovedAllDraws.slice(selectedIdx)
+  );
 
   const navigate = useNavigate();
   const [popupProps, setPopupProps] = useState<any | null>(null);
@@ -24,6 +29,8 @@ const SNumberActionButtons = () => {
 
   const navigateToResult = (numbers: number[], minCount?: number) => {
     const queryParams = createSearchParams(numbers, minCount);
+    queryParams.set("standardIdx", selectedIdx.toString());
+
     navigate(`/s-result?${queryParams.toString()}`);
   };
 
@@ -51,7 +58,7 @@ const SNumberActionButtons = () => {
     minCount: number,
     confirmType: "exclude" | "require"
   ) => {
-    const recentNumbers = getRecentDraws(allDraws, drawCount).flatMap(
+    const recentNumbers = getRecentDraws(selectedDraws, drawCount).flatMap(
       (round) => round.winningNumbers
     );
 
@@ -63,7 +70,7 @@ const SNumberActionButtons = () => {
 
   // 특정 회차 범위의 번호 생성
   const generateRangeNumbers = (min: number, max: number) => {
-    const draws = allDraws.filter(
+    const draws = selectedDraws.filter(
       ({ drawNumber }) => drawNumber >= min && drawNumber <= max
     );
 
@@ -83,8 +90,27 @@ const SNumberActionButtons = () => {
     setPopupProps
   );
 
+  useEffect(() => {
+    setSelectedDraws(nonRemovedAllDraws.slice(selectedIdx + 1));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedIdx]);
+
   return (
     <>
+      <div style={{ marginBottom: "20px", textAlign: "center" }}>
+        <Text strong>시뮬레이션 당첨 회차 기준:</Text>
+        <Select
+          style={{ marginLeft: "10px", width: "200px" }}
+          onChange={(value) => {
+            setSelectedIdx(Number(value));
+          }}
+          value={selectedIdx}
+        >
+          {nonRemovedAllDraws.slice(1).map((draw, index) => (
+            <Option value={index}>{draw.drawNumber}회</Option>
+          ))}
+        </Select>
+      </div>
       <div className={styles.container}>
         <Row gutter={[24, 24]} justify="center">
           {options.map((option, index) => (
@@ -106,7 +132,7 @@ const SNumberActionButtons = () => {
           의 모든 번호에서 생성합니다.
         </p>
       </div>
-      {popupProps && <PopupManager {...popupProps} />}
+      {popupProps && <PopupManager {...popupProps} draws={selectedDraws} />}
     </>
   );
 };

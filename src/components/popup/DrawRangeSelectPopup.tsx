@@ -1,6 +1,5 @@
 import { Button } from "antd";
 import RangeSelector from "../common/rangeSelector/RangeSelector";
-import { useAppSelector } from "@/redux/hooks";
 import { useRangeSelector } from "@/features/range/hooks/useRangeSelect";
 import { LottoDraw } from "lottopass-shared";
 import FlexContainer from "../common/container/FlexContainer";
@@ -11,19 +10,21 @@ import { ROUTES } from "@/constants/routes";
 interface DrawRangeSelectPopupProps {
   onClose: () => void;
   onConfirm: (min: number, max: number) => void;
+  draws: LottoDraw[];
 }
 
 const DrawRangeSelectPopup: React.FC<DrawRangeSelectPopupProps> = ({
   onClose,
   onConfirm,
+  draws,
 }) => {
+  const defaultMinRange = 20;
   const location = useLocation();
 
-  const defaultMinRange = 20;
-  const allDraws = useAppSelector((state) => state.draw.allDraws);
   const isSimulation = location.pathname === ROUTES.S_NUMBER_GENERATION.path;
   const start = isSimulation ? 1 : 0;
-  const reDrawedAllDraws = allDraws.slice(start);
+  const reDrawedAllDraws = draws.slice(start);
+
   const { maxDraw, range, handleRangeChange } = useRangeSelector<LottoDraw>({
     data: reDrawedAllDraws,
     defaultMinRange,

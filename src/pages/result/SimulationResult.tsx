@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-binary-expression */
 import React, { useState } from "react";
 import {
   Button,
@@ -11,20 +12,24 @@ import {
 } from "antd";
 import Layout from "@/components/layout/Layout";
 import { getRandomNum, shuffle } from "@/utils/number";
-import { useLatestDraw } from "@/features/draw/hooks/useLatestDraw";
 import { useSearchParams } from "react-router-dom";
+import { useAppSelector } from "@/redux/hooks";
 
 const { Title, Text } = Typography;
 
 const SimulationResultPage: React.FC = () => {
   const defaultMaxCount = 3000;
   const maxSimulationLimit = 1000000; // 최대 시뮬레이션 제한
-  const { data: latestDraw } = useLatestDraw();
 
   const [searchParams] = useSearchParams();
   const requiredNumbers =
     searchParams.get("requiredNumbers")?.split(",").map(Number) ?? [];
   const minCount = searchParams.get("minCount") ?? 6;
+  const standardIdx = Number(searchParams.get("standardIdx")) ?? 0;
+
+  const latestDraw = useAppSelector((state) => state.draw.allDraws)[
+    standardIdx + 1
+  ];
 
   const [simulationRunning, setSimulationRunning] = useState(false);
   const [simulationCount, setSimulationCount] = useState(0);
@@ -38,7 +43,15 @@ const SimulationResultPage: React.FC = () => {
   });
   const [maxCount, setMaxCount] = useState(defaultMaxCount); // 사용자 입력 시뮬레이션 횟수
 
-  // 번호 생성 함수
+  // 로또 기본 확률
+  const lottoBaseProbabilities = {
+    first: 1 / 8145060,
+    second: 1 / 1357510,
+    third: 1 / 35712,
+    fourth: 1 / 733,
+    fifth: 1 / 45,
+  };
+
   const generateNumbers = (): number[] => {
     const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
     const len = requiredNumbers.length;
@@ -71,7 +84,6 @@ const SimulationResultPage: React.FC = () => {
     return null; // 등수 없음
   };
 
-  // 시뮬레이션 실행 함수
   const handleSimulate = async () => {
     if (!latestDraw) {
       message.error("기준 회차 데이터가 없습니다. 다시 시도해주세요.");
@@ -119,11 +131,46 @@ const SimulationResultPage: React.FC = () => {
       content: (
         <div>
           <p>총 {maxCount.toLocaleString()}번의 시뮬레이션 결과:</p>
-          <p>1등: {finalRankCounts.first.toLocaleString()}번</p>
-          <p>2등: {finalRankCounts.second.toLocaleString()}번</p>
-          <p>3등: {finalRankCounts.third.toLocaleString()}번</p>
-          <p>4등: {finalRankCounts.fourth.toLocaleString()}번</p>
-          <p>5등: {finalRankCounts.fifth.toLocaleString()}번</p>
+          <p>
+            1등: {finalRankCounts.first.toLocaleString()}번 (
+            {((finalRankCounts.first / maxCount) * 100).toPrecision(2)}%)
+            <br />
+            <Text type="secondary">
+              기본 확률: {(lottoBaseProbabilities.first * 100).toPrecision(2)}%
+            </Text>
+          </p>
+          <p>
+            2등: {finalRankCounts.second.toLocaleString()}번 (
+            {((finalRankCounts.second / maxCount) * 100).toPrecision(2)}%)
+            <br />
+            <Text type="secondary">
+              기본 확률: {(lottoBaseProbabilities.second * 100).toPrecision(2)}%
+            </Text>
+          </p>
+          <p>
+            3등: {finalRankCounts.third.toLocaleString()}번 (
+            {((finalRankCounts.third / maxCount) * 100).toPrecision(2)}%)
+            <br />
+            <Text type="secondary">
+              기본 확률: {(lottoBaseProbabilities.third * 100).toPrecision(2)}%
+            </Text>
+          </p>
+          <p>
+            4등: {finalRankCounts.fourth.toLocaleString()}번 (
+            {((finalRankCounts.fourth / maxCount) * 100).toPrecision(2)}%)
+            <br />
+            <Text type="secondary">
+              기본 확률: {(lottoBaseProbabilities.fourth * 100).toPrecision(2)}%
+            </Text>
+          </p>
+          <p>
+            5등: {finalRankCounts.fifth.toLocaleString()}번 (
+            {((finalRankCounts.fifth / maxCount) * 100).toPrecision(2)}%)
+            <br />
+            <Text type="secondary">
+              기본 확률: {(lottoBaseProbabilities.fifth * 100).toPrecision(2)}%
+            </Text>
+          </p>
         </div>
       ),
     });
@@ -137,7 +184,8 @@ const SimulationResultPage: React.FC = () => {
             type="secondary"
             style={{ display: "block", textAlign: "center", marginBottom: 20 }}
           >
-            로또 번호 조합 시뮬레이션을 통해 각 등수에 당첨된 횟수를 확인합니다.
+            로또 번호 조합 시뮬레이션을 통해 각 등수에 당첨된 횟수와 확률을
+            확인합니다.
           </Text>
 
           <Divider />
