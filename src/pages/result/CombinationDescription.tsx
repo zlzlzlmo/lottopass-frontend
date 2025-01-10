@@ -19,6 +19,8 @@ const CombinationDescription: React.FC<CombinationDescriptionProps> = ({
   const renderCombinationDescription = () => {
     switch (type) {
       case "numberSelect":
+        if (data.selectedNumbers && data.selectedNumbers.length <= 0)
+          return "선택된 번호가 존재하지 않아 모든 경우의 수를 조합합니다.";
         return `선택된 번호 ${data.selectedNumbers
           ?.sort((a, b) => a - b)
           .join(", ")} 가 ${
