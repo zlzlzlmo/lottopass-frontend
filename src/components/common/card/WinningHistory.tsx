@@ -8,12 +8,14 @@ interface WinningHistoryProps {
 }
 
 const WinningHistory: React.FC<WinningHistoryProps> = ({ results }) => {
-  const [showAllResults, setShowAllResults] = useState(false);
+  const [displayCount, setDisplayCount] = useState(5);
 
   const filteredResults = results.filter((result) => result.rank !== null);
-  const displayedResults = showAllResults
-    ? filteredResults
-    : filteredResults.slice(0, 10);
+  const displayedResults = filteredResults.slice(0, displayCount);
+
+  const handleShowMore = () => {
+    setDisplayCount((prev) => prev + 10); // 10개씩 추가 표시
+  };
 
   return (
     <div style={{ marginTop: 16, textAlign: "center" }}>
@@ -30,15 +32,21 @@ const WinningHistory: React.FC<WinningHistoryProps> = ({ results }) => {
             <Text strong>{`제 ${item.drawNumber} 회차`}</Text> - {item.rank}
           </List.Item>
         )}
-        style={{ maxHeight: 300, overflowY: "auto" }}
+        style={{
+          maxWidth: 400,
+          margin: "0 auto",
+          background: "#fff",
+          borderRadius: 8,
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        }}
       />
-      {filteredResults.length > 10 && (
+      {displayCount < filteredResults.length && (
         <Button
-          type="link"
-          onClick={() => setShowAllResults(!showAllResults)}
-          style={{ marginTop: 8 }}
+          type="primary"
+          onClick={handleShowMore}
+          style={{ marginTop: 16 }}
         >
-          {showAllResults ? "간략히 보기" : "더보기"}
+          더보기
         </Button>
       )}
     </div>
