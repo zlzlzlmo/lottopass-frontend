@@ -61,26 +61,26 @@ const Header: React.FC = () => {
           gap: "16px",
           backgroundColor: "#f9f9f9",
         }}
-        footer={
-          <Button
-            type="primary"
-            block
-            style={{
-              height: "48px",
-              fontSize: "16px",
-              fontWeight: "bold",
-              marginTop: "16px",
-              backgroundColor: "#3b82f6",
-              color: "#fff",
-            }}
-            onClick={() => {
-              setDrawerVisible(false);
-              navigate(ROUTES.SIGNUP.path);
-            }}
-          >
-            회원가입
-          </Button>
-        }
+        // footer={
+        //   <Button
+        //     type="primary"
+        //     block
+        //     style={{
+        //       height: "48px",
+        //       fontSize: "16px",
+        //       fontWeight: "bold",
+        //       marginTop: "16px",
+        //       backgroundColor: "#3b82f6",
+        //       color: "#fff",
+        //     }}
+        //     onClick={() => {
+        //       setDrawerVisible(false);
+        //       navigate(ROUTES.SIGNUP.path);
+        //     }}
+        //   >
+        //     회원가입
+        //   </Button>
+        // }
       >
         {Object.values(ROUTES)
           .filter((route) => route.label !== "")

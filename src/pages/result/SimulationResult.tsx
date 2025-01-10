@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Button, Typography, Card, Divider, Space, message } from "antd";
+import {
+  Button,
+  Typography,
+  Card,
+  Divider,
+  Space,
+  message,
+  InputNumber,
+  Modal,
+} from "antd";
 import Layout from "@/components/layout/Layout";
 import { getRandomNum, shuffle } from "@/utils/number";
 import { useLatestDraw } from "@/features/draw/hooks/useLatestDraw";
@@ -8,19 +17,28 @@ import { useSearchParams } from "react-router-dom";
 const { Title, Text } = Typography;
 
 const SimulationResultPage: React.FC = () => {
-  const maxCount = 30000;
-  // 기준이 되는 가장 최근 회차
+  const defaultMaxCount = 3000;
+  const maxSimulationLimit = 1000000; // 최대 시뮬레이션 제한
   const { data: latestDraw } = useLatestDraw();
 
   const [searchParams] = useSearchParams();
   const requiredNumbers =
     searchParams.get("requiredNumbers")?.split(",").map(Number) ?? [];
   const minCount = searchParams.get("minCount") ?? 6;
+
   const [simulationRunning, setSimulationRunning] = useState(false);
   const [simulationCount, setSimulationCount] = useState(0);
   const [simulatedNumbers, setSimulatedNumbers] = useState<string>("");
-  const [simulationFailed, setSimulationFailed] = useState(false);
+  const [rankCounts, setRankCounts] = useState({
+    first: 0,
+    second: 0,
+    third: 0,
+    fourth: 0,
+    fifth: 0,
+  });
+  const [maxCount, setMaxCount] = useState(defaultMaxCount); // 사용자 입력 시뮬레이션 횟수
 
+  // 번호 생성 함수
   const generateNumbers = (): number[] => {
     const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
     const len = requiredNumbers.length;
@@ -33,79 +51,93 @@ const SimulationResultPage: React.FC = () => {
       .sort((a, b) => a - b);
   };
 
+  // 등수 계산 함수
+  const calculateRank = (
+    generatedNumbers: number[],
+    winningNumbers: number[],
+    bonusNumber: number
+  ) => {
+    const matchCount = generatedNumbers.filter((num) =>
+      winningNumbers.includes(num)
+    ).length;
+
+    if (matchCount === 6) return "first"; // 1등
+    if (matchCount === 5 && generatedNumbers.includes(bonusNumber))
+      return "second"; // 2등
+    if (matchCount === 5) return "third"; // 3등
+    if (matchCount === 4) return "fourth"; // 4등
+    if (matchCount === 3) return "fifth"; // 5등
+
+    return null; // 등수 없음
+  };
+
+  // 시뮬레이션 실행 함수
   const handleSimulate = async () => {
     if (!latestDraw) {
       message.error("기준 회차 데이터가 없습니다. 다시 시도해주세요.");
       return;
     }
 
-    const latestDrawWinningNumbers = latestDraw.winningNumbers.map(Number);
-    const latestDrawWinningNumbersStr = latestDrawWinningNumbers.join(",");
-
-    const firstCondition =
-      requiredNumbers.length <= latestDrawWinningNumbers.length &&
-      requiredNumbers.every((num) => latestDrawWinningNumbers.includes(num));
-
-    const secondCondition =
-      requiredNumbers.length > latestDrawWinningNumbers.length &&
-      latestDrawWinningNumbers.every((num) => requiredNumbers.includes(num));
-
-    const thirdCondition =
-      requiredNumbers.filter((num) => latestDrawWinningNumbers.includes(num))
-        .length >= Number(minCount);
-
-    const isPossible = firstCondition || secondCondition || thirdCondition;
-
-    if (!isPossible) {
-      message.error(
-        `현재 설정된 조합으로는 ${latestDraw.drawNumber}회 당첨이 불가능 합니다. 조합을 다시 설정해주세요.`
-      );
-      return;
-    }
+    const winningNumbers = latestDraw.winningNumbers.map(Number);
+    const bonusNumber = Number(latestDraw.bonusNumber);
 
     setSimulationRunning(true);
-    setSimulationFailed(false);
     setSimulationCount(0);
+    setRankCounts({ first: 0, second: 0, third: 0, fourth: 0, fifth: 0 });
+
     let count = 0;
+    const finalRankCounts = {
+      first: 0,
+      second: 0,
+      third: 0,
+      fourth: 0,
+      fifth: 0,
+    };
 
-    const isMatching = (numbers: string) =>
-      latestDrawWinningNumbersStr === numbers;
-
-    while (true) {
+    while (count < maxCount) {
       count++;
-      const generatedNumbers = generateNumbers().join(",");
-      setSimulatedNumbers(generatedNumbers);
+      const generatedNumbers = generateNumbers();
+      setSimulatedNumbers(generatedNumbers.join(","));
       setSimulationCount(count);
-      await new Promise((resolve) => setTimeout(resolve, 0));
-      if (isMatching(generatedNumbers) || count >= maxCount) {
-        break;
+
+      const rank = calculateRank(generatedNumbers, winningNumbers, bonusNumber);
+      if (rank) {
+        finalRankCounts[rank]++;
+        setRankCounts((prev) => ({
+          ...prev,
+          [rank]: prev[rank] + 1,
+        }));
       }
+
+      await new Promise((resolve) => setTimeout(resolve, 0)); // 애니메이션 딜레이
     }
 
     setSimulationRunning(false);
 
-    if (count >= maxCount) {
-      setSimulationFailed(true);
-      message.warning("조건에 맞는 번호 조합을 찾을 수 없습니다.");
-    } else {
-      message.success(`${count}번 시도 끝에 당첨 조합을 찾았습니다!`);
-    }
+    Modal.info({
+      title: "시뮬레이션 결과",
+      content: (
+        <div>
+          <p>총 {maxCount.toLocaleString()}번의 시뮬레이션 결과:</p>
+          <p>1등: {finalRankCounts.first.toLocaleString()}번</p>
+          <p>2등: {finalRankCounts.second.toLocaleString()}번</p>
+          <p>3등: {finalRankCounts.third.toLocaleString()}번</p>
+          <p>4등: {finalRankCounts.fourth.toLocaleString()}번</p>
+          <p>5등: {finalRankCounts.fifth.toLocaleString()}번</p>
+        </div>
+      ),
+    });
   };
 
   return (
     <Layout>
       <div style={{ padding: "20px" }}>
         <Card style={{ maxWidth: 600, margin: "0 auto", borderRadius: 10 }}>
-          <Title level={3} style={{ textAlign: "center", marginBottom: 10 }}>
-            시뮬레이션 결과 페이지
-          </Title>
           <Text
             type="secondary"
             style={{ display: "block", textAlign: "center", marginBottom: 20 }}
           >
-            이 페이지는 로또 번호 조합 시뮬레이션을 통해 당첨 번호와 일치하는
-            조합을 찾는 과정을 보여줍니다. 최대 {maxCount.toLocaleString()}번의
-            시뮬레이션을 실행하며, 결과를 확인할 수 있습니다.
+            로또 번호 조합 시뮬레이션을 통해 각 등수에 당첨된 횟수를 확인합니다.
           </Text>
 
           <Divider />
@@ -126,6 +158,26 @@ const SimulationResultPage: React.FC = () => {
           </Space>
 
           <Divider />
+
+          {/* 시뮬레이션 횟수 설정 */}
+          <div style={{ marginBottom: "20px", textAlign: "center" }}>
+            <Text strong>시뮬레이션 횟수 설정:</Text>
+            <InputNumber
+              min={1}
+              max={maxSimulationLimit}
+              value={maxCount}
+              onChange={(value) => {
+                if (
+                  typeof value === "number" &&
+                  value > 0 &&
+                  value <= maxSimulationLimit
+                ) {
+                  setMaxCount(value);
+                }
+              }}
+              style={{ marginLeft: "10px" }}
+            />
+          </div>
 
           <div style={{ textAlign: "center", marginBottom: 20 }}>
             <Button
@@ -155,64 +207,36 @@ const SimulationResultPage: React.FC = () => {
             </div>
           </div>
 
-          {/* 진행 중 상태 */}
-          {simulationRunning && (
-            <div style={{ textAlign: "center", marginTop: 20 }}>
-              <Card
-                style={{
-                  backgroundColor: "#e6f7ff",
-                  borderColor: "#91d5ff",
-                  textAlign: "center",
-                }}
-              >
-                <Title level={4} style={{ color: "#1890ff" }}>
-                  진행 중...
-                </Title>
-                <Text>시뮬레이션이 실행 중입니다. 잠시만 기다려주세요.</Text>
-              </Card>
-            </div>
-          )}
-
-          {/* 시뮬레이션 실패 상태 */}
-          {simulationCount > 0 && !simulationRunning && simulationFailed && (
-            <div style={{ textAlign: "center", marginTop: 20 }}>
-              <Card
-                style={{
-                  backgroundColor: "#fff1f0",
-                  borderColor: "#ffa39e",
-                  textAlign: "center",
-                }}
-              >
-                <Title level={4} style={{ color: "#cf1322" }}>
-                  찾지 못함
-                </Title>
-                <Text>
-                  {simulationCount}번 시도했지만 조건에 맞는 번호 조합을 찾을 수
-                  없었습니다.
-                </Text>
-              </Card>
-            </div>
-          )}
-
-          {/* 시뮬레이션 성공 상태 */}
-          {simulationCount > 0 && !simulationRunning && !simulationFailed && (
-            <div style={{ textAlign: "center", marginTop: 20 }}>
-              <Card
-                style={{
-                  backgroundColor: "#f6ffed",
-                  borderColor: "#b7eb8f",
-                  textAlign: "center",
-                }}
-              >
-                <Title level={4} style={{ color: "#389e0d" }}>
-                  시뮬레이션 완료
-                </Title>
-                <Text>
-                  {simulationCount}번 시도 끝에 당첨 조합을 찾았습니다!
-                </Text>
-              </Card>
-            </div>
-          )}
+          {/* 실시간 결과 */}
+          <div style={{ textAlign: "center", marginTop: 20 }}>
+            <Card
+              style={{
+                borderRadius: "15px",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                padding: "20px",
+                background: "linear-gradient(to bottom, #ffffff, #f1f1f1)",
+              }}
+            >
+              <Title level={4} style={{ color: "#595959" }}>
+                실시간 결과
+              </Title>
+              <p style={{ fontSize: "16px", margin: "10px 0" }}>
+                1등: <strong>{rankCounts.first.toLocaleString()}</strong>번
+              </p>
+              <p style={{ fontSize: "16px", margin: "10px 0" }}>
+                2등: <strong>{rankCounts.second.toLocaleString()}</strong>번
+              </p>
+              <p style={{ fontSize: "16px", margin: "10px 0" }}>
+                3등: <strong>{rankCounts.third.toLocaleString()}</strong>번
+              </p>
+              <p style={{ fontSize: "16px", margin: "10px 0" }}>
+                4등: <strong>{rankCounts.fourth.toLocaleString()}</strong>번
+              </p>
+              <p style={{ fontSize: "16px", margin: "10px 0" }}>
+                5등: <strong>{rankCounts.fifth.toLocaleString()}</strong>번
+              </p>
+            </Card>
+          </div>
         </Card>
       </div>
     </Layout>
