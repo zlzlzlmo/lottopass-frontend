@@ -7,7 +7,7 @@ import ViewContainer from "./view/ViewContainer";
 
 const { Link } = Anchor;
 
-export type ViewType = "ball" | "match";
+export type ViewType = "ball" | "match" | "numberPair";
 
 const StatisticPage: React.FC = () => {
   const defaultViewType: ViewType = "ball";
@@ -32,6 +32,7 @@ const StatisticPage: React.FC = () => {
       >
         <Link href="#ball" title="번호들 출현 횟수 보기" />
         <Link href="#match" title="전 회차와 매치 수 보기" />
+        <Link href="#numberPair" title="자주 등장한 번호 조합" />
       </Anchor>
       <ViewContainer viewType={viewType} data={data} />
     </Layout>
