@@ -10,6 +10,7 @@ import StatisticsPopup from "@/components/popup/StatisticPopup";
 import { parseQUeryParams } from "../numberGeneration/components/numberActionButtons/utils";
 import { QueryParams, setRequiredNumbers } from "./result-service";
 import { useAppSelector } from "@/redux/hooks";
+import CombinationDescription from "./CombinationDescription";
 
 const ResultPage: React.FC = () => {
   const allDraws = useAppSelector((state) => state.draw.allDraws);
@@ -85,6 +86,10 @@ const ResultPage: React.FC = () => {
 
   return (
     <Layout>
+      <CombinationDescription
+        latestDraw={allDraws[0]}
+        queryParams={queryParams}
+      />
       <div className={styles.container}>
         <Space
           direction="vertical"

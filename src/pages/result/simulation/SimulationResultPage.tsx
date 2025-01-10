@@ -4,11 +4,12 @@ import Layout from "@/components/layout/Layout";
 import { getRandomNum, shuffle } from "@/utils/number";
 import { useSearchParams } from "react-router-dom";
 import { useAppSelector } from "@/redux/hooks";
-import { parseQUeryParams } from "../../numberGeneration/components/numberActionButtons/utils";
+import { parseQUeryParams as parseQueryParams } from "../../numberGeneration/components/numberActionButtons/utils";
 import { QueryParams, setRequiredNumbers } from "../result-service";
 import SimulationControls from "./SimulationControls";
 import SimulationResult from "./SimulationResult";
 import SimulationResultModal from "./SimulationResultModal";
+import CombinationDescription from "../CombinationDescription";
 
 const { Text } = Typography;
 
@@ -25,12 +26,13 @@ const SimulationResultPage: React.FC = () => {
   });
 
   const [searchParams] = useSearchParams();
-  const queryParams = parseQUeryParams(searchParams) as QueryParams;
+  const queryParams = parseQueryParams(searchParams) as QueryParams;
 
   const stopSimulation = useRef(false);
 
   const latestDraw = allDraws[selectedDraw];
   const minCount = queryParams.minCount ?? 6;
+
   const requiredNumbers = setRequiredNumbers(
     queryParams,
     allDraws.slice(selectedDraw + 1),
@@ -129,7 +131,11 @@ const SimulationResultPage: React.FC = () => {
 
   return (
     <Layout>
-      <div style={{ padding: "20px" }}>
+      <CombinationDescription
+        latestDraw={latestDraw}
+        queryParams={queryParams}
+      />
+      <div>
         <Card style={{ maxWidth: 600, margin: "0 auto", borderRadius: 10 }}>
           <Text
             type="secondary"

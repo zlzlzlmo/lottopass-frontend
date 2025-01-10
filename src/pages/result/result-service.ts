@@ -33,16 +33,21 @@ export const getCombinationType = (
 } => {
   const { selectedNumbers, confirmType, drawCount, minCount, min, max } =
     params;
+  // confirmType이 require면 selectedNumbers가 필수로 들어가는 조합
   if (selectedNumbers && confirmType)
     return {
       type: "numberSelect",
       data: { selectedNumbers, confirmType },
     };
+  // confirmType이 require면 최근 drawCount의 회차의 당첨번호에서 최소 micCount의 갯수의 번호가 포함된 조합
+  // exclude면 최근 drawCount 회차의 미출현 번호에서 최소 micCount의 갯수가 포함
   else if (drawCount && minCount && confirmType)
     return {
       type: "numberControl",
       data: { drawCount, minCount, confirmType },
     };
+
+  // min <= drawNumber <= max회차의 당첨번호 사이에서 조합
   return {
     type: "rangeSelect",
     data: { min, max },
