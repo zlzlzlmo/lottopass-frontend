@@ -19,7 +19,9 @@ const CombinationDescription: React.FC<CombinationDescriptionProps> = ({
   const renderCombinationDescription = () => {
     switch (type) {
       case "numberSelect":
-        return `선택된 번호 ${data.selectedNumbers?.join(", ")} 가 ${
+        return `선택된 번호 ${data.selectedNumbers
+          ?.sort((a, b) => a - b)
+          .join(", ")} 가 ${
           data.confirmType === "require" ? "포함" : "제외"
         }된 조합입니다.`;
       case "numberControl": {
@@ -29,9 +31,9 @@ const CombinationDescription: React.FC<CombinationDescriptionProps> = ({
           (_, i) => latestDrawNumber - i - 1
         );
 
-        return `최근 ${data.drawCount}회차 (${includedDrawNumbers.join(
-          ", "
-        )})의 ${
+        return `최근 ${data.drawCount}회차 (${includedDrawNumbers
+          .map((num) => num.toString() + "회")
+          .join(", ")})의 ${
           data.confirmType === "require" ? "출현" : "미출현"
         } 번호 중 최소 ${data.minCount}개의 번호를 사용하는 조합입니다.`;
       }
