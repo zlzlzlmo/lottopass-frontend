@@ -8,12 +8,14 @@ import { parseQUeryParams } from "../../numberGeneration/components/numberAction
 import { QueryParams, setRequiredNumbers } from "../result-service";
 import SimulationControls from "./SimulationControls";
 import SimulationResult from "./SimulationResult";
+import SimulationResultModal from "./SimulationResultModal";
 
 const { Text } = Typography;
 
 const SimulationResultPage: React.FC = () => {
   const allDraws = useAppSelector((state) => state.draw.allDraws);
   const [selectedDraw, setSelectedDraw] = useState<number>(0);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const [simulationData, setSimulationData] = useState({
     simulationRunning: false,
@@ -34,7 +36,6 @@ const SimulationResultPage: React.FC = () => {
     allDraws.slice(selectedDraw + 1)
   );
 
-  // 번호 생성 함수
   const generateNumbers = (): number[] => {
     const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
     const len = requiredNumbers.length;
@@ -47,7 +48,6 @@ const SimulationResultPage: React.FC = () => {
       .sort((a, b) => a - b);
   };
 
-  // 등수 계산 함수
   const calculateRank = (
     generatedNumbers: number[],
     winningNumbers: number[],
@@ -57,19 +57,23 @@ const SimulationResultPage: React.FC = () => {
       winningNumbers.includes(num)
     ).length;
 
-    if (matchCount === 6) return "first"; // 1등
+    if (matchCount === 6) return "first";
     if (matchCount === 5 && generatedNumbers.includes(bonusNumber))
-      return "second"; // 2등
-    if (matchCount === 5) return "third"; // 3등
-    if (matchCount === 4) return "fourth"; // 4등
-    if (matchCount === 3) return "fifth"; // 5등
-
-    return null; // 등수 없음
+      return "second";
+    if (matchCount === 5) return "third";
+    if (matchCount === 4) return "fourth";
+    if (matchCount === 3) return "fifth";
+    return null;
   };
 
-  // 시뮬레이션 실행 함수
-
   const handleSimulate = async (maxCount: number) => {
+    setSimulationData({
+      simulationRunning: false,
+      simulationCount: 0,
+      simulatedNumbers: "",
+      rankCounts: { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 },
+    });
+
     const latestDraw = allDraws[selectedDraw];
     if (!latestDraw) {
       message.error("기준 회차 데이터가 없습니다. 다시 시도해주세요.");
@@ -109,7 +113,9 @@ const SimulationResultPage: React.FC = () => {
 
     setSimulationData((prev) => ({ ...prev, simulationRunning: false }));
     message.success("시뮬레이션이 완료되었습니다!");
+    setIsModalVisible(true);
   };
+
   const { simulatedNumbers, simulationRunning, simulationCount, rankCounts } =
     simulationData;
 
@@ -143,6 +149,13 @@ const SimulationResultPage: React.FC = () => {
           />
         </Card>
       </div>
+
+      <SimulationResultModal
+        isVisible={isModalVisible}
+        onClose={() => setIsModalVisible(false)}
+        rankCounts={rankCounts}
+        simulationCount={simulationCount}
+      />
     </Layout>
   );
 };
