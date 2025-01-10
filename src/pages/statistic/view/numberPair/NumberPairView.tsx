@@ -66,7 +66,7 @@ const NumberPairView: React.FC<NumberPairViewProps> = ({ data }) => {
   const tripleStatistics = calculateTripleStatistics(data);
 
   return (
-    <>
+    <div style={{ textAlign: "center" }}>
       <div style={{ marginBottom: 32 }}>
         <Title level={4}>두쌍 조합</Title>
         <List
@@ -132,7 +132,7 @@ const NumberPairView: React.FC<NumberPairViewProps> = ({ data }) => {
           </Button>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
