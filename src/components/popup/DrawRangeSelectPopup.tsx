@@ -5,6 +5,8 @@ import { useRangeSelector } from "@/features/range/hooks/useRangeSelect";
 import { LottoDraw } from "lottopass-shared";
 import FlexContainer from "../common/container/FlexContainer";
 import { LoadingIndicator } from "../common";
+import { useLocation } from "react-router-dom";
+import { ROUTES } from "@/constants/routes";
 
 interface DrawRangeSelectPopupProps {
   onClose: () => void;
@@ -15,10 +17,15 @@ const DrawRangeSelectPopup: React.FC<DrawRangeSelectPopupProps> = ({
   onClose,
   onConfirm,
 }) => {
+  const location = useLocation();
+
   const defaultMinRange = 20;
   const allDraws = useAppSelector((state) => state.draw.allDraws);
+  const isSimulation = location.pathname === ROUTES.S_NUMBER_GENERATION.path;
+  const start = isSimulation ? 1 : 0;
+  const reDrawedAllDraws = allDraws.slice(start);
   const { maxDraw, range, handleRangeChange } = useRangeSelector<LottoDraw>({
-    data: allDraws,
+    data: reDrawedAllDraws,
     defaultMinRange,
     getDrawNumber: (item) => item.drawNumber,
   });
