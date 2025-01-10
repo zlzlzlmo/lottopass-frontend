@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Typography, Card, Divider, message } from "antd";
 import Layout from "@/components/layout/Layout";
 import { getRandomNum, shuffle } from "@/utils/number";
@@ -25,12 +25,12 @@ const SimulationResultPage: React.FC = () => {
   });
 
   const [searchParams] = useSearchParams();
-
   const queryParams = parseQUeryParams(searchParams) as QueryParams;
+
+  const stopSimulation = useRef(false);
 
   const latestDraw = allDraws[selectedDraw];
   const minCount = queryParams.minCount ?? 6;
-
   const requiredNumbers = setRequiredNumbers(
     queryParams,
     allDraws.slice(selectedDraw + 1),
@@ -69,11 +69,12 @@ const SimulationResultPage: React.FC = () => {
 
   const handleSimulate = async (maxCount: number) => {
     setSimulationData({
-      simulationRunning: false,
+      simulationRunning: true,
       simulationCount: 0,
       simulatedNumbers: "",
       rankCounts: { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 },
     });
+    stopSimulation.current = false;
 
     const latestDraw = allDraws[selectedDraw];
     if (!latestDraw) {
@@ -82,17 +83,10 @@ const SimulationResultPage: React.FC = () => {
     }
     const { winningNumbers, bonusNumber } = latestDraw;
 
-    setSimulationData((prev) => ({ ...prev, simulationRunning: true }));
     let count = 0;
-    const finalRankCounts = {
-      first: 0,
-      second: 0,
-      third: 0,
-      fourth: 0,
-      fifth: 0,
-    };
 
     while (count < maxCount) {
+      if (stopSimulation.current) break; // 중지 상태 확인
       count++;
       const generatedNumbers = generateNumbers();
       const rank = calculateRank(
@@ -100,25 +94,38 @@ const SimulationResultPage: React.FC = () => {
         winningNumbers.map(Number),
         Number(bonusNumber)
       );
-      if (rank) finalRankCounts[rank]++;
-
+      if (rank) {
+        setSimulationData((prev) => ({
+          ...prev,
+          rankCounts: {
+            ...prev.rankCounts,
+            [rank]: prev.rankCounts[rank] + 1,
+          },
+        }));
+      }
       setSimulationData((prev) => ({
         ...prev,
         simulationCount: count,
         simulatedNumbers: generatedNumbers.join(","),
-        rankCounts: { ...prev.rankCounts, [rank!]: prev.rankCounts[rank!] + 1 },
       }));
 
       await new Promise((resolve) => setTimeout(resolve, 0));
     }
 
     setSimulationData((prev) => ({ ...prev, simulationRunning: false }));
-    message.success("시뮬레이션이 완료되었습니다!");
+    if (!stopSimulation.current) {
+      message.success("시뮬레이션이 완료되었습니다!");
+      setIsModalVisible(true);
+    }
+  };
+
+  const handleStopSimulation = () => {
+    stopSimulation.current = true;
+    message.info("시뮬레이션이 중지되었습니다!");
     setIsModalVisible(true);
   };
 
-  const { simulatedNumbers, simulationRunning, simulationCount, rankCounts } =
-    simulationData;
+  const { simulationCount, rankCounts, simulatedNumbers } = simulationData;
 
   return (
     <Layout>
@@ -138,7 +145,8 @@ const SimulationResultPage: React.FC = () => {
             setSelectedDraw={setSelectedDraw}
             allDraws={allDraws}
             onSimulate={handleSimulate}
-            simulationRunning={simulationRunning}
+            onStop={handleStopSimulation} // 중지 버튼 콜백 전달
+            simulationRunning={simulationData.simulationRunning}
             latestDraw={latestDraw}
           />
 

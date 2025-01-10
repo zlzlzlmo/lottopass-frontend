@@ -9,6 +9,7 @@ interface Props {
   setSelectedDraw: (value: number) => void;
   allDraws: LottoDraw[];
   onSimulate: (maxCount: number) => void;
+  onStop: () => void;
   simulationRunning: boolean;
   latestDraw: LottoDraw;
 }
@@ -18,10 +19,12 @@ const SimulationControls: React.FC<Props> = ({
   setSelectedDraw,
   allDraws,
   onSimulate,
+  onStop,
   simulationRunning,
   latestDraw,
 }) => {
   const maxSimulationLimit = 1000000;
+
   const [maxCount, setMaxCount] = useState<number>(1000);
 
   return (
@@ -89,7 +92,7 @@ const SimulationControls: React.FC<Props> = ({
           />
         </div>
 
-        {/* 시뮬레이션 버튼 */}
+        {/* 버튼 */}
         <div style={{ textAlign: "center", marginTop: "10px" }}>
           <Button
             type="primary"
@@ -103,6 +106,18 @@ const SimulationControls: React.FC<Props> = ({
             }}
           >
             {simulationRunning ? "진행 중..." : "시뮬레이션 시작"}
+          </Button>
+          <Button
+            type="default"
+            onClick={onStop}
+            disabled={!simulationRunning}
+            size="small"
+            style={{
+              marginLeft: "10px",
+              fontWeight: "bold",
+            }}
+          >
+            중지
           </Button>
         </div>
       </Space>
