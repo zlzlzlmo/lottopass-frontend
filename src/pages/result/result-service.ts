@@ -51,7 +51,8 @@ export const getCombinationType = (
 
 export const setRequiredNumbers = (
   queryParams: QueryParams,
-  allDraws: LottoDraw[]
+  allDraws: LottoDraw[],
+  rawAllDraws: LottoDraw[]
 ): number[] => {
   const { type, data } = getCombinationType(queryParams);
   const { selectedNumbers, confirmType, drawCount, min, max } = data;
@@ -72,12 +73,12 @@ export const setRequiredNumbers = (
     });
   }
 
-  const draws = allDraws.filter(
+  const draws = rawAllDraws?.filter(
     ({ drawNumber }) => drawNumber >= min! && drawNumber <= max!
   );
 
   const winningNumbers = draws
-    .map(({ winningNumbers }) => winningNumbers)
+    ?.map(({ winningNumbers }) => winningNumbers)
     .flat()
     .map(Number);
   const uniqueNumbers = [...new Set(winningNumbers)];

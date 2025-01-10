@@ -20,7 +20,7 @@ const ResultPage: React.FC = () => {
   const queryParams = parseQUeryParams(searchParams) as QueryParams;
 
   const minCount = queryParams.minCount ?? 6;
-  const requiredNumbers = setRequiredNumbers(queryParams, allDraws);
+  const requiredNumbers = setRequiredNumbers(queryParams, allDraws, allDraws);
 
   const maxResultsLen = 20;
 

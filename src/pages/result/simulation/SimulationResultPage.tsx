@@ -33,7 +33,8 @@ const SimulationResultPage: React.FC = () => {
 
   const requiredNumbers = setRequiredNumbers(
     queryParams,
-    allDraws.slice(selectedDraw + 1)
+    allDraws.slice(selectedDraw + 1),
+    allDraws
   );
 
   const generateNumbers = (): number[] => {
