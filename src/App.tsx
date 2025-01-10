@@ -18,6 +18,7 @@ import {
   WinningStoresPage,
 } from "./pages";
 import ScrollToTop from "./components/common/scroll/ScrollToTop";
+import SignupPage from "./pages/auth/SignupPage";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App: React.FC = () => {
     { path: ROUTES.ALL_STORES.path, element: <AllStoresPage /> },
     { path: ROUTES.RESULT.path, element: <ResultPage /> },
     { path: ROUTES.STATISTIC.path, element: <StatisticPage /> },
+    { path: ROUTES.SIGNUP.path, element: <SignupPage /> },
     { path: "*", element: <NotFound /> },
   ];
 

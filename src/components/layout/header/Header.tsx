@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Drawer, Button } from "antd";
@@ -7,7 +5,6 @@ import { MenuOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import styles from "./Header.module.scss";
 import { ROUTES } from "../../../constants/routes";
 import { useAppSelector } from "@/redux/hooks";
-import { authService } from "@/api";
 
 const Header: React.FC = () => {
   const [isDrawerVisible, setDrawerVisible] = useState(false);
@@ -20,21 +17,6 @@ const Header: React.FC = () => {
   };
 
   const isHomePage = location.pathname === ROUTES.HOME.path;
-  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
-
-  const handleLogin = () => {
-    navigate("/login");
-    setDrawerVisible(false);
-  };
-  const handleLogout = async () => {
-    console.log("로그아웃");
-    try {
-      const res = await authService.getLogout();
-      if (res.status === "success") window.location.href = "/";
-    } catch (error: any) {
-      throw new Error("Failed to logout");
-    }
-  };
 
   return (
     <header className={styles.header}>
@@ -79,6 +61,26 @@ const Header: React.FC = () => {
           gap: "16px",
           backgroundColor: "#f9f9f9",
         }}
+        footer={
+          <Button
+            type="primary"
+            block
+            style={{
+              height: "48px",
+              fontSize: "16px",
+              fontWeight: "bold",
+              marginTop: "16px",
+              backgroundColor: "#3b82f6",
+              color: "#fff",
+            }}
+            onClick={() => {
+              setDrawerVisible(false);
+              navigate(ROUTES.SIGNUP.path);
+            }}
+          >
+            회원가입
+          </Button>
+        }
       >
         {Object.values(ROUTES)
           .filter((route) => route.label !== "")
@@ -102,35 +104,6 @@ const Header: React.FC = () => {
               </Button>
             </NavLink>
           ))}
-        {/* 
-        <div style={{ marginTop: "auto" }}>
-          {isLoggedIn ? (
-            <Button
-              onClick={handleLogout}
-              style={{
-                marginRight: "8px",
-                width: "100%",
-                height: "50px",
-                fontSize: "17px",
-              }}
-            >
-              로그아웃
-            </Button>
-          ) : (
-            <Button
-              type="primary"
-              onClick={handleLogin}
-              style={{
-                marginRight: "8px",
-                width: "100%",
-                height: "50px",
-                fontSize: "17px",
-              }}
-            >
-              로그인
-            </Button>
-          )}
-        </div> */}
       </Drawer>
     </header>
   );

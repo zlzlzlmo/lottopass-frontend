@@ -1,244 +1,267 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
-import { Form, Input, Button, Card, message, Select } from "antd";
+import React, { useState, useRef } from "react";
+import {
+  Form,
+  Input,
+  Button,
+  Card,
+  Typography,
+  Select,
+  Space,
+  message,
+} from "antd";
+import { SmileOutlined, MailOutlined, CheckOutlined } from "@ant-design/icons";
 import Layout from "@/components/layout/Layout";
+
+import type { FormInstance } from "antd";
 import { authService, userService } from "@/api";
 
+const { Title, Text } = Typography;
 const { Option } = Select;
 
 const SignupPage: React.FC = () => {
-  const [form] = Form.useForm();
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [emailVerificationSent, setEmailVerificationSent] = useState(false);
   const [emailVerified, setEmailVerified] = useState(false);
-  const [verificationInProgress, setVerificationInProgress] = useState(false);
+  const [verificationCode, setVerificationCode] = useState("");
+  const [verificationLoading, setVerificationLoading] = useState(false);
+  const [codeVerificationLoading, setCodeVerificationLoading] = useState(false);
+  const formRef = useRef<FormInstance>(null);
 
-  const handleRequestVerification = async () => {
-    const emailLocalPart = form.getFieldValue("emailLocalPart");
-    const emailDomain = form.getFieldValue("emailDomain");
+  const handleSendVerification = async () => {
+    if (!formRef.current) return;
 
-    if (!emailLocalPart || !emailDomain) {
-      message.error("이메일을 입력해주세요.");
-      return;
-    }
+    const values = formRef.current.getFieldsValue(["email", "domain"]);
+    const email = `${values.email}@${values.domain}`;
 
-    const email = `${emailLocalPart}@${emailDomain}`;
-    form.setFieldsValue({ email });
-
+    setVerificationLoading(true);
     try {
-      setVerificationInProgress(true);
-      await authService.requestEmailVerification(email);
-      message.success("인증 코드가 발송되었습니다.");
-    } catch (error) {
-      console.error(error);
-      message.error("인증 코드 요청 중 오류가 발생했습니다.");
+      const success = await authService.requestEmailVerification(email);
+      if (success) {
+        message.success("인증 메일이 발송되었습니다. 메일을 확인해주세요.");
+        setEmailVerificationSent(true);
+      } else {
+        message.error("인증 메일 발송에 실패했습니다. 다시 시도해주세요.");
+      }
+    } catch {
+      message.error("오류가 발생했습니다. 다시 시도해주세요.");
     } finally {
-      setVerificationInProgress(false);
+      setVerificationLoading(false);
     }
   };
 
   const handleVerifyCode = async () => {
-    const email = form.getFieldValue("email");
-    const verificationCode = form.getFieldValue("verificationCode");
+    if (!formRef.current) return;
 
-    if (!verificationCode) {
-      message.error("인증 코드를 입력해주세요.");
-      return;
-    }
+    const values = formRef.current.getFieldsValue(["email", "domain"]);
+    const email = `${values.email}@${values.domain}`;
 
+    setCodeVerificationLoading(true);
     try {
-      const isVerified = await authService.verifyEmailCode(
+      const success = await authService.verifyEmailCode(
         email,
         verificationCode
       );
-      if (isVerified) {
+      if (success) {
         message.success("이메일 인증이 완료되었습니다.");
         setEmailVerified(true);
-        setCurrentSlide(1);
       } else {
-        message.error("인증 코드가 올바르지 않습니다.");
+        message.error("인증 코드가 유효하지 않습니다.");
       }
-    } catch (error) {
-      console.error(error);
-      message.error("인증 코드 검증 중 오류가 발생했습니다.");
+    } catch {
+      message.error("오류가 발생했습니다. 다시 시도해주세요.");
+    } finally {
+      setCodeVerificationLoading(false);
     }
   };
 
-  const handleSubmit = async (values: any) => {
+  const onFinish = async (values: {
+    email: string;
+    domain: string;
+    nickname: string;
+    password: string;
+  }) => {
     if (!emailVerified) {
       message.error("이메일 인증을 완료해주세요.");
       return;
     }
 
-    // 이메일 값을 슬라이드 0에서 설정한 이메일로 추가
-    const email = `${form.getFieldValue("emailLocalPart")}@${form.getFieldValue(
-      "emailDomain"
-    )}`;
-    values.email = email;
-
-    // confirmPassword 필드 제거
-    delete values.confirmPassword;
+    setLoading(true);
+    const { email, domain, nickname, password } = values;
+    const fullEmail = `${email}@${domain}`;
 
     try {
-      await userService.signup(values);
-      message.success("회원가입이 완료되었습니다.");
-      form.resetFields();
-    } catch (error) {
-      console.error(error);
-      message.error("회원가입 중 오류가 발생했습니다.");
+      await userService.signup({ email: fullEmail, nickname, password });
+      message.success("회원가입이 완료되었습니다. 로그인해주세요.");
+    } catch (error: any) {
+      console.log("error: ", error.response);
+      if (error.response) {
+        message.error(error.response.data.message);
+      } else {
+        message.error("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
+      }
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const onFinishFailed = () => {
+    message.error("입력값을 확인해주세요.");
   };
 
   return (
     <Layout>
-      <div
+      <Card
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100%",
-          padding: "0 16px",
-          marginTop: "40px",
+          maxWidth: 400,
+          margin: "50px auto",
+          borderRadius: 10,
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+          background: "#fff",
         }}
       >
-        <Card
-          style={{
-            width: "100%",
-            maxWidth: 640,
-            textAlign: "center",
-            borderRadius: 16,
-            boxShadow: "0 6px 12px rgba(0, 0, 0, 0.1)",
-            padding: 24,
-          }}
+        <div style={{ textAlign: "center", marginBottom: 20 }}>
+          <SmileOutlined style={{ fontSize: 48, color: "#3b82f6" }} />
+          <Title level={3} style={{ margin: "10px 0" }}>
+            회원가입
+          </Title>
+          <Text type="secondary">로또 패스와 함께하세요!</Text>
+        </div>
+
+        <Form
+          name="signup"
+          layout="vertical"
+          ref={formRef}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
         >
-          <h2 style={{ marginBottom: 24 }}>회원가입</h2>
-
-          {currentSlide === 0 && (
-            <Form form={form} layout="vertical">
-              <Form.Item label="이메일" required>
-                <Input.Group compact>
-                  <Form.Item
-                    name="emailLocalPart"
-                    rules={[
-                      { required: true, message: "이메일을 입력해주세요." },
-                    ]}
-                    noStyle
-                  >
-                    <Input style={{ width: "60%" }} placeholder="이메일" />
-                  </Form.Item>
-                  <Form.Item
-                    name="emailDomain"
-                    rules={[
-                      { required: true, message: "도메인을 선택해주세요." },
-                    ]}
-                    noStyle
-                  >
-                    <Select style={{ width: "40%" }} placeholder="도메인 선택">
-                      <Option value="gmail.com">gmail.com</Option>
-                      <Option value="naver.com">naver.com</Option>
-                      <Option value="daum.net">daum.net</Option>
-                      <Option value="">직접 입력</Option>
-                    </Select>
-                  </Form.Item>
-                </Input.Group>
-              </Form.Item>
-
+          <Form.Item label="이메일" required>
+            <Space.Compact style={{ display: "flex", gap: "8px" }}>
               <Form.Item
-                label="인증 코드"
-                name="verificationCode"
-                rules={[
-                  { required: true, message: "인증 코드를 입력해주세요." },
-                ]}
+                name="email"
+                rules={[{ required: true, message: "이메일을 입력해주세요." }]}
+                noStyle
               >
-                <Input placeholder="인증 코드" />
+                <Input placeholder="example" style={{ flex: 2 }} />
               </Form.Item>
+              <Form.Item name="domain" initialValue="gmail.com" noStyle>
+                <Select style={{ flex: 1 }}>
+                  <Option value="gmail.com">gmail.com</Option>
+                  <Option value="naver.com">naver.com</Option>
+                  <Option value="daum.net">daum.net</Option>
+                  <Option value="custom">직접 입력</Option>
+                </Select>
+              </Form.Item>
+            </Space.Compact>
+          </Form.Item>
 
-              <Form.Item>
-                <Button
-                  type="primary"
-                  style={{ backgroundColor: "#4caf50", borderColor: "#4caf50" }}
-                  onClick={handleRequestVerification}
-                  loading={verificationInProgress}
-                  block
-                >
-                  인증 코드 요청
-                </Button>
-              </Form.Item>
-
-              <Form.Item>
-                <Button
-                  type="primary"
-                  style={{ backgroundColor: "#2196f3", borderColor: "#2196f3" }}
-                  onClick={handleVerifyCode}
-                  block
-                >
-                  인증 확인
-                </Button>
-              </Form.Item>
-            </Form>
+          {emailVerificationSent && (
+            <Form.Item label="인증 코드" required>
+              <Input
+                placeholder="인증 코드를 입력해주세요."
+                value={verificationCode}
+                onChange={(e) => setVerificationCode(e.target.value)}
+              />
+              <Button
+                type="primary"
+                onClick={handleVerifyCode}
+                loading={codeVerificationLoading}
+                style={{ marginTop: 10 }}
+                icon={<CheckOutlined />}
+              >
+                인증하기
+              </Button>
+            </Form.Item>
           )}
 
-          {currentSlide === 1 && (
-            <Form form={form} layout="vertical" onFinish={handleSubmit}>
-              <Form.Item
-                label="닉네임"
-                name="nickname"
-                rules={[
-                  { required: true, message: "닉네임을 입력해주세요." },
-                  {
-                    pattern: /^[a-zA-Z가-힣0-9]{2,10}$/,
-                    message: "2~10자리 영문/한글/숫자만 가능합니다.",
-                  },
-                ]}
-              >
-                <Input placeholder="닉네임" />
-              </Form.Item>
+          <Form.Item style={{ textAlign: "right" }}>
+            <Button
+              type="default"
+              icon={<MailOutlined />}
+              onClick={handleSendVerification}
+              loading={verificationLoading}
+            >
+              {emailVerificationSent ? "재요청" : "인증 요청"}
+            </Button>
+          </Form.Item>
 
-              <Form.Item
-                label="비밀번호"
-                name="password"
-                rules={[
-                  { required: true, message: "비밀번호를 입력해주세요." },
-                  {
-                    pattern:
-                      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                    message:
-                      "비밀번호는 최소 8자 이상, 문자, 숫자, 특수문자를 포함해야 합니다.",
-                  },
-                ]}
-              >
-                <Input.Password placeholder="비밀번호" />
-              </Form.Item>
+          <Form.Item
+            label="닉네임"
+            name="nickname"
+            rules={[
+              {
+                required: true,
+                message: "닉네임을 입력해주세요.",
+              },
+              {
+                pattern: /^[a-zA-Z가-힣0-9]{2,10}$/,
+                message: "닉네임은 2~10자리 영문/한글/숫자만 가능합니다.",
+              },
+            ]}
+          >
+            <Input placeholder="닉네임" />
+          </Form.Item>
 
-              <Form.Item
-                label="비밀번호 확인"
-                name="confirmPassword"
-                dependencies={["password"]}
-                rules={[
-                  { required: true, message: "비밀번호를 확인해주세요." },
-                  ({ getFieldValue }) => ({
-                    validator(_, value) {
-                      if (!value || getFieldValue("password") === value) {
-                        return Promise.resolve();
-                      }
-                      return Promise.reject(
-                        new Error("비밀번호가 일치하지 않습니다.")
-                      );
-                    },
-                  }),
-                ]}
-              >
-                <Input.Password placeholder="비밀번호 확인" />
-              </Form.Item>
+          <Form.Item
+            label="비밀번호"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "비밀번호를 입력해주세요.",
+              },
+              {
+                pattern:
+                  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                message:
+                  "비밀번호는 최소 8자 이상, 문자, 숫자, 특수문자를 포함해야 합니다.",
+              },
+            ]}
+          >
+            <Input.Password placeholder="비밀번호" />
+          </Form.Item>
 
-              <Form.Item>
-                <Button type="primary" htmlType="submit" block>
-                  회원가입 완료
-                </Button>
-              </Form.Item>
-            </Form>
-          )}
-        </Card>
-      </div>
+          <Form.Item
+            label="비밀번호 확인"
+            name="confirmPassword"
+            dependencies={["password"]}
+            rules={[
+              {
+                required: true,
+                message: "비밀번호 확인을 입력해주세요.",
+              },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue("password") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(
+                    new Error("비밀번호가 일치하지 않습니다.")
+                  );
+                },
+              }),
+            ]}
+          >
+            <Input.Password placeholder="비밀번호 확인" />
+          </Form.Item>
+
+          <Form.Item style={{ textAlign: "center" }}>
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={loading}
+              style={{
+                width: "100%",
+                borderRadius: 8,
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              가입하기
+            </Button>
+          </Form.Item>
+        </Form>
+      </Card>
     </Layout>
   );
 };

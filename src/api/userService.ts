@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BaseApiService } from "./baseAPI";
 
 export interface CreateUser {
@@ -11,8 +12,11 @@ export class UserService extends BaseApiService {
     super(`${import.meta.env.VITE_API_BASE_URL}/users`);
   }
 
-  // 회원가입 메서드
   async signup(userData: CreateUser) {
-    return this.handleResponse(this.post<string>("/signup", userData));
+    try {
+      return this.handleResponse(this.post<string>("/signup", userData));
+    } catch (error: any) {
+      throw new Error(error);
+    }
   }
 }
