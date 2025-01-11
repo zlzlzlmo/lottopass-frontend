@@ -73,19 +73,29 @@ const NumberActionButtons = () => {
           </Text>
           의 모든 번호에서 생성합니다.
         </div>
-        <Row justify="center" style={{ gap: "10px" }}>
+        <Row
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: "20px",
+          }}
+        >
           {options.map((option, index) => (
-            <Col key={index} xs={8} sm={8}>
-              <Card
-                hoverable
-                onClick={option.action}
-                style={{ textAlign: "center", borderColor: COLORS.NAVY_BLUE }}
-              >
-                <Text strong style={{ whiteSpace: "pre-line" }}>
-                  {option.label.replace("\\n", "\n")}
-                </Text>
-              </Card>
-            </Col>
+            <Card
+              key={index}
+              hoverable
+              onClick={option.action}
+              style={{
+                textAlign: "center",
+                borderColor: COLORS.NAVY_BLUE,
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              <Text strong style={{ whiteSpace: "pre-line" }}>
+                {option.label.replace("\\n", "\n")}
+              </Text>
+            </Card>
           ))}
         </Row>
       </div>
