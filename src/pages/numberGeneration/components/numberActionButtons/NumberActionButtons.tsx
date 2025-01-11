@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import { Row, Col, Card, Typography } from "antd";
+import { Row, Card, Typography } from "antd";
 
 import PopupManager from "@/components/popup/PopupManager";
 import { useLocation, useNavigate } from "react-router-dom";
