@@ -6,13 +6,15 @@ import DrawRangeSelectPopup from "./DrawRangeSelectPopup";
 import NumberControlPopup from "./NumberControlPopup";
 import NumberSelectPopup from "./NumberSelectPopup";
 import { LottoDraw } from "lottopass-shared";
-import EvenOddControlPopup from "./EvenOddControlPopup";
+import EvenOddControlPopup from "./EvenOddSelectionPopup";
+import DrawRangeAndTopNumbersPopup from "./DrawRangeAndTopNumbersPopup";
 
 export type PopupType =
   | "numberSelect"
   | "numberControl"
   | "rangeSelect"
-  | "evenOddControl";
+  | "evenOddControl"
+  | "rangeAndTopNumberSelect";
 export interface PopupManagerProps {
   popupType: PopupType;
   confirmType?: "exclude" | "require";
@@ -64,6 +66,15 @@ const PopupManager: React.FC<PopupManagerProps> = ({
           <EvenOddControlPopup
             onConfirm={onConfirm}
             onClose={onClose}
+            {...rest}
+          />
+        );
+      case "rangeAndTopNumberSelect":
+        return (
+          <DrawRangeAndTopNumbersPopup
+            onConfirm={onConfirm}
+            onClose={onClose}
+            draws={draws ?? []}
             {...rest}
           />
         );
@@ -124,6 +135,16 @@ const PopupManager: React.FC<PopupManagerProps> = ({
           예시:
           - 짝수 2개, 홀수 4개
           -> 2, 4, 5, 11, 13, 33과 같은 조합이 형성됩니다.
+        `;
+      case "rangeAndTopNumberSelect":
+        return `
+          특정 회차 범위를 지정해 해당 회차에 나온 번호를 기반으로 로또 번호를 생성합니다.
+          그 후, 지정한 회차 범위 내 출현을 가장 많이 한 상위 N개의 번호들로 조합을 생성합니다.
+
+          예시:
+          - 범위: 50회차 ~ 60회차
+          - 상위 번호 갯수: 20
+          - 번호 추출: 50~60회차의 당첨 번호 중 가장 많이 나온 상위 20개의 로또 번호를 이용하여 생성.
         `;
       default:
         return "설명이 없습니다.";

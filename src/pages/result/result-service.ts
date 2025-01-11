@@ -14,6 +14,7 @@ export interface QueryParams {
   even?: number;
   odd?: number;
   type?: PopupType;
+  topNumber?: number;
 }
 
 const TOTAL_NUMBERS = Array.from({ length: 45 }, (_, i) => i + 1);
@@ -30,12 +31,31 @@ export const filterNumbers = ({
     : TOTAL_NUMBERS.filter((num) => !numbers.includes(num));
 };
 
+const getTopWinningNumbers = (
+  draws: LottoDraw[],
+  topCount: number
+): number[] => {
+  const numberFrequencyMap: Record<number, number> = {};
+
+  draws.forEach((draw) => {
+    draw.winningNumbers.forEach((number) => {
+      numberFrequencyMap[number] = (numberFrequencyMap[number] || 0) + 1;
+    });
+  });
+
+  const sortedNumbers = Object.entries(numberFrequencyMap)
+    .map(([number, count]) => ({ number: Number(number), count }))
+    .sort((a, b) => b.count - a.count || a.number - b.number);
+
+  return sortedNumbers.slice(0, topCount).map((item) => item.number);
+};
+
 export const setRequiredNumbers = (
   queryParams: QueryParams,
   allDraws: LottoDraw[],
   rawAllDraws: LottoDraw[]
 ): number[] => {
-  const { selectedNumbers, confirmType, drawCount, min, max, type } =
+  const { selectedNumbers, confirmType, drawCount, min, max, type, topNumber } =
     queryParams;
   if (type === "numberSelect") {
     return filterNumbers({
@@ -65,6 +85,14 @@ export const setRequiredNumbers = (
       numbers: [...evens, ...odds],
       confirmType: "require",
     });
+  } else if (type === "rangeAndTopNumberSelect") {
+    const draws = rawAllDraws?.filter(
+      ({ drawNumber }) => drawNumber >= min! && drawNumber <= max!
+    );
+
+    const numbers = getTopWinningNumbers(draws, topNumber ?? 45);
+
+    return filterNumbers({ numbers, confirmType: "require" });
   }
 
   const draws = rawAllDraws?.filter(

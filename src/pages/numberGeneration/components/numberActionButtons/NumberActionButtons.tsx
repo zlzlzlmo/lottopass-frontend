@@ -68,12 +68,28 @@ const NumberActionButtons = () => {
     navigateToResult({ even, odd, confirmType, type: "evenOddControl" });
   };
 
+  const generateRangeAndTopNumbers = (
+    min: number,
+    max: number,
+    topNumber: number,
+    confirmType: ConfirmType
+  ) => {
+    navigateToResult({
+      min,
+      max,
+      confirmType,
+      topNumber,
+      type: "rangeAndTopNumberSelect",
+    });
+  };
+
   const options = generateOptions(
     setPopupProps,
     confirmNumberSelection,
     confirmMinCountDrawSelection,
     generateRangeNumbers,
-    confirmEvenOddSelection
+    confirmEvenOddSelection,
+    generateRangeAndTopNumbers
   );
 
   const totalCards = options.length;
