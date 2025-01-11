@@ -50,6 +50,7 @@ const App: React.FC = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <ScrollToTop />
       <Router>
         {/* <AppInitializer> */}
         <Routes>
@@ -59,7 +60,6 @@ const App: React.FC = () => {
         </Routes>
         {/* </AppInitializer> */}
       </Router>
-      <ScrollToTop />
     </QueryClientProvider>
   );
 };

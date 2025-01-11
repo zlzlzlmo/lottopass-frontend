@@ -8,7 +8,7 @@ import {
   statisticLottie,
   storeLottie,
 } from "./lottie";
-import useIntersection from "@/hooks/useIntersection";
+import useMultipleIntersection from "@/hooks/useMultipleIntersection";
 import { ROUTES } from "@/constants/routes";
 import { useNavigate } from "react-router-dom";
 
@@ -49,59 +49,55 @@ const cards = [
 ];
 
 const InfoCards: React.FC = () => {
-  const [visibleCards, setVisibleCards] = useState<boolean[]>([]);
+  const [visibleCards, setVisibleCards] = useState<boolean[]>(
+    Array(cards.length).fill(false)
+  );
   const navigate = useNavigate();
-  const handleIntersection = (index: number) => () => {
-    setVisibleCards((prev) => {
-      const updated = [...prev];
-      updated[index] = true;
-      return updated;
-    });
-  };
+
+  const observerRef = useMultipleIntersection(
+    (entry, index) => {
+      if (entry.isIntersecting) {
+        setVisibleCards((prev) => {
+          const updated = [...prev];
+          updated[index] = true;
+          return updated;
+        });
+      }
+    },
+    { threshold: 0.4 }
+  );
 
   return (
     <div className={styles.cardsContainer}>
-      {cards.map((card, index) => {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const targetRef = useIntersection(handleIntersection(index), {
-          threshold: 0.4,
-        });
-
-        return (
-          <div
-            key={index}
-            ref={targetRef}
-            className={`${styles.cardWrapper} ${
-              visibleCards[index] ? styles.visible : ""
-            }`}
-          >
-            <Card
-              className={styles.card}
-              style={{ background: card.background }}
+      {cards.map((card, index) => (
+        <div
+          key={index}
+          ref={(el) => (observerRef.current[index] = el)}
+          className={`${styles.cardWrapper} ${
+            visibleCards[index] ? styles.visible : ""
+          }`}
+        >
+          <Card className={styles.card} style={{ background: card.background }}>
+            <div className={styles.iconWrapper}>
+              <Lottie
+                animationData={card.animation}
+                loop
+                style={{ width: 80, height: 80 }}
+              />
+            </div>
+            <div className={styles.content}>
+              <h2 className={styles.title}>{card.title}</h2>
+              <p className={styles.description}>{card.description}</p>
+            </div>
+            <button
+              onClick={() => navigate(card.link)}
+              className={styles.button}
             >
-              <div className={styles.iconWrapper}>
-                <Lottie
-                  animationData={card.animation}
-                  loop
-                  style={{ width: 80, height: 80 }}
-                />
-              </div>
-              <div className={styles.content}>
-                <h2 className={styles.title}>{card.title}</h2>
-                <p className={styles.description}>{card.description}</p>
-              </div>
-              <button
-                onClick={() => {
-                  navigate(card.link);
-                }}
-                className={styles.button}
-              >
-                {card.buttonText}
-              </button>
-            </Card>
-          </div>
-        );
-      })}
+              {card.buttonText}
+            </button>
+          </Card>
+        </div>
+      ))}
     </div>
   );
 };
