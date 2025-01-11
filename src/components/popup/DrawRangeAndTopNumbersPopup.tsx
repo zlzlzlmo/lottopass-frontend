@@ -15,7 +15,7 @@ interface DrawRangeAndTopNumbersPopupProps {
 const DrawRangeAndTopNumbersPopup: React.FC<
   DrawRangeAndTopNumbersPopupProps
 > = ({ onClose, onConfirm, draws }) => {
-  const defaultMinRange = 20;
+  const defaultMinRange = 50;
 
   const { maxDraw, range, handleRangeChange } = useRangeSelector<LottoDraw>({
     data: draws,

@@ -16,7 +16,7 @@ const DrawRangeSelectPopup: React.FC<DrawRangeSelectPopupProps> = ({
   onConfirm,
   draws,
 }) => {
-  const defaultMinRange = 20;
+  const defaultMinRange = 50;
 
   const { maxDraw, range, handleRangeChange } = useRangeSelector<LottoDraw>({
     data: draws,
