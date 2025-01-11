@@ -1,10 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Typography, Divider, message } from "antd";
 import Layout from "@/components/layout/Layout";
-import { getRandomNum, shuffle } from "@/utils/number";
 import { useSearchParams } from "react-router-dom";
 import { parseQueryParams as parseQueryParams } from "../../numberGeneration/components/numberActionButtons/utils";
-import { QueryParams, setRequiredNumbers } from "../result-service";
+import { QueryParams } from "../result-service";
 import SimulationControls from "./SimulationControls";
 import SimulationResult from "./SimulationResult";
 import SimulationResultModal from "./SimulationResultModal";
@@ -12,13 +11,14 @@ import CombinationDescription from "../CombinationDescription";
 import Container from "@/components/layout/container/Container";
 import Banner from "@/components/common/banner/Banner";
 import LogoLoading from "@/components/common/loading/LogoLoading";
-import { useAllDraws } from "@/features/draw/hooks/useAllDraws";
 import { ErrorMessage } from "@/components/common";
+import { useGenerateNumbers } from "../hooks/useGenerateNumbers";
 
 const { Text } = Typography;
 
 const SimulationResultPage: React.FC = () => {
-  const { data: allDraws, isLoading, isError } = useAllDraws();
+  const { allDraws, isError, isLoading, generateNumbers } =
+    useGenerateNumbers();
   const [selectedDraw, setSelectedDraw] = useState<number>(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [progress, setProgress] = useState<number>(0);
@@ -35,28 +35,6 @@ const SimulationResultPage: React.FC = () => {
   const stopSimulation = useRef(false);
 
   const latestDraw = allDraws && allDraws[selectedDraw];
-  const minCount = queryParams.minCount ?? 6;
-
-  const generateNumbers = (): number[] => {
-    if (!allDraws || allDraws.length <= 0) return [];
-
-    const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
-
-    const requiredNumbers = setRequiredNumbers(
-      queryParams,
-      allDraws.slice(selectedDraw + 1),
-      allDraws
-    );
-
-    const len = requiredNumbers.length;
-    const randomIdx = getRandomNum(Math.min(Number(minCount), len), len);
-
-    const availableNumbers = shuffle(requiredNumbers).slice(0, randomIdx);
-
-    return Array.from(new Set([...availableNumbers, ...shuffle(allNumbers)]))
-      .slice(0, 6)
-      .sort((a, b) => a - b);
-  };
 
   const calculateRank = (
     generatedNumbers: number[],
