@@ -1,14 +1,14 @@
 import Hero from "./hero/Hero";
 import styles from "./HomePage.module.scss";
 
-import Generation from "./generation/Generation";
 import Layout from "../../components/layout/Layout";
 import RoundCard from "../../components/common/card/RoundCard";
-import Margin from "../../components/common/gap/Margin";
 import { useNavigate } from "react-router-dom";
 import { useLatestDraw } from "@/features/draw/hooks/useLatestDraw";
 import { ErrorMessage } from "@/components/common";
 import SkeletonRoundCard from "@/components/common/skeleton/SkeletonRoundCard";
+import InfoCards from "./hero/InfoCards";
+import { Divider, Typography } from "antd";
 
 const HomePage = () => {
   const { data: latestRound, isLoading, isError } = useLatestDraw();
@@ -42,8 +42,14 @@ const HomePage = () => {
       <div className={styles.container}>
         <Hero />
         {renderCard()}
-        <Margin size={20} />
-        <Generation />
+        <Divider style={{ margin: "20px 0" }} />
+        <Typography.Title
+          level={4}
+          style={{ textAlign: "center", marginBottom: "20px" }}
+        >
+          로또 서비스 활용하기
+        </Typography.Title>
+        <InfoCards />
       </div>
     </Layout>
   );

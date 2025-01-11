@@ -19,9 +19,7 @@ const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <Title level={1} className={styles.heroTitle}>
-            로또 번호가 필요할 땐?
-          </Title>
+          <Title level={4}>로또 번호가 필요할 땐?</Title>
         </motion.div>
 
         <motion.div
