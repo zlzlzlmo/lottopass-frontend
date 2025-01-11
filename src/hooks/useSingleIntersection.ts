@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 type IntersectionCallback = (entry: IntersectionObserverEntry) => void;
 
-const useIntersection = (
+const useSingleIntersection = (
   callback: IntersectionCallback,
   options?: IntersectionObserverInit
 ) => {
@@ -27,4 +27,4 @@ const useIntersection = (
   return targetRef;
 };
 
-export default useIntersection;
+export default useSingleIntersection;

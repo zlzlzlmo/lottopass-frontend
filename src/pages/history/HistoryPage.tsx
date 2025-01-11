@@ -6,7 +6,7 @@ import SkeletonRoundCard from "../../components/common/skeleton/SkeletonRoundCar
 import PageTitle from "../../components/common/text/title/PageTitle";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "@/redux/hooks";
-import useIntersection from "@/hooks/useIntersection";
+import useSingleIntersection from "@/hooks/useSingleIntersection";
 
 const ITEMS_PER_PAGE = 10; // 한 번에 로드할 아이템 수
 
@@ -28,7 +28,7 @@ const HistoryPage: React.FC = () => {
     }
   };
 
-  const observerRef = useIntersection(
+  const observerRef = useSingleIntersection(
     () => {
       if (!loading && visibleItems < allDraws.length) {
         loadMore();
