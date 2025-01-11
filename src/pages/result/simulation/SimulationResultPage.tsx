@@ -20,7 +20,7 @@ const SimulationResultPage: React.FC = () => {
   const allDraws = useAppSelector((state) => state.draw.allDraws);
   const [selectedDraw, setSelectedDraw] = useState<number>(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
-
+  const [progress, setProgress] = useState<number>(0);
   const [simulationData, setSimulationData] = useState({
     simulationRunning: false,
     simulationCount: 0,
@@ -79,6 +79,7 @@ const SimulationResultPage: React.FC = () => {
       simulatedNumbers: "",
       rankCounts: { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 },
     });
+
     stopSimulation.current = false;
 
     const latestDraw = allDraws[selectedDraw];
@@ -93,6 +94,8 @@ const SimulationResultPage: React.FC = () => {
     while (count < maxCount) {
       if (stopSimulation.current) break; // 중지 상태 확인
       count++;
+      const progress = Math.floor((count / maxCount) * 100);
+      setProgress(progress);
       const generatedNumbers = generateNumbers();
       const rank = calculateRank(
         generatedNumbers,
@@ -132,7 +135,8 @@ const SimulationResultPage: React.FC = () => {
 
   const { simulationCount, rankCounts, simulatedNumbers } = simulationData;
 
-  if (!latestDraw) return <LogoLoading text="잠시만 기다려주세요" />;
+  if (!latestDraw && allDraws.length <= 0)
+    return <LogoLoading text="잠시만 기다려주세요" />;
 
   return (
     <Layout>
@@ -168,6 +172,7 @@ const SimulationResultPage: React.FC = () => {
 
           <Divider />
           <SimulationResult
+            progress={progress}
             rankCounts={rankCounts}
             simulatedNumbers={simulatedNumbers}
             simulationCount={simulationCount}

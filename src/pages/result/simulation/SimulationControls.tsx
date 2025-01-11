@@ -58,8 +58,8 @@ const SimulationControls: React.FC<Props> = ({
             onChange={setSelectedDraw}
             size="middle"
           >
-            {allDraws.map((draw) => (
-              <Select.Option key={draw.drawNumber} value={draw.drawNumber}>
+            {allDraws.map((draw, index) => (
+              <Select.Option key={draw.drawNumber} value={index}>
                 {draw.drawNumber}회
               </Select.Option>
             ))}
