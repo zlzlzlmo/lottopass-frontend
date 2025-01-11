@@ -2,17 +2,16 @@ import { Collapse, Typography } from "antd";
 import React from "react";
 import { QueryParams } from "./result-service";
 import { LottoDraw } from "lottopass-shared";
+import { useAppSelector } from "@/redux/hooks";
 const { Panel } = Collapse;
 const { Text } = Typography;
 
 interface CombinationDescriptionProps {
   queryParams: QueryParams;
-  latestDraw: LottoDraw;
 }
 
 const CombinationDescription: React.FC<CombinationDescriptionProps> = ({
   queryParams,
-  latestDraw,
 }) => {
   const {
     type,
@@ -27,7 +26,7 @@ const CombinationDescription: React.FC<CombinationDescriptionProps> = ({
     topNumber,
   } = queryParams;
 
-  const renderCombinationDescription = () => {
+  const renderCombinationDescription = (latestDraw: LottoDraw) => {
     switch (type) {
       case "numberSelect":
         if (selectedNumbers && selectedNumbers.length <= 0)
@@ -38,10 +37,9 @@ const CombinationDescription: React.FC<CombinationDescriptionProps> = ({
           confirmType === "require" ? "포함" : "제외"
         }된 조합입니다.`;
       case "numberControl": {
-        const latestDrawNumber = latestDraw?.drawNumber || 0;
         const includedDrawNumbers = Array.from(
           { length: drawCount! },
-          (_, i) => latestDrawNumber - i - 1
+          (_, i) => latestDraw.drawNumber - i - 1
         );
 
         return `최근 ${drawCount}회차 (${includedDrawNumbers
@@ -71,6 +69,7 @@ const CombinationDescription: React.FC<CombinationDescriptionProps> = ({
     }
   };
 
+  const latestDraw = useAppSelector((state) => state.draw.allDraws[0]);
   return (
     <Collapse
       style={{
@@ -80,7 +79,7 @@ const CombinationDescription: React.FC<CombinationDescriptionProps> = ({
       }}
     >
       <Panel header="적용 중인 조합 보기" key="1">
-        <Text>{renderCombinationDescription()}</Text>
+        <Text>{renderCombinationDescription(latestDraw)}</Text>
       </Panel>
     </Collapse>
   );

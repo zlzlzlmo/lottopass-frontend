@@ -145,10 +145,7 @@ const SimulationResultPage: React.FC = () => {
     <Layout>
       <Container>
         <Banner>🌟 이 시뮬레이션이 당신의 다음 행운이 될 수 있습니다!</Banner>
-        <CombinationDescription
-          latestDraw={latestDraw!}
-          queryParams={queryParams}
-        />
+        <CombinationDescription queryParams={queryParams} />
         <div>
           <Text
             type="secondary"
