@@ -79,7 +79,10 @@ const NumberActionButtons = () => {
       max,
       confirmType,
       topNumber,
-      type: "rangeAndTopNumberSelect",
+      type:
+        confirmType === "require"
+          ? "rangeAndTopNumberSelect"
+          : "rangeAndBottomNumberSelect",
     });
   };
 
@@ -89,6 +92,7 @@ const NumberActionButtons = () => {
     confirmMinCountDrawSelection,
     generateRangeNumbers,
     confirmEvenOddSelection,
+    generateRangeAndTopNumbers,
     generateRangeAndTopNumbers
   );
 
