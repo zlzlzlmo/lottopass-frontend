@@ -10,6 +10,8 @@ import SimulationControls from "./SimulationControls";
 import SimulationResult from "./SimulationResult";
 import SimulationResultModal from "./SimulationResultModal";
 import CombinationDescription from "../CombinationDescription";
+import Container from "@/components/layout/container/Container";
+import Banner from "@/components/common/banner/Banner";
 
 const { Text } = Typography;
 
@@ -131,46 +133,54 @@ const SimulationResultPage: React.FC = () => {
 
   return (
     <Layout>
-      <CombinationDescription
-        latestDraw={latestDraw}
-        queryParams={queryParams}
-      />
-      <div>
-        <Card style={{ maxWidth: 600, margin: "0 auto", borderRadius: 10 }}>
-          <Text
-            type="secondary"
-            style={{ display: "block", textAlign: "center", marginBottom: 20 }}
-          >
-            로또 번호 조합 시뮬레이션을 통해 각 등수에 당첨된 횟수를 확인합니다.
-          </Text>
+      <Container>
+        <Banner>🌟 이 시뮬레이션이 당신의 다음 행운이 될 수 있습니다!</Banner>
+        <CombinationDescription
+          latestDraw={latestDraw}
+          queryParams={queryParams}
+        />
+        <div>
+          <Card style={{ maxWidth: 600, margin: "0 auto", borderRadius: 10 }}>
+            <Text
+              type="secondary"
+              style={{
+                display: "block",
+                textAlign: "center",
+                marginBottom: 20,
+              }}
+            >
+              로또 번호 조합 시뮬레이션을 통해 각 등수에 당첨된 횟수를
+              확인합니다.
+            </Text>
 
-          <Divider />
+            <Divider />
 
-          <SimulationControls
-            selectedDraw={selectedDraw}
-            setSelectedDraw={setSelectedDraw}
-            allDraws={allDraws}
-            onSimulate={handleSimulate}
-            onStop={handleStopSimulation} // 중지 버튼 콜백 전달
-            simulationRunning={simulationData.simulationRunning}
-            latestDraw={latestDraw}
-          />
+            <SimulationControls
+              selectedDraw={selectedDraw}
+              setSelectedDraw={setSelectedDraw}
+              allDraws={allDraws}
+              onSimulate={handleSimulate}
+              onStop={handleStopSimulation} // 중지 버튼 콜백 전달
+              simulationRunning={simulationData.simulationRunning}
+              latestDraw={latestDraw}
+            />
 
-          <Divider />
-          <SimulationResult
-            rankCounts={rankCounts}
-            simulatedNumbers={simulatedNumbers}
-            simulationCount={simulationCount}
-          />
-        </Card>
-      </div>
+            <Divider />
+            <SimulationResult
+              rankCounts={rankCounts}
+              simulatedNumbers={simulatedNumbers}
+              simulationCount={simulationCount}
+            />
+          </Card>
+        </div>
 
-      <SimulationResultModal
-        isVisible={isModalVisible}
-        onClose={() => setIsModalVisible(false)}
-        rankCounts={rankCounts}
-        simulationCount={simulationCount}
-      />
+        <SimulationResultModal
+          isVisible={isModalVisible}
+          onClose={() => setIsModalVisible(false)}
+          rankCounts={rankCounts}
+          simulationCount={simulationCount}
+        />
+      </Container>
     </Layout>
   );
 };

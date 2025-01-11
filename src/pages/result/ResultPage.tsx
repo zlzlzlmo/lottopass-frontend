@@ -11,6 +11,8 @@ import { parseQUeryParams } from "../numberGeneration/components/numberActionBut
 import { QueryParams, setRequiredNumbers } from "./result-service";
 import { useAppSelector } from "@/redux/hooks";
 import CombinationDescription from "./CombinationDescription";
+import Container from "@/components/layout/container/Container";
+import Banner from "@/components/common/banner/Banner";
 
 const ResultPage: React.FC = () => {
   const allDraws = useAppSelector((state) => state.draw.allDraws);
@@ -86,48 +88,55 @@ const ResultPage: React.FC = () => {
 
   return (
     <Layout>
-      <CombinationDescription
-        latestDraw={allDraws[0]}
-        queryParams={queryParams}
-      />
-      <div className={styles.container}>
-        <Space
-          direction="vertical"
-          size="large"
-          style={{ width: "100%", padding: "0 16px" }}
-        >
-          {results.map((numbers, index) => (
-            <LuckyNumberCard
-              numbers={numbers}
-              index={index}
-              onDelete={handleDeleteResult}
-              onViewStatistics={handleViewStatistics}
-              onRegenerate={handleRegenerate}
-            />
-          ))}
-        </Space>
-        {
-          <StatisticsPopup
-            visible={visible}
-            onClose={() => {
-              setVisible(false);
-              setNumbers([]);
-            }}
-            numbers={numbers}
-          />
-        }
-
-        <div style={{ marginTop: 20, textAlign: "center" }}>
-          <Button
-            type="primary"
-            shape="round"
+      <Container>
+        <Banner>
+          🔑 완벽한 조합! <br /> 조합별 상세 통계까지 제공!
+          <br />
+          이제 당신의 선택만 남았습니다!
+        </Banner>
+        <CombinationDescription
+          latestDraw={allDraws[0]}
+          queryParams={queryParams}
+        />
+        <div className={styles.container}>
+          <Space
+            direction="vertical"
             size="large"
-            onClick={handleAddResult}
+            style={{ width: "100%", padding: "0 16px" }}
           >
-            +
-          </Button>
+            {results.map((numbers, index) => (
+              <LuckyNumberCard
+                numbers={numbers}
+                index={index}
+                onDelete={handleDeleteResult}
+                onViewStatistics={handleViewStatistics}
+                onRegenerate={handleRegenerate}
+              />
+            ))}
+          </Space>
+          {
+            <StatisticsPopup
+              visible={visible}
+              onClose={() => {
+                setVisible(false);
+                setNumbers([]);
+              }}
+              numbers={numbers}
+            />
+          }
+
+          <div style={{ marginTop: 20, textAlign: "center" }}>
+            <Button
+              type="primary"
+              shape="round"
+              size="large"
+              onClick={handleAddResult}
+            >
+              +
+            </Button>
+          </div>
         </div>
-      </div>
+      </Container>
     </Layout>
   );
 };

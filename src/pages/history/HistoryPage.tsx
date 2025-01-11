@@ -42,7 +42,7 @@ const HistoryPage: React.FC = () => {
     <Layout>
       <div className={styles.historyContainer}>
         <Banner>
-          🎉 역대 로또 회차 정보를 확인해보세요! 현재 총{" "}
+          🎉 역대 로또 회차 정보를 확인해보세요! <br />
           <strong>1,153회</strong> 데이터가 제공됩니다.
         </Banner>
 
