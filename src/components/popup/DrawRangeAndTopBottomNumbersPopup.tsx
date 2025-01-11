@@ -6,15 +6,16 @@ import ControlNumberItem from "../common/numberSelector/ControlNumberItem";
 import { useRangeSelector } from "@/features/range/hooks/useRangeSelect";
 import { LoadingIndicator } from "../common";
 
-interface DrawRangeAndTopNumbersPopupProps {
+interface DrawRangeAndTopBottomNumbersPopupProps {
   onClose: () => void;
   onConfirm: (min: number, max: number, topCount: number) => void;
   draws: LottoDraw[];
+  type: "top" | "bottom";
 }
 
-const DrawRangeAndTopNumbersPopup: React.FC<
-  DrawRangeAndTopNumbersPopupProps
-> = ({ onClose, onConfirm, draws }) => {
+const DrawRangeAndTopBottomNumbersPopup: React.FC<
+  DrawRangeAndTopBottomNumbersPopupProps
+> = ({ onClose, onConfirm, draws, type }) => {
   const defaultMinRange = 50;
 
   const { maxDraw, range, handleRangeChange } = useRangeSelector<LottoDraw>({
@@ -42,7 +43,7 @@ const DrawRangeAndTopNumbersPopup: React.FC<
       />
 
       <ControlNumberItem
-        label="상위 번호 갯수"
+        label={(type === "top" ? "상위" : "하위") + "번호 개수"}
         value={topCount}
         onChange={(val) => setTopCount(val)}
         min={1}
@@ -75,4 +76,4 @@ const DrawRangeAndTopNumbersPopup: React.FC<
   );
 };
 
-export default DrawRangeAndTopNumbersPopup;
+export default DrawRangeAndTopBottomNumbersPopup;

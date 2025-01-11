@@ -50,6 +50,25 @@ const getTopWinningNumbers = (
   return sortedNumbers.slice(0, topCount).map((item) => item.number);
 };
 
+const getBottomWinningNumbers = (
+  draws: LottoDraw[],
+  topCount: number
+): number[] => {
+  const numberFrequencyMap: Record<number, number> = {};
+
+  draws.forEach((draw) => {
+    draw.winningNumbers.forEach((number) => {
+      numberFrequencyMap[number] = (numberFrequencyMap[number] || 0) + 1;
+    });
+  });
+
+  const sortedNumbers = Object.entries(numberFrequencyMap)
+    .map(([number, count]) => ({ number: Number(number), count }))
+    .sort((a, b) => a.count - b.count || a.number - b.number);
+  console.log("sortedNumbers :", sortedNumbers.slice(0, topCount));
+  return sortedNumbers.slice(0, topCount).map((item) => item.number);
+};
+
 export const setRequiredNumbers = (
   queryParams: QueryParams,
   allDraws: LottoDraw[],
@@ -91,6 +110,14 @@ export const setRequiredNumbers = (
     );
 
     const numbers = getTopWinningNumbers(draws, topNumber ?? 45);
+
+    return filterNumbers({ numbers, confirmType: "require" });
+  } else if (type === "rangeAndBottomNumberSelect") {
+    const draws = rawAllDraws?.filter(
+      ({ drawNumber }) => drawNumber >= min! && drawNumber <= max!
+    );
+
+    const numbers = getBottomWinningNumbers(draws, topNumber ?? 45);
 
     return filterNumbers({ numbers, confirmType: "require" });
   }
