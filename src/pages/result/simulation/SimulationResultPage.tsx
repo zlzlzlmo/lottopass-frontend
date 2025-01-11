@@ -3,7 +3,6 @@ import { Typography, Divider, message } from "antd";
 import Layout from "@/components/layout/Layout";
 import { getRandomNum, shuffle } from "@/utils/number";
 import { useSearchParams } from "react-router-dom";
-import { useAppSelector } from "@/redux/hooks";
 import { parseQueryParams as parseQueryParams } from "../../numberGeneration/components/numberActionButtons/utils";
 import { QueryParams, setRequiredNumbers } from "../result-service";
 import SimulationControls from "./SimulationControls";
@@ -13,11 +12,13 @@ import CombinationDescription from "../CombinationDescription";
 import Container from "@/components/layout/container/Container";
 import Banner from "@/components/common/banner/Banner";
 import LogoLoading from "@/components/common/loading/LogoLoading";
+import { useAllDraws } from "@/features/draw/hooks/useAllDraws";
+import { ErrorMessage } from "@/components/common";
 
 const { Text } = Typography;
 
 const SimulationResultPage: React.FC = () => {
-  const allDraws = useAppSelector((state) => state.draw.allDraws);
+  const { data: allDraws, isLoading, isError } = useAllDraws();
   const [selectedDraw, setSelectedDraw] = useState<number>(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [progress, setProgress] = useState<number>(0);
@@ -33,17 +34,20 @@ const SimulationResultPage: React.FC = () => {
 
   const stopSimulation = useRef(false);
 
-  const latestDraw = allDraws[selectedDraw];
+  const latestDraw = allDraws && allDraws[selectedDraw];
   const minCount = queryParams.minCount ?? 6;
 
-  const requiredNumbers = setRequiredNumbers(
-    queryParams,
-    allDraws.slice(selectedDraw + 1),
-    allDraws
-  );
-
   const generateNumbers = (): number[] => {
+    if (!allDraws || allDraws.length <= 0) return [];
+
     const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
+
+    const requiredNumbers = setRequiredNumbers(
+      queryParams,
+      allDraws.slice(selectedDraw + 1),
+      allDraws
+    );
+
     const len = requiredNumbers.length;
     const randomIdx = getRandomNum(Math.min(Number(minCount), len), len);
 
@@ -84,6 +88,7 @@ const SimulationResultPage: React.FC = () => {
   };
 
   const handleSimulate = async (maxCount: number) => {
+    if (!allDraws) return;
     const latestDraw = allDraws[selectedDraw];
     if (!latestDraw) {
       message.error("기준 회차 데이터가 없습니다. 다시 시도해주세요.");
@@ -144,15 +149,26 @@ const SimulationResultPage: React.FC = () => {
     }
   }, [isModalVisible]);
 
-  if (!latestDraw && allDraws.length <= 0)
+  if (isLoading) {
     return <LogoLoading text="잠시만 기다려주세요" />;
+  }
+
+  if (isError) {
+    return (
+      <Layout>
+        <ErrorMessage />
+      </Layout>
+    );
+  }
+
+  if (!latestDraw || !allDraws) return <></>;
 
   return (
     <Layout>
       <Container>
         <Banner>🌟 이 시뮬레이션이 당신의 다음 행운이 될 수 있습니다!</Banner>
         <CombinationDescription
-          latestDraw={latestDraw}
+          latestDraw={latestDraw!}
           queryParams={queryParams}
         />
         <div>
