@@ -10,6 +10,7 @@ import {
 } from "./lottie";
 import useIntersection from "@/hooks/useIntersection";
 import { ROUTES } from "@/constants/routes";
+import { useNavigate } from "react-router-dom";
 
 const cards = [
   {
@@ -49,7 +50,7 @@ const cards = [
 
 const InfoCards: React.FC = () => {
   const [visibleCards, setVisibleCards] = useState<boolean[]>([]);
-
+  const navigate = useNavigate();
   const handleIntersection = (index: number) => () => {
     setVisibleCards((prev) => {
       const updated = [...prev];
@@ -89,9 +90,14 @@ const InfoCards: React.FC = () => {
                 <h2 className={styles.title}>{card.title}</h2>
                 <p className={styles.description}>{card.description}</p>
               </div>
-              <a href={card.link} className={styles.button}>
+              <button
+                onClick={() => {
+                  navigate(card.link);
+                }}
+                className={styles.button}
+              >
                 {card.buttonText}
-              </a>
+              </button>
             </Card>
           </div>
         );
