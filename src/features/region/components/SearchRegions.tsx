@@ -31,10 +31,20 @@ const SearchRegions: React.FC<SearchRegionsProps> = ({ handleClick }) => {
         block
         onClick={handleClick.bind(this, province, city)}
         disabled={!province}
+        style={{ marginTop: "20px", height: "40px", borderRadius: "6px" }}
       >
         검색
       </Button>
-      <GeoLocationButton onLocationSelect={handleLocationSelect} />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          width: "100%",
+          marginTop: "20px",
+        }}
+      >
+        <GeoLocationButton onLocationSelect={handleLocationSelect} />
+      </div>
     </div>
   );
 };

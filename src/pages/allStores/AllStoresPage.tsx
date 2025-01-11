@@ -7,6 +7,7 @@ import StoreList from "@/features/region/components/stores/store/StoreList";
 import styles from "./AllStoresPage.module.scss";
 import Banner from "@/components/common/banner/Banner";
 import Container from "@/components/layout/container/Container";
+import PlaceholderContent from "@/components/common/PlaceholderContent";
 
 const AllStoresPage: React.FC = () => {
   const { data, isLoading, isError, handleClick } = useAllStoresByRegion();
@@ -24,14 +25,18 @@ const AllStoresPage: React.FC = () => {
           <br /> 가까운 판매점을 확인하세요! <br />
         </Banner>
         <SearchRegions handleClick={handleClick} />
-        <div className={styles.results}>
-          {isLoading && (
-            <div className={styles.loading}>
-              <Spin size="large" tip="로딩 중..." />
-            </div>
-          )}
-          {!isLoading && data.length > 0 && <StoreList data={data} />}
-        </div>
+        {data.length <= 0 ? (
+          <PlaceholderContent />
+        ) : (
+          <div className={styles.results}>
+            {isLoading && (
+              <div className={styles.loading}>
+                <Spin size="large" tip="로딩 중..." />
+              </div>
+            )}
+            {!isLoading && data.length > 0 && <StoreList data={data} />}
+          </div>
+        )}
       </Container>
     </Layout>
   );

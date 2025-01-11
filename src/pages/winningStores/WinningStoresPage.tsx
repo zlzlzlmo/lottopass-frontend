@@ -8,6 +8,7 @@ import SearchRegions from "@/features/region/components/SearchRegions";
 import { showError } from "@/utils/error";
 import Container from "@/components/layout/container/Container";
 import Banner from "@/components/common/banner/Banner";
+import PlaceholderContent from "../../components/common/PlaceholderContent";
 
 const WinningStoresPage: React.FC = () => {
   const { data, isLoading, isError, handleClick } = useWinningStoresByRegion();
@@ -25,15 +26,19 @@ const WinningStoresPage: React.FC = () => {
           성공은 한 발짝 앞에!
         </Banner>
         <SearchRegions handleClick={handleClick} />
-        <div className={styles.results}>
-          {isLoading && (
-            <div className={styles.loading}>
-              <Spin size="large" tip="로딩 중..." />
-            </div>
-          )}
+        {data.length <= 0 ? (
+          <PlaceholderContent />
+        ) : (
+          <div className={styles.results}>
+            {isLoading && (
+              <div className={styles.loading}>
+                <Spin size="large" tip="로딩 중..." />
+              </div>
+            )}
 
-          {!isLoading && data.length > 0 && <WinningStoreList data={data} />}
-        </div>
+            {!isLoading && <WinningStoreList data={data} />}
+          </div>
+        )}
       </Container>
     </Layout>
   );
