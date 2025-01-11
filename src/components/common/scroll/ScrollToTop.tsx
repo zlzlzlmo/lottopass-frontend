@@ -3,8 +3,10 @@ import { Button } from "antd";
 import { UpOutlined } from "@ant-design/icons";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./ScrollToTop.module.scss";
+import { useLocation } from "react-router-dom";
 
 const ScrollToTop: React.FC = () => {
+  const { pathname } = useLocation();
   const [isVisible, setIsVisible] = useState(false);
 
   const handleScroll = () => {
@@ -20,6 +22,12 @@ const ScrollToTop: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    });
+  }, [pathname]);
 
   return (
     <AnimatePresence>
