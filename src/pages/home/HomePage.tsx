@@ -1,6 +1,4 @@
 import Hero from "./hero/Hero";
-import styles from "./HomePage.module.scss";
-
 import Layout from "../../components/layout/Layout";
 import RoundCard from "../../components/common/card/RoundCard";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +7,7 @@ import { ErrorMessage } from "@/components/common";
 import SkeletonRoundCard from "@/components/common/skeleton/SkeletonRoundCard";
 import InfoCards from "./hero/InfoCards";
 import { Divider, Typography } from "antd";
+import Container from "@/components/layout/container/Container";
 
 const HomePage = () => {
   const { data: latestRound, isLoading, isError } = useLatestDraw();
@@ -39,7 +38,7 @@ const HomePage = () => {
 
   return (
     <Layout>
-      <div className={styles.container}>
+      <Container>
         <Hero />
         {renderCard()}
         <Divider style={{ margin: "20px 0" }} />
@@ -50,7 +49,7 @@ const HomePage = () => {
           로또 서비스 활용하기
         </Typography.Title>
         <InfoCards />
-      </div>
+      </Container>
     </Layout>
   );
 };

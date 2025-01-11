@@ -5,6 +5,8 @@ import { useAllStoresByRegion } from "@/features/region/hooks/useAllStoresByRegi
 import { showError } from "@/utils/error";
 import StoreList from "@/features/region/components/stores/store/StoreList";
 import styles from "./AllStoresPage.module.scss";
+import Banner from "@/components/common/banner/Banner";
+import Container from "@/components/layout/container/Container";
 
 const AllStoresPage: React.FC = () => {
   const { data, isLoading, isError, handleClick } = useAllStoresByRegion();
@@ -15,8 +17,12 @@ const AllStoresPage: React.FC = () => {
   }
 
   return (
-    <Layout pageTitle="로또 판매점 확인">
-      <div className={styles.container}>
+    <Layout>
+      <Container>
+        <Banner>
+          🌈 로또를 구매할 준비 되셨나요?
+          <br /> 가까운 판매점을 확인하세요! <br />
+        </Banner>
         <SearchRegions handleClick={handleClick} />
         <div className={styles.results}>
           {isLoading && (
@@ -26,7 +32,7 @@ const AllStoresPage: React.FC = () => {
           )}
           {!isLoading && data.length > 0 && <StoreList data={data} />}
         </div>
-      </div>
+      </Container>
     </Layout>
   );
 };

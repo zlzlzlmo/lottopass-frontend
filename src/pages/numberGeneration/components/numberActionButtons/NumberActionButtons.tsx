@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { Row, Col, Card, Typography } from "antd";
-import styles from "./NumberActionButtons.module.scss";
+
 import PopupManager from "@/components/popup/PopupManager";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAppSelector } from "@/redux/hooks";
 import { generateOptions } from "./options.ts";
 import { createQueryParams } from "./utils.ts";
 import { QueryParams } from "@/pages/result/result-service.ts";
+import COLORS from "@/constants/colors.ts";
+import { ROUTES } from "@/constants/routes.ts";
 
 const { Text } = Typography;
 
@@ -15,10 +17,16 @@ const NumberActionButtons = () => {
   const allDraws = useAppSelector((state) => state.draw.allDraws);
   const navigate = useNavigate();
   const [popupProps, setPopupProps] = useState<any | null>(null);
-
+  const location = useLocation();
   const navigateToResult = (param: QueryParams) => {
     const queryParams = createQueryParams(param);
-    navigate(`/result${queryParams}`);
+
+    if (location.pathname === ROUTES.NUMBER_GENERATION.path) {
+      navigate(`/result${queryParams}`);
+      return;
+    }
+
+    navigate(`/s-result${queryParams}`);
   };
 
   const confirmNumberSelection = (
@@ -51,26 +59,35 @@ const NumberActionButtons = () => {
 
   return (
     <>
-      <div className={styles.container}>
-        <Row gutter={[24, 24]} justify="center">
+      <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "20px",
+            color: COLORS.PRIMARY,
+          }}
+        >
+          <Text strong style={{ color: COLORS.PRIMARY }}>
+            1~45
+          </Text>
+          의 모든 번호에서 생성합니다.
+        </div>
+        <Row justify="center" style={{ gap: "10px" }}>
           {options.map((option, index) => (
-            <Col key={index} xs={24} sm={12}>
+            <Col key={index} xs={8} sm={8}>
               <Card
                 hoverable
-                className={styles.optionCard}
                 onClick={option.action}
+                style={{ textAlign: "center", borderColor: COLORS.NAVY_BLUE }}
               >
-                <Text strong>{option.label.replace("\\n", "\n")}</Text>
+                <Text strong style={{ whiteSpace: "pre-line" }}>
+                  {option.label.replace("\\n", "\n")}
+                </Text>
               </Card>
             </Col>
           ))}
         </Row>
-        <p className={styles.note}>
-          <Text strong className={styles.highlight}>
-            1~45
-          </Text>
-          의 모든 번호에서 생성합니다.
-        </p>
       </div>
       {popupProps && <PopupManager {...popupProps} draws={allDraws} />}
     </>

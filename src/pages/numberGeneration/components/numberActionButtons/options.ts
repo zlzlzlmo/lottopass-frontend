@@ -27,10 +27,10 @@ export const generateOptions = (
   setPopupProps: SetPopupProps
 ): Option[] => [
   {
-    label: "제외 번호 직접 선택",
+    label: "제외 번호\n직접 선택",
     action: () =>
       setPopupProps({
-        label: "제외 번호 직접 선택",
+        label: "제외 번호\n직접 선택",
         popupType: "numberSelect",
         confirmType: "exclude",
         onClose: () => setPopupProps(null),
@@ -39,10 +39,10 @@ export const generateOptions = (
       }),
   },
   {
-    label: "필수 번호 직접 선택",
+    label: "필수 번호\n직접 선택",
     action: () =>
       setPopupProps({
-        label: "필수 번호 직접 선택",
+        label: "필수 번호\n직접 선택",
         popupType: "numberSelect",
         confirmType: "require",
         onClose: () => setPopupProps(null),
@@ -51,10 +51,10 @@ export const generateOptions = (
       }),
   },
   {
-    label: "미출현 번호 조합",
+    label: "미출현\n번호 조합",
     action: () =>
       setPopupProps({
-        label: "미출현 번호 조합",
+        label: "미출현\n번호 조합",
         popupType: "numberControl",
         confirmType: "exclude",
         onClose: () => setPopupProps(null),
@@ -63,10 +63,10 @@ export const generateOptions = (
       }),
   },
   {
-    label: "출현 번호 조합",
+    label: "출현\n번호 조합",
     action: () =>
       setPopupProps({
-        label: "출현 번호 조합",
+        label: "출현\n번호 조합",
         popupType: "numberControl",
         confirmType: "require",
         onClose: () => setPopupProps(null),
@@ -75,7 +75,7 @@ export const generateOptions = (
       }),
   },
   {
-    label: "특정 회차 번호 조합",
+    label: "특정 회차\n번호 조합",
     action: () =>
       setPopupProps({
         label: "특정 회차 번호 조합",
