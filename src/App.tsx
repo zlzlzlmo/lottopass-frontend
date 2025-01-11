@@ -50,8 +50,8 @@ const App: React.FC = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ScrollToTop />
       <Router>
+        <ScrollToTop />
         {/* <AppInitializer> */}
         <Routes>
           {routes.map((route) => (
