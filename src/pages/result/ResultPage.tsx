@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./ResultPage.module.scss";
 import Layout from "../../components/layout/Layout";
 import { getRandomNum, shuffle } from "@/utils/number";
@@ -7,28 +7,39 @@ import { Button, Space, message } from "antd";
 
 import LuckyNumberCard from "@/components/common/card/LuckyNumberCard";
 import StatisticsPopup from "@/components/popup/StatisticPopup";
-import { parseQUeryParams } from "../numberGeneration/components/numberActionButtons/utils";
+import { parseQueryParams } from "../numberGeneration/components/numberActionButtons/utils";
 import { QueryParams, setRequiredNumbers } from "./result-service";
-import { useAppSelector } from "@/redux/hooks";
 import CombinationDescription from "./CombinationDescription";
 import Container from "@/components/layout/container/Container";
 import Banner from "@/components/common/banner/Banner";
+import { useAllDraws } from "@/features/draw/hooks/useAllDraws";
+import LogoLoading from "@/components/common/loading/LogoLoading";
+import { ErrorMessage } from "@/components/common";
 
 const ResultPage: React.FC = () => {
-  const allDraws = useAppSelector((state) => state.draw.allDraws);
+  const { data: allDraws, isLoading, isError } = useAllDraws();
+
   const [visible, setVisible] = useState<boolean>(false);
   const [numbers, setNumbers] = useState<number[]>([]);
   const [searchParams] = useSearchParams();
 
-  const queryParams = parseQUeryParams(searchParams) as QueryParams;
+  const queryParams = parseQueryParams(searchParams) as QueryParams;
 
   const minCount = queryParams.minCount ?? 6;
-  const requiredNumbers = setRequiredNumbers(queryParams, allDraws, allDraws);
 
   const maxResultsLen = 20;
 
-  const generateNumbers = (): number[] => {
+  const [results, setResults] = useState<number[][]>([]);
+
+  const [savedStatus, setSavedStatus] = useState<boolean[]>(
+    Array.from({ length: results.length }, () => false)
+  );
+
+  const generateNumbers = useCallback((): number[] => {
+    if (!allDraws || allDraws.length <= 0) return [];
     const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
+
+    const requiredNumbers = setRequiredNumbers(queryParams, allDraws, allDraws);
     const len = requiredNumbers.length;
     const randomIdx = getRandomNum(Math.min(Number(minCount), len), len);
 
@@ -37,15 +48,7 @@ const ResultPage: React.FC = () => {
     return Array.from(new Set([...availableNumbers, ...shuffle(allNumbers)]))
       .slice(0, 6)
       .sort((a, b) => a - b);
-  };
-
-  const [results, setResults] = useState<number[][]>(() =>
-    Array.from({ length: 5 }, () => generateNumbers())
-  );
-
-  const [savedStatus, setSavedStatus] = useState<boolean[]>(
-    Array.from({ length: results.length }, () => false)
-  );
+  }, [allDraws, minCount, queryParams]);
 
   const handleAddResult = () => {
     if (results.length >= maxResultsLen) {
@@ -86,59 +89,81 @@ const ResultPage: React.FC = () => {
     setVisible(true);
   };
 
-  return (
-    <Layout>
-      <Container>
-        <Banner>
-          🔑 완벽한 조합! <br /> 조합별 상세 통계까지 제공!
-          <br />
-          이제 당신의 선택만 남았습니다!
-        </Banner>
-        <CombinationDescription
-          latestDraw={allDraws[0]}
-          queryParams={queryParams}
-        />
-        <div className={styles.container}>
-          <Space
-            direction="vertical"
-            size="large"
-            style={{ width: "100%", padding: "0 8px" }}
-          >
-            {results.map((numbers, index) => (
-              <LuckyNumberCard
-                numbers={numbers}
-                index={index}
-                onDelete={handleDeleteResult}
-                onViewStatistics={handleViewStatistics}
-                onRegenerate={handleRegenerate}
-              />
-            ))}
-          </Space>
-          {
-            <StatisticsPopup
-              visible={visible}
-              onClose={() => {
-                setVisible(false);
-                setNumbers([]);
-              }}
-              numbers={numbers}
-            />
-          }
+  useEffect(() => {
+    if (allDraws && allDraws.length > 0) {
+      const newNumbers = Array.from({ length: 5 }, () => generateNumbers());
+      setResults((prev) => [...prev, ...newNumbers]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allDraws]);
 
-          <div style={{ marginTop: 20, textAlign: "center" }}>
-            <Button
-              type="primary"
-              shape="round"
+  if (isLoading) {
+    return <LogoLoading text="잠시만 기다려주세요" />;
+  }
+
+  if (isError) {
+    return (
+      <Layout>
+        <ErrorMessage />
+      </Layout>
+    );
+  }
+
+  if (allDraws)
+    return (
+      <Layout>
+        <Container>
+          <Banner>
+            🔑 완벽한 조합! <br /> 조합별 상세 통계까지 제공!
+            <br />
+            이제 당신의 선택만 남았습니다!
+          </Banner>
+          <CombinationDescription
+            latestDraw={allDraws[0]}
+            queryParams={queryParams}
+          />
+          <div className={styles.container}>
+            <Space
+              direction="vertical"
               size="large"
-              onClick={handleAddResult}
+              style={{ width: "100%", padding: "0 8px" }}
             >
-              +
-            </Button>
+              {results.map((numbers, index) => (
+                <LuckyNumberCard
+                  key={index}
+                  numbers={numbers}
+                  index={index}
+                  onDelete={handleDeleteResult}
+                  onViewStatistics={handleViewStatistics}
+                  onRegenerate={handleRegenerate}
+                />
+              ))}
+            </Space>
+            {
+              <StatisticsPopup
+                visible={visible}
+                onClose={() => {
+                  setVisible(false);
+                  setNumbers([]);
+                }}
+                numbers={numbers}
+              />
+            }
+
+            <div style={{ marginTop: 20, textAlign: "center" }}>
+              <Button
+                type="primary"
+                shape="round"
+                size="large"
+                onClick={handleAddResult}
+              >
+                +
+              </Button>
+            </div>
           </div>
-        </div>
-      </Container>
-    </Layout>
-  );
+        </Container>
+      </Layout>
+    );
 };
 
 export default ResultPage;

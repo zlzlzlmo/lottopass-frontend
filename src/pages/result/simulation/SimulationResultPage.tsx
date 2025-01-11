@@ -4,7 +4,7 @@ import Layout from "@/components/layout/Layout";
 import { getRandomNum, shuffle } from "@/utils/number";
 import { useSearchParams } from "react-router-dom";
 import { useAppSelector } from "@/redux/hooks";
-import { parseQUeryParams as parseQueryParams } from "../../numberGeneration/components/numberActionButtons/utils";
+import { parseQueryParams as parseQueryParams } from "../../numberGeneration/components/numberActionButtons/utils";
 import { QueryParams, setRequiredNumbers } from "../result-service";
 import SimulationControls from "./SimulationControls";
 import SimulationResult from "./SimulationResult";

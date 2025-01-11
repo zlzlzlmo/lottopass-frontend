@@ -1,6 +1,6 @@
 import { Collapse, Typography } from "antd";
 import React from "react";
-import { getCombinationType, QueryParams } from "./result-service";
+import { QueryParams } from "./result-service";
 import { LottoDraw } from "lottopass-shared";
 const { Panel } = Collapse;
 const { Text } = Typography;
@@ -14,33 +14,47 @@ const CombinationDescription: React.FC<CombinationDescriptionProps> = ({
   queryParams,
   latestDraw,
 }) => {
-  const { type, data } = getCombinationType(queryParams);
+  const {
+    type,
+    selectedNumbers,
+    confirmType,
+    drawCount,
+    min,
+    max,
+    minCount,
+    even,
+    odd,
+  } = queryParams;
 
   const renderCombinationDescription = () => {
     switch (type) {
       case "numberSelect":
-        if (data.selectedNumbers && data.selectedNumbers.length <= 0)
+        if (selectedNumbers && selectedNumbers.length <= 0)
           return "선택된 번호가 존재하지 않아 모든 경우의 수를 조합합니다.";
-        return `선택된 번호 ${data.selectedNumbers
+        return `선택된 번호 ${selectedNumbers
           ?.sort((a, b) => a - b)
           .join(", ")} 가 ${
-          data.confirmType === "require" ? "포함" : "제외"
+          confirmType === "require" ? "포함" : "제외"
         }된 조합입니다.`;
       case "numberControl": {
         const latestDrawNumber = latestDraw?.drawNumber || 0;
         const includedDrawNumbers = Array.from(
-          { length: data.drawCount! },
+          { length: drawCount! },
           (_, i) => latestDrawNumber - i - 1
         );
 
-        return `최근 ${data.drawCount}회차 (${includedDrawNumbers
+        return `최근 ${drawCount}회차 (${includedDrawNumbers
           .map((num) => num.toString() + "회")
           .join(", ")})의 ${
-          data.confirmType === "require" ? "출현" : "미출현"
-        } 번호 중 최소 ${data.minCount}개의 번호를 사용하는 조합입니다.`;
+          confirmType === "require" ? "출현" : "미출현"
+        } 번호 중 최소 ${minCount}개의 번호를 사용하는 조합입니다.`;
       }
-      case "rangeSelect":
-        return `${data.min}회차부터 ${data.max}회차 사이의 당첨 번호를 사용하는 조합입니다.`;
+      case "rangeSelect": {
+        const text = confirmType === "require" ? "출현 번호" : "미출현 번호";
+        return `${min}회차부터 ${max}회차 사이의 ${text}를 사용하는 조합입니다.`;
+      }
+      case "evenOddControl":
+        return `짝수 ${even ?? 0}개와 홀수 ${odd ?? 0}개를 가진 조합입니다.`;
       default:
         return "알 수 없는 조합입니다.";
     }
