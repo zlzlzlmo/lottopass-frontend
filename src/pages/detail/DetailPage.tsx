@@ -9,6 +9,7 @@ import { useDetailOneDraw } from "@/features/draw/hooks/useDetailOneDraw";
 import FlexContainer from "@/components/common/container/FlexContainer";
 import { useWinningStoresByDrawNumber } from "@/features/region/hooks/useWinningStoresByDrawNumber";
 import WinningStoreList from "../../features/region/components/stores/winningStore/WinningStoreList";
+import Container from "@/components/layout/container/Container";
 
 const DetailPage: React.FC = () => {
   const { drawNumber: drawNumberStr } = useParams<{ drawNumber: string }>();
@@ -67,7 +68,7 @@ const DetailPage: React.FC = () => {
   if (oneDraw)
     return (
       <Layout>
-        <div className={styles.detailContainer}>
+        <Container>
           <RoundCard {...oneDraw} />
           <div className={styles.prizesTable}>
             <h2 className={styles.sectionHeader}>순위별 당첨 정보</h2>
@@ -90,7 +91,7 @@ const DetailPage: React.FC = () => {
               />
             </FlexContainer>
           </div>
-        </div>
+        </Container>
       </Layout>
     );
 };
