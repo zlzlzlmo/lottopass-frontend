@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Typography, Divider, message } from "antd";
 import Layout from "@/components/layout/Layout";
 import { getRandomNum, shuffle } from "@/utils/number";
@@ -72,16 +72,18 @@ const SimulationResultPage: React.FC = () => {
     return null;
   };
 
-  const handleSimulate = async (maxCount: number) => {
+  const resetSimulation = () => {
+    setProgress(0);
     setSimulationData({
-      simulationRunning: true,
+      simulationRunning: false,
       simulationCount: 0,
       simulatedNumbers: "",
       rankCounts: { first: 0, second: 0, third: 0, fourth: 0, fifth: 0 },
     });
-
     stopSimulation.current = false;
+  };
 
+  const handleSimulate = async (maxCount: number) => {
     const latestDraw = allDraws[selectedDraw];
     if (!latestDraw) {
       message.error("기준 회차 데이터가 없습니다. 다시 시도해주세요.");
@@ -90,7 +92,7 @@ const SimulationResultPage: React.FC = () => {
     const { winningNumbers, bonusNumber } = latestDraw;
 
     let count = 0;
-
+    setSimulationData((prev) => ({ ...prev, simulationRunning: true }));
     while (count < maxCount) {
       if (stopSimulation.current) break; // 중지 상태 확인
       count++;
@@ -123,6 +125,7 @@ const SimulationResultPage: React.FC = () => {
     setSimulationData((prev) => ({ ...prev, simulationRunning: false }));
     if (!stopSimulation.current) {
       message.success("시뮬레이션이 완료되었습니다!");
+
       setIsModalVisible(true);
     }
   };
@@ -134,6 +137,12 @@ const SimulationResultPage: React.FC = () => {
   };
 
   const { simulationCount, rankCounts, simulatedNumbers } = simulationData;
+
+  useEffect(() => {
+    if (!isModalVisible) {
+      resetSimulation();
+    }
+  }, [isModalVisible]);
 
   if (!latestDraw && allDraws.length <= 0)
     return <LogoLoading text="잠시만 기다려주세요" />;
