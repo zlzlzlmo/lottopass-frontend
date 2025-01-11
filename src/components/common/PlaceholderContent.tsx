@@ -27,7 +27,7 @@ const PlaceholderContent = () => {
           fontSize: "18px",
         }}
       >
-        🌟 첫 번째 로또 행운을 찾아보세요!
+        🌟 행운 복권을 안겨줄 매장을 찾아보세요!
       </p>
     </div>
   );
