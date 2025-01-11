@@ -2,7 +2,6 @@ import GeoLocationButton from "@/features/location/components/GeoLocationButton/
 import RegionSelectBox from "@/pages/winningStores/selectBox/RegionSelectBox";
 import { Button } from "antd";
 import React, { useState } from "react";
-import styles from "./SearchRegions.module.scss";
 
 interface SearchRegionsProps {
   handleClick: (province: string, city?: string) => Promise<void>;
@@ -19,7 +18,7 @@ const SearchRegions: React.FC<SearchRegionsProps> = ({ handleClick }) => {
     setCity(selectedCity);
   };
   return (
-    <div className={styles.controls}>
+    <div>
       <RegionSelectBox
         city={city ?? ""}
         province={province ?? ""}
@@ -31,12 +30,21 @@ const SearchRegions: React.FC<SearchRegionsProps> = ({ handleClick }) => {
         size="large"
         block
         onClick={handleClick.bind(this, province, city)}
-        className={styles.searchButton}
         disabled={!province}
+        style={{ marginTop: "20px", height: "40px", borderRadius: "6px" }}
       >
         검색
       </Button>
-      <GeoLocationButton onLocationSelect={handleLocationSelect} />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          width: "100%",
+          marginTop: "20px",
+        }}
+      >
+        <GeoLocationButton onLocationSelect={handleLocationSelect} />
+      </div>
     </div>
   );
 };

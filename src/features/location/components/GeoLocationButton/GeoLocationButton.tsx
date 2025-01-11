@@ -6,6 +6,7 @@ import { setAddress, setError, setLocation } from "../../locationSlice";
 import { CompassOutlined } from "@ant-design/icons";
 import { locationService } from "@/api";
 import { showError, getErrorMessage } from "@/utils/error";
+import FlexContainer from "@/components/common/container/FlexContainer";
 
 const { Text } = Typography;
 
@@ -91,30 +92,24 @@ const GeoLocationButton: React.FC<GeoLocationButtonProps> = ({
   };
 
   return (
-    <div style={{ marginTop: 16 }}>
-      <Space direction="vertical" style={{ width: "100%" }}>
-        <Button
-          icon={<CompassOutlined />}
-          type={myLocation ? "dashed" : "default"}
-          loading={isFetching}
-          onClick={handleGetLocation}
-        >
-          {myLocation ? "위치 재설정하기" : "내 위치 가져오기"}
-        </Button>
+    <FlexContainer direction="column" gap={5}>
+      <Button
+        icon={<CompassOutlined />}
+        type={myLocation ? "dashed" : "default"}
+        loading={isFetching}
+        onClick={handleGetLocation}
+      >
+        {myLocation ? "위치 재설정하기" : "내 위치 가져오기"}
+      </Button>
 
-        {myLocation && (
-          <Text type="secondary" style={{ fontSize: "12px", display: "block" }}>
-            현재 위도/경도: {myLocation.latitude}, {myLocation.longitude}
-          </Text>
-        )}
-
+      <div>
         {myAddress && (
           <Text type="secondary" style={{ fontSize: "12px", display: "block" }}>
             현재 위치: {myAddress ?? myAddress}
           </Text>
         )}
-      </Space>
-    </div>
+      </div>
+    </FlexContainer>
   );
 };
 

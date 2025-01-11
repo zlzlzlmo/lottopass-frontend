@@ -1,7 +1,7 @@
-import { Select, Row, Col, Skeleton } from "antd";
+import { Skeleton } from "antd";
 import { useGroupedRegions } from "@/features/location/hooks/useGroupedRegions";
-
-const { Option } = Select;
+import RegionSelect from "./RegionSelect";
+import FlexContainer from "@/components/common/container/FlexContainer";
 
 interface RegionSelectBoxProps {
   province: string;
@@ -29,46 +29,26 @@ const RegionSelectBox: React.FC<RegionSelectBoxProps> = ({
   if (!groupedData || isError) return <></>;
 
   return (
-    <Row gutter={[16, 16]}>
-      <Col xs={24} sm={12}>
-        <Select
-          placeholder="도/시를 선택하세요"
-          value={province || undefined}
-          onChange={(value) => {
-            if (onProvinceSelect) onProvinceSelect(value);
-          }}
-          allowClear
-          style={{ width: "100%" }}
-          getPopupContainer={(triggerNode) => triggerNode.parentNode}
-        >
-          {Object.keys(groupedData).map((region) => (
-            <Option key={region} value={region}>
-              {region}
-            </Option>
-          ))}
-        </Select>
-      </Col>
-      <Col xs={24} sm={12}>
-        <Select
-          placeholder="시/구를 선택하세요"
-          value={city || undefined}
-          onChange={(value) => {
-            if (onCitySelect) onCitySelect(value);
-          }}
-          allowClear
-          style={{ width: "100%" }}
-          disabled={!province}
-          getPopupContainer={(triggerNode) => triggerNode.parentNode}
-        >
-          {province &&
-            groupedData[province].map((region) => (
-              <Option key={region.id} value={region.city}>
-                {region.city}
-              </Option>
-            ))}
-        </Select>
-      </Col>
-    </Row>
+    <FlexContainer direction="column" gap={10}>
+      <RegionSelect
+        placeholder="도/시를 선택하세요"
+        value={province}
+        options={Object.keys(groupedData)} // "서울", "부산" 등
+        onChange={(value) => {
+          if (onProvinceSelect) onProvinceSelect(value);
+        }}
+      />
+
+      <RegionSelect
+        placeholder="시/구를 선택하세요"
+        value={city}
+        options={province ? groupedData[province].map(({ city }) => city) : []} // 선택된 도/시의 시/구만 표시
+        onChange={(value) => {
+          if (onCitySelect) onCitySelect(value);
+        }}
+        disabled={!province} // 도/시가 선택되지 않았을 경우 비활성화
+      />
+    </FlexContainer>
   );
 };
 

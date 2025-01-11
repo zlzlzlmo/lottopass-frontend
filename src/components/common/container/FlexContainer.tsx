@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./FlexContainer.module.scss";
 
 interface FlexContainerProps {
-  direction?: "row" | "column";
+  direction?: "row" | "column" | "row-reverse";
   justify?:
     | "flex-start"
     | "flex-end"
