@@ -1,31 +1,28 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ResultPage.module.scss";
 import Layout from "../../components/layout/Layout";
-import { getRandomNum, shuffle } from "@/utils/number";
 import { useSearchParams } from "react-router-dom";
 import { Button, Space, message } from "antd";
 
 import LuckyNumberCard from "@/components/common/card/LuckyNumberCard";
 import StatisticsPopup from "@/components/popup/StatisticPopup";
 import { parseQueryParams } from "../numberGeneration/components/numberActionButtons/utils";
-import { QueryParams, setRequiredNumbers } from "./result-service";
+import { QueryParams } from "./result-service";
 import CombinationDescription from "./CombinationDescription";
 import Container from "@/components/layout/container/Container";
 import Banner from "@/components/common/banner/Banner";
-import { useAllDraws } from "@/features/draw/hooks/useAllDraws";
 import LogoLoading from "@/components/common/loading/LogoLoading";
 import { ErrorMessage } from "@/components/common";
+import { useGenerateNumbers } from "./hooks/useGenerateNumbers";
 
 const ResultPage: React.FC = () => {
-  const { data: allDraws, isLoading, isError } = useAllDraws();
-
+  const { allDraws, isLoading, isError, generateNumbers } =
+    useGenerateNumbers();
   const [visible, setVisible] = useState<boolean>(false);
   const [numbers, setNumbers] = useState<number[]>([]);
   const [searchParams] = useSearchParams();
 
   const queryParams = parseQueryParams(searchParams) as QueryParams;
-
-  const minCount = queryParams.minCount ?? 6;
 
   const maxResultsLen = 20;
 
@@ -34,21 +31,6 @@ const ResultPage: React.FC = () => {
   const [savedStatus, setSavedStatus] = useState<boolean[]>(
     Array.from({ length: results.length }, () => false)
   );
-
-  const generateNumbers = useCallback((): number[] => {
-    if (!allDraws || allDraws.length <= 0) return [];
-    const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
-
-    const requiredNumbers = setRequiredNumbers(queryParams, allDraws, allDraws);
-    const len = requiredNumbers.length;
-    const randomIdx = getRandomNum(Math.min(Number(minCount), len), len);
-
-    const availableNumbers = shuffle(requiredNumbers).slice(0, randomIdx);
-
-    return Array.from(new Set([...availableNumbers, ...shuffle(allNumbers)]))
-      .slice(0, 6)
-      .sort((a, b) => a - b);
-  }, [allDraws, minCount, queryParams]);
 
   const handleAddResult = () => {
     if (results.length >= maxResultsLen) {
@@ -94,7 +76,6 @@ const ResultPage: React.FC = () => {
       const newNumbers = Array.from({ length: 5 }, () => generateNumbers());
       setResults((prev) => [...prev, ...newNumbers]);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allDraws]);
 
   if (isLoading) {
