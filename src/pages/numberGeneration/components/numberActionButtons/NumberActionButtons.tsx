@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
+import React, { useState } from "react";
 import { Row, Card, Typography } from "antd";
 
 import PopupManager from "@/components/popup/PopupManager";
@@ -20,6 +20,7 @@ const NumberActionButtons = () => {
   const navigate = useNavigate();
   const [popupProps, setPopupProps] = useState<any | null>(null);
   const location = useLocation();
+
   const navigateToResult = (param: QueryParams) => {
     const queryParams = createQueryParams(param);
 
@@ -38,7 +39,6 @@ const NumberActionButtons = () => {
     navigateToResult({ selectedNumbers, confirmType, type: "numberSelect" });
   };
 
-  // 회차와 최소 포함 개수 설정
   const confirmMinCountDrawSelection = (
     drawCount: number,
     minCount: number,
@@ -52,7 +52,6 @@ const NumberActionButtons = () => {
     });
   };
 
-  // 특정 회차 범위의 번호 생성
   const generateRangeNumbers = (
     min: number,
     max: number,
@@ -68,6 +67,7 @@ const NumberActionButtons = () => {
   ) => {
     navigateToResult({ even, odd, confirmType, type: "evenOddControl" });
   };
+
   const options = generateOptions(
     setPopupProps,
     confirmNumberSelection,
@@ -75,6 +75,17 @@ const NumberActionButtons = () => {
     generateRangeNumbers,
     confirmEvenOddSelection
   );
+
+  const totalCards = options.length;
+  const comingSoonCards = totalCards % 2 === 0 ? 2 : 1;
+
+  const extendedOptions = [
+    ...options,
+    ...Array.from({ length: comingSoonCards }).map(() => ({
+      label: "COMING SOON",
+      action: () => {},
+    })),
+  ];
 
   return (
     <>
@@ -99,19 +110,31 @@ const NumberActionButtons = () => {
             gap: "20px",
           }}
         >
-          {options.map((option, index) => (
+          {extendedOptions.map((option, index) => (
             <Card
               key={index}
-              hoverable
+              hoverable={option.label !== "COMING SOON"}
               onClick={option.action}
               style={{
                 textAlign: "center",
+                alignItems: "center",
+                display: "flex",
+                justifyContent: "center",
                 borderColor: COLORS.NAVY_BLUE,
                 width: "100%",
                 height: "100%",
+                backgroundColor:
+                  option.label === "COMING SOON" ? COLORS.NEUTRAL : undefined,
               }}
             >
-              <Text strong style={{ whiteSpace: "pre-line" }}>
+              <Text
+                strong
+                style={{
+                  whiteSpace: "pre-line",
+                  color:
+                    option.label === "COMING SOON" ? COLORS.PRIMARY : undefined,
+                }}
+              >
                 {option.label.replace("\\n", "\n")}
               </Text>
             </Card>
