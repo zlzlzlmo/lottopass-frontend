@@ -42,6 +42,7 @@ const WinningStoreCard: React.FC<
   return (
     <>
       <Card
+        style={{ width: "100%" }}
         className={styles.storeCard}
         hoverable
         title={

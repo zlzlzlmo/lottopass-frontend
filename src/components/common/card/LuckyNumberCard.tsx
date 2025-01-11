@@ -110,7 +110,7 @@ const LuckyNumberCard: React.FC<LuckyNumberCardProps> = ({
           style={{
             marginTop: 16,
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: "center",
             width: "100%",
           }}
         >

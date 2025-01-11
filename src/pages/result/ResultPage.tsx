@@ -102,7 +102,7 @@ const ResultPage: React.FC = () => {
           <Space
             direction="vertical"
             size="large"
-            style={{ width: "100%", padding: "0 16px" }}
+            style={{ width: "100%", padding: "0 8px" }}
           >
             {results.map((numbers, index) => (
               <LuckyNumberCard

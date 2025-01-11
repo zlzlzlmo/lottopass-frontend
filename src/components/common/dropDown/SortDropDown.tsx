@@ -41,7 +41,7 @@ const SortDropDown = <T extends string | number>({
     <Dropdown
       overlay={menu}
       trigger={["click"]}
-      onVisibleChange={(visible) => setIsActive(visible)}
+      onOpenChange={(visible) => setIsActive(visible)}
     >
       <a
         href="#"

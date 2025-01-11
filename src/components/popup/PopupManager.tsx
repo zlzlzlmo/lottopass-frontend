@@ -111,7 +111,7 @@ const PopupManager: React.FC<PopupManagerProps> = ({
   return (
     <>
       <Modal
-        visible={true}
+        open={true}
         onCancel={onClose}
         footer={null}
         centered
