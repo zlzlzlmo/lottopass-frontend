@@ -49,20 +49,21 @@
 }
 
 .button {
+  width: 100%;
   display: block;
   text-align: center;
   padding: 10px 15px;
-  margin: 0 20px 20px;
-  background-color: #333; // 버튼 어두운 색상
+  background-color: #333;
   color: #fff;
   border-radius: 6px;
   font-size: 14px;
   font-weight: bold;
   text-decoration: none;
   transition: background-color 0.3s;
+  text-decoration: none;
 
   &:hover {
-    background-color: #555; // 버튼 호버 시 더 어두운 색상
+    background-color: #555;
   }
 }
 
