@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "@/redux/hooks";
 import useSingleIntersection from "@/hooks/useSingleIntersection";
 import Banner from "@/components/common/banner/Banner";
+import Container from "@/components/layout/container/Container";
 
 const ITEMS_PER_PAGE = 10; // 한 번에 로드할 아이템 수
 
@@ -40,7 +41,7 @@ const HistoryPage: React.FC = () => {
 
   return (
     <Layout>
-      <div className={styles.historyContainer}>
+      <Container>
         <Banner>
           🎉 역대 로또 회차 정보를 확인해보세요! <br />
           <strong>1,153회</strong> 데이터가 제공됩니다.
@@ -63,7 +64,7 @@ const HistoryPage: React.FC = () => {
         {visibleItems < allDraws.length && (
           <div ref={observerRef} className={styles.observer} />
         )}
-      </div>
+      </Container>
     </Layout>
   );
 };
