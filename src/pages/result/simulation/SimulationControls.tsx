@@ -1,6 +1,16 @@
 import React, { useState } from "react";
-import { Button, InputNumber, Select, Space, Typography, Divider } from "antd";
+import {
+  Button,
+  InputNumber,
+  Select,
+  Typography,
+  Divider,
+  Space,
+  Card,
+} from "antd";
 import { LottoDraw } from "lottopass-shared";
+import FlexContainer from "@/components/common/container/FlexContainer";
+import NumberContainer from "@/components/common/number/NumberContainer";
 
 const { Text } = Typography;
 
@@ -24,22 +34,29 @@ const SimulationControls: React.FC<Props> = ({
   latestDraw,
 }) => {
   const maxSimulationLimit = 1000000;
-
   const [maxCount, setMaxCount] = useState<number>(1000);
 
   return (
-    <div style={{ width: "100%", maxWidth: "400px", margin: "0 auto" }}>
-      <Space direction="vertical" size="small" style={{ width: "100%" }}>
-        {/* 기준 회차 선택 */}
-        <div>
-          <Text strong style={{ fontSize: "14px" }}>
-            기준 회차:
+    <Card
+      style={{
+        width: "100%",
+        maxWidth: "450px",
+        margin: "0 auto",
+        borderRadius: "10px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        backgroundColor: "#ffffff",
+      }}
+    >
+      <Space direction="vertical" size="middle" style={{ width: "100%" }}>
+        <FlexContainer justify="space-between" align="center">
+          <Text strong style={{ fontSize: "12px", flex: 1 }}>
+            기준 회차 :
           </Text>
           <Select
-            style={{ marginLeft: "10px", width: "120px" }}
+            style={{ marginLeft: "10px", width: "100%", maxWidth: "150px" }}
             value={selectedDraw}
             onChange={setSelectedDraw}
-            size="small"
+            size="middle"
           >
             {allDraws.map((draw, index) => (
               <Select.Option key={draw.drawNumber} value={index}>
@@ -47,32 +64,21 @@ const SimulationControls: React.FC<Props> = ({
               </Select.Option>
             ))}
           </Select>
-        </div>
+        </FlexContainer>
 
-        {/* 당첨 번호 */}
         <Divider style={{ margin: "8px 0" }} />
-        <div>
-          <Text strong style={{ fontSize: "14px", color: "#1890ff" }}>
-            당첨 번호:
-          </Text>{" "}
-          <Text style={{ fontSize: "14px" }}>
-            {latestDraw?.winningNumbers.join(", ") ?? "없음"}
-          </Text>
-        </div>
-        <div>
-          <Text strong style={{ fontSize: "14px", color: "#fa541c" }}>
-            보너스 번호:
-          </Text>{" "}
-          <Text style={{ fontSize: "14px" }}>
-            {latestDraw?.bonusNumber ?? "없음"}
-          </Text>
-        </div>
+        <Text strong style={{ fontSize: "12px", flex: 1 }}>
+          당첨 번호 :
+        </Text>
+        <NumberContainer
+          numbers={latestDraw.winningNumbers.map(Number)}
+          bonusNumber={latestDraw.bonusNumber}
+        />
 
-        {/* 시뮬레이션 횟수 설정 */}
         <Divider style={{ margin: "8px 0" }} />
-        <div>
-          <Text strong style={{ fontSize: "14px" }}>
-            시뮬레이션 횟수:
+        <FlexContainer justify="space-between" align="center">
+          <Text strong style={{ fontSize: "12px", flex: 1 }}>
+            횟수 :
           </Text>
           <InputNumber
             min={1}
@@ -87,22 +93,21 @@ const SimulationControls: React.FC<Props> = ({
                 setMaxCount(value);
               }
             }}
-            size="small"
-            style={{ marginLeft: "10px", width: "80px" }}
+            style={{ marginLeft: "10px", width: "100%", maxWidth: "150px" }}
           />
-        </div>
+        </FlexContainer>
 
-        {/* 버튼 */}
-        <div style={{ textAlign: "center", marginTop: "10px" }}>
+        <Divider style={{ margin: "8px 0" }} />
+        <FlexContainer>
           <Button
             type="primary"
             onClick={() => onSimulate(maxCount)}
             disabled={simulationRunning}
             loading={simulationRunning}
-            size="small"
+            size="large"
             style={{
               fontWeight: "bold",
-              padding: "4px 12px",
+              width: "200px",
             }}
           >
             {simulationRunning ? "진행 중..." : "시뮬레이션 시작"}
@@ -111,17 +116,19 @@ const SimulationControls: React.FC<Props> = ({
             type="default"
             onClick={onStop}
             disabled={!simulationRunning}
-            size="small"
+            size="large"
             style={{
               marginLeft: "10px",
               fontWeight: "bold",
+              width: "120px",
+              flex: 1,
             }}
           >
             중지
           </Button>
-        </div>
+        </FlexContainer>
       </Space>
-    </div>
+    </Card>
   );
 };
 

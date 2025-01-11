@@ -1,11 +1,13 @@
 import NumberContainer from "@/components/common/number/NumberContainer";
-import { Card } from "antd";
+import COLORS from "@/constants/colors";
+import { Card, Progress } from "antd";
 import { Typography } from "antd";
 import React from "react";
 
 const { Title } = Typography;
 
 interface SimulationResultProps {
+  progress: number;
   simulationCount: number;
   simulatedNumbers: string;
   rankCounts: {
@@ -18,14 +20,24 @@ interface SimulationResultProps {
 }
 
 const SimulationResult: React.FC<SimulationResultProps> = ({
+  progress,
   simulationCount,
   simulatedNumbers,
   rankCounts,
 }) => {
   return (
     <>
-      <div style={{ textAlign: "center" }}>
+      <div>
         <Title level={5}>진행 횟수: {simulationCount}</Title>
+        <Progress
+          percent={progress}
+          status="active"
+          strokeColor={{
+            from: COLORS.NAVY_BLUE,
+            to: COLORS.BABY_BLUE,
+          }}
+          style={{ maxWidth: "400px", margin: "0 auto" }}
+        />
         <div
           style={{
             fontSize: "1.2em",
@@ -33,7 +45,7 @@ const SimulationResult: React.FC<SimulationResultProps> = ({
             margin: "20px 0",
           }}
         >
-          <div>현재 번호 조합</div>
+          <Title level={5}>현재 번호 조합</Title>
           {
             <NumberContainer
               numbers={simulatedNumbers.split(",").map(Number)}
@@ -48,8 +60,6 @@ const SimulationResult: React.FC<SimulationResultProps> = ({
           style={{
             borderRadius: "12px",
             boxShadow: "0 6px 12px rgba(0, 0, 0, 0.1)",
-            padding: "24px",
-            background: "#f9f9f9",
             textAlign: "left",
           }}
         >
