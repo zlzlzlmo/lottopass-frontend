@@ -6,8 +6,13 @@ import DrawRangeSelectPopup from "./DrawRangeSelectPopup";
 import NumberControlPopup from "./NumberControlPopup";
 import NumberSelectPopup from "./NumberSelectPopup";
 import { LottoDraw } from "lottopass-shared";
+import EvenOddControlPopup from "./EvenOddControlPopup";
 
-export type PopupType = "numberSelect" | "numberControl" | "rangeSelect";
+export type PopupType =
+  | "numberSelect"
+  | "numberControl"
+  | "rangeSelect"
+  | "evenOddControl";
 export interface PopupManagerProps {
   popupType: PopupType;
   confirmType?: "exclude" | "require";
@@ -52,6 +57,14 @@ const PopupManager: React.FC<PopupManagerProps> = ({
             onClose={onClose}
             onConfirm={onConfirm}
             draws={draws ?? []}
+          />
+        );
+      case "evenOddControl":
+        return (
+          <EvenOddControlPopup
+            onConfirm={onConfirm}
+            onClose={onClose}
+            {...rest}
           />
         );
       default:
@@ -102,6 +115,15 @@ const PopupManager: React.FC<PopupManagerProps> = ({
           예시:
           - 범위: 50회차 ~ 60회차
           - 번호 추출: 50~60회차의 당첨 번호만 포함하여 로또 번호를 생성.
+        `;
+      case "evenOddControl":
+        return `
+          1 ~ 45 번호 사이의 짝수 N개와 홀수 N개의 로또 번호를 생성합니다.
+          또한, 짝수와 홀수개의 총합은 최대 6개까지 선택이 가능합니다.
+
+          예시:
+          - 짝수 2개, 홀수 4개
+          -> 2, 4, 5, 11, 13, 33과 같은 조합이 형성됩니다.
         `;
       default:
         return "설명이 없습니다.";

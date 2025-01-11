@@ -86,7 +86,6 @@ const NumberControlPopup: React.FC<NumberControlPopupProps> = ({
         </div>
       </div>
 
-      {/* 버튼 그룹 */}
       <div className={styles.buttonGroup}>
         <Button onClick={onClose} style={{ marginRight: "8px" }}>
           취소

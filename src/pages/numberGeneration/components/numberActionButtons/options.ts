@@ -1,4 +1,5 @@
 import { PopupManagerProps } from "@/components/popup/PopupManager";
+import { ConfirmType } from "./NumberActionButtons";
 
 interface Option {
   label: string;
@@ -13,18 +14,29 @@ type ConfirmNumberSelection = (
 type ConfirmMinCountDrawsSelection = (
   drawCount: number,
   minCount: number,
-  confirmType: "exclude" | "require"
+  confirmType: ConfirmType
 ) => void;
 
-type GenerateRangeNumbers = (min: number, max: number) => void;
+type GenerateRangeNumbers = (
+  min: number,
+  max: number,
+  confirmType: ConfirmType
+) => void;
 
 type SetPopupProps = (props: PopupManagerProps | null) => void;
 
+type ConfirmEvenOddSelection = (
+  even: number,
+  odd: number,
+  confirmType: ConfirmType
+) => void;
+
 export const generateOptions = (
+  setPopupProps: SetPopupProps,
   confirmNumberSelection: ConfirmNumberSelection,
   confirmMinCountDrawSelection: ConfirmMinCountDrawsSelection,
   generateRangeNumbers: GenerateRangeNumbers,
-  setPopupProps: SetPopupProps
+  confirmEvenOddSelection: ConfirmEvenOddSelection
 ): Option[] => [
   {
     label: "제외 번호\n직접 선택",
@@ -75,13 +87,39 @@ export const generateOptions = (
       }),
   },
   {
-    label: "특정 회차\n번호 조합",
+    label: "특정 회차\n미출현 번호 조합",
     action: () =>
       setPopupProps({
-        label: "특정 회차 번호 조합",
+        label: "특정 회차 미출현 번호 조합",
         popupType: "rangeSelect",
+        confirmType: "exclude",
         onClose: () => setPopupProps(null),
-        onConfirm: (min: number, max: number) => generateRangeNumbers(min, max),
+        onConfirm: (min: number, max: number) =>
+          generateRangeNumbers(min, max, "exclude"),
+      }),
+  },
+  {
+    label: "특정 회차\n출현 번호 조합",
+    action: () =>
+      setPopupProps({
+        label: "특정 회차 출현 번호 조합",
+        popupType: "rangeSelect",
+        confirmType: "require",
+        onClose: () => setPopupProps(null),
+        onConfirm: (min: number, max: number) =>
+          generateRangeNumbers(min, max, "require"),
+      }),
+  },
+  {
+    label: "짝수 홀수\n개수 선택",
+    action: () =>
+      setPopupProps({
+        label: "짝수,홀수 개수 선택",
+        popupType: "evenOddControl",
+        confirmType: "require",
+        onClose: () => setPopupProps(null),
+        onConfirm: (even: number, odd: number) =>
+          confirmEvenOddSelection(even, odd, "require"),
       }),
   },
 ];

@@ -35,7 +35,7 @@ export const createQueryParams = (params: Record<string, any>) => {
   return `?${urlSearchParams.toString()}`;
 };
 
-export const parseQUeryParams = (query: Record<string, any>) => {
+export const parseQueryParams = (query: Record<string, any>) => {
   const params = new URLSearchParams(query);
   const result: Record<string, any> = {};
 

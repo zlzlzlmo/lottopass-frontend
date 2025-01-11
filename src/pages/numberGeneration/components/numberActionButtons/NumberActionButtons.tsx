@@ -13,6 +13,8 @@ import { ROUTES } from "@/constants/routes.ts";
 
 const { Text } = Typography;
 
+export type ConfirmType = "exclude" | "require";
+
 const NumberActionButtons = () => {
   const allDraws = useAppSelector((state) => state.draw.allDraws);
   const navigate = useNavigate();
@@ -31,30 +33,47 @@ const NumberActionButtons = () => {
 
   const confirmNumberSelection = (
     selectedNumbers: number[],
-    confirmType: "exclude" | "require"
+    confirmType: ConfirmType
   ) => {
-    navigateToResult({ selectedNumbers, confirmType });
+    navigateToResult({ selectedNumbers, confirmType, type: "numberSelect" });
   };
 
   // 회차와 최소 포함 개수 설정
   const confirmMinCountDrawSelection = (
     drawCount: number,
     minCount: number,
-    confirmType: "exclude" | "require"
+    confirmType: ConfirmType
   ) => {
-    navigateToResult({ drawCount, minCount, confirmType });
+    navigateToResult({
+      drawCount,
+      minCount,
+      confirmType,
+      type: "numberControl",
+    });
   };
 
   // 특정 회차 범위의 번호 생성
-  const generateRangeNumbers = (min: number, max: number) => {
-    navigateToResult({ min, max });
+  const generateRangeNumbers = (
+    min: number,
+    max: number,
+    confirmType: ConfirmType
+  ) => {
+    navigateToResult({ min, max, confirmType, type: "rangeSelect" });
   };
 
+  const confirmEvenOddSelection = (
+    even: number,
+    odd: number,
+    confirmType: ConfirmType
+  ) => {
+    navigateToResult({ even, odd, confirmType, type: "evenOddControl" });
+  };
   const options = generateOptions(
+    setPopupProps,
     confirmNumberSelection,
     confirmMinCountDrawSelection,
     generateRangeNumbers,
-    setPopupProps
+    confirmEvenOddSelection
   );
 
   return (
