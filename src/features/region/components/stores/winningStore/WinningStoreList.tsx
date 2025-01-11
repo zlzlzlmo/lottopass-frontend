@@ -7,6 +7,7 @@ import SortDropDown from "@/components/common/dropDown/SortDropDown";
 import GeoLocationButton from "@/features/location/components/GeoLocationButton/GeoLocationButton";
 import FlexContainer from "@/components/common/container/FlexContainer";
 import { useLocation } from "react-router-dom";
+import Margin from "@/components/common/gap/Margin";
 
 const sortOptions = [
   { key: "distance", label: "거리순" },
@@ -118,6 +119,7 @@ const WinningStoreList: React.FC<StoreListProps> = ({
 
   return (
     <div className={styles.container}>
+      <Margin />
       <FlexContainer
         className={styles.header}
         justify="space-between"
