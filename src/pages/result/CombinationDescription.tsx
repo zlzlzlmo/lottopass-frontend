@@ -61,6 +61,11 @@ const CombinationDescription: React.FC<CombinationDescriptionProps> = ({
 
         return `${min}회차부터 ${max}회차 사이의 ${text}중 출현 횟수 상위 ${topNumber}개 번호를 사용하여 만든 조합입니다.`;
       }
+      case "rangeAndBottomNumberSelect": {
+        const text = confirmType === "require" ? "출현 번호" : "미출현 번호";
+
+        return `${min}회차부터 ${max}회차 사이의 ${text}중 출현 횟수 하위 ${topNumber}개 번호를 사용하여 만든 조합입니다.`;
+      }
       default:
         return "알 수 없는 조합입니다.";
     }
