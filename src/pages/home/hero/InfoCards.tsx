@@ -38,7 +38,7 @@ const cards = [
     description: "주변 1등 판매점을 찾아 명당의 기를 누리세요.",
     buttonText: "1등 판매점 찾기",
     animation: "/lottie/win.lottie",
-    link: ROUTES.STORE_INFO.path,
+    link: ROUTES.WINNING_STORES.path,
     background: "#f3e6ff", // 연한 보라색 배경
   },
   {
@@ -46,7 +46,7 @@ const cards = [
     description: "주변의 로또 판매점을 찾아보세요.",
     buttonText: "판매점 찾기",
     animation: "/lottie/store.lottie",
-    link: ROUTES.STORE_INFO.path,
+    link: ROUTES.WINNING_STORES.path,
     background: "#fff0f6", // 연한 분홍색 배경
   },
 ];

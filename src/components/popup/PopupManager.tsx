@@ -14,7 +14,7 @@ export interface PopupManagerProps {
   onClose: () => void;
   onConfirm: (...args: any[]) => void;
   [key: string]: any;
-  draws: LottoDraw[];
+  draws?: LottoDraw[];
 }
 
 const PopupManager: React.FC<PopupManagerProps> = ({
@@ -51,7 +51,7 @@ const PopupManager: React.FC<PopupManagerProps> = ({
           <DrawRangeSelectPopup
             onClose={onClose}
             onConfirm={onConfirm}
-            draws={draws}
+            draws={draws ?? []}
           />
         );
       default:

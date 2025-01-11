@@ -3,18 +3,19 @@ import styles from "./HistoryPage.module.scss";
 import Layout from "../../components/layout/Layout";
 import RoundCard from "../../components/common/card/RoundCard";
 import SkeletonRoundCard from "../../components/common/skeleton/SkeletonRoundCard";
-import PageTitle from "../../components/common/text/title/PageTitle";
+
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "@/redux/hooks";
 import useSingleIntersection from "@/hooks/useSingleIntersection";
+import Banner from "@/components/common/banner/Banner";
 
 const ITEMS_PER_PAGE = 10; // 한 번에 로드할 아이템 수
 
 const HistoryPage: React.FC = () => {
   const navigate = useNavigate();
   const allDraws = useAppSelector((state) => state.draw.allDraws);
-  const [visibleItems, setVisibleItems] = useState<number>(ITEMS_PER_PAGE); // 렌더링된 아이템 수
-  const [loading, setLoading] = useState<boolean>(false); // 로딩 상태
+  const [visibleItems, setVisibleItems] = useState<number>(ITEMS_PER_PAGE);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const loadMore = () => {
     if (visibleItems < allDraws.length) {
@@ -24,7 +25,7 @@ const HistoryPage: React.FC = () => {
           Math.min(prev + ITEMS_PER_PAGE, allDraws.length)
         );
         setLoading(false);
-      }, 1000); // 스켈레톤 로딩 시간
+      }, 1000);
     }
   };
 
@@ -40,7 +41,11 @@ const HistoryPage: React.FC = () => {
   return (
     <Layout>
       <div className={styles.historyContainer}>
-        <PageTitle>전 회차 당첨번호</PageTitle>
+        <Banner>
+          🎉 역대 로또 회차 정보를 확인해보세요! 현재 총{" "}
+          <strong>1,153회</strong> 데이터가 제공됩니다.
+        </Banner>
+
         <div className={styles.cards}>
           {allDraws.slice(0, visibleItems).map((round) => (
             <RoundCard

@@ -20,7 +20,14 @@ const COLORS = {
   SUCCESS: "rgb(34, 197, 94)", // 성공 컬러 (그린)
 
   TEXT_PRIMARY: "rgb(31, 41, 55)", // 텍스트 기본 색상
-  TEXT_SECONDARY: "rgb(75, 85, 99)", // 텍스트 서브 색상
+  TEXT_SECONDARY: "rgb(75, 85, 99)", // 텍스트 서브 색상,
+
+  BLACK: "#000",
+
+  DARK_BLUE: "#050a30",
+  NAVY_BLUE: "#000c66",
+  BLUE: "#0000ff",
+  BABY_BLUE: "#7ec8e3",
 };
 
 export default COLORS;

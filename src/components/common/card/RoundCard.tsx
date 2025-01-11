@@ -3,6 +3,7 @@ import { formatNumberWithCommas } from "../../../utils/number";
 import { getBallColor } from "../../../utils/ballColor";
 import { LottoDraw } from "lottopass-shared";
 import styles from "./RoundCard.module.scss";
+import COLORS from "@/constants/colors";
 
 const { Text } = Typography;
 
@@ -30,7 +31,12 @@ const RoundCard: React.FC<RoundCardProps> = ({
       }
       extra={
         linkText && (
-          <Button type="link" onClick={linkAction} size="small">
+          <Button
+            type="link"
+            onClick={linkAction}
+            size="small"
+            style={{ color: COLORS.PRIMARY }}
+          >
             {linkText}
           </Button>
         )
@@ -53,7 +59,6 @@ const RoundCard: React.FC<RoundCardProps> = ({
         </Tag>
       </Space>
 
-      {/* 1등 정보 */}
       <div className={styles.prizeInfo}>
         <Text>
           1등{" "}

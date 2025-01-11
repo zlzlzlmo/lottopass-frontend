@@ -31,7 +31,7 @@ const App: React.FC = () => {
       path: ROUTES.S_NUMBER_GENERATION.path,
       element: <SimulationNumberGenrationPage />,
     },
-    { path: ROUTES.STORE_INFO.path, element: <WinningStoresPage /> },
+    { path: ROUTES.WINNING_STORES.path, element: <WinningStoresPage /> },
     { path: ROUTES.HISTORY.path, element: <HistoryPage /> },
     { path: ROUTES.HISTORY_DETAIL.path, element: <DetailPage /> },
     { path: ROUTES.ALL_STORES.path, element: <AllStoresPage /> },

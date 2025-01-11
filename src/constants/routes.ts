@@ -6,7 +6,7 @@ export const ROUTES = {
     path: "/s-number-generation",
     label: "당첨 시뮬레이션",
   },
-  STORE_INFO: { path: "/store-info", label: "당첨 매장 찾기" },
+  WINNING_STORES: { path: "/winning-stores", label: "당첨 매장 찾기" },
   ALL_STORES: { path: "/all-stores", label: "로또 판매점 찾기" },
   STATISTIC: { path: "/statistic", label: "로또 DATA" },
   SIMULATION_RESULT: { path: "/s-result", label: "" },
