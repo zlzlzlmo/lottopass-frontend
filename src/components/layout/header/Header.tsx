@@ -5,6 +5,7 @@ import { MenuOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import styles from "./Header.module.scss";
 import { ROUTES } from "../../../constants/routes";
 import { useAppSelector } from "@/redux/hooks";
+import COLORS from "@/constants/colors";
 
 const Header: React.FC = () => {
   const [isDrawerVisible, setDrawerVisible] = useState(false);
@@ -45,7 +46,11 @@ const Header: React.FC = () => {
       <Drawer
         title={
           <span
-            style={{ fontSize: "20px", fontWeight: "bold", color: "#3b82f6" }}
+            style={{
+              fontSize: "20px",
+              fontWeight: "bold",
+              color: COLORS.PRIMARY,
+            }}
           >
             LOTTO PASS
           </span>
@@ -58,29 +63,9 @@ const Header: React.FC = () => {
           padding: "16px",
           display: "flex",
           flexDirection: "column",
-          gap: "16px",
-          backgroundColor: "#f9f9f9",
+          gap: "20px", // 버튼 간 간격 증가
+          backgroundColor: COLORS.NEUTRAL_LIGHT,
         }}
-        // footer={
-        //   <Button
-        //     type="primary"
-        //     block
-        //     style={{
-        //       height: "48px",
-        //       fontSize: "16px",
-        //       fontWeight: "bold",
-        //       marginTop: "16px",
-        //       backgroundColor: "#3b82f6",
-        //       color: "#fff",
-        //     }}
-        //     onClick={() => {
-        //       setDrawerVisible(false);
-        //       navigate(ROUTES.SIGNUP.path);
-        //     }}
-        //   >
-        //     회원가입
-        //   </Button>
-        // }
       >
         {Object.values(ROUTES)
           .filter((route) => route.label !== "")
@@ -88,7 +73,7 @@ const Header: React.FC = () => {
             <NavLink
               key={route.path}
               to={route.path}
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none", border: "none" }}
               onClick={() => setDrawerVisible(false)}
             >
               <Button
@@ -97,7 +82,19 @@ const Header: React.FC = () => {
                   height: "48px",
                   fontSize: "16px",
                   fontWeight: "bold",
-                  color: "#3b82f6",
+                  color:
+                    location.pathname === route.path
+                      ? COLORS.NEUTRAL_LIGHT
+                      : COLORS.PRIMARY,
+                  backgroundColor:
+                    location.pathname === route.path
+                      ? COLORS.PRIMARY
+                      : "transparent",
+                  borderRadius: "8px",
+                  borderColor:
+                    location.pathname === route.path
+                      ? "transparent"
+                      : COLORS.NEUTRAL_DARK,
                 }}
               >
                 {route.label}
