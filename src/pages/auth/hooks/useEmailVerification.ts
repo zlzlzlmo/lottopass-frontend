@@ -15,6 +15,7 @@ export const useEmailVerification = (
     if (resetType === "email") {
       setEmailVerificationSent(false);
       setEmailVerified(false);
+      setVerificationCode("");
     } else {
       setVerificationCode("");
     }

@@ -14,7 +14,7 @@ import { SmileOutlined, MailOutlined, CheckOutlined } from "@ant-design/icons";
 import Layout from "@/components/layout/Layout";
 
 import type { FormInstance } from "antd";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 import { authService, userService } from "@/api";
 import { useEmailVerification } from "./hooks/useEmailVerification";
 
@@ -55,6 +55,7 @@ const SignupPage: React.FC = () => {
     try {
       await userService.signup({ email: fullEmail, nickname, password });
       message.success("회원가입이 완료되었습니다. 로그인해주세요.");
+      await authService.login(fullEmail, password);
     } catch (error: any) {
       message.error(`${error.message} 다시 입력해주세요.`);
       resetVerificationState("email");

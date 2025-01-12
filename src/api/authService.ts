@@ -28,4 +28,11 @@ export class AuthService extends BaseApiService {
   async getLogout() {
     return await this.get("/logout");
   }
+
+  async login(email: string, password: string) {
+    return await this.post("/login", {
+      email,
+      password,
+    });
+  }
 }
