@@ -65,7 +65,7 @@ const getBottomWinningNumbers = (
   const sortedNumbers = Object.entries(numberFrequencyMap)
     .map(([number, count]) => ({ number: Number(number), count }))
     .sort((a, b) => a.count - b.count || a.number - b.number);
-  console.log("sortedNumbers :", sortedNumbers.slice(0, topCount));
+
   return sortedNumbers.slice(0, topCount).map((item) => item.number);
 };
 
@@ -76,6 +76,7 @@ export const setRequiredNumbers = (
 ): number[] => {
   const { selectedNumbers, confirmType, drawCount, min, max, type, topNumber } =
     queryParams;
+
   if (type === "numberSelect") {
     return filterNumbers({
       numbers: selectedNumbers!,
