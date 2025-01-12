@@ -2,16 +2,18 @@ import { Collapse, Typography } from "antd";
 import React from "react";
 import { QueryParams } from "./result-service";
 import { LottoDraw } from "lottopass-shared";
-import { useAppSelector } from "@/redux/hooks";
+
 const { Panel } = Collapse;
 const { Text } = Typography;
 
 interface CombinationDescriptionProps {
   queryParams: QueryParams;
+  latestDraw: LottoDraw;
 }
 
 const CombinationDescription: React.FC<CombinationDescriptionProps> = ({
   queryParams,
+  latestDraw,
 }) => {
   const {
     type,
@@ -69,7 +71,6 @@ const CombinationDescription: React.FC<CombinationDescriptionProps> = ({
     }
   };
 
-  const latestDraw = useAppSelector((state) => state.draw.allDraws[0]);
   return (
     <Collapse
       style={{

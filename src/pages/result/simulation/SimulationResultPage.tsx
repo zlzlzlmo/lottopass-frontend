@@ -17,10 +17,11 @@ import { useSimulation } from "../hooks/useSimulation";
 
 const { Text } = Typography;
 const SimulationResultPage: React.FC = () => {
-  const { allDraws, isError, isLoading, generateNumbers } =
-    useGenerateNumbers();
-
   const [selectedDraw, setSelectedDraw] = useState<number>(0);
+  const { allDraws, isError, isLoading, generateNumbers } = useGenerateNumbers({
+    slicedStart: selectedDraw,
+  });
+
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const {
@@ -66,7 +67,10 @@ const SimulationResultPage: React.FC = () => {
     <Layout>
       <Container>
         <Banner>🌟 이 시뮬레이션이 당신의 다음 행운이 될 수 있습니다!</Banner>
-        <CombinationDescription queryParams={queryParams} />
+        <CombinationDescription
+          queryParams={queryParams}
+          latestDraw={latestDraw}
+        />
         <div>
           <Text
             type="secondary"
