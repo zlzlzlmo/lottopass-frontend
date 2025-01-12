@@ -72,7 +72,7 @@ export const generateOptions = (
       }),
   },
   {
-    label: "미출현\n번호 조합",
+    label: "최근 미출현\n번호 조합",
     action: () =>
       setPopupProps({
         label: "미출현\n번호 조합",
@@ -84,7 +84,7 @@ export const generateOptions = (
       }),
   },
   {
-    label: "출현\n번호 조합",
+    label: "최근 출현\n번호 조합",
     action: () =>
       setPopupProps({
         label: "출현\n번호 조합",
@@ -96,7 +96,7 @@ export const generateOptions = (
       }),
   },
   {
-    label: "특정 회차\n미출현 번호 조합",
+    label: "특정 회차\n미출현 번호",
     action: () =>
       setPopupProps({
         label: "특정 회차\n미출현 번호",
@@ -108,7 +108,7 @@ export const generateOptions = (
       }),
   },
   {
-    label: "특정 회차\n출현 번호 조합",
+    label: "특정 회차\n출현 번호",
     action: () =>
       setPopupProps({
         label: "특정 회차\n출현 번호",
@@ -132,22 +132,22 @@ export const generateOptions = (
       }),
   },
   {
-    label: "특정 회차\n하위 출현 번호",
+    label: "특정 회차\n하위 출현",
     action: () =>
       setPopupProps({
-        label: "특정 회차\n하위 출현 번호",
+        label: "특정 회차\n하위 출현",
         popupType: "rangeAndBottomNumberSelect",
         confirmType: "require",
         onClose: () => setPopupProps(null),
         onConfirm: (min: number, max: number, topNumber: number) =>
-          generateRangeAndBottomNumbers(min, max, topNumber, "require"),
+          generateRangeAndBottomNumbers(min, max, topNumber, "exclude"),
       }),
   },
   {
-    label: "특정 회차\n상위 출현 번호",
+    label: "특정 회차\n상위 출현",
     action: () =>
       setPopupProps({
-        label: "특정 회차\n상위 출현 번호",
+        label: "특정 회차\n상위 출현",
         popupType: "rangeAndTopNumberSelect",
         confirmType: "require",
         onClose: () => setPopupProps(null),
