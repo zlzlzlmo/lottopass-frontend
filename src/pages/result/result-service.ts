@@ -31,7 +31,7 @@ export const filterNumbers = ({
     : TOTAL_NUMBERS.filter((num) => !numbers.includes(num));
 };
 
-const getTopWinningNumbers = (
+export const getTopWinningNumbers = (
   draws: LottoDraw[],
   topCount: number
 ): number[] => {

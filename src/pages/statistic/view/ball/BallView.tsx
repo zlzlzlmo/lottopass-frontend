@@ -8,13 +8,7 @@ import {
   SortDropDown,
 } from "@/components/common";
 import { useRangeSelector } from "@/features/range/hooks/useRangeSelect";
-
-interface LottoDraw {
-  drawNumber: number;
-  date: string;
-  winningNumbers: number[];
-  bonusNumber: number;
-}
+import { LottoDraw } from "lottopass-shared";
 
 interface BallViewProps {
   data: LottoDraw[];
@@ -36,7 +30,6 @@ const BallView: React.FC<BallViewProps> = ({ data }) => {
       draw.winningNumbers.forEach((num) => {
         counts[num] = (counts[num] || 0) + 1;
       });
-      counts[draw.bonusNumber] = (counts[draw.bonusNumber] || 0) + 1;
     });
     return Array.from({ length: 45 }, (_, i) => ({
       number: i + 1,

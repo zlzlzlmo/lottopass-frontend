@@ -9,7 +9,6 @@ const { Text } = Typography;
 
 interface ViewContainerProps {
   viewType: ViewType;
-
   data: LottoDraw[];
 }
 
