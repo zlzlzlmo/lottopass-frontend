@@ -14,74 +14,28 @@ import { SmileOutlined, MailOutlined, CheckOutlined } from "@ant-design/icons";
 import Layout from "@/components/layout/Layout";
 
 import type { FormInstance } from "antd";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { authService, userService } from "@/api";
+import { useEmailVerification } from "./hooks/useEmailVerification";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
 
 const SignupPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
-  const [emailVerificationSent, setEmailVerificationSent] = useState(false);
-  const [emailVerified, setEmailVerified] = useState(false);
-  const [verificationCode, setVerificationCode] = useState("");
-  const [verificationLoading, setVerificationLoading] = useState(false);
-  const [codeVerificationLoading, setCodeVerificationLoading] = useState(false);
   const formRef = useRef<FormInstance>(null);
 
-  const resetVerificationState = (resetType: "email" | "code") => {
-    if (resetType === "email") {
-      setEmailVerificationSent(false);
-      setEmailVerified(false);
-    } else {
-      setVerificationCode("");
-    }
-  };
-
-  const handleSendVerification = async () => {
-    if (!formRef.current) return;
-
-    const values = formRef.current.getFieldsValue(["email", "domain"]);
-    const email = `${values.email}@${values.domain}`;
-
-    setVerificationLoading(true);
-    try {
-      const success = await authService.requestEmailVerification(email);
-      if (success) {
-        message.success("인증 메일이 발송되었습니다. 메일을 확인해주세요.");
-        setEmailVerificationSent(true);
-      } else {
-        message.error("인증 메일 발송에 실패했습니다. 다시 시도해주세요.");
-      }
-    } catch {
-      message.error("오류가 발생했습니다. 다시 시도해주세요.");
-      resetVerificationState("code");
-    } finally {
-      setVerificationLoading(false);
-    }
-  };
-
-  const handleVerifyCode = async () => {
-    if (!formRef.current) return;
-
-    const values = formRef.current.getFieldsValue(["email", "domain"]);
-    const email = `${values.email}@${values.domain}`;
-
-    setCodeVerificationLoading(true);
-    try {
-      const success = await authService.verifyEmailCode(
-        email,
-        verificationCode
-      );
-      if (success) {
-        message.success("이메일 인증이 완료되었습니다.");
-        setEmailVerified(true);
-      }
-    } catch (error: any) {
-      message.error(`${error.message}`);
-    } finally {
-      setCodeVerificationLoading(false);
-    }
-  };
+  const {
+    emailVerificationSent,
+    emailVerified,
+    verificationCode,
+    setVerificationCode,
+    verificationLoading,
+    codeVerificationLoading,
+    handleSendVerification,
+    handleVerifyCode,
+    resetVerificationState,
+  } = useEmailVerification(formRef);
 
   const onFinish = async (values: {
     email: string;
