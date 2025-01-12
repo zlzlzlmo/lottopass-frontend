@@ -44,8 +44,8 @@ export const generateOptions = (
   confirmMinCountDrawSelection: ConfirmMinCountDrawsSelection,
   generateRangeNumbers: GenerateRangeNumbers,
   confirmEvenOddSelection: ConfirmEvenOddSelection,
-  generateRangeAndTopNumbers: GenerateRangeTopNumbers,
-  generateRangeAndBottomNumbers: GenerateRangeTopNumbers
+  generateRangeAndBottomNumbers: GenerateRangeTopNumbers,
+  generateRangeAndTopNumbers: GenerateRangeTopNumbers
 ): Option[] => [
   {
     label: "제외 번호\n직접 선택",
@@ -99,7 +99,7 @@ export const generateOptions = (
     label: "특정 회차\n미출현 번호 조합",
     action: () =>
       setPopupProps({
-        label: "특정 회차 미출현 번호 조합",
+        label: "특정 회차\n미출현 번호",
         popupType: "rangeSelect",
         confirmType: "exclude",
         onClose: () => setPopupProps(null),
@@ -111,7 +111,7 @@ export const generateOptions = (
     label: "특정 회차\n출현 번호 조합",
     action: () =>
       setPopupProps({
-        label: "특정 회차 출현 번호 조합",
+        label: "특정 회차\n출현 번호",
         popupType: "rangeSelect",
         confirmType: "require",
         onClose: () => setPopupProps(null),
@@ -132,27 +132,27 @@ export const generateOptions = (
       }),
   },
   {
-    label: "특정 회차\n출현 번호 및\n상위 번호 조합",
+    label: "특정 회차\n하위 출현 번호",
     action: () =>
       setPopupProps({
-        label: "특정 회차\n출현 번호 및 상위 번호 조합",
+        label: "특정 회차\n하위 출현 번호",
+        popupType: "rangeAndBottomNumberSelect",
+        confirmType: "require",
+        onClose: () => setPopupProps(null),
+        onConfirm: (min: number, max: number, topNumber: number) =>
+          generateRangeAndBottomNumbers(min, max, topNumber, "require"),
+      }),
+  },
+  {
+    label: "특정 회차\n상위 출현 번호",
+    action: () =>
+      setPopupProps({
+        label: "특정 회차\n상위 출현 번호",
         popupType: "rangeAndTopNumberSelect",
         confirmType: "require",
         onClose: () => setPopupProps(null),
         onConfirm: (min: number, max: number, topNumber: number) =>
           generateRangeAndTopNumbers(min, max, topNumber, "require"),
-      }),
-  },
-  {
-    label: "특정 회차\n출현 번호 및\n하위 번호 조합",
-    action: () =>
-      setPopupProps({
-        label: "특정 회차\n출현 번호 및 하위 번호 조합",
-        popupType: "rangeAndBottomNumberSelect",
-        confirmType: "exclude",
-        onClose: () => setPopupProps(null),
-        onConfirm: (min: number, max: number, topNumber: number) =>
-          generateRangeAndBottomNumbers(min, max, topNumber, "exclude"),
       }),
   },
 ];
