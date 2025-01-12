@@ -4,7 +4,8 @@ import { Form, Input, Button, Card, Typography, message } from "antd";
 import { LockOutlined } from "@ant-design/icons";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
-import { userService } from "@/api";
+import { authService, userService } from "@/api";
+import { REGEX } from "@/constants/regex";
 
 const { Title, Text } = Typography;
 
@@ -17,10 +18,9 @@ const ResetPasswordPage: React.FC = () => {
     password: string;
     confirmPassword: string;
   }) => {
-    const token = searchParams.get("token");
     const email = searchParams.get("email");
 
-    if (!token || !email) {
+    if (!email) {
       message.error("유효하지 않은 접근입니다.");
       return;
     }
@@ -37,7 +37,8 @@ const ResetPasswordPage: React.FC = () => {
         newPassword: values.password,
       });
       message.success("비밀번호가 성공적으로 재설정되었습니다.");
-      navigate("/login");
+      await authService.login(email, values.password);
+      navigate("/");
     } catch (error: any) {
       message.error(error.message || "비밀번호 재설정에 실패했습니다.");
     } finally {
@@ -84,8 +85,7 @@ const ResetPasswordPage: React.FC = () => {
                 message: "새 비밀번호를 입력해주세요.",
               },
               {
-                pattern:
-                  /^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$/, // 비밀번호 규칙
+                pattern: REGEX.PASSWORD,
                 message:
                   "비밀번호는 최소 8자 이상, 문자, 숫자, 특수문자를 포함해야 합니다.",
               },
