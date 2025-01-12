@@ -1,115 +1,103 @@
-import React from "react";
-import { Button, Space, Card } from "antd";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState } from "react";
+import { Form, Input, Button, Card, Typography, message } from "antd";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
-import { useLocation } from "react-router-dom";
-import { redirectPathStorage } from "@/utils/storage";
+import { authService } from "@/api";
 
-interface LoginButtonProps {
-  provider: string;
-  label: string;
-  style: React.CSSProperties;
-  logo?: string;
-}
+const { Title, Text } = Typography;
 
-const LoginButton: React.FC<LoginButtonProps> = ({
-  provider,
-  label,
-  style,
-  logo,
-}) => {
-  const location = useLocation();
-  const handleLogin = () => {
-    const from = location.state?.from.pathname ?? "";
-    redirectPathStorage.set(from);
+const LoginPage: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-    window.location.href = `${
-      import.meta.env.VITE_API_BASE_URL
-    }/auth/${provider}`;
+  const onFinish = async (values: { email: string; password: string }) => {
+    setLoading(true);
+    try {
+      const res = await authService.login(values.email, values.password);
+      message.success("로그인 성공! 홈으로 이동합니다.");
+      navigate(res.redirectUrl);
+    } catch (error: any) {
+      message.error(error.message || "로그인 실패. 다시 시도해주세요.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onFinishFailed = () => {
+    message.error("입력값을 확인해주세요.");
   };
 
   return (
-    <Button
-      style={{
-        ...style,
-        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        borderRadius: 8,
-        height: 50,
-      }}
-      block
-      onClick={handleLogin}
-    >
-      {logo && (
-        <img
-          src={logo}
-          alt={`${provider} logo`}
-          style={{ width: 24, marginRight: 12 }}
-        />
-      )}
-      {label}
-    </Button>
-  );
-};
-
-const LoginPage: React.FC = () => {
-  return (
     <Layout>
-      <div
+      <Card
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100%",
-          padding: "0 16px",
-          marginTop: "40px",
+          maxWidth: 400,
+          margin: "50px auto",
+          borderRadius: 10,
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+          background: "#fff",
         }}
       >
-        <Card
-          style={{
-            width: "100%",
-            maxWidth: 640,
-            textAlign: "center",
-            borderRadius: 16,
-            boxShadow: "0 6px 12px rgba(0, 0, 0, 0.1)",
-            padding: 24,
-          }}
+        <div style={{ textAlign: "center", marginBottom: 20 }}>
+          <LockOutlined style={{ fontSize: 48, color: "#3b82f6" }} />
+          <Title level={3} style={{ margin: "10px 0" }}>
+            로그인
+          </Title>
+          <Text type="secondary">로또 패스에 오신 것을 환영합니다!</Text>
+        </div>
+
+        <Form
+          name="login"
+          layout="vertical"
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
         >
-          <Space direction="vertical" style={{ width: "100%" }}>
-            <LoginButton
-              provider="google"
-              label="Google로 로그인"
-              style={{
-                background: "white",
-                border: "1px solid #dadce0",
-                color: "#3c4043",
-                fontWeight: "500",
-              }}
-              logo="https://developers.google.com/identity/images/g-logo.png"
+          <Form.Item
+            label="이메일"
+            name="email"
+            rules={[{ required: true, message: "이메일을 입력해주세요." }]}
+            style={{ marginBottom: 16 }}
+          >
+            <Input
+              prefix={<UserOutlined />}
+              placeholder="이메일"
+              style={{ height: 48 }}
             />
-            <LoginButton
-              provider="kakao"
-              label="Kakao로 로그인"
-              style={{
-                background: "#fee500",
-                border: "none",
-                color: "#000000",
-                fontWeight: "500",
-              }}
-              logo="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"
+          </Form.Item>
+
+          <Form.Item
+            label="비밀번호"
+            name="password"
+            rules={[{ required: true, message: "비밀번호를 입력해주세요." }]}
+            style={{ marginBottom: 16 }}
+          >
+            <Input.Password
+              prefix={<LockOutlined />}
+              placeholder="비밀번호"
+              style={{ height: 48 }}
             />
-            <LoginButton
-              provider="naver"
-              label="Naver로 로그인"
+          </Form.Item>
+
+          <Form.Item style={{ textAlign: "center" }}>
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={loading}
               style={{
-                background: "#03C75A",
-                border: "none",
-                color: "#ffffff",
-                fontWeight: "500",
+                width: "100%",
+                height: 48,
+                borderRadius: 8,
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
               }}
-              logo="https://static.nid.naver.com/oauth/small_g_in.PNG"
-            />
-          </Space>
-        </Card>
-      </div>
+            >
+              로그인
+            </Button>
+          </Form.Item>
+        </Form>
+      </Card>
     </Layout>
   );
 };

@@ -30,9 +30,11 @@ export class AuthService extends BaseApiService {
   }
 
   async login(email: string, password: string) {
-    return await this.post("/login", {
-      email,
-      password,
-    });
+    return this.handleResponse(
+      this.post<{ redirectUrl: string }>("/login", {
+        email,
+        password,
+      })
+    );
   }
 }

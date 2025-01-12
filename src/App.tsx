@@ -21,6 +21,11 @@ import ScrollToTop from "./components/common/scroll/ScrollToTop";
 import SimulationNumberGenrationPage from "./pages/simulationNumberGeneration/SimulationNumberGenrationPage";
 import SimulationResultPage from "./pages/result/simulation/SimulationResultPage";
 import SignupPage from "./pages/auth/SignupPage";
+import LoginPage from "./pages/auth/LoginPage";
+import AppInitializer from "./AppInitializer";
+import UserProfileUpdatePage from "./pages/auth/UserProfileUpdatePage";
+import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
+import EmailVerificationPage from "./pages/auth/EmailVerificationPage";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +45,13 @@ const App: React.FC = () => {
     { path: ROUTES.SIMULATION_RESULT.path, element: <SimulationResultPage /> },
     { path: ROUTES.STATISTIC.path, element: <StatisticPage /> },
     { path: ROUTES.SIGNUP.path, element: <SignupPage /> },
+    { path: ROUTES.LOGIN.path, element: <LoginPage /> },
+    { path: ROUTES.UPDATE_PROFILE.path, element: <UserProfileUpdatePage /> },
+    { path: ROUTES.RESET_PASSWORD.path, element: <ResetPasswordPage /> },
+    {
+      path: ROUTES.EMAIL_VERIFICATION.path,
+      element: <EmailVerificationPage />,
+    },
     { path: "*", element: <NotFound /> },
   ];
 
@@ -52,14 +64,19 @@ const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        <ScrollToTop />
-        {/* <AppInitializer> */}
-        <Routes>
-          {routes.map((route) => (
-            <Route key={route.path} path={route.path} element={route.element} />
-          ))}
-        </Routes>
-        {/* </AppInitializer> */}
+        <AppInitializer>
+          <ScrollToTop />
+          {/* <AppInitializer> */}
+          <Routes>
+            {routes.map((route) => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={route.element}
+              />
+            ))}
+          </Routes>
+        </AppInitializer>
       </Router>
     </QueryClientProvider>
   );

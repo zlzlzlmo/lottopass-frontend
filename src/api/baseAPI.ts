@@ -37,6 +37,16 @@ export class BaseApiService {
     }
   }
 
+  protected async put<T>(url: string, body?: any): Promise<FindAllResponse<T>> {
+    try {
+      const response = await this.axiosInstance.put(url, body);
+      return response.data;
+    } catch (error: any) {
+      console.log("PUT 요청 실패:", error.response.data.message);
+      throw new Error(error.response.data.message || "PUT 요청 실패");
+    }
+  }
+
   protected async delete<T>(url: string): Promise<FindAllResponse<T>> {
     try {
       const response = await this.axiosInstance.delete(url);

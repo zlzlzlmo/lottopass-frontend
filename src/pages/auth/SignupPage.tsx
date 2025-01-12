@@ -53,7 +53,11 @@ const SignupPage: React.FC = () => {
     const fullEmail = `${email}@${domain}`;
 
     try {
-      await userService.signup({ email: fullEmail, nickname, password });
+      await userService.signup({
+        email: fullEmail,
+        nickname: nickname,
+        password,
+      });
       message.success("회원가입이 완료되었습니다. 로그인해주세요.");
       await authService.login(fullEmail, password);
     } catch (error: any) {
