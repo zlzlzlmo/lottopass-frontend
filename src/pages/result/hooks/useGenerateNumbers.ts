@@ -5,7 +5,13 @@ import { useSearchParams } from "react-router-dom";
 import { getRandomNum, shuffle } from "@/utils/number";
 import { useCallback } from "react";
 
-export const useGenerateNumbers = () => {
+interface useGenerateNumbersOptions {
+  slicedStart?: number;
+}
+
+export const useGenerateNumbers = ({
+  slicedStart = 0,
+}: useGenerateNumbersOptions) => {
   const [searchParams] = useSearchParams();
 
   const { data: allDraws, isLoading, isError } = useAllDraws();
@@ -16,7 +22,12 @@ export const useGenerateNumbers = () => {
     if (!allDraws || allDraws.length <= 0) return [];
     const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
 
-    const requiredNumbers = setRequiredNumbers(queryParams, allDraws, allDraws);
+    const requiredNumbers = setRequiredNumbers(
+      queryParams,
+      allDraws.slice(slicedStart),
+      allDraws
+    );
+
     const len = requiredNumbers.length;
     const randomIdx = getRandomNum(Math.min(Number(minCount), len), len);
 

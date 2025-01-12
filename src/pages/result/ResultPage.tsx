@@ -18,6 +18,7 @@ import { useResultManagement } from "./hooks/useResultManagement";
 const ResultPage: React.FC = () => {
   const {
     results,
+    allDraws,
     isLoading,
     isError,
     addNewCombination,
@@ -40,7 +41,7 @@ const ResultPage: React.FC = () => {
     return <LogoLoading text="잠시만 기다려주세요" />;
   }
 
-  if (isError) {
+  if (isError || !allDraws) {
     return (
       <Layout>
         <ErrorMessage />
@@ -56,7 +57,10 @@ const ResultPage: React.FC = () => {
           <br />
           이제 당신의 선택만 남았습니다!
         </Banner>
-        <CombinationDescription queryParams={queryParams} />
+        <CombinationDescription
+          queryParams={queryParams}
+          latestDraw={allDraws[0]}
+        />
         <div className={styles.container}>
           <Space
             direction="vertical"
