@@ -20,6 +20,7 @@ import {
 import ScrollToTop from "./components/common/scroll/ScrollToTop";
 import SimulationNumberGenrationPage from "./pages/simulationNumberGeneration/SimulationNumberGenrationPage";
 import SimulationResultPage from "./pages/result/simulation/SimulationResultPage";
+import SignupPage from "./pages/auth/SignupPage";
 
 const queryClient = new QueryClient();
 
@@ -38,7 +39,7 @@ const App: React.FC = () => {
     { path: ROUTES.RESULT.path, element: <ResultPage /> },
     { path: ROUTES.SIMULATION_RESULT.path, element: <SimulationResultPage /> },
     { path: ROUTES.STATISTIC.path, element: <StatisticPage /> },
-    // { path: ROUTES.SIGNUP.path, element: <SignupPage /> },
+    { path: ROUTES.SIGNUP.path, element: <SignupPage /> },
     { path: "*", element: <NotFound /> },
   ];
 

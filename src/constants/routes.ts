@@ -14,6 +14,6 @@ export const ROUTES = {
   HISTORY_DETAIL: { path: "/history/:drawNumber", label: "" },
   CALLBACK: { path: "/auth/:provider/callback", label: "" },
   // LOGIN: { path: "/login", label: "" },
-  // SIGNUP: { path: "/signup", label: "회원가입" },
+  SIGNUP: { path: "/signup", label: "회원가입" },
   // SAVED_COMBINATIONS: { path: "/saved-combinations", label: "내 번호" },
 };

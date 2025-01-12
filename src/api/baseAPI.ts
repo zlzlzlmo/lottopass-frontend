@@ -20,7 +20,7 @@ export class BaseApiService {
       const response = await this.axiosInstance.get(url, { params });
       return response.data;
     } catch (error: any) {
-      throw new Error(error.message || "GET 요청 실패");
+      throw new Error(error.response.data.message || "GET 요청 실패");
     }
   }
 
@@ -32,7 +32,8 @@ export class BaseApiService {
       const response = await this.axiosInstance.post(url, body);
       return response.data;
     } catch (error: any) {
-      throw new Error(error.message || "POST 요청 실패");
+      console.log("! : ", error.response.data.message);
+      throw new Error(error.response.data.message || "POST 요청 실패");
     }
   }
 
@@ -41,7 +42,7 @@ export class BaseApiService {
       const response = await this.axiosInstance.delete(url);
       return response.data;
     } catch (error: any) {
-      throw new Error(error.message || "DELETE 요청 실패");
+      throw new Error(error.response.data.message || "DELETE 요청 실패");
     }
   }
 

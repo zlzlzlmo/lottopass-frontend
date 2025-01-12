@@ -28,6 +28,15 @@ const SignupPage: React.FC = () => {
   const [codeVerificationLoading, setCodeVerificationLoading] = useState(false);
   const formRef = useRef<FormInstance>(null);
 
+  const resetVerificationState = (resetType: "email" | "code") => {
+    if (resetType === "email") {
+      setEmailVerificationSent(false);
+      setEmailVerified(false);
+    } else {
+      setVerificationCode("");
+    }
+  };
+
   const handleSendVerification = async () => {
     if (!formRef.current) return;
 
@@ -45,6 +54,7 @@ const SignupPage: React.FC = () => {
       }
     } catch {
       message.error("오류가 발생했습니다. 다시 시도해주세요.");
+      resetVerificationState("code");
     } finally {
       setVerificationLoading(false);
     }
@@ -65,11 +75,9 @@ const SignupPage: React.FC = () => {
       if (success) {
         message.success("이메일 인증이 완료되었습니다.");
         setEmailVerified(true);
-      } else {
-        message.error("인증 코드가 유효하지 않습니다.");
       }
-    } catch {
-      message.error("오류가 발생했습니다. 다시 시도해주세요.");
+    } catch (error: any) {
+      message.error(`${error.message}`);
     } finally {
       setCodeVerificationLoading(false);
     }
@@ -94,12 +102,8 @@ const SignupPage: React.FC = () => {
       await userService.signup({ email: fullEmail, nickname, password });
       message.success("회원가입이 완료되었습니다. 로그인해주세요.");
     } catch (error: any) {
-      console.log("error: ", error.response);
-      if (error.response) {
-        message.error(error.response.data.message);
-      } else {
-        message.error("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
-      }
+      message.error(`${error.message} 다시 입력해주세요.`);
+      resetVerificationState("email");
     } finally {
       setLoading(false);
     }
@@ -136,17 +140,21 @@ const SignupPage: React.FC = () => {
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-          <Form.Item label="이메일" required>
+          <Form.Item label="이메일" required style={{ marginBottom: 16 }}>
             <Space.Compact style={{ display: "flex", gap: "8px" }}>
               <Form.Item
                 name="email"
                 rules={[{ required: true, message: "이메일을 입력해주세요." }]}
                 noStyle
               >
-                <Input placeholder="example" style={{ flex: 2 }} />
+                <Input
+                  placeholder="이메일을 입력해주세요."
+                  style={{ flex: 2, height: 48 }}
+                  disabled={emailVerified}
+                />
               </Form.Item>
               <Form.Item name="domain" initialValue="gmail.com" noStyle>
-                <Select style={{ flex: 1 }}>
+                <Select style={{ flex: 1, height: 48 }}>
                   <Option value="gmail.com">gmail.com</Option>
                   <Option value="naver.com">naver.com</Option>
                   <Option value="daum.net">daum.net</Option>
@@ -157,30 +165,37 @@ const SignupPage: React.FC = () => {
           </Form.Item>
 
           {emailVerificationSent && (
-            <Form.Item label="인증 코드" required>
-              <Input
-                placeholder="인증 코드를 입력해주세요."
-                value={verificationCode}
-                onChange={(e) => setVerificationCode(e.target.value)}
-              />
-              <Button
-                type="primary"
-                onClick={handleVerifyCode}
-                loading={codeVerificationLoading}
-                style={{ marginTop: 10 }}
-                icon={<CheckOutlined />}
-              >
-                인증하기
-              </Button>
+            <Form.Item label="인증 코드" required style={{ marginBottom: 16 }}>
+              <Space.Compact style={{ display: "flex", gap: "8px" }}>
+                <Input
+                  placeholder="인증 코드를 입력해주세요."
+                  value={verificationCode}
+                  onChange={(e) => setVerificationCode(e.target.value)}
+                  style={{ flex: 2, height: 48 }}
+                  disabled={emailVerified}
+                />
+                <Button
+                  type="primary"
+                  onClick={handleVerifyCode}
+                  loading={codeVerificationLoading}
+                  style={{ flex: 1, height: 48 }}
+                  icon={<CheckOutlined />}
+                  disabled={emailVerified}
+                >
+                  인증하기
+                </Button>
+              </Space.Compact>
             </Form.Item>
           )}
 
-          <Form.Item style={{ textAlign: "right" }}>
+          <Form.Item style={{ textAlign: "right", marginBottom: 16 }}>
             <Button
               type="default"
               icon={<MailOutlined />}
               onClick={handleSendVerification}
               loading={verificationLoading}
+              style={{ height: 48 }}
+              disabled={emailVerified}
             >
               {emailVerificationSent ? "재요청" : "인증 요청"}
             </Button>
@@ -199,8 +214,9 @@ const SignupPage: React.FC = () => {
                 message: "닉네임은 2~10자리 영문/한글/숫자만 가능합니다.",
               },
             ]}
+            style={{ marginBottom: 16 }}
           >
-            <Input placeholder="닉네임" />
+            <Input placeholder="닉네임" style={{ height: 48 }} />
           </Form.Item>
 
           <Form.Item
@@ -218,8 +234,9 @@ const SignupPage: React.FC = () => {
                   "비밀번호는 최소 8자 이상, 문자, 숫자, 특수문자를 포함해야 합니다.",
               },
             ]}
+            style={{ marginBottom: 16 }}
           >
-            <Input.Password placeholder="비밀번호" />
+            <Input.Password placeholder="비밀번호" style={{ height: 48 }} />
           </Form.Item>
 
           <Form.Item
@@ -242,8 +259,12 @@ const SignupPage: React.FC = () => {
                 },
               }),
             ]}
+            style={{ marginBottom: 16 }}
           >
-            <Input.Password placeholder="비밀번호 확인" />
+            <Input.Password
+              placeholder="비밀번호 확인"
+              style={{ height: 48 }}
+            />
           </Form.Item>
 
           <Form.Item style={{ textAlign: "center" }}>
@@ -253,6 +274,7 @@ const SignupPage: React.FC = () => {
               loading={loading}
               style={{
                 width: "100%",
+                height: 48,
                 borderRadius: 8,
                 boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
               }}
