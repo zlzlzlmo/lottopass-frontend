@@ -42,6 +42,12 @@ const SimulationResultPage: React.FC = () => {
     }
   }, [isModalVisible]);
 
+  useEffect(() => {
+    if (progress >= 100) {
+      setIsModalVisible(true);
+    }
+  }, [progress]);
+
   if (isLoading) {
     return <LogoLoading text="잠시만 기다려주세요" />;
   }
