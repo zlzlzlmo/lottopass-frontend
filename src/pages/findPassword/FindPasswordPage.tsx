@@ -4,7 +4,7 @@ import { Form, Input, Button, Card, Typography, message } from "antd";
 import { MailOutlined } from "@ant-design/icons";
 import Layout from "@/components/layout/Layout";
 import { authService, userService } from "@/api";
-import ResetPasswordPage from "./ResetPasswordPage";
+import ResetPasswordPage from "../auth/ResetPasswordPage";
 
 const { Title, Text } = Typography;
 

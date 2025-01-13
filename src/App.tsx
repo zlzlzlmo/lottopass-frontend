@@ -20,13 +20,15 @@ import {
 import ScrollToTop from "./components/common/scroll/ScrollToTop";
 import SimulationNumberGenrationPage from "./pages/simulationNumberGeneration/SimulationNumberGenrationPage";
 import SimulationResultPage from "./pages/result/simulation/SimulationResultPage";
-import SignupPage from "./pages/auth/SignupPage";
-import LoginPage from "./pages/auth/LoginPage";
+import SignupPage from "./pages/signup/SignupPage";
+import LoginPage from "./pages/login/LoginPage";
 import AppInitializer from "./AppInitializer";
 import UserProfileUpdatePage from "./pages/auth/UserProfileUpdatePage";
-import FindPasswordPage from "./pages/auth/FindPasswordPage";
 import MyPage from "./pages/my/MyPage";
-import DeleteAccountPage from "./pages/deleteAccount/DeleteAccountPage";
+import DeleteAccountPage from "./pages/auth/DeleteAccountPage";
+import FindPasswordPage from "./pages/findPassword/FindPasswordPage";
+import SavedNumbersPage from "./pages/auth/SavedNumbersPage";
+import DashboardPage from "./pages/dashboard/DashboardPage";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +53,8 @@ const App: React.FC = () => {
     { path: ROUTES.FIND_PASSWORD.path, element: <FindPasswordPage /> },
     { path: ROUTES.MYPAGE.path, element: <MyPage /> },
     { path: ROUTES.DELETE_ACCOUNT.path, element: <DeleteAccountPage /> },
+    { path: ROUTES.SAVED_NUMBERS.path, element: <SavedNumbersPage /> },
+    { path: ROUTES.DASHBOARD.path, element: <DashboardPage /> },
     { path: "*", element: <NotFound /> },
   ];
 

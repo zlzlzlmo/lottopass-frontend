@@ -1,6 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  OrderedListOutlined,
+} from "@ant-design/icons";
 import Layout from "@/components/layout/Layout";
 import Container from "@/components/layout/container/Container";
 import Banner from "@/components/common/banner/Banner";
@@ -14,6 +18,13 @@ const MyPage: React.FC = () => {
   const navigate = useNavigate();
 
   const menuItems = [
+    {
+      icon: (
+        <OrderedListOutlined style={{ fontSize: "24px", color: "#10b981" }} />
+      ),
+      text: "저장한 번호 보기",
+      onClick: () => navigate(ROUTES.SAVED_NUMBERS.path),
+    },
     {
       icon: <EditOutlined style={{ fontSize: "24px", color: "#3b82f6" }} />,
       text: "내 정보 수정",

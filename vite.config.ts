@@ -56,6 +56,6 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ["antd"], // antd를 명시적으로 포함
+    include: ["antd", "react-qr-reader"],
   },
 });

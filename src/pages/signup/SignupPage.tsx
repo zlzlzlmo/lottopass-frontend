@@ -7,7 +7,7 @@ import Layout from "@/components/layout/Layout";
 import type { FormInstance } from "antd";
 
 import { authService, userService } from "@/api";
-import { useEmailVerification } from "./hooks/useEmailVerification";
+import { useEmailVerification } from "../auth/hooks/useEmailVerification";
 import NicknameField from "@/components/common/form/NicknameField";
 import {
   EmailVerificationField,

@@ -8,6 +8,7 @@ import SkeletonRoundCard from "@/components/common/skeleton/SkeletonRoundCard";
 import InfoCards from "./hero/InfoCards";
 import { Divider, Typography } from "antd";
 import Container from "@/components/layout/container/Container";
+import QRScannerButton from "@/components/QRScanner";
 
 const HomePage = () => {
   const { data: latestRound, isLoading, isError } = useLatestDraw();
@@ -50,6 +51,7 @@ const HomePage = () => {
         </Typography.Title>
         <InfoCards />
       </Container>
+      <QRScannerButton />
     </Layout>
   );
 };

@@ -20,6 +20,7 @@ export const ROUTES = {
   FIND_PASSWORD: { path: "/find-password", label: "" },
   MYPAGE: { path: "/mypgae", label: "" },
   DELETE_ACCOUNT: { path: "/delete-account", label: "" },
-
+  DASHBOARD: { path: "/dashboard", label: "대시보드" },
+  SAVED_NUMBERS: { path: "/saved-numbers", label: "" },
   // SAVED_COMBINATIONS: { path: "/saved-combinations", label: "내 번호" },
 };
