@@ -4,17 +4,27 @@ import { Drawer, Button } from "antd";
 import { MenuOutlined, ArrowLeftOutlined } from "@ant-design/icons";
 import styles from "./Header.module.scss";
 import { ROUTES } from "../../../constants/routes";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import COLORS from "@/constants/colors";
+import { clearUser } from "@/features/auth/authSlice";
+import { authService } from "@/api";
 
 const Header: React.FC = () => {
   const [isDrawerVisible, setDrawerVisible] = useState(false);
-  useAppSelector((state) => state.auth.user);
+  const user = useAppSelector((state) => state.auth.user);
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
 
   const toggleDrawer = () => {
     setDrawerVisible((prev) => !prev);
+  };
+
+  const handleLogout = async () => {
+    await authService.logout();
+    dispatch(clearUser());
+    setDrawerVisible(false);
+    navigate(ROUTES.HOME.path);
   };
 
   const isHomePage = location.pathname === ROUTES.HOME.path;
@@ -101,6 +111,46 @@ const Header: React.FC = () => {
               </Button>
             </NavLink>
           ))}
+
+        {/* 로그인/로그아웃 버튼 가장 아래로 이동 */}
+        <div style={{ marginTop: "auto" }}>
+          {!user ? (
+            <NavLink
+              to={ROUTES.LOGIN.path}
+              style={{ textDecoration: "none" }}
+              onClick={() => setDrawerVisible(false)}
+            >
+              <Button
+                block
+                style={{
+                  height: "48px",
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  color: COLORS.NEUTRAL_LIGHT,
+                  backgroundColor: COLORS.PRIMARY_LIGHT,
+                  borderRadius: "8px",
+                }}
+              >
+                로그인 / 회원가입
+              </Button>
+            </NavLink>
+          ) : (
+            <Button
+              block
+              onClick={handleLogout}
+              style={{
+                height: "48px",
+                fontSize: "16px",
+                fontWeight: "bold",
+                color: COLORS.NEUTRAL_LIGHT,
+                backgroundColor: COLORS.PRIMARY_DARK,
+                borderRadius: "8px",
+              }}
+            >
+              로그아웃
+            </Button>
+          )}
+        </div>
       </Drawer>
     </header>
   );

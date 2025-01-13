@@ -11,6 +11,17 @@ export const useEmailVerification = (
   const [verificationLoading, setVerificationLoading] = useState(false);
   const [codeVerificationLoading, setCodeVerificationLoading] = useState(false);
 
+  const getEmailValue = () => {
+    if (!formRef.current) return;
+    const values = formRef.current.getFieldsValue(["email", "domain"]);
+    const email =
+      values.domain === "custom"
+        ? values.email
+        : `${values.email}@${values.domain}`;
+
+    return email;
+  };
+
   const resetVerificationState = (resetType: "email" | "code") => {
     if (resetType === "email") {
       setEmailVerificationSent(false);
@@ -24,8 +35,7 @@ export const useEmailVerification = (
   const handleSendVerification = async () => {
     if (!formRef.current) return;
 
-    const values = formRef.current.getFieldsValue(["email", "domain"]);
-    const email = `${values.email}@${values.domain}`;
+    const email = getEmailValue();
 
     setVerificationLoading(true);
     try {
@@ -47,8 +57,7 @@ export const useEmailVerification = (
   const handleVerifyCode = async () => {
     if (!formRef.current) return;
 
-    const values = formRef.current.getFieldsValue(["email", "domain"]);
-    const email = `${values.email}@${values.domain}`;
+    const email = getEmailValue();
 
     setCodeVerificationLoading(true);
     try {
@@ -78,5 +87,6 @@ export const useEmailVerification = (
     handleSendVerification,
     handleVerifyCode,
     resetVerificationState,
+    getEmailValue,
   };
 };

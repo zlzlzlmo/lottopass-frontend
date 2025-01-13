@@ -2,22 +2,34 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Card, Typography, message } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { authService } from "@/api";
+import { ROUTES } from "@/constants/routes";
+import FlexContainer from "@/components/common/container/FlexContainer";
+import { useAppDispatch } from "@/redux/hooks";
+import { setUser } from "@/features/auth/authSlice";
 
 const { Title, Text } = Typography;
 
 const LoginPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
-  const onFinish = async (values: { email: string; password: string }) => {
+  const dispatch = useAppDispatch();
+  const onFinish = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
     setLoading(true);
     try {
-      const res = await authService.login(values.email, values.password);
-      message.success("로그인 성공! 홈으로 이동합니다.");
+      const res = await authService.login(email, password);
+      message.success("로그인 성공!");
       navigate(res.redirectUrl);
+      const me = await authService.getMe();
+      dispatch(setUser(me));
     } catch (error: any) {
       message.error(error.message || "로그인 실패. 다시 시도해주세요.");
     } finally {
@@ -63,7 +75,7 @@ const LoginPage: React.FC = () => {
           >
             <Input
               prefix={<UserOutlined />}
-              placeholder="이메일"
+              placeholder="이메일을 입력해주세요."
               style={{ height: 48 }}
             />
           </Form.Item>
@@ -76,7 +88,7 @@ const LoginPage: React.FC = () => {
           >
             <Input.Password
               prefix={<LockOutlined />}
-              placeholder="비밀번호"
+              placeholder="비밀번호를 입력해주세요."
               style={{ height: 48 }}
             />
           </Form.Item>
@@ -96,6 +108,11 @@ const LoginPage: React.FC = () => {
               로그인
             </Button>
           </Form.Item>
+
+          <FlexContainer gap={10} justify="center">
+            <NavLink to={ROUTES.SIGNUP.path}>회원가입</NavLink>
+            <NavLink to={ROUTES.FIND_PASSWORD.path}>비밀번호 찾기</NavLink>
+          </FlexContainer>
         </Form>
       </Card>
     </Layout>

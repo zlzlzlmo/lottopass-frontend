@@ -24,8 +24,7 @@ import SignupPage from "./pages/auth/SignupPage";
 import LoginPage from "./pages/auth/LoginPage";
 import AppInitializer from "./AppInitializer";
 import UserProfileUpdatePage from "./pages/auth/UserProfileUpdatePage";
-import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
-import EmailVerificationPage from "./pages/auth/EmailVerificationPage";
+import FindPasswordPage from "./pages/auth/FindPasswordPage";
 
 const queryClient = new QueryClient();
 
@@ -47,11 +46,7 @@ const App: React.FC = () => {
     { path: ROUTES.SIGNUP.path, element: <SignupPage /> },
     { path: ROUTES.LOGIN.path, element: <LoginPage /> },
     { path: ROUTES.UPDATE_PROFILE.path, element: <UserProfileUpdatePage /> },
-    { path: ROUTES.RESET_PASSWORD.path, element: <ResetPasswordPage /> },
-    {
-      path: ROUTES.EMAIL_VERIFICATION.path,
-      element: <EmailVerificationPage />,
-    },
+    { path: ROUTES.FIND_PASSWORD.path, element: <FindPasswordPage /> },
     { path: "*", element: <NotFound /> },
   ];
 

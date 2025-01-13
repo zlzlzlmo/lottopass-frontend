@@ -31,4 +31,12 @@ export class UserService extends BaseApiService {
   async resetPassword(param: { email: string; newPassword: string }) {
     return this.handleResponse(this.post<boolean>("/reset-password", param));
   }
+
+  async checkEmail(email: string) {
+    return this.handleResponse(
+      this.post<boolean>("/check-email", {
+        email,
+      })
+    );
+  }
 }

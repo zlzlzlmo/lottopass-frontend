@@ -18,7 +18,10 @@ const PasswordForm: React.FC = () => {
         ]}
         style={{ marginBottom: 16 }}
       >
-        <Input.Password placeholder="비밀번호" style={{ height: 48 }} />
+        <Input.Password
+          placeholder="비밀번호를 입력해주세요."
+          style={{ height: 48 }}
+        />
       </Form.Item>
 
       <Form.Item
@@ -38,7 +41,10 @@ const PasswordForm: React.FC = () => {
         ]}
         style={{ marginBottom: 16 }}
       >
-        <Input.Password placeholder="비밀번호 확인" style={{ height: 48 }} />
+        <Input.Password
+          placeholder="비밀번호 확인을 입력해주세요."
+          style={{ height: 48 }}
+        />
       </Form.Item>
     </>
   );

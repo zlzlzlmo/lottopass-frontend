@@ -2,24 +2,28 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Card, Typography, message } from "antd";
 import { LockOutlined } from "@ant-design/icons";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { authService, userService } from "@/api";
 import { REGEX } from "@/constants/regex";
+import { useAppDispatch } from "@/redux/hooks";
+import { setUser } from "@/features/auth/authSlice";
 
 const { Title, Text } = Typography;
 
-const ResetPasswordPage: React.FC = () => {
+interface ResetPasswordPageProps {
+  email: string;
+}
+
+const ResetPasswordPage: React.FC<ResetPasswordPageProps> = ({ email }) => {
   const [loading, setLoading] = useState(false);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
 
   const onFinish = async (values: {
     password: string;
     confirmPassword: string;
   }) => {
-    const email = searchParams.get("email");
-
     if (!email) {
       message.error("유효하지 않은 접근입니다.");
       return;
@@ -38,6 +42,8 @@ const ResetPasswordPage: React.FC = () => {
       });
       message.success("비밀번호가 성공적으로 재설정되었습니다.");
       await authService.login(email, values.password);
+      const me = await authService.getMe();
+      dispatch(setUser(me));
       navigate("/");
     } catch (error: any) {
       message.error(error.message || "비밀번호 재설정에 실패했습니다.");

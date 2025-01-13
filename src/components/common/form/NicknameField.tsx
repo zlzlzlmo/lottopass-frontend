@@ -14,7 +14,7 @@ const NicknameField: React.FC = () => (
     ]}
     style={{ marginBottom: 16 }}
   >
-    <Input placeholder="닉네임" style={{ height: 48 }} />
+    <Input placeholder="닉네임을 입력해주세요." style={{ height: 48 }} />
   </Form.Item>
 );
 export default NicknameField;

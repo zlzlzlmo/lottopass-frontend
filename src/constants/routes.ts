@@ -14,10 +14,10 @@ export const ROUTES = {
   HISTORY_DETAIL: { path: "/history/:drawNumber", label: "" },
   CALLBACK: { path: "/auth/:provider/callback", label: "" },
   // LOGIN: { path: "/login", label: "" },
-  SIGNUP: { path: "/signup", label: "회원가입" },
-  LOGIN: { path: "/login", label: "로그인" },
-  UPDATE_PROFILE: { path: "/update-profile", label: "회원정보 수정" },
-  RESET_PASSWORD: { path: "/reset-password", label: "비밀번호 재설정" },
-  EMAIL_VERIFICATION: { path: "/email-verification", label: "이메일 인증" },
+  SIGNUP: { path: "/signup", label: "" },
+  LOGIN: { path: "/login", label: "" },
+  UPDATE_PROFILE: { path: "/update-profile", label: "" },
+  FIND_PASSWORD: { path: "/find-password", label: "" },
+
   // SAVED_COMBINATIONS: { path: "/saved-combinations", label: "내 번호" },
 };

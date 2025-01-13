@@ -10,15 +10,20 @@ import { authService, userService } from "@/api";
 import { useEmailVerification } from "./hooks/useEmailVerification";
 import PasswordForm from "@/components/common/form/passwordForm";
 import NicknameField from "@/components/common/form/NicknameField";
-import VerificationButton from "@/components/common/form/VerificationButton";
-import EmailVerificationField from "@/components/common/form/EmailField";
+import { EmailVerificationField } from "@/components/common/form/EmailVerificationField";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/constants/routes";
+import { useAppDispatch } from "@/redux/hooks";
+import { setUser } from "@/features/auth/authSlice";
 
 const { Title, Text } = Typography;
 
 const SignupPage: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
-  const formRef = useRef<FormInstance>(null);
 
+  const formRef = useRef<FormInstance>(null);
+  const navigate = useNavigate();
   const {
     emailVerificationSent,
     emailVerified,
@@ -29,6 +34,7 @@ const SignupPage: React.FC = () => {
     handleSendVerification,
     handleVerifyCode,
     resetVerificationState,
+    getEmailValue,
   } = useEmailVerification(formRef);
 
   const onFinish = async (values: {
@@ -43,17 +49,19 @@ const SignupPage: React.FC = () => {
     }
 
     setLoading(true);
-    const { email, domain, nickname, password } = values;
-    const fullEmail = `${email}@${domain}`;
+    const { nickname, password } = values;
 
+    const fullEmail = getEmailValue();
     try {
       await userService.signup({
         email: fullEmail,
         nickname: nickname,
         password,
       });
-      message.success("회원가입이 완료되었습니다. 로그인해주세요.");
+      message.success("로또패스 회원이 되신걸 환영합니다!");
       await authService.login(fullEmail, password);
+      navigate(ROUTES.HOME.path);
+      dispatch(setUser({ email: fullEmail, nickname: nickname }));
     } catch (error: any) {
       message.error(`${error.message} 다시 입력해주세요.`);
       resetVerificationState("email");
@@ -104,12 +112,6 @@ const SignupPage: React.FC = () => {
             handleVerifyCode={handleVerifyCode}
           />
 
-          <VerificationButton
-            emailVerificationSent={emailVerificationSent}
-            loading={verificationLoading}
-            disabled={emailVerified}
-            onClick={handleSendVerification}
-          />
           <NicknameField />
           <PasswordForm />
           <Form.Item style={{ textAlign: "center" }}>
