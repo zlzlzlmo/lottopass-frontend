@@ -1,10 +1,20 @@
 import { UserProfile } from "lottopass-shared";
 import { BaseApiService } from "./baseAPI";
+import { Record } from "./recordService";
 
 export interface CreateUser {
   email: string;
   nickname: string;
   password: string;
+}
+
+export interface User {
+  id: string;
+  email: string;
+  nickname: string;
+  password: string;
+  createdAt: Date;
+  records: Record[];
 }
 
 export class UserService extends BaseApiService {

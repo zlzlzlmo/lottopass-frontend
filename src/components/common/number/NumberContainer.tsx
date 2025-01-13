@@ -1,32 +1,23 @@
-import { getBallColor } from "@/utils/ballColor";
-import { Space, Tag, Typography } from "antd";
-import React from "react";
-
-const { Text } = Typography;
+import { Button, Space } from "antd";
+import React, { useState } from "react";
+import { BarChartOutlined } from "@ant-design/icons";
+import StatisticsPopup from "@/components/popup/StatisticPopup";
+import LottoBall from "./LottoBall";
 
 interface NumberContainerProps {
   numbers: number[];
   bonusNumber?: number;
   size?: number;
+  hasStatistic?: boolean;
 }
 
 const NumberContainer: React.FC<NumberContainerProps> = ({
   numbers,
   bonusNumber,
   size = 40,
+  hasStatistic = false,
 }) => {
-  const numberStyle = {
-    width: size,
-    height: size,
-    fontSize: size / 2.8,
-    fontWeight: "bold",
-    textAlign: "center" as const,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: "50%",
-    color: "#fff",
-  };
+  const [visible, setVisible] = useState<boolean>(false);
 
   const numbersContainerStyle = {
     display: "flex",
@@ -34,43 +25,51 @@ const NumberContainer: React.FC<NumberContainerProps> = ({
     alignItems: "center",
     gap: size / 5,
     marginTop: size / 2.5,
+    position: "relative" as const,
   };
 
-  const bonusPlusStyle = {
-    fontSize: size / 2.5,
-    margin: `0 ${size / 5}px`,
-    color: "#333",
+  const handleViewStatistics = () => {
+    setVisible(true);
   };
 
   return (
-    <Space style={numbersContainerStyle} wrap>
-      {numbers.map((num, index) => (
-        <Tag
-          color={getBallColor(num)}
-          key={index}
-          style={{
-            ...numberStyle,
-            backgroundColor: getBallColor(num),
-          }}
-        >
-          {num}
-        </Tag>
-      ))}
+    <div style={{ position: "relative" }}>
+      <Space style={numbersContainerStyle} wrap>
+        {numbers.map((num, index) => (
+          <LottoBall key={index} number={num} size={size} />
+        ))}
 
-      {bonusNumber && (
-        <>
-          <Text style={bonusPlusStyle}>+</Text>
-          <Tag
+        {bonusNumber && (
+          <>
+            <LottoBall number={bonusNumber} size={size} />
+          </>
+        )}
+
+        {hasStatistic && (
+          <Button
+            type="text"
+            icon={<BarChartOutlined />}
+            onClick={handleViewStatistics}
             style={{
-              ...numberStyle,
-              backgroundColor: "#ff4d4f",
+              marginLeft: size / 5,
+              color: "#1890ff",
+              display: "flex",
+              alignItems: "center",
             }}
-          >
-            {bonusNumber}
-          </Tag>
-        </>
+          />
+        )}
+      </Space>
+
+      {hasStatistic && visible && (
+        <StatisticsPopup
+          visible={visible}
+          onClose={() => {
+            setVisible(false);
+          }}
+          numbers={numbers}
+        />
       )}
-    </Space>
+    </div>
   );
 };
 

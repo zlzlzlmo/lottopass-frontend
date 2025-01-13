@@ -58,7 +58,7 @@ const LuckyNumberCard: React.FC<LuckyNumberCardProps> = ({
         />
         <Button
           type="text"
-          icon={<BarChartOutlined />} // 통계와 어울리는 아이콘
+          icon={<BarChartOutlined />}
           onClick={() => onViewStatistics(index)}
           style={{
             position: "absolute",

@@ -32,7 +32,6 @@ export class BaseApiService {
       const response = await this.axiosInstance.post(url, body);
       return response.data;
     } catch (error: any) {
-      console.log("! : ", error.response.data.message);
       throw new Error(error.response.data.message || "POST 요청 실패");
     }
   }

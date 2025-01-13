@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Typography, Space, Button, Popconfirm } from "antd";
-import { BarChartOutlined, DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 import NumberContainer from "@/components/common/number/NumberContainer";
 
 const { Text, Title } = Typography;
@@ -10,7 +10,6 @@ interface LottoCardProps {
   combinations: number[][];
   purchaseDate: string;
   memo: string;
-  onShowStatistics: () => void;
   onDelete: () => void;
 }
 
@@ -19,7 +18,6 @@ const LottoCard: React.FC<LottoCardProps> = ({
   combinations,
   purchaseDate,
   memo,
-  onShowStatistics,
   onDelete,
 }) => {
   return (
@@ -31,13 +29,6 @@ const LottoCard: React.FC<LottoCardProps> = ({
       }
       extra={
         <Space>
-          <Button
-            type="text"
-            icon={<BarChartOutlined style={{ color: "#1890ff" }} />}
-            onClick={onShowStatistics}
-          >
-            통계
-          </Button>
           <Popconfirm
             title="정말 삭제하시겠습니까?"
             onConfirm={onDelete}
@@ -69,7 +60,12 @@ const LottoCard: React.FC<LottoCardProps> = ({
           {drawNumber}회차 번호
         </Title>
         {combinations.map((combo, index) => (
-          <NumberContainer key={index} numbers={combo} size={30} />
+          <NumberContainer
+            key={index}
+            numbers={combo}
+            size={30}
+            hasStatistic={true}
+          />
         ))}
       </div>
 

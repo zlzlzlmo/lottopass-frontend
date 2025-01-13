@@ -1,37 +1,47 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef, useState } from "react";
-import { Modal, Button, Typography } from "antd";
+import { Button, Modal, message } from "antd";
 import { CameraOutlined } from "@ant-design/icons";
 import { BrowserQRCodeReader } from "@zxing/browser";
+import SaveRecordPopup from "./SaveRecordPopup";
+import { CreateRecord } from "@/api/recordService";
+import { recordService } from "@/api";
 
-const { Title, Text } = Typography;
+interface LottoData {
+  drawNumber: number;
+  combinations: number[][];
+  transactionId: string;
+}
 
 const QRScanner: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [qrResult, setQrResult] = useState<string | null>(null);
+  const [lottoData, setLottoData] = useState<LottoData | null>(null);
+  const [savePopupVisible, setSavePopupVisible] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
 
-  const parseLottoNumber = (input: string) => {
+  const parseLottoNumber = (input: string): number[] => {
     const result =
       input.match(/.{1,2}/g)?.map((num) => parseInt(num, 10)) || [];
-
     return result.slice(0, 6);
   };
 
-  const parseLottoQR = (qrResult: string) => {
-    // 쿼리 문자열에서 'v='와 'm='을 기준으로 값 분리
-    if (!qrResult) return;
-    const params = new URLSearchParams(qrResult.split("?")[1]);
+  const parseLottoQR = (qrResult: string): LottoData | null => {
+    try {
+      console.log("QR 코드 데이터:", qrResult);
+      const params = new URLSearchParams(qrResult.split("?")[1]);
+      const data = params.get("v")?.split("m");
+      if (!data) return null;
 
-    const data = params.get("v")?.split("m");
-    if (!data) return;
-    const drawNumber = Number(data[0]);
-    const combinations = data?.slice(1).map((v) => parseLottoNumber(v));
-
-    return {
-      drawNumber,
-      combinations,
-    };
+      const drawNumber = Number(data[0]);
+      const combinations = data.slice(1).map((v) => parseLottoNumber(v));
+      const transactionId = data[data.length - 1].substring(12);
+      console.log("transactionId : ", transactionId);
+      return { drawNumber, combinations, transactionId };
+    } catch (error: any) {
+      console.error("QR 코드 파싱 실패:", error.message);
+      return null;
+    }
   };
 
   const handleOpenScanner = () => {
@@ -40,12 +50,21 @@ const QRScanner: React.FC = () => {
 
   const handleCloseScanner = () => {
     setIsModalVisible(false);
-    setQrResult(null);
 
-    // 카메라 스트림 해제
     if (streamRef.current) {
       streamRef.current.getTracks().forEach((track) => track.stop());
       streamRef.current = null;
+    }
+  };
+
+  const handleSave = async (record: CreateRecord) => {
+    try {
+      await recordService.createRecord(record);
+      message.success("데이터가 성공적으로 저장되었습니다!");
+      setSavePopupVisible(false);
+      setLottoData(null);
+    } catch (error: any) {
+      message.error(error.message);
     }
   };
 
@@ -58,11 +77,17 @@ const QRScanner: React.FC = () => {
         videoRef.current,
         (result) => {
           if (result) {
-            setQrResult(result.getText());
             const parsed = parseLottoQR(result.getText());
-
-            console.log("QR 코드 결과@@@:", result.getText());
-            console.log("parsed : ", parsed);
+            if (parsed) {
+              setLottoData({
+                drawNumber: parsed.drawNumber,
+                combinations: parsed.combinations,
+                transactionId: parsed.transactionId,
+              });
+              setSavePopupVisible(true); // 저장 팝업 열기
+            } else {
+              message.error("QR 코드 데이터가 유효하지 않습니다.");
+            }
             handleCloseScanner();
           }
         }
@@ -75,7 +100,6 @@ const QRScanner: React.FC = () => {
         }
       });
 
-      // 컴포넌트 언마운트 시 스트림 해제
       return () => {
         if (streamRef.current) {
           streamRef.current.getTracks().forEach((track) => track.stop());
@@ -87,7 +111,7 @@ const QRScanner: React.FC = () => {
 
   return (
     <>
-      {/* 하단 고정된 QR 코드 스캔 버튼 */}
+      {/* 하단 QR 코드 스캔 버튼 */}
       <Button
         type="primary"
         icon={<CameraOutlined />}
@@ -99,39 +123,52 @@ const QRScanner: React.FC = () => {
           width: "60px",
           height: "60px",
           borderRadius: "50%",
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+          background: "#1890ff",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
         }}
         aria-label="QR 코드 스캔"
       />
 
       {/* QR 코드 스캔 모달 */}
       <Modal
-        title="QR 코드 스캔"
         visible={isModalVisible}
+        title="QR 코드 스캔"
         onCancel={handleCloseScanner}
         footer={null}
+        centered
       >
-        <div style={{ textAlign: "center" }}>
-          <Title level={4}>카메라를 통해 QR 코드를 스캔하세요</Title>
-          <video
-            ref={videoRef}
-            style={{
-              width: "100%",
-              borderRadius: "8px",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-            }}
-            autoPlay
-          />
-          {qrResult && (
-            <Text style={{ marginTop: "20px", display: "block" }}>
-              스캔 결과: {qrResult}
-            </Text>
-          )}
-        </div>
+        <video
+          ref={videoRef}
+          style={{
+            width: "100%",
+            borderRadius: "12px",
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+          }}
+          autoPlay
+        />
       </Modal>
+
+      {/* 저장 팝업 */}
+      {savePopupVisible && lottoData && (
+        <SaveRecordPopup
+          visible={savePopupVisible}
+          data={{
+            drawNumber: lottoData.drawNumber,
+            combinations: lottoData.combinations,
+            purchaseDate: new Date().toISOString().split("T")[0],
+            transactionId: lottoData.transactionId,
+            memo: "",
+          }}
+          onSave={handleSave}
+          onCancel={() => {
+            setSavePopupVisible(false);
+            setLottoData(null);
+          }}
+        />
+      )}
     </>
   );
 };
