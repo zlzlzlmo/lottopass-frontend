@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Drawer, Button } from "antd";
-import { MenuOutlined, ArrowLeftOutlined } from "@ant-design/icons";
+import {
+  MenuOutlined,
+  ArrowLeftOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import styles from "./Header.module.scss";
 import { ROUTES } from "../../../constants/routes";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import COLORS from "@/constants/colors";
 import { clearUser } from "@/features/auth/authSlice";
 import { authService } from "@/api";
+import FlexContainer from "@/components/common/container/FlexContainer";
 
 const Header: React.FC = () => {
   const [isDrawerVisible, setDrawerVisible] = useState(false);
@@ -55,15 +60,41 @@ const Header: React.FC = () => {
 
       <Drawer
         title={
-          <span
-            style={{
-              fontSize: "20px",
-              fontWeight: "bold",
-              color: COLORS.PRIMARY,
-            }}
-          >
-            LOTTO PASS
-          </span>
+          <FlexContainer justify="space-between" align="center">
+            <span
+              style={{
+                fontSize: "20px",
+                fontWeight: "bold",
+                color: COLORS.PRIMARY,
+              }}
+            >
+              LOTTO PASS
+            </span>
+            {user && (
+              <div
+                onClick={() => navigate(ROUTES.MYPAGE.path)}
+                style={{
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                }}
+                aria-label="Go to My Page"
+              >
+                <UserOutlined
+                  style={{ fontSize: "20px", color: COLORS.PRIMARY }}
+                />
+                <span
+                  style={{
+                    fontSize: "14px",
+                    color: COLORS.PRIMARY,
+                  }}
+                >
+                  마이페이지
+                </span>
+              </div>
+            )}
+          </FlexContainer>
         }
         placement="right"
         closable={true}
@@ -112,9 +143,25 @@ const Header: React.FC = () => {
             </NavLink>
           ))}
 
-        {/* 로그인/로그아웃 버튼 가장 아래로 이동 */}
         <div style={{ marginTop: "auto" }}>
-          {!user ? (
+          {user ? (
+            <>
+              <Button
+                block
+                onClick={handleLogout}
+                style={{
+                  height: "48px",
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  color: COLORS.NEUTRAL_LIGHT,
+                  backgroundColor: COLORS.PRIMARY_DARK,
+                  borderRadius: "8px",
+                }}
+              >
+                로그아웃
+              </Button>
+            </>
+          ) : (
             <NavLink
               to={ROUTES.LOGIN.path}
               style={{ textDecoration: "none" }}
@@ -134,21 +181,6 @@ const Header: React.FC = () => {
                 로그인 / 회원가입
               </Button>
             </NavLink>
-          ) : (
-            <Button
-              block
-              onClick={handleLogout}
-              style={{
-                height: "48px",
-                fontSize: "16px",
-                fontWeight: "bold",
-                color: COLORS.NEUTRAL_LIGHT,
-                backgroundColor: COLORS.PRIMARY_DARK,
-                borderRadius: "8px",
-              }}
-            >
-              로그아웃
-            </Button>
           )}
         </div>
       </Drawer>

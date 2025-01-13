@@ -18,6 +18,7 @@ export const ROUTES = {
   LOGIN: { path: "/login", label: "" },
   UPDATE_PROFILE: { path: "/update-profile", label: "" },
   FIND_PASSWORD: { path: "/find-password", label: "" },
+  MYPAGE: { path: "/mypgae", label: "" },
 
   // SAVED_COMBINATIONS: { path: "/saved-combinations", label: "내 번호" },
 };
