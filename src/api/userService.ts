@@ -39,4 +39,12 @@ export class UserService extends BaseApiService {
       })
     );
   }
+
+  async deleteUser(password: string) {
+    return this.handleResponse(
+      this.delete<boolean>("/delete", {
+        password,
+      })
+    );
+  }
 }

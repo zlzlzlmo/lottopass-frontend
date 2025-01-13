@@ -47,12 +47,18 @@ export class BaseApiService {
     }
   }
 
-  protected async delete<T>(url: string): Promise<FindAllResponse<T>> {
+  protected async delete<T>(
+    url: string,
+    body?: any
+  ): Promise<FindAllResponse<T>> {
     try {
-      const response = await this.axiosInstance.delete(url);
+      const response = await this.axiosInstance.delete(url, {
+        data: body,
+      });
       return response.data;
     } catch (error: any) {
-      throw new Error(error.response.data.message || "DELETE 요청 실패");
+      console.log(error);
+      throw new Error(error.response?.data?.message || "DELETE 요청 실패");
     }
   }
 

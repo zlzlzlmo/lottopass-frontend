@@ -8,9 +8,11 @@ import type { FormInstance } from "antd";
 
 import { authService, userService } from "@/api";
 import { useEmailVerification } from "./hooks/useEmailVerification";
-import PasswordForm from "@/components/common/form/passwordForm";
 import NicknameField from "@/components/common/form/NicknameField";
-import { EmailVerificationField } from "@/components/common/form/EmailVerificationField";
+import {
+  EmailVerificationField,
+  PasswordForm,
+} from "@/components/common/form/EmailVerificationField";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/constants/routes";
 import { useAppDispatch } from "@/redux/hooks";

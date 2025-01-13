@@ -25,6 +25,8 @@ import LoginPage from "./pages/auth/LoginPage";
 import AppInitializer from "./AppInitializer";
 import UserProfileUpdatePage from "./pages/auth/UserProfileUpdatePage";
 import FindPasswordPage from "./pages/auth/FindPasswordPage";
+import MyPage from "./pages/my/MyPage";
+import DeleteAccountPage from "./pages/deleteAccount/DeleteAccountPage";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +49,8 @@ const App: React.FC = () => {
     { path: ROUTES.LOGIN.path, element: <LoginPage /> },
     { path: ROUTES.UPDATE_PROFILE.path, element: <UserProfileUpdatePage /> },
     { path: ROUTES.FIND_PASSWORD.path, element: <FindPasswordPage /> },
+    { path: ROUTES.MYPAGE.path, element: <MyPage /> },
+    { path: ROUTES.DELETE_ACCOUNT.path, element: <DeleteAccountPage /> },
     { path: "*", element: <NotFound /> },
   ];
 

@@ -4,13 +4,15 @@ import { Form, Input, Button, Card, Typography, message } from "antd";
 import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
-import { userService } from "@/api";
+import { authService, userService } from "@/api";
+import { useAppDispatch } from "@/redux/hooks";
+import { setUser as setUpdatedUser } from "@/features/auth/authSlice";
 
 const { Title, Text } = Typography;
 
 const UserProfileUpdatePage: React.FC = () => {
   const [loading, setLoading] = useState(false);
-
+  const dispatch = useAppDispatch();
   const [user, setUser] = useState<{
     email: string;
     password?: string;
@@ -46,11 +48,13 @@ const UserProfileUpdatePage: React.FC = () => {
     if (!user.nickname) {
       delete user.nickname;
     }
-    console.log("user:user", user);
+
     setLoading(true);
     try {
       await userService.updateProfile(user);
       message.success("회원 정보가 성공적으로 수정되었습니다.");
+      const me = await authService.getMe();
+      dispatch(setUpdatedUser(me));
       navigate("/");
     } catch (error: any) {
       message.error(error.message || "회원 정보 수정에 실패했습니다.");
