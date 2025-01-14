@@ -15,10 +15,10 @@ export const useDashboardRecords = () => {
     data: records = [],
     isError,
     isLoading,
+    error,
     refetch,
   } = useQuery<Record[]>("record", async () => await recordService.getAll());
 
-  // 기본 날짜 범위를 전체 기간으로 설정
   const [dateRange, setDateRange] = useState<DateRange>({
     start: dayjs(records[0]?.purchaseDate || undefined),
     end: dayjs(records[records.length - 1]?.purchaseDate || undefined),
@@ -49,8 +49,8 @@ export const useDashboardRecords = () => {
     {
       onSuccess: async () => {
         message.success("성공적으로 삭제가 됐습니다.");
-        await refetch(); // 서버에서 최신 데이터를 다시 가져오기
-        filterRecords(); // 데이터를 기반으로 필터링 적용
+        await refetch();
+        filterRecords();
       },
       onError: () => {
         message.error("삭제 실패");
@@ -83,6 +83,7 @@ export const useDashboardRecords = () => {
   return {
     records,
     isError,
+    error,
     isLoading,
     filteredRecords,
     dateRange,

@@ -11,6 +11,7 @@ import StatisticsTab from "./StatisticsTab";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import { useDashboardRecords } from "./hooks/useDashboardRecords";
+import { ErrorMessage } from "@/components/common";
 
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
@@ -18,9 +19,22 @@ dayjs.extend(isSameOrBefore);
 const { TabPane } = Tabs;
 
 const DashboardPage: React.FC = () => {
-  const { dateRange, filteredRecords, deleteRecord, handleDateChange } =
-    useDashboardRecords();
+  const {
+    dateRange,
+    filteredRecords,
+    isError,
+    error,
+    deleteRecord,
+    handleDateChange,
+  } = useDashboardRecords();
 
+  if (isError) {
+    return (
+      <ErrorMessage
+        message={error instanceof Error ? error.message : undefined}
+      />
+    );
+  }
   return (
     <Layout>
       <Container>

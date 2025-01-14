@@ -21,6 +21,7 @@ const ResultPage: React.FC = () => {
     allDraws,
     isLoading,
     isError,
+    error,
     addNewCombination,
     deleteCombination,
     regenerateCombination,
@@ -43,9 +44,9 @@ const ResultPage: React.FC = () => {
 
   if (isError || !allDraws) {
     return (
-      <Layout>
-        <ErrorMessage />
-      </Layout>
+      <ErrorMessage
+        message={error instanceof Error ? error.message : undefined}
+      />
     );
   }
 
