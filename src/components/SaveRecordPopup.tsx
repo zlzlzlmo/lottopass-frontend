@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Modal, Button, Input, DatePicker, Card, message } from "antd";
+import {
+  Modal,
+  Button,
+  Input,
+  DatePicker,
+  Card,
+  message,
+  Typography,
+} from "antd";
 import dayjs, { Dayjs } from "dayjs";
 import { CreateRecord } from "@/api/recordService";
 import NumberContainer from "./common/number/NumberContainer";
@@ -46,15 +54,22 @@ const SaveRecordPopup: React.FC<SaveRecordPopupProps> = ({
       footer={null}
       centered
     >
+      <div style={{ marginBottom: "20px", textAlign: "center" }}>
+        <Typography.Title level={4}>로또 데이터 저장</Typography.Title>
+        <Typography.Text>
+          QR 코드로 스캔한 정보를 저장하고 통계를 확인하세요.
+        </Typography.Text>
+      </div>
+
       <div style={{ marginBottom: "20px" }}>
         <Card
           style={{
             background: COLORS.NEUTRAL_LIGHT,
             marginBottom: "20px",
+            textAlign: "center",
           }}
         >
           <strong>추첨 번호</strong>
-
           {data.combinations.map((combination, idx) => (
             <NumberContainer
               key={idx}

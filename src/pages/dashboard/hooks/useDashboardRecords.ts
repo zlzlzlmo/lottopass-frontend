@@ -44,13 +44,17 @@ export const useDashboardRecords = () => {
     }
   };
 
+  const handleRefetch = async () => {
+    await refetch();
+    filterRecords();
+  };
+
   const { mutate: deleteRecord } = useMutation(
     async (id: string) => await recordService.deleteOne(id),
     {
       onSuccess: async () => {
         message.success("성공적으로 삭제가 됐습니다.");
-        await refetch();
-        filterRecords();
+        handleRefetch();
       },
       onError: () => {
         message.error("삭제 실패");
@@ -89,5 +93,6 @@ export const useDashboardRecords = () => {
     dateRange,
     deleteRecord,
     handleDateChange,
+    handleRefetch,
   };
 };

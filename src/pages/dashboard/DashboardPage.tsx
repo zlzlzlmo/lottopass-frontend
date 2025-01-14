@@ -12,6 +12,7 @@ import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import { useDashboardRecords } from "./hooks/useDashboardRecords";
 import { ErrorMessage, LoadingIndicator } from "@/components/common";
+import QRScanner from "@/components/QRScanner";
 
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
@@ -27,6 +28,7 @@ const DashboardPage: React.FC = () => {
     error,
     deleteRecord,
     handleDateChange,
+    handleRefetch,
   } = useDashboardRecords();
 
   if (isError) {
@@ -64,6 +66,7 @@ const DashboardPage: React.FC = () => {
           </Tabs>
         )}
       </Container>
+      <QRScanner handleRefetch={handleRefetch} />
     </Layout>
   );
 };
