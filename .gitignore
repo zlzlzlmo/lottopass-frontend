@@ -26,3 +26,12 @@ dist-ssr
 .env
 .env*
 android
+
+
+
+localhost.pem
+localhost-key.pem
+
+
+*.pem
+*.key
