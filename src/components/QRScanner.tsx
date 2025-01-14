@@ -95,29 +95,54 @@ const QRScanner: React.FC<QRScannerProps> = ({ handleRefetch }) => {
     if (isModalVisible && videoRef.current) {
       const codeReader = new BrowserQRCodeReader();
 
-      codeReader.decodeFromVideoDevice(
-        undefined,
-        videoRef.current,
-        (result) => {
-          if (result) {
-            const parsed = parseLottoQR(result.getText());
-            if (parsed) {
-              setLottoData(parsed);
-              setSavePopupVisible(true);
-            } else {
-              message.error("QR 코드 데이터가 유효하지 않습니다.");
+      const startScanner = async () => {
+        try {
+          await codeReader.decodeFromVideoDevice(
+            undefined,
+            videoRef.current!,
+            (result, error) => {
+              if (result) {
+                const parsed = parseLottoQR(result.getText());
+                if (parsed) {
+                  setLottoData(parsed);
+                  setSavePopupVisible(true);
+                } else {
+                  message.error("QR 코드 데이터가 유효하지 않습니다.");
+                }
+                handleCloseScanner();
+              }
+              if (error) {
+                console.warn("QR 코드 인식 오류:", error);
+              }
             }
-            handleCloseScanner();
-          }
+          );
+        } catch (error) {
+          message.error(
+            "카메라 접근 중 문제가 발생했습니다. 설정을 확인해주세요."
+          );
+          console.error("Scanner Error:", error);
         }
-      );
+      };
 
-      navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
-        streamRef.current = stream;
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-        }
-      });
+      navigator.mediaDevices
+        .getUserMedia({
+          video: {
+            facingMode: "environment",
+            width: { ideal: 1280 },
+            height: { ideal: 720 },
+          },
+        })
+        .then((stream) => {
+          streamRef.current = stream;
+          if (videoRef.current) {
+            videoRef.current.srcObject = stream;
+          }
+          startScanner();
+        })
+        .catch((error) => {
+          message.error("카메라에 접근할 수 없습니다.");
+          console.error("Camera Access Error:", error);
+        });
 
       return () => {
         if (streamRef.current) {
