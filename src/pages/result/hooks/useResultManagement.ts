@@ -18,6 +18,7 @@ export const useResultManagement = ({
     }
 
     const newResult = generateNumbers();
+    if (!newResult) return;
     setResults((prevResults) => [...prevResults, newResult]);
   };
 
@@ -27,17 +28,23 @@ export const useResultManagement = ({
   };
 
   const regenerateCombination = (index: number) => {
+    const newResult = generateNumbers();
+
+    if (!newResult) return;
+
     setResults((prevResults) =>
-      prevResults.map((numbers, i) =>
-        i === index ? generateNumbers() : numbers
-      )
+      prevResults.map((numbers, i) => (i === index ? newResult : numbers))
     );
     message.info("번호가 다시 생성되었습니다.");
   };
 
   useEffect(() => {
     if (allDraws && allDraws?.length > 0) {
-      const newResults = Array.from({ length: 5 }, () => generateNumbers());
+      const newResults = Array.from(
+        { length: 5 },
+        () => generateNumbers() ?? []
+      );
+      if (!newResults) return;
       setResults(newResults);
     }
   }, [allDraws]);

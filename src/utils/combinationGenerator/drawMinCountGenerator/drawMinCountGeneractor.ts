@@ -1,7 +1,7 @@
 import { getRandomNum, shuffle } from "../../number";
 import { BaseCombinationGenerator } from "../baseCombinationGenerator";
 
-export class DrawMinCountGeneractor extends BaseCombinationGenerator {
+export class DrawMinCountGenerator extends BaseCombinationGenerator {
   // 최근 N회차동안 출현 번호에서 최소 K개의 번호 조합을 생성
   getRandomCombinationWithMinCount(
     drawCount: number,

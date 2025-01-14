@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { DrawMinCountGeneractor } from "./drawMinCountGeneractor";
+import { DrawMinCountGenerator } from "./drawMinCountGeneractor";
 import { LottoDraw } from "@/components/popup/StatisticPopup";
 
 const mockDraws = [
@@ -10,11 +10,11 @@ const mockDraws = [
 ];
 
 describe("DrawMinCountGeneractor 테스트", () => {
-  let generator: DrawMinCountGeneractor;
+  let generator: DrawMinCountGenerator;
 
   beforeEach(() => {
     // Mock 데이터를 초기화합니다.
-    generator = new DrawMinCountGeneractor(mockDraws as LottoDraw[]);
+    generator = new DrawMinCountGenerator(mockDraws as LottoDraw[]);
   });
 
   it("최근 N회차의 번호에서 최소 K개 포함된 조합을 생성한다.", () => {

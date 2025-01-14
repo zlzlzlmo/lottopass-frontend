@@ -1,7 +1,8 @@
 import { Collapse, Typography } from "antd";
 import React from "react";
-import { QueryParams } from "./result-service";
+
 import { LottoDraw } from "lottopass-shared";
+import { QueryParams } from "./hooks/useGenerateNumbers";
 
 const { Panel } = Collapse;
 const { Text } = Typography;
@@ -29,6 +30,7 @@ const CombinationDescription: React.FC<CombinationDescriptionProps> = ({
   } = queryParams;
 
   const renderCombinationDescription = (latestDraw: LottoDraw) => {
+    if (!latestDraw) return;
     switch (type) {
       case "numberSelect":
         if (selectedNumbers && selectedNumbers.length <= 0)

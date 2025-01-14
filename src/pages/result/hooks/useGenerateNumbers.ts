@@ -1,9 +1,28 @@
 import { useAllDraws } from "@/features/draw/hooks/useAllDraws";
 import { parseQueryParams } from "@/pages/numberGeneration/components/numberActionButtons/utils";
-import { QueryParams, setRequiredNumbers } from "../result-service";
 import { useSearchParams } from "react-router-dom";
-import { getRandomNum, shuffle } from "@/utils/number";
-import { useCallback } from "react";
+import { MinMaxGeneratorByRank } from "@/utils/combinationGenerator/minMaxGeneratorByRank/minMaxGeneratorByRank";
+import { PopupType } from "@/components/popup/PopupManager";
+import { ConfirmType } from "@/pages/numberGeneration/components/numberActionButtons/NumberActionButtons";
+import { SelectedGenerator } from "@/utils/combinationGenerator/selectedGenerator/selectedGenerator";
+import { DrawMinCountGenerator } from "@/utils/combinationGenerator/drawMinCountGenerator/drawMinCountGeneractor";
+import { MinMaxGenerator } from "@/utils/combinationGenerator/minMaxGenerator/minMaxGenerator";
+import { EvenOddGenerator } from "@/utils/combinationGenerator/evenOddGenerator/evenOddGenerator";
+import { useEffect, useState } from "react";
+import { LottoDraw } from "lottopass-shared";
+
+export interface QueryParams {
+  selectedNumbers?: number[];
+  confirmType?: ConfirmType;
+  drawCount?: number;
+  minCount?: number;
+  min?: number;
+  max?: number;
+  even?: number;
+  odd?: number;
+  type?: PopupType;
+  topNumber?: number;
+}
 
 interface useGenerateNumbersOptions {
   slicedStart?: number;
@@ -14,29 +33,90 @@ export const useGenerateNumbers = ({
 }: useGenerateNumbersOptions) => {
   const [searchParams] = useSearchParams();
 
-  const { data: allDraws, isLoading, isError, error } = useAllDraws();
+  const { data: rawAllDraws, isLoading, isError, error } = useAllDraws();
+  const [allDraws, setAllDraws] = useState<LottoDraw[]>([]);
   const queryParams = parseQueryParams(searchParams) as QueryParams;
+  const {
+    type,
+    confirmType,
+    selectedNumbers,
+    drawCount,
+    minCount,
+    min,
+    max,
+    even,
+    odd,
+    topNumber,
+  } = queryParams;
 
-  const generateNumbers = useCallback((): number[] => {
-    const minCount = queryParams.minCount ?? 6;
-    if (!allDraws || allDraws.length <= 0) return [];
-    const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
+  const getCombinationByConfirmType = (
+    param: Record<ConfirmType, number[]>
+  ): number[] => {
+    if (confirmType === "require") return param.require;
+    return param.exclude;
+  };
 
-    const requiredNumbers = setRequiredNumbers(
-      queryParams,
-      allDraws.slice(slicedStart),
-      allDraws
-    );
+  const generateNumbers = () => {
+    if (!allDraws) return;
 
-    const len = requiredNumbers.length;
-    const randomIdx = getRandomNum(Math.min(Number(minCount), len), len);
+    let result: number[] = [];
 
-    const availableNumbers = shuffle(requiredNumbers).slice(0, randomIdx);
+    // 필수, 제외번호 직접 선택
+    if (type === "numberSelect" && selectedNumbers) {
+      const generator = new SelectedGenerator(allDraws);
+      const require = generator.getRequiredNumbers(selectedNumbers);
+      const exclude = generator.getExcludedNumbers(selectedNumbers);
+      result = getCombinationByConfirmType({ require, exclude });
+    }
 
-    return Array.from(new Set([...availableNumbers, ...shuffle(allNumbers)]))
-      .slice(0, 6)
-      .sort((a, b) => a - b);
-  }, [allDraws, queryParams]);
+    // 최근 N 회차 최소 K 갯수 선택 (출현, 미출현)
+    if (type === "numberControl" && drawCount && minCount) {
+      const generator = new DrawMinCountGenerator(allDraws);
+      const require = generator.getRandomCombinationWithMinCount(
+        drawCount,
+        minCount
+      );
+      const exclude = generator.getRandomUnappearedNumbers(drawCount, minCount);
+      result = getCombinationByConfirmType({ require, exclude });
+    }
+
+    // 특정 회차 최소 갯수 선택 (출현, 미출현)
+    if (type === "rangeSelect" && min && max) {
+      const generator = new MinMaxGenerator(allDraws, min, max);
+      const require = generator.generateAppearedNumbers();
+      const exclude = generator.generateUnappearedNumbers();
+
+      result = getCombinationByConfirmType({ require, exclude });
+    }
+
+    // 짝수 N개 홀수 K개 조합
+    if (type === "evenOddControl" && even && odd) {
+      const generator = new EvenOddGenerator(allDraws);
+      result = generator.generateAppearedNumbers(even, odd);
+    }
+
+    if (
+      (type === "rangeAndTopNumberSelect" ||
+        type === "rangeAndBottomNumberSelect") &&
+      min &&
+      max &&
+      topNumber
+    ) {
+      const generator = new MinMaxGeneratorByRank(allDraws, min, max);
+
+      if (type === "rangeAndTopNumberSelect")
+        result = generator.generateTopAppearedNumbers(topNumber);
+      if (type === "rangeAndBottomNumberSelect")
+        result = generator.generateBottomAppearedNumbers(topNumber);
+    }
+
+    return result.sort((a, b) => a - b);
+  };
+
+  useEffect(() => {
+    if (!rawAllDraws) return;
+    setAllDraws(rawAllDraws.slice(slicedStart));
+  }, [rawAllDraws, slicedStart]);
 
   return { allDraws, isLoading, isError, error, generateNumbers };
 };

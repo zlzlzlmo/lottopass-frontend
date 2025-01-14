@@ -1,4 +1,5 @@
 import { LottoDraw } from "lottopass-shared";
+import { shuffle } from "../number";
 
 export class BaseCombinationGenerator {
   protected maxNumber: number = 45;
@@ -23,15 +24,19 @@ export class BaseCombinationGenerator {
       (num) => !usedNumbers.has(num)
     );
 
-    return remainingNumbers;
+    return shuffle(remainingNumbers);
   }
 
   protected getWithRemainingNumbers(selectedNumbers: number[]): number[] {
-    if (selectedNumbers.length >= 6) return selectedNumbers.slice(0, 6);
+    if (selectedNumbers.length >= 6)
+      return shuffle(selectedNumbers).slice(0, 6);
 
-    return [...selectedNumbers, ...this.getRemainingNumbers(selectedNumbers)]
-      .slice(0, 6)
-      .sort((a, b) => a - b);
+    return shuffle(
+      [...selectedNumbers, ...this.getRemainingNumbers(selectedNumbers)].slice(
+        0,
+        6
+      )
+    ).sort((a, b) => a - b);
   }
 
   protected getNumberFrequencyMap(draws: LottoDraw[]) {

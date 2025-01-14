@@ -7,13 +7,13 @@ import { Button, Space } from "antd";
 import LuckyNumberCard from "@/components/common/card/LuckyNumberCard";
 import StatisticsPopup from "@/components/popup/StatisticPopup";
 import { parseQueryParams } from "../numberGeneration/components/numberActionButtons/utils";
-import { QueryParams } from "./result-service";
 import CombinationDescription from "./CombinationDescription";
 import Container from "@/components/layout/container/Container";
 import Banner from "@/components/common/banner/Banner";
 import LogoLoading from "@/components/common/loading/LogoLoading";
 import { ErrorMessage } from "@/components/common";
 import { useResultManagement } from "./hooks/useResultManagement";
+import { QueryParams } from "./hooks/useGenerateNumbers";
 
 const ResultPage: React.FC = () => {
   const {
