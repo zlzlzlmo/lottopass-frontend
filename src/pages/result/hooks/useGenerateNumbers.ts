@@ -114,10 +114,18 @@ export const useGenerateNumbers = ({
   };
 
   useEffect(() => {
-    if (!allDraws) return;
-
-    setFilteredDraws(allDraws?.slice(slicedStart + 1));
+    if (allDraws?.length) {
+      const startIndex = Math.min(slicedStart + 1, allDraws.length);
+      setFilteredDraws(allDraws.slice(startIndex));
+    }
   }, [slicedStart, allDraws]);
 
-  return { allDraws, isLoading, isError, error, generateNumbers };
+  return {
+    filteredDraws,
+    allDraws,
+    isLoading,
+    isError,
+    error,
+    generateNumbers,
+  };
 };

@@ -7,8 +7,14 @@ export const useResultManagement = ({
 }: {
   maxResultsLen: number;
 }) => {
-  const { allDraws, isLoading, isError, error, generateNumbers } =
-    useGenerateNumbers({});
+  const {
+    filteredDraws,
+    allDraws,
+    isLoading,
+    isError,
+    error,
+    generateNumbers,
+  } = useGenerateNumbers({});
   const [results, setResults] = useState<number[][]>([]);
 
   const addNewCombination = () => {
@@ -39,7 +45,7 @@ export const useResultManagement = ({
   };
 
   useEffect(() => {
-    if (allDraws && allDraws?.length > 0) {
+    if (filteredDraws && filteredDraws?.length > 0) {
       const newResults = Array.from(
         { length: 5 },
         () => generateNumbers() ?? []
@@ -47,7 +53,7 @@ export const useResultManagement = ({
       if (!newResults) return;
       setResults(newResults);
     }
-  }, [allDraws]);
+  }, [filteredDraws]);
 
   return {
     results,
