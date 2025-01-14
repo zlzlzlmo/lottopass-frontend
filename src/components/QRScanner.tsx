@@ -21,11 +21,21 @@ const QRScanner: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [lottoData, setLottoData] = useState<LottoData | null>(null);
   const [savePopupVisible, setSavePopupVisible] = useState(false);
-  const [isBannerVisible, setIsBannerVisible] = useState(true);
+  const [isBannerVisible, setIsBannerVisible] = useState(() => {
+    const storedDate = sessionStorage.getItem("bannerClosedDate");
+    const today = new Date().toISOString().split("T")[0];
+    return storedDate !== today;
+  });
   const [hasPermission, setHasPermission] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const scannerRef = useRef<Html5Qrcode | null>(null);
+
+  const handleCloseBanner = () => {
+    const today = new Date().toISOString().split("T")[0];
+    sessionStorage.setItem("bannerClosedDate", today);
+    setIsBannerVisible(false);
+  };
 
   const parseLottoNumber = (input: string): number[] => {
     return (
@@ -164,7 +174,7 @@ const QRScanner: React.FC = () => {
               alignItems: "center",
               boxShadow: "0 2px 6px rgba(0, 0, 0, 0.2)",
             }}
-            onClick={() => setIsBannerVisible(false)}
+            onClick={handleCloseBanner}
           >
             <CloseOutlined style={{ fontSize: "14px" }} />
           </div>
