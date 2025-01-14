@@ -74,13 +74,21 @@ const QRScanner: React.FC = () => {
   };
   const startScanner = async () => {
     try {
-      const cameras = await Html5Qrcode.getCameras();
+      const cameras = await Html5Qrcode.getCameras(); // 사용 가능한 카메라 가져오기
       if (cameras.length > 0) {
-        console.log("Available cameras:", cameras); // 사용 가능한 카메라 출력
+        console.log("Available cameras:", cameras);
+
+        // 후면 카메라를 기본값으로 선택
+        const backCamera = cameras.find((camera) =>
+          camera.label.toLowerCase().includes("back")
+        );
+
+        const selectedCamera = backCamera ? backCamera.id : cameras[0].id;
+
         setHasPermission(true);
         scannerRef.current = new Html5Qrcode("qr-reader");
         scannerRef.current.start(
-          cameras[0].id, // 여기에서 원하는 카메라 ID를 선택
+          selectedCamera, // 후면 카메라 ID를 선택
           { fps: 10, qrbox: { width: 250, height: 250 } },
           (decodedText) => {
             const parsed = parseLottoQR(decodedText);
