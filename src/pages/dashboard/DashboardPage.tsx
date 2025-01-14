@@ -51,14 +51,14 @@ const DashboardPage: React.FC = () => {
           <LoadingIndicator />
         ) : (
           <Tabs defaultActiveKey="1" style={{ marginTop: "20px" }}>
-            <TabPane tab="캘린더 (날짜 범위 선택)" key="1">
+            <TabPane tab="캘린더" key="1">
               <CalendarTab
                 filteredRecords={filteredRecords}
                 onDelete={deleteRecord}
               />
             </TabPane>
 
-            <TabPane tab="통계" key="3">
+            <TabPane tab="통계" key="2">
               <StatisticsTab filteredRecords={filteredRecords} />
             </TabPane>
           </Tabs>
