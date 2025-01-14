@@ -1,26 +1,8 @@
 import React from "react";
-import { Form, Input, Button, Select } from "antd";
+import { Form, Input, Select } from "antd";
 import { REGEX } from "@/constants/regex";
 import FlexContainer from "../container/FlexContainer";
-const EmailVerificationField: React.FC<{
-  emailVerificationSent: boolean;
-  emailVerified: boolean;
-  verificationCode: string;
-  setVerificationCode: (value: string) => void;
-  verificationLoading: boolean;
-  codeVerificationLoading: boolean;
-  handleSendVerification: () => void;
-  handleVerifyCode: () => void;
-}> = ({
-  emailVerificationSent,
-  emailVerified,
-  verificationCode,
-  setVerificationCode,
-  verificationLoading,
-  codeVerificationLoading,
-  handleSendVerification,
-  handleVerifyCode,
-}) => (
+const EmailVerificationField: React.FC = () => (
   <>
     <Form.Item label="이메일" required style={{ marginBottom: 16 }}>
       <FlexContainer gap={10}>
@@ -32,14 +14,10 @@ const EmailVerificationField: React.FC<{
           <Input
             placeholder="이메일을 입력해주세요."
             style={{ flex: 2, height: 48 }}
-            disabled={emailVerified} // 이메일 필드 비활성화
           />
         </Form.Item>
         <Form.Item name="domain" initialValue="gmail.com" noStyle>
-          <Select
-            style={{ flex: 1, height: 48 }}
-            disabled={emailVerified} // SelectBox 비활성화
-          >
+          <Select style={{ flex: 1, height: 48 }}>
             <Select.Option value="gmail.com">gmail.com</Select.Option>
             <Select.Option value="naver.com">naver.com</Select.Option>
             <Select.Option value="daum.net">daum.net</Select.Option>
@@ -48,7 +26,7 @@ const EmailVerificationField: React.FC<{
         </Form.Item>
       </FlexContainer>
     </Form.Item>
-    <Form.Item style={{ textAlign: "right" }}>
+    {/* <Form.Item style={{ textAlign: "right" }}>
       <Button
         type="default"
         onClick={handleSendVerification}
@@ -58,8 +36,8 @@ const EmailVerificationField: React.FC<{
       >
         {emailVerificationSent ? "재요청" : "인증 요청"}
       </Button>
-    </Form.Item>
-
+    </Form.Item> */}
+    {/* 
     {emailVerificationSent && (
       <Form.Item label="인증 코드" required style={{ marginBottom: 16 }}>
         <FlexContainer gap={10}>
@@ -81,7 +59,7 @@ const EmailVerificationField: React.FC<{
           </Button>
         </FlexContainer>
       </Form.Item>
-    )}
+    )} */}
   </>
 );
 

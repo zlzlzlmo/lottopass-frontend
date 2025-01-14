@@ -26,18 +26,7 @@ const SignupPage: React.FC = () => {
 
   const formRef = useRef<FormInstance>(null);
   const navigate = useNavigate();
-  const {
-    emailVerificationSent,
-    emailVerified,
-    verificationCode,
-    setVerificationCode,
-    verificationLoading,
-    codeVerificationLoading,
-    handleSendVerification,
-    handleVerifyCode,
-    resetVerificationState,
-    getEmailValue,
-  } = useEmailVerification(formRef);
+  const { getEmailValue } = useEmailVerification(formRef);
 
   const onFinish = async (values: {
     email: string;
@@ -45,11 +34,6 @@ const SignupPage: React.FC = () => {
     nickname: string;
     password: string;
   }) => {
-    if (!emailVerified) {
-      message.error("이메일 인증을 완료해주세요.");
-      return;
-    }
-
     setLoading(true);
     const { nickname, password } = values;
 
@@ -63,10 +47,10 @@ const SignupPage: React.FC = () => {
       message.success("로또패스 회원이 되신걸 환영합니다!");
       await authService.login(fullEmail, password);
       navigate(ROUTES.HOME.path);
-      dispatch(setUser({ email: fullEmail, nickname: nickname }));
+      const response = await authService.getMe();
+      dispatch(setUser(response));
     } catch (error: any) {
       message.error(`${error.message} 다시 입력해주세요.`);
-      resetVerificationState("email");
     } finally {
       setLoading(false);
     }
@@ -103,16 +87,7 @@ const SignupPage: React.FC = () => {
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-          <EmailVerificationField
-            emailVerificationSent={emailVerificationSent}
-            emailVerified={emailVerified}
-            verificationCode={verificationCode}
-            setVerificationCode={setVerificationCode}
-            verificationLoading={verificationLoading}
-            codeVerificationLoading={codeVerificationLoading}
-            handleSendVerification={handleSendVerification}
-            handleVerifyCode={handleVerifyCode}
-          />
+          <EmailVerificationField />
 
           <NicknameField />
           <PasswordForm />
