@@ -14,6 +14,7 @@ interface FlexContainerProps {
   wrap?: boolean;
   className?: string;
   children: React.ReactNode;
+  onClick?: () => void;
 }
 
 const FlexContainer: React.FC<FlexContainerProps> = ({
@@ -24,6 +25,7 @@ const FlexContainer: React.FC<FlexContainerProps> = ({
   wrap = false,
   className = "",
   children,
+  onClick,
 }) => {
   return (
     <div
@@ -35,6 +37,7 @@ const FlexContainer: React.FC<FlexContainerProps> = ({
         gap: `${gap}px`,
         flexWrap: wrap ? "wrap" : "nowrap",
       }}
+      onClick={onClick}
     >
       {children}
     </div>

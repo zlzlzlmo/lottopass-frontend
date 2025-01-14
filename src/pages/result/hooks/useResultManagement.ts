@@ -7,9 +7,8 @@ export const useResultManagement = ({
 }: {
   maxResultsLen: number;
 }) => {
-  const { allDraws, isLoading, isError, generateNumbers } = useGenerateNumbers(
-    {}
-  );
+  const { allDraws, isLoading, isError, error, generateNumbers } =
+    useGenerateNumbers({});
   const [results, setResults] = useState<number[][]>([]);
 
   const addNewCombination = () => {
@@ -51,5 +50,6 @@ export const useResultManagement = ({
     regenerateCombination,
     isLoading,
     isError,
+    error,
   };
 };

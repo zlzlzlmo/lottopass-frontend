@@ -14,7 +14,7 @@ export const useGenerateNumbers = ({
 }: useGenerateNumbersOptions) => {
   const [searchParams] = useSearchParams();
 
-  const { data: allDraws, isLoading, isError } = useAllDraws();
+  const { data: allDraws, isLoading, isError, error } = useAllDraws();
   const queryParams = parseQueryParams(searchParams) as QueryParams;
 
   const generateNumbers = useCallback((): number[] => {
@@ -38,5 +38,5 @@ export const useGenerateNumbers = ({
       .sort((a, b) => a - b);
   }, [allDraws, queryParams]);
 
-  return { allDraws, isLoading, isError, generateNumbers };
+  return { allDraws, isLoading, isError, error, generateNumbers };
 };

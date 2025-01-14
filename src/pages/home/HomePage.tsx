@@ -3,11 +3,12 @@ import Layout from "../../components/layout/Layout";
 import RoundCard from "../../components/common/card/RoundCard";
 import { useNavigate } from "react-router-dom";
 import { useLatestDraw } from "@/features/draw/hooks/useLatestDraw";
-import { ErrorMessage } from "@/components/common";
 import SkeletonRoundCard from "@/components/common/skeleton/SkeletonRoundCard";
 import InfoCards from "./hero/InfoCards";
 import { Divider, Typography } from "antd";
 import Container from "@/components/layout/container/Container";
+
+import QRScanner from "@/components/QRScanner";
 
 const HomePage = () => {
   const { data: latestRound, isLoading, isError } = useLatestDraw();
@@ -28,19 +29,12 @@ const HomePage = () => {
     }
   };
 
-  if (isError) {
-    return (
-      <Layout>
-        <ErrorMessage message={"데이터를 가져오는 중 문제가 발생했습니다."} />
-      </Layout>
-    );
-  }
-
   return (
     <Layout>
       <Container>
         <Hero />
-        {renderCard()}
+        {!isError && renderCard()}
+
         <Divider style={{ margin: "20px 0" }} />
         <Typography.Title
           level={4}
@@ -50,6 +44,7 @@ const HomePage = () => {
         </Typography.Title>
         <InfoCards />
       </Container>
+      <QRScanner />
     </Layout>
   );
 };

@@ -18,9 +18,10 @@ import { useSimulation } from "../hooks/useSimulation";
 const { Text } = Typography;
 const SimulationResultPage: React.FC = () => {
   const [selectedDraw, setSelectedDraw] = useState<number>(0);
-  const { allDraws, isError, isLoading, generateNumbers } = useGenerateNumbers({
-    slicedStart: selectedDraw,
-  });
+  const { allDraws, isError, isLoading, error, generateNumbers } =
+    useGenerateNumbers({
+      slicedStart: selectedDraw,
+    });
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -55,9 +56,9 @@ const SimulationResultPage: React.FC = () => {
 
   if (isError) {
     return (
-      <Layout>
-        <ErrorMessage />
-      </Layout>
+      <ErrorMessage
+        message={error instanceof Error ? error.message : undefined}
+      />
     );
   }
 
