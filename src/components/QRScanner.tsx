@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button, Modal, message, Typography } from "antd";
 import { CloseOutlined, QrcodeOutlined } from "@ant-design/icons";
-import { Html5QrcodeScanner } from "html5-qrcode";
 import SaveRecordPopup from "./SaveRecordPopup";
 import { CreateRecord } from "@/api/recordService";
 import { recordService } from "@/api";
 import { ROUTES } from "@/constants/routes";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Html5Qrcode } from "html5-qrcode";
 
 const { Text } = Typography;
 
@@ -22,8 +22,10 @@ const QRScanner: React.FC = () => {
   const [lottoData, setLottoData] = useState<LottoData | null>(null);
   const [savePopupVisible, setSavePopupVisible] = useState(false);
   const [isBannerVisible, setIsBannerVisible] = useState(true);
+  const [hasPermission, setHasPermission] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const scannerRef = useRef<Html5Qrcode | null>(null);
 
   const parseLottoNumber = (input: string): number[] => {
     return (
@@ -45,14 +47,6 @@ const QRScanner: React.FC = () => {
       console.error("QR 코드 파싱 실패:", error.message);
       return null;
     }
-  };
-
-  const handleOpenScanner = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleCloseScanner = () => {
-    setIsModalVisible(false);
   };
 
   const handleSave = async (record: CreateRecord) => {
@@ -78,37 +72,57 @@ const QRScanner: React.FC = () => {
       message.error(error.message);
     }
   };
-
-  useEffect(() => {
-    if (isModalVisible) {
-      const scanner = new Html5QrcodeScanner(
-        "qr-reader",
-        { fps: 10, qrbox: { width: 250, height: 250 } },
-        false
-      );
-
-      scanner.render(
-        (decodedText) => {
-          const parsed = parseLottoQR(decodedText);
-          if (parsed) {
-            setLottoData(parsed);
-            setSavePopupVisible(true);
-            handleCloseScanner();
-            scanner.clear();
-          } else {
-            message.error("QR 코드 데이터가 유효하지 않습니다.");
+  const startScanner = async () => {
+    try {
+      const cameras = await Html5Qrcode.getCameras();
+      if (cameras.length > 0) {
+        console.log("Available cameras:", cameras); // 사용 가능한 카메라 출력
+        setHasPermission(true);
+        scannerRef.current = new Html5Qrcode("qr-reader");
+        scannerRef.current.start(
+          cameras[0].id, // 여기에서 원하는 카메라 ID를 선택
+          { fps: 10, qrbox: { width: 250, height: 250 } },
+          (decodedText) => {
+            const parsed = parseLottoQR(decodedText);
+            if (parsed) {
+              setLottoData(parsed);
+              setSavePopupVisible(true);
+              stopScanner();
+            } else {
+              message.error("QR 코드 데이터가 유효하지 않습니다.");
+            }
+          },
+          (errorMessage) => {
+            console.error("QR 코드 스캔 에러:", errorMessage);
           }
-        },
-        (error) => {
-          console.error("QR 코드 스캔 에러:", error);
-        }
-      );
-
-      return () => {
-        scanner.clear();
-      };
+        );
+      } else {
+        message.error("사용 가능한 카메라가 없습니다.");
+        setHasPermission(false);
+      }
+    } catch (error) {
+      console.error("카메라 권한 요청 실패:", error);
+      setHasPermission(false);
     }
-  }, [isModalVisible]);
+  };
+
+  const stopScanner = () => {
+    if (scannerRef.current) {
+      scannerRef.current.stop().then(() => {
+        scannerRef.current = null;
+      });
+    }
+    setIsModalVisible(false);
+  };
+
+  const handleOpenScanner = () => {
+    setIsModalVisible(true);
+    startScanner();
+  };
+
+  const handleCloseScanner = () => {
+    stopScanner();
+  };
 
   return (
     <div
@@ -189,7 +203,18 @@ const QRScanner: React.FC = () => {
         footer={null}
         centered
       >
-        <div id="qr-reader" style={{ width: "100%" }}></div>
+        {!hasPermission && (
+          <div style={{ textAlign: "center", marginTop: "20px" }}>
+            <Text strong>
+              카메라 권한을 허용해야 QR 코드를 스캔할 수 있습니다.
+            </Text>
+            <br />
+            <Text type="secondary">
+              브라우저 설정에서 카메라 권한을 확인해주세요.
+            </Text>
+          </div>
+        )}
+        {isModalVisible && <div id="qr-reader" style={{ width: "100%" }}></div>}
       </Modal>
 
       {savePopupVisible && lottoData && (

@@ -2,9 +2,16 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import postcssPxtorem from "postcss-pxtorem";
+import fs from "fs";
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    https: {
+      key: fs.readFileSync("./localhost-key.pem"),
+      cert: fs.readFileSync("./localhost.pem"),
+    },
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
@@ -43,10 +50,10 @@ export default defineConfig({
       ],
     },
   },
-  server: {
-    host: true, // 외부에서 접속 가능하도록 설정
-    port: 5173, // 기본 포트
-  },
+  // server: {
+  //   host: true, // 외부에서 접속 가능하도록 설정
+  //   port: 5173, // 기본 포트
+  // },
   build: {
     outDir: "dist", // Vite의 기본 출력 폴더
     rollupOptions: {
