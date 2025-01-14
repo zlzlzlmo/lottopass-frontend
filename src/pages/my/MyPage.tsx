@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {
   EditOutlined,
   DeleteOutlined,
-  OrderedListOutlined,
+  DashboardOutlined,
 } from "@ant-design/icons";
 import Layout from "@/components/layout/Layout";
 import Container from "@/components/layout/container/Container";
@@ -20,10 +20,10 @@ const MyPage: React.FC = () => {
   const menuItems = [
     {
       icon: (
-        <OrderedListOutlined style={{ fontSize: "24px", color: "#10b981" }} />
+        <DashboardOutlined style={{ fontSize: "24px", color: "#4caf50" }} />
       ),
-      text: "저장한 번호 보기",
-      onClick: () => navigate(ROUTES.SAVED_NUMBERS.path),
+      text: "대시보드",
+      onClick: () => navigate(ROUTES.DASHBOARD.path),
     },
     {
       icon: <EditOutlined style={{ fontSize: "24px", color: "#3b82f6" }} />,

@@ -27,8 +27,8 @@ import UserProfileUpdatePage from "./pages/auth/UserProfileUpdatePage";
 import MyPage from "./pages/my/MyPage";
 import DeleteAccountPage from "./pages/auth/DeleteAccountPage";
 import FindPasswordPage from "./pages/findPassword/FindPasswordPage";
-import SavedNumbersPage from "./pages/auth/SavedNumbersPage";
 import DashboardPage from "./pages/dashboard/DashboardPage";
+import AuthGuard from "./AuthGuard";
 
 const queryClient = new QueryClient();
 
@@ -49,12 +49,40 @@ const App: React.FC = () => {
     { path: ROUTES.STATISTIC.path, element: <StatisticPage /> },
     { path: ROUTES.SIGNUP.path, element: <SignupPage /> },
     { path: ROUTES.LOGIN.path, element: <LoginPage /> },
-    { path: ROUTES.UPDATE_PROFILE.path, element: <UserProfileUpdatePage /> },
     { path: ROUTES.FIND_PASSWORD.path, element: <FindPasswordPage /> },
-    { path: ROUTES.MYPAGE.path, element: <MyPage /> },
-    { path: ROUTES.DELETE_ACCOUNT.path, element: <DeleteAccountPage /> },
-    { path: ROUTES.SAVED_NUMBERS.path, element: <SavedNumbersPage /> },
-    { path: ROUTES.DASHBOARD.path, element: <DashboardPage /> },
+    {
+      path: ROUTES.UPDATE_PROFILE.path,
+      element: (
+        <AuthGuard>
+          <UserProfileUpdatePage />
+        </AuthGuard>
+      ),
+    },
+    {
+      path: ROUTES.MYPAGE.path,
+      element: (
+        <AuthGuard>
+          <MyPage />
+        </AuthGuard>
+      ),
+    },
+    {
+      path: ROUTES.DELETE_ACCOUNT.path,
+      element: (
+        <AuthGuard>
+          <DeleteAccountPage />
+        </AuthGuard>
+      ),
+    },
+
+    {
+      path: ROUTES.DASHBOARD.path,
+      element: (
+        <AuthGuard>
+          <DashboardPage />
+        </AuthGuard>
+      ),
+    },
     { path: "*", element: <NotFound /> },
   ];
 
