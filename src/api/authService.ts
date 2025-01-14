@@ -25,13 +25,9 @@ export class AuthService extends BaseApiService {
     return this.handleResponse(this.get<UserProfile>("/me"));
   }
 
-  async logout() {
-    return await this.post("/logout");
-  }
-
   async login(email: string, password: string) {
     return this.handleResponse(
-      this.post<{ redirectUrl: string }>("/login", {
+      this.post<{ token: string }>("/login", {
         email,
         password,
       })

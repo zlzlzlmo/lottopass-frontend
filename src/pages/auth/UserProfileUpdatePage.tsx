@@ -7,6 +7,7 @@ import Layout from "@/components/layout/Layout";
 import { authService, userService } from "@/api";
 import { useAppDispatch } from "@/redux/hooks";
 import { setUser as setUpdatedUser } from "@/features/auth/authSlice";
+import { ROUTES } from "@/constants/routes";
 
 const { Title, Text } = Typography;
 
@@ -51,11 +52,12 @@ const UserProfileUpdatePage: React.FC = () => {
 
     setLoading(true);
     try {
-      await userService.updateProfile(user);
+      const { token } = await userService.updateProfile(user);
+      localStorage.setItem("accessToken", token);
       message.success("회원 정보가 성공적으로 수정되었습니다.");
       const me = await authService.getMe();
       dispatch(setUpdatedUser(me));
-      navigate("/");
+      navigate(ROUTES.HOME.path);
     } catch (error: any) {
       message.error(error.message || "회원 정보 수정에 실패했습니다.");
     } finally {

@@ -28,7 +28,7 @@ export class UserService extends BaseApiService {
 
   async updateProfile(user: Partial<UserProfile>) {
     return this.handleResponse(
-      this.put<{ id: string } & UserProfile>("/update-profile", user)
+      this.put<{ user: UserProfile; token: string }>("/update-profile", user)
     );
   }
 

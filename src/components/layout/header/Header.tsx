@@ -11,7 +11,6 @@ import { ROUTES } from "../../../constants/routes";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import COLORS from "@/constants/colors";
 import { clearUser } from "@/features/auth/authSlice";
-import { authService } from "@/api";
 import FlexContainer from "@/components/common/container/FlexContainer";
 
 const Header: React.FC = () => {
@@ -26,7 +25,6 @@ const Header: React.FC = () => {
   };
 
   const handleLogout = async () => {
-    await authService.logout();
     dispatch(clearUser());
     setDrawerVisible(false);
     navigate(ROUTES.HOME.path);

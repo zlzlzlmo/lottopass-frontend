@@ -25,9 +25,11 @@ const LoginPage: React.FC = () => {
   }) => {
     setLoading(true);
     try {
-      const res = await authService.login(email, password);
+      const { token } = await authService.login(email, password);
+      localStorage.setItem("accessToken", token);
+
       message.success("로그인 성공!");
-      navigate(res.redirectUrl);
+      navigate(ROUTES.HOME.path);
       const me = await authService.getMe();
       dispatch(setUser(me));
     } catch (error: any) {
