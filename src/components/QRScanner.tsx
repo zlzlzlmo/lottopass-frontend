@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Modal, message, Typography } from "antd";
 import { CloseOutlined, QrcodeOutlined } from "@ant-design/icons";
-import { QrReader } from "react-qr-reader";
+import { Html5QrcodeScanner } from "html5-qrcode";
 import SaveRecordPopup from "./SaveRecordPopup";
 import { CreateRecord } from "@/api/recordService";
 import { recordService } from "@/api";
@@ -17,11 +17,7 @@ interface LottoData {
   transactionId: string;
 }
 
-interface QRScannerProps {
-  handleRefetch?: () => Promise<void>;
-}
-
-const QRScanner: React.FC<QRScannerProps> = ({ handleRefetch }) => {
+const QRScanner: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [lottoData, setLottoData] = useState<LottoData | null>(null);
   const [savePopupVisible, setSavePopupVisible] = useState(false);
@@ -34,6 +30,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ handleRefetch }) => {
       input.match(/.{1,2}/g)?.map((num) => parseInt(num, 10)) || []
     ).slice(0, 6);
   };
+
   const parseLottoQR = (qrResult: string): LottoData | null => {
     try {
       const params = new URLSearchParams(qrResult.split("?")[1]);
@@ -65,7 +62,6 @@ const QRScanner: React.FC<QRScannerProps> = ({ handleRefetch }) => {
       setLottoData(null);
       if (location.pathname === ROUTES.DASHBOARD.path) {
         message.success("저장 성공");
-        if (handleRefetch) handleRefetch();
         return;
       }
       Modal.confirm({
@@ -82,6 +78,37 @@ const QRScanner: React.FC<QRScannerProps> = ({ handleRefetch }) => {
       message.error(error.message);
     }
   };
+
+  useEffect(() => {
+    if (isModalVisible) {
+      const scanner = new Html5QrcodeScanner(
+        "qr-reader",
+        { fps: 10, qrbox: { width: 250, height: 250 } },
+        false
+      );
+
+      scanner.render(
+        (decodedText) => {
+          const parsed = parseLottoQR(decodedText);
+          if (parsed) {
+            setLottoData(parsed);
+            setSavePopupVisible(true);
+            handleCloseScanner();
+            scanner.clear();
+          } else {
+            message.error("QR 코드 데이터가 유효하지 않습니다.");
+          }
+        },
+        (error) => {
+          console.error("QR 코드 스캔 에러:", error);
+        }
+      );
+
+      return () => {
+        scanner.clear();
+      };
+    }
+  }, [isModalVisible]);
 
   return (
     <div
@@ -162,27 +189,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ handleRefetch }) => {
         footer={null}
         centered
       >
-        <div style={{ textAlign: "center", marginBottom: "20px" }}>
-          <Text strong style={{ fontSize: "16px", color: "#333" }}>
-            구매하신 로또 용지 상단의 QR 코드를 찍어보세요!
-          </Text>
-        </div>
-        <QrReader
-          onResult={(result) => {
-            if (result) {
-              const parsed = parseLottoQR(result.getText());
-              console.log("parsed ; ", result.getText());
-              if (parsed) {
-                setLottoData(parsed);
-                setSavePopupVisible(true);
-                handleCloseScanner();
-              } else {
-                message.error("QR 코드 데이터가 유효하지 않습니다.");
-              }
-            }
-          }}
-          constraints={{}}
-        />
+        <div id="qr-reader" style={{ width: "100%" }}></div>
       </Modal>
 
       {savePopupVisible && lottoData && (
