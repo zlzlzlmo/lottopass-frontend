@@ -12,7 +12,7 @@ export const useDetailOneDraw = ({
   enabled = true,
 }: UseDetailOneDrawOptions) => {
   return useQuery<DetailDraw[], Error>(
-    ["detailOneDraw", drawNumber], // Query Key
+    ["detailOneDraw", drawNumber],
     async () => {
       return await drawService.getDetailOneDraw(drawNumber); // API 호출
     },

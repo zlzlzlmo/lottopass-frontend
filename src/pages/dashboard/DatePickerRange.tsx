@@ -1,20 +1,18 @@
 import React from "react";
 import { DatePicker } from "antd";
 import dayjs from "dayjs";
+import { DateRange } from "./hooks/useDashboardRecords";
 
 interface DatePickerRangeProps {
-  startDate: dayjs.Dayjs | null;
-  endDate: dayjs.Dayjs | null;
-  onStartDateChange: (date: dayjs.Dayjs | null) => void;
-  onEndDateChange: (date: dayjs.Dayjs | null) => void;
+  dateRange: DateRange;
+  handleDateChange: (name: "start" | "end", value: dayjs.Dayjs | null) => void;
 }
 
 const DatePickerRange: React.FC<DatePickerRangeProps> = ({
-  startDate,
-  endDate,
-  onStartDateChange,
-  onEndDateChange,
+  dateRange,
+  handleDateChange,
 }) => {
+  const { start, end } = dateRange;
   return (
     <div
       style={{
@@ -25,15 +23,19 @@ const DatePickerRange: React.FC<DatePickerRangeProps> = ({
       }}
     >
       <DatePicker
-        value={startDate}
-        onChange={onStartDateChange}
+        value={start}
+        onChange={(date) => {
+          handleDateChange("start", date);
+        }}
         format="YYYY-MM-DD"
         style={{ width: "100%" }}
         placeholder="시작 날짜"
       />
       <DatePicker
-        value={endDate}
-        onChange={onEndDateChange}
+        value={end}
+        onChange={(date) => {
+          handleDateChange("end", date);
+        }}
         format="YYYY-MM-DD"
         style={{ width: "100%" }}
         placeholder="종료 날짜"

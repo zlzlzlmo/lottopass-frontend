@@ -64,6 +64,11 @@ const StatisticsTab: React.FC<StatisticsTabProps> = ({ filteredRecords }) => {
     return null;
   };
 
+  const parsePrize = (prize: number | string): number => {
+    if (typeof prize === "number") return prize;
+    return parseInt(prize.replace(/[^0-9]/g, ""), 10) || 0;
+  };
+
   const calculateTotalPrizes = (): number => {
     if (!groupedDetails) return 0; // groupedDetails가 없으면 0 반환
 
@@ -82,14 +87,13 @@ const StatisticsTab: React.FC<StatisticsTabProps> = ({ filteredRecords }) => {
           winningNumbers,
           bonusNumber
         );
-
         if (rank) {
           const rankDetail = drawDetails.find(
             (detail) => detail.rank === rankMap[rank]
           );
 
-          if (rankDetail && typeof rankDetail.prizePerWinner === "number") {
-            totalPrize += rankDetail.prizePerWinner;
+          if (rankDetail && rankDetail.prizePerWinner) {
+            totalPrize += parsePrize(rankDetail.prizePerWinner);
           }
         }
       });

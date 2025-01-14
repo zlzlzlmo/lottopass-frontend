@@ -1,23 +1,17 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import { List, message } from "antd";
+import { List } from "antd";
 import LottoCard from "./LottoCard";
 import { Record } from "@/api/recordService";
-import { recordService } from "@/api";
 
 interface CalendarTabProps {
   filteredRecords: Record[];
+  onDelete: (id: string) => void;
 }
 
-const CalendarTab: React.FC<CalendarTabProps> = ({ filteredRecords }) => {
-  const deleteCard = async (id: string) => {
-    try {
-      const isDeleted = await recordService.deleteOne(id);
-      if (isDeleted) message.success("해당 카드 삭제가 완료되었습니다.");
-    } catch (error: any) {
-      message.error(error.message);
-    }
-  };
+const CalendarTab: React.FC<CalendarTabProps> = ({
+  filteredRecords,
+  onDelete,
+}) => {
   return (
     <div>
       {filteredRecords.length > 0 ? (
@@ -32,7 +26,7 @@ const CalendarTab: React.FC<CalendarTabProps> = ({ filteredRecords }) => {
                 purchaseDate={item.purchaseDate}
                 memo={item.memo ?? ""}
                 onDelete={() => {
-                  deleteCard(item.id);
+                  onDelete(item.id);
                 }}
               />
             </List.Item>
