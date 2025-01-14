@@ -11,7 +11,7 @@ import StatisticsTab from "./StatisticsTab";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import { useDashboardRecords } from "./hooks/useDashboardRecords";
-import { ErrorMessage } from "@/components/common";
+import { ErrorMessage, LoadingIndicator } from "@/components/common";
 
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
@@ -23,6 +23,7 @@ const DashboardPage: React.FC = () => {
     dateRange,
     filteredRecords,
     isError,
+    isLoading,
     error,
     deleteRecord,
     handleDateChange,
@@ -46,18 +47,22 @@ const DashboardPage: React.FC = () => {
           dateRange={dateRange}
           handleDateChange={handleDateChange}
         />
-        <Tabs defaultActiveKey="1" style={{ marginTop: "20px" }}>
-          <TabPane tab="캘린더 (날짜 범위 선택)" key="1">
-            <CalendarTab
-              filteredRecords={filteredRecords}
-              onDelete={deleteRecord}
-            />
-          </TabPane>
+        {isLoading ? (
+          <LoadingIndicator />
+        ) : (
+          <Tabs defaultActiveKey="1" style={{ marginTop: "20px" }}>
+            <TabPane tab="캘린더 (날짜 범위 선택)" key="1">
+              <CalendarTab
+                filteredRecords={filteredRecords}
+                onDelete={deleteRecord}
+              />
+            </TabPane>
 
-          <TabPane tab="통계" key="3">
-            <StatisticsTab filteredRecords={filteredRecords} />
-          </TabPane>
-        </Tabs>
+            <TabPane tab="통계" key="3">
+              <StatisticsTab filteredRecords={filteredRecords} />
+            </TabPane>
+          </Tabs>
+        )}
       </Container>
     </Layout>
   );
