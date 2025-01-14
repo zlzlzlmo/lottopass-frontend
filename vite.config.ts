@@ -7,10 +7,13 @@ import fs from "fs";
 export default defineConfig({
   plugins: [react()],
   server: {
-    https: {
-      key: fs.readFileSync("./localhost-key.pem"),
-      cert: fs.readFileSync("./localhost.pem"),
-    },
+    https:
+      process.env.NODE_ENV === "development" // 개발 환경에서만 HTTPS 활성화
+        ? {
+            key: fs.readFileSync("./localhost-key.pem"),
+            cert: fs.readFileSync("./localhost.pem"),
+          }
+        : undefined,
   },
   resolve: {
     alias: {
