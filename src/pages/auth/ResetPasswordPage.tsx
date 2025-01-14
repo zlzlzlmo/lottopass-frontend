@@ -40,8 +40,9 @@ const ResetPasswordPage: React.FC<ResetPasswordPageProps> = ({ email }) => {
         email,
         newPassword: values.password,
       });
-      message.success("비밀번호가 성공적으로 재설정되었습니다.");
-      await authService.login(email, values.password);
+
+      const { token } = await authService.login(email, values.password);
+      localStorage.setItem("accessToken", token);
       const me = await authService.getMe();
       dispatch(setUser(me));
       navigate("/");

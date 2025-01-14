@@ -7,6 +7,7 @@ import fs from "fs";
 export default defineConfig({
   plugins: [react()],
   server: {
+    host: true,
     https:
       process.env.NODE_ENV === "development" // 개발 환경에서만 HTTPS 활성화
         ? {
