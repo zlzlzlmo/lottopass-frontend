@@ -138,7 +138,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ handleRefetch }) => {
         display: "flex",
         alignItems: "flex-end",
         flexDirection: "column",
-        zIndex: 99999,
+        zIndex: 1000,
       }}
     >
       {isBannerVisible && (
