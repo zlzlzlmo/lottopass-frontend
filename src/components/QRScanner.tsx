@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { Button, Modal, message, Typography } from "antd";
 import { CloseOutlined, QrcodeOutlined } from "@ant-design/icons";
-import { BrowserQRCodeReader } from "@zxing/browser";
+import { QrReader } from "react-qr-reader";
 import SaveRecordPopup from "./SaveRecordPopup";
 import { CreateRecord } from "@/api/recordService";
 import { recordService } from "@/api";
@@ -26,8 +26,6 @@ const QRScanner: React.FC<QRScannerProps> = ({ handleRefetch }) => {
   const [lottoData, setLottoData] = useState<LottoData | null>(null);
   const [savePopupVisible, setSavePopupVisible] = useState(false);
   const [isBannerVisible, setIsBannerVisible] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const streamRef = useRef<MediaStream | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -36,11 +34,10 @@ const QRScanner: React.FC<QRScannerProps> = ({ handleRefetch }) => {
       input.match(/.{1,2}/g)?.map((num) => parseInt(num, 10)) || []
     ).slice(0, 6);
   };
-
   const parseLottoQR = (qrResult: string): LottoData | null => {
     try {
       const params = new URLSearchParams(qrResult.split("?")[1]);
-      const data = params.get("v")?.split("m");
+      const data = params.get("v")?.split(/[mq]/); // 'm' 또는 'q'로 구분
       if (!data) return null;
 
       const drawNumber = Number(data[0]);
@@ -59,11 +56,6 @@ const QRScanner: React.FC<QRScannerProps> = ({ handleRefetch }) => {
 
   const handleCloseScanner = () => {
     setIsModalVisible(false);
-
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach((track) => track.stop());
-      streamRef.current = null;
-    }
   };
 
   const handleSave = async (record: CreateRecord) => {
@@ -90,68 +82,6 @@ const QRScanner: React.FC<QRScannerProps> = ({ handleRefetch }) => {
       message.error(error.message);
     }
   };
-
-  useEffect(() => {
-    if (isModalVisible && videoRef.current) {
-      const codeReader = new BrowserQRCodeReader();
-
-      const startScanner = async () => {
-        try {
-          await codeReader.decodeFromVideoDevice(
-            undefined,
-            videoRef.current!,
-            (result, error) => {
-              if (result) {
-                const parsed = parseLottoQR(result.getText());
-                if (parsed) {
-                  setLottoData(parsed);
-                  setSavePopupVisible(true);
-                } else {
-                  message.error("QR 코드 데이터가 유효하지 않습니다.");
-                }
-                handleCloseScanner();
-              }
-              if (error) {
-                console.warn("QR 코드 인식 오류:", error);
-              }
-            }
-          );
-        } catch (error) {
-          message.error(
-            "카메라 접근 중 문제가 발생했습니다. 설정을 확인해주세요."
-          );
-          console.error("Scanner Error:", error);
-        }
-      };
-
-      navigator.mediaDevices
-        .getUserMedia({
-          video: {
-            facingMode: "environment",
-            width: { ideal: 1280 },
-            height: { ideal: 720 },
-          },
-        })
-        .then((stream) => {
-          streamRef.current = stream;
-          if (videoRef.current) {
-            videoRef.current.srcObject = stream;
-          }
-          startScanner();
-        })
-        .catch((error) => {
-          message.error("카메라에 접근할 수 없습니다.");
-          console.error("Camera Access Error:", error);
-        });
-
-      return () => {
-        if (streamRef.current) {
-          streamRef.current.getTracks().forEach((track) => track.stop());
-          streamRef.current = null;
-        }
-      };
-    }
-  }, [isModalVisible]);
 
   return (
     <div
@@ -237,14 +167,21 @@ const QRScanner: React.FC<QRScannerProps> = ({ handleRefetch }) => {
             구매하신 로또 용지 상단의 QR 코드를 찍어보세요!
           </Text>
         </div>
-        <video
-          ref={videoRef}
-          style={{
-            width: "100%",
-            borderRadius: "12px",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+        <QrReader
+          onResult={(result) => {
+            if (result) {
+              const parsed = parseLottoQR(result.getText());
+              console.log("parsed ; ", result.getText());
+              if (parsed) {
+                setLottoData(parsed);
+                setSavePopupVisible(true);
+                handleCloseScanner();
+              } else {
+                message.error("QR 코드 데이터가 유효하지 않습니다.");
+              }
+            }
           }}
-          autoPlay
+          constraints={{}}
         />
       </Modal>
 
