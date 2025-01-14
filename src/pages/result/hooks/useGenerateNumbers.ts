@@ -33,8 +33,8 @@ export const useGenerateNumbers = ({
 }: useGenerateNumbersOptions) => {
   const [searchParams] = useSearchParams();
 
-  const { data: rawAllDraws, isLoading, isError, error } = useAllDraws();
-  const [allDraws, setAllDraws] = useState<LottoDraw[]>([]);
+  const { data: allDraws, isLoading, isError, error } = useAllDraws();
+  const [filteredDraws, setFilteredDraws] = useState<LottoDraw[]>([]);
   const queryParams = parseQueryParams(searchParams) as QueryParams;
   const {
     type,
@@ -57,13 +57,13 @@ export const useGenerateNumbers = ({
   };
 
   const generateNumbers = () => {
-    if (!allDraws) return;
+    if (!filteredDraws) return;
 
     let result: number[] = [];
 
     // 필수, 제외번호 직접 선택
     if (type === "numberSelect" && selectedNumbers) {
-      const generator = new SelectedGenerator(allDraws);
+      const generator = new SelectedGenerator(filteredDraws);
       const require = generator.getRequiredNumbers(selectedNumbers);
       const exclude = generator.getExcludedNumbers(selectedNumbers);
       result = getCombinationByConfirmType({ require, exclude });
@@ -71,7 +71,7 @@ export const useGenerateNumbers = ({
 
     // 최근 N 회차 최소 K 갯수 선택 (출현, 미출현)
     if (type === "numberControl" && drawCount && minCount) {
-      const generator = new DrawMinCountGenerator(allDraws);
+      const generator = new DrawMinCountGenerator(filteredDraws);
       const require = generator.getRandomCombinationWithMinCount(
         drawCount,
         minCount
@@ -82,7 +82,7 @@ export const useGenerateNumbers = ({
 
     // 특정 회차 최소 갯수 선택 (출현, 미출현)
     if (type === "rangeSelect" && min && max) {
-      const generator = new MinMaxGenerator(allDraws, min, max);
+      const generator = new MinMaxGenerator(filteredDraws, min, max);
       const require = generator.generateAppearedNumbers();
       const exclude = generator.generateUnappearedNumbers();
 
@@ -91,7 +91,7 @@ export const useGenerateNumbers = ({
 
     // 짝수 N개 홀수 K개 조합
     if (type === "evenOddControl" && even && odd) {
-      const generator = new EvenOddGenerator(allDraws);
+      const generator = new EvenOddGenerator(filteredDraws);
       result = generator.generateAppearedNumbers(even, odd);
     }
 
@@ -102,7 +102,7 @@ export const useGenerateNumbers = ({
       max &&
       topNumber
     ) {
-      const generator = new MinMaxGeneratorByRank(allDraws, min, max);
+      const generator = new MinMaxGeneratorByRank(filteredDraws, min, max);
 
       if (type === "rangeAndTopNumberSelect")
         result = generator.generateTopAppearedNumbers(topNumber);
@@ -114,9 +114,10 @@ export const useGenerateNumbers = ({
   };
 
   useEffect(() => {
-    if (!rawAllDraws) return;
-    setAllDraws(rawAllDraws.slice(slicedStart));
-  }, [rawAllDraws, slicedStart]);
+    if (!allDraws) return;
+
+    setFilteredDraws(allDraws?.slice(slicedStart + 1));
+  }, [slicedStart, allDraws]);
 
   return { allDraws, isLoading, isError, error, generateNumbers };
 };

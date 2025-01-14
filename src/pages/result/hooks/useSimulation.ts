@@ -5,7 +5,7 @@ import { LottoDraw } from "@/components/popup/StatisticPopup";
 export const useSimulation = (
   allDraws: LottoDraw[],
   selectedDraw: number,
-  generateNumbers: () => number[]
+  generateNumbers: () => number[] | undefined
 ) => {
   const [progress, setProgress] = useState<number>(0);
   const [simulationData, setSimulationData] = useState({
@@ -62,6 +62,7 @@ export const useSimulation = (
       const progress = Math.floor((count / maxCount) * 100);
       setProgress(progress);
       const generatedNumbers = generateNumbers();
+      if (!generatedNumbers) return;
       const rank = calculateRank(
         generatedNumbers,
         winningNumbers.map(Number),

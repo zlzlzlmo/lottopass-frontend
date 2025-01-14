@@ -3,7 +3,7 @@ import { Typography, Divider } from "antd";
 import Layout from "@/components/layout/Layout";
 import { useSearchParams } from "react-router-dom";
 import { parseQueryParams as parseQueryParams } from "../../numberGeneration/components/numberActionButtons/utils";
-import { QueryParams } from "../result-service";
+
 import SimulationControls from "./SimulationControls";
 import SimulationResult from "./SimulationResult";
 import SimulationResultModal from "./SimulationResultModal";
@@ -12,7 +12,7 @@ import Container from "@/components/layout/container/Container";
 import Banner from "@/components/common/banner/Banner";
 import LogoLoading from "@/components/common/loading/LogoLoading";
 import { ErrorMessage } from "@/components/common";
-import { useGenerateNumbers } from "../hooks/useGenerateNumbers";
+import { QueryParams, useGenerateNumbers } from "../hooks/useGenerateNumbers";
 import { useSimulation } from "../hooks/useSimulation";
 
 const { Text } = Typography;
