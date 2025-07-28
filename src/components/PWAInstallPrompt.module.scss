@@ -1,0 +1,108 @@
+.installPrompt {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 90%;
+  max-width: 400px;
+  
+  @media (max-width: 768px) {
+    bottom: 70px; // 모바일 네비게이션 바 위
+    width: 95%;
+  }
+}
+
+.promptCard {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  background: white;
+  
+  :global(.ant-card-body) {
+    padding: 20px;
+  }
+  
+  :global(.ant-card-actions) {
+    background: #f5f5f5;
+    
+    li {
+      margin: 8px;
+    }
+  }
+}
+
+.features {
+  margin: 8px 0;
+  padding-left: 20px;
+  
+  li {
+    margin: 4px 0;
+    color: $text-color-secondary;
+    font-size: 14px;
+    
+    &::marker {
+      color: $primary-color;
+    }
+  }
+}
+
+.updateBanner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: $primary-color;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  z-index: 1001;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+  :global(.ant-btn) {
+    background: white;
+    color: $primary-color;
+    border: none;
+    
+    &:hover {
+      background: #f0f0f0;
+    }
+  }
+}
+
+.offlineIndicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #faad14;
+  color: white;
+  padding: 4px 16px;
+  text-align: center;
+  z-index: 1000;
+  font-size: 12px;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-50%) translateY(100%);
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.25);
+  }
+  100% {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.promptCard {
+  animation: pulse 2s infinite;
+}

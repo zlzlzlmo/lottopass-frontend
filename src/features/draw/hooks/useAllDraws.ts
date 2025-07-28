@@ -1,17 +1,15 @@
 import { drawService } from "@/api";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 export const useAllDraws = () => {
-  return useQuery(
-    "allDraws",
-    async () => {
+  return useQuery({
+    queryKey: ["allDraws"],
+    queryFn: async () => {
       return await drawService.getAllDraws();
     },
-    {
-      staleTime: Infinity,
-      cacheTime: Infinity,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+    staleTime: Infinity,
+    gcTime: Infinity,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+  });
 };

@@ -88,7 +88,7 @@ const InfoCards: React.FC = () => {
                   src={card.animation}
                   background="transparent"
                   speed="1"
-                  loop
+                  loop="true"
                   autoplay
                   style={{ width: 80, height: 80 }}
                 ></dotlottie-player>

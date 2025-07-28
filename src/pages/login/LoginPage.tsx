@@ -1,47 +1,68 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import React from "react";
 import { Form, Input, Button, Card, Typography, message } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { NavLink, useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
-import { authService } from "@/api";
 import { ROUTES } from "@/constants/routes";
 import FlexContainer from "@/components/common/container/FlexContainer";
+import { useSupabaseAuth } from "@/context/SupabaseAuthContext";
+import { useActionState } from "@/hooks/useActionState";
 import { useAppDispatch } from "@/redux/hooks";
 import { setUser } from "@/features/auth/authSlice";
+import { supabase } from "@/lib/supabase/client";
 
 const { Title, Text } = Typography;
 
+interface LoginFormData {
+  email: string;
+  password: string;
+}
+
 const LoginPage: React.FC = () => {
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const onFinish = async ({
-    email,
-    password,
-  }: {
-    email: string;
-    password: string;
-  }) => {
-    setLoading(true);
-    try {
-      const { token } = await authService.login(email, password);
-      localStorage.setItem("accessToken", token);
+  const { signIn } = useSupabaseAuth();
+  const { execute, loading, error } = useActionState();
 
+  const handleLogin = async (values: LoginFormData) => {
+    const result = await execute(async () => {
+      // Supabase로 로그인
+      await signIn(values.email, values.password);
+      
+      // 프로필 정보 가져오기
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('*')
+        .single();
+      
+      if (profile) {
+        // Redux에 사용자 정보 저장
+        dispatch(setUser({
+          id: profile.id,
+          email: profile.email,
+          nickname: profile.nickname || undefined,
+        }));
+      }
+      
+      return true;
+    });
+
+    if (result.success) {
       message.success("로그인 성공!");
       navigate(ROUTES.HOME.path);
-      const me = await authService.getMe();
-      dispatch(setUser(me));
-    } catch (error: any) {
-      message.error(error.message || "로그인 실패. 다시 시도해주세요.");
-    } finally {
-      setLoading(false);
     }
   };
 
   const onFinishFailed = () => {
     message.error("입력값을 확인해주세요.");
   };
+
+  // 에러 메시지 표시
+  React.useEffect(() => {
+    if (error) {
+      message.error(error.message || "로그인 실패. 다시 시도해주세요.");
+    }
+  }, [error]);
 
   return (
     <Layout>
@@ -62,23 +83,27 @@ const LoginPage: React.FC = () => {
           <Text type="secondary">로또 패스에 오신 것을 환영합니다!</Text>
         </div>
 
-        <Form
+        <Form<LoginFormData>
           name="login"
           layout="vertical"
-          onFinish={onFinish}
+          onFinish={handleLogin}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
           <Form.Item
             label="이메일"
             name="email"
-            rules={[{ required: true, message: "이메일을 입력해주세요." }]}
+            rules={[
+              { required: true, message: "이메일을 입력해주세요." },
+              { type: "email", message: "올바른 이메일 형식이 아닙니다." }
+            ]}
             style={{ marginBottom: 16 }}
           >
             <Input
               prefix={<UserOutlined />}
               placeholder="이메일을 입력해주세요."
               style={{ height: 48 }}
+              autoComplete="email"
             />
           </Form.Item>
 
@@ -92,6 +117,7 @@ const LoginPage: React.FC = () => {
               prefix={<LockOutlined />}
               placeholder="비밀번호를 입력해주세요."
               style={{ height: 48 }}
+              autoComplete="current-password"
             />
           </Form.Item>
 

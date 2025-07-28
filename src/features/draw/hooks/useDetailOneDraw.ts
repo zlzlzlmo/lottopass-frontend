@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { DetailDraw } from "@/types";
 import { drawService } from "@/api";
 
@@ -11,16 +11,14 @@ export const useDetailOneDraw = ({
   drawNumber,
   enabled = true,
 }: UseDetailOneDrawOptions) => {
-  return useQuery<DetailDraw[], Error>(
-    ["detailOneDraw", drawNumber],
-    async () => {
+  return useQuery<DetailDraw[], Error>({
+    queryKey: ["detailOneDraw", drawNumber],
+    queryFn: async () => {
       return await drawService.getDetailOneDraw(drawNumber); // API 호출
     },
-    {
-      enabled: !!drawNumber && enabled, // 회차 번호가 유효할 때만 쿼리 실행
-      staleTime: 5 * 60 * 1000, // 5분 동안 데이터 캐싱
-      cacheTime: 10 * 60 * 1000, // 10분 동안 캐시 데이터 유지
-      retry: 2, // 실패 시 2회 재시도
-    }
-  );
+    enabled: !!drawNumber && enabled, // 회차 번호가 유효할 때만 쿼리 실행
+    staleTime: 5 * 60 * 1000, // 5분 동안 데이터 캐싱
+    gcTime: 10 * 60 * 1000, // 10분 동안 캐시 데이터 유지
+    retry: 2, // 실패 시 2회 재시도
+  });
 };

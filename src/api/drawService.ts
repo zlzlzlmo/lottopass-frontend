@@ -117,10 +117,11 @@ export class DrawService {
     ] as DetailDraw[];
   }
   
-  private convertDhlotteryToLottoDraw(data: DhlotteryResponse): LottoDraw {
+  private convertDhlotteryToLottoDraw(data: DhlotteryResponse): any {
     return {
-      id: data.drwNo, // id는 회차와 같음
+      id: data.drwNo,
       drwNo: data.drwNo,
+      drawNumber: data.drwNo,
       drwtNo1: data.drwtNo1,
       drwtNo2: data.drwtNo2,
       drwtNo3: data.drwtNo3,
@@ -128,11 +129,13 @@ export class DrawService {
       drwtNo5: data.drwtNo5,
       drwtNo6: data.drwtNo6,
       bnusNo: data.bnusNo,
+      bonusNumber: data.bnusNo,
       totSellamnt: data.totSellamnt,
       firstAccumamnt: data.firstAccumamnt,
       firstPrzwnerCo: data.firstPrzwnerCo,
       firstWinamnt: data.firstWinamnt,
       drwNoDate: data.drwNoDate,
+      date: data.drwNoDate,
       winningNumbers: [
         data.drwtNo1,
         data.drwtNo2,
@@ -140,7 +143,13 @@ export class DrawService {
         data.drwtNo4,
         data.drwtNo5,
         data.drwtNo6
-      ]
-    } as LottoDraw;
+      ],
+      prizeStatistics: {
+        firstPrizeWinnerCount: data.firstPrzwnerCo,
+        firstWinAmount: data.firstWinamnt,
+        totalSalesAmount: data.totSellamnt,
+        firstAccumulatedAmount: data.firstAccumamnt
+      }
+    };
   }
 }

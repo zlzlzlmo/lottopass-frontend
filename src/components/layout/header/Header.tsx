@@ -98,12 +98,14 @@ const Header: React.FC = () => {
         closable={true}
         onClose={toggleDrawer}
         open={isDrawerVisible}
-        bodyStyle={{
-          padding: "16px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "20px", // 버튼 간 간격 증가
-          backgroundColor: COLORS.NEUTRAL_LIGHT,
+        styles={{
+          body: {
+            padding: "16px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px", // 버튼 간 간격 증가
+            backgroundColor: COLORS.NEUTRAL_LIGHT,
+          }
         }}
       >
         {Object.values(ROUTES)

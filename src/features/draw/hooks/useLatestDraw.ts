@@ -1,17 +1,15 @@
 import { drawService } from "@/api";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 export const useLatestDraw = () => {
-  return useQuery(
-    "latestRound",
-    async () => {
+  return useQuery({
+    queryKey: ["latestRound"],
+    queryFn: async () => {
       return await drawService.getLatestDraw();
     },
-    {
-      staleTime: Infinity,
-      cacheTime: Infinity,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+    staleTime: Infinity,
+    gcTime: Infinity,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+  });
 };

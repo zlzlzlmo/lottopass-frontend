@@ -10,13 +10,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: true,
-    https:
-      process.env.NODE_ENV === "development" // 개발 환경에서만 HTTPS 활성화
-        ? {
-            key: fs.readFileSync("./localhost-key.pem"),
-            cert: fs.readFileSync("./localhost.pem"),
-          }
-        : undefined,
+    port: 5173,
+    https: false, // HTTPS 비활성화
     proxy: {
       "/dhlottery": {
         target: "https://www.dhlottery.co.kr",
@@ -54,8 +49,8 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: `
-          @import "@/styles/variables";
-          @import "@/styles/functions";
+          @use "@/styles/variables" as *;
+          @use "@/styles/functions" as *;
         `, // 변수와 함수 파일 자동 import
       },
     },
@@ -86,6 +81,6 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ["antd", "react-qr-reader"],
+    include: ["antd"],
   },
 });

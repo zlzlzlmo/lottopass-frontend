@@ -1,7 +1,7 @@
 import { regionService } from "@/api";
 import { groupBy } from "@/utils/group";
 import { UniqueRegion } from "@/types";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const fetchRegions = async (): Promise<UniqueRegion[]> => {
   try {
@@ -14,16 +14,14 @@ const fetchRegions = async (): Promise<UniqueRegion[]> => {
 };
 
 export const useGroupedRegions = () => {
-  const { data, isLoading, isError } = useQuery<UniqueRegion[]>(
-    "regions",
-    fetchRegions,
-    {
-      staleTime: Infinity,
-      cacheTime: Infinity,
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+  const { data, isLoading, isError } = useQuery<UniqueRegion[]>({
+    queryKey: ["regions"],
+    queryFn: fetchRegions,
+    staleTime: Infinity,
+    gcTime: Infinity,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+  });
 
   const groupedData = data ? groupBy(data, "province") : null;
 

@@ -27,6 +27,7 @@ const HomePage = () => {
         />
       );
     }
+    return null;
   };
 
   return (

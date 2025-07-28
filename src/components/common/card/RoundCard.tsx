@@ -63,11 +63,11 @@ const RoundCard: React.FC<RoundCardProps> = ({
         <Text>
           1등{" "}
           <Text strong>
-            {formatNumberWithCommas(prizeStatistics.firstPrizeWinnerCount)}명
+            {formatNumberWithCommas(prizeStatistics?.firstPrizeWinnerCount || 0)}명
           </Text>{" "}
           |{" "}
           <Text strong>
-            {formatNumberWithCommas(prizeStatistics.firstWinAmount)}원
+            {formatNumberWithCommas(prizeStatistics?.firstWinAmount || 0)}원
           </Text>
         </Text>
       </div>

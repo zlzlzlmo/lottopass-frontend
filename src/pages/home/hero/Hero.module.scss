@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .hero {
   padding: 0 30px 20px 30px;
   text-align: center;
@@ -16,7 +18,7 @@
       font-family: "Roboto", sans-serif;
       font-size: 1.2rem;
       line-height: 1.6;
-      color: darken($text-color, 20%);
+      color: color.adjust($text-color, $lightness: -20%);
     }
   }
 }

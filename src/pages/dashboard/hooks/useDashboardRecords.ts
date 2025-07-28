@@ -3,7 +3,7 @@ import { Record } from "@/api/recordService";
 import { message } from "antd";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { useQuery, useMutation } from "react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 
 export interface DateRange {
   start?: dayjs.Dayjs;

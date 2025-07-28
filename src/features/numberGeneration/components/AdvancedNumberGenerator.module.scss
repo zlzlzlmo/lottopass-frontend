@@ -1,0 +1,117 @@
+@import '@/styles/variables';
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.generatorCard {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  
+  :global(.ant-card-body) {
+    padding: 24px;
+  }
+}
+
+.numberGrid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(7, 1fr);
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.numberCell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #f0f0f0;
+  border-radius: 50%;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  
+  &:hover {
+    transform: scale(1.1);
+    border-color: $primary-color;
+  }
+  
+  &.normal {
+    background: white;
+    color: #333;
+  }
+  
+  &.included {
+    background: #52c41a;
+    color: white;
+    border-color: #52c41a;
+  }
+  
+  &.excluded {
+    background: #ff4d4f;
+    color: white;
+    border-color: #ff4d4f;
+    text-decoration: line-through;
+  }
+}
+
+.resultCard {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  margin-top: 20px;
+  
+  :global(.ant-card-body) {
+    text-align: center;
+  }
+  
+  :global(.ant-typography) {
+    color: white !important;
+  }
+}
+
+.historyCard {
+  margin-top: 20px;
+  background: #fafafa;
+}
+
+.historyItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.generating {
+  animation: pulse 1s infinite;
+}

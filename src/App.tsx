@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ROUTES } from "./constants/routes";
 import "./styles/global.scss";
 
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { fetchAllDraws } from "./features/draw/drawSlice";
 import { useAppDispatch } from "./redux/hooks";
 import {
@@ -29,6 +29,7 @@ import DeleteAccountPage from "./pages/auth/DeleteAccountPage";
 import FindPasswordPage from "./pages/findPassword/FindPasswordPage";
 import DashboardPage from "./pages/dashboard/DashboardPage";
 import AuthGuard from "./AuthGuard";
+import { SupabaseAuthProvider } from "./context/SupabaseAuthContext";
 
 const queryClient = new QueryClient();
 
@@ -94,21 +95,23 @@ const App: React.FC = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Router>
-        <AppInitializer>
-          <ScrollToTop />
-          {/* <AppInitializer> */}
-          <Routes>
-            {routes.map((route) => (
-              <Route
-                key={route.path}
-                path={route.path}
-                element={route.element}
-              />
-            ))}
-          </Routes>
-        </AppInitializer>
-      </Router>
+      <SupabaseAuthProvider>
+        <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <AppInitializer>
+            <ScrollToTop />
+            {/* <AppInitializer> */}
+            <Routes>
+              {routes.map((route) => (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={route.element}
+                />
+              ))}
+            </Routes>
+          </AppInitializer>
+        </Router>
+      </SupabaseAuthProvider>
     </QueryClientProvider>
   );
 };
