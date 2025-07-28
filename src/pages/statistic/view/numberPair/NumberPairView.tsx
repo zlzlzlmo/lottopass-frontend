@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { List, Typography, Button } from "antd";
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 
 const { Title, Text } = Typography;
 

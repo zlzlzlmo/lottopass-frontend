@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StoreInfo } from "lottopass-shared";
+import { StoreInfo } from "@/types";
 import styles from "./StoreList.module.scss";
 import { useAppSelector } from "@/redux/hooks";
 import SortDropDown from "@/components/common/dropDown/SortDropDown";

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import WinningStoreCard from "./WinningStoreCard";
-import { WinningRegion } from "lottopass-shared";
+import { WinningRegion } from "@/types";
 import styles from "./WinningStoreList.module.scss";
 import { useAppSelector } from "@/redux/hooks";
 import SortDropDown from "@/components/common/dropDown/SortDropDown";

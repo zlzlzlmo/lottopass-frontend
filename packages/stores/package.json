@@ -1,0 +1,31 @@
+{
+  "name": "@lottopass/stores",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": ["dist/**"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint . --max-warnings 0",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@lottopass/shared": "workspace:*",
+    "zustand": "^4.5.2",
+    "immer": "^10.1.1"
+  },
+  "devDependencies": {
+    "@lottopass/eslint-config": "workspace:*",
+    "@lottopass/typescript-config": "workspace:*",
+    "@types/node": "^22.10.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.7.3"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
+  }
+}

@@ -5,7 +5,7 @@ import { QuestionCircleOutlined } from "@ant-design/icons";
 import DrawRangeSelectPopup from "./DrawRangeSelectPopup";
 import NumberControlPopup from "./NumberControlPopup";
 import NumberSelectPopup from "./NumberSelectPopup";
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 import EvenOddControlPopup from "./EvenOddSelectionPopup";
 import DrawRangeAndTopBottomNumbersPopup from "./DrawRangeAndTopBottomNumbersPopup";
 

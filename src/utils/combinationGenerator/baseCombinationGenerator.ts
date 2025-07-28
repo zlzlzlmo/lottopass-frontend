@@ -1,4 +1,4 @@
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 import { shuffle } from "../number";
 
 export class BaseCombinationGenerator {

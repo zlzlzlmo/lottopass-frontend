@@ -4,7 +4,7 @@ import {
   StoreInfo,
   UniqueRegion,
   WinningRegion,
-} from "lottopass-shared";
+} from "@/types";
 import { API_URLS } from "../../constants/apiUrls";
 import axiosInstance from "./axiosConfig";
 

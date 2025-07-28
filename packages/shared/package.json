@@ -1,0 +1,27 @@
+{
+  "name": "@lottopass/shared",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": ["dist/**"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint . --max-warnings 0",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@lottopass/eslint-config": "workspace:*",
+    "@lottopass/typescript-config": "workspace:*",
+    "@types/node": "^22.10.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.13",
+    "zod": "^3.23.8"
+  }
+}

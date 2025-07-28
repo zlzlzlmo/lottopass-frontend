@@ -8,7 +8,7 @@ import {
   SortDropDown,
 } from "@/components/common";
 import { useRangeSelector } from "@/features/range/hooks/useRangeSelect";
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 
 interface BallViewProps {
   data: LottoDraw[];

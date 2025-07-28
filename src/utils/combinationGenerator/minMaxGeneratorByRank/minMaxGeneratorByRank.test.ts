@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 import { MinMaxGeneratorByRank } from "./minMaxGeneratorByRank";
 
 // Mock 데이터 생성

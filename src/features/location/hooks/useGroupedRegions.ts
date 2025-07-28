@@ -1,6 +1,6 @@
 import { regionService } from "@/api";
 import { groupBy } from "@/utils/group";
-import { UniqueRegion } from "lottopass-shared";
+import { UniqueRegion } from "@/types";
 import { useQuery } from "react-query";
 
 const fetchRegions = async (): Promise<UniqueRegion[]> => {

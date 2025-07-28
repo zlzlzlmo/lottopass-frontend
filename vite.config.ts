@@ -17,6 +17,14 @@ export default defineConfig({
             cert: fs.readFileSync("./localhost.pem"),
           }
         : undefined,
+    proxy: {
+      "/dhlottery": {
+        target: "https://www.dhlottery.co.kr",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/dhlottery/, ""),
+        secure: true,
+      },
+    },
   },
   test: {
     globals: true,

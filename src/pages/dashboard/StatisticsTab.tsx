@@ -3,7 +3,7 @@ import { Card, Row, Col, Typography, Progress, Divider, Tooltip } from "antd";
 import { BarChartOutlined } from "@ant-design/icons";
 import { useAppSelector } from "@/redux/hooks";
 import { drawService } from "@/api";
-import { DetailDraw } from "lottopass-shared";
+import { DetailDraw } from "@/types";
 import { Record as RecordEntity } from "@/api/recordService";
 import COLORS from "@/constants/colors";
 import LottoBall from "@/components/common/number/LottoBall";

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { drawService } from "@/api";
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 
 interface DrawState {
   allDraws: LottoDraw[];

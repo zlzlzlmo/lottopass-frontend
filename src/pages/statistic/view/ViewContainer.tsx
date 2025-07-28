@@ -2,7 +2,7 @@ import React from "react";
 import { Typography } from "antd";
 import { ViewType } from "../StatisticPage";
 import BallView from "./ball/BallView";
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 import MatchView from "./match/MatchView";
 import NumberPairView from "./numberPair/NumberPairView";
 const { Text } = Typography;

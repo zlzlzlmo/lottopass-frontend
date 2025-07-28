@@ -1,4 +1,4 @@
-import { UserProfile } from "lottopass-shared";
+import { UserProfile } from "@/types";
 import { BaseApiService } from "./baseAPI";
 import { Record } from "./recordService";
 

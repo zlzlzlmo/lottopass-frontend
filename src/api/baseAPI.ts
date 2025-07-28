@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosInstance } from "axios";
-import { FindAllResponse } from "lottopass-shared";
+import { FindAllResponse } from "@/types";
 
 export class BaseApiService {
   protected axiosInstance: AxiosInstance;

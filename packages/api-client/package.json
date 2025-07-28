@@ -1,0 +1,32 @@
+{
+  "name": "@lottopass/api-client",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": ["dist/**"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint . --max-warnings 0",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@lottopass/shared": "workspace:*",
+    "@tanstack/react-query": "^5.51.1",
+    "axios": "^1.7.9",
+    "ky": "^1.7.2"
+  },
+  "devDependencies": {
+    "@lottopass/eslint-config": "workspace:*",
+    "@lottopass/typescript-config": "workspace:*",
+    "@types/node": "^22.10.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.7.3"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
+  }
+}

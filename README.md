@@ -1,9 +1,25 @@
-# LottoPass
+# LottoPass Monorepo
 
-> **로또 번호 통계와 당첨점 정보를 제공하는 통합 플랫폼**
+2025년 최신 기술 스택으로 구축된 로또 통계 분석 및 번호 생성 서비스입니다.
 
-LottoPass는 로또 당첨 번호의 통계와 데이터를 분석하고, 주변 로또 판매점과 당첨점을 확인할 수 있는 웹 애플리케이션입니다.  
-로또를 즐기는 사용자들이 데이터를 기반으로 더 재미있고 편리하게 로또를 경험할 수 있도록 돕습니다.
+## 🚀 기술 스택
+
+### Core
+- **Monorepo**: Turborepo + pnpm
+- **TypeScript**: 5.7+ with strict mode
+- **UI Framework**: Tamagui (Cross-platform)
+- **State Management**: Zustand with Immer
+- **API Client**: TanStack Query v5 + Ky
+
+### Apps
+- **Web**: Next.js 15 (App Router) + React 19
+- **Mobile**: React Native + Expo SDK 52
+
+### Infrastructure
+- **CI/CD**: GitHub Actions
+- **Deployment**: Vercel (Web), EAS (Mobile)
+- **Testing**: Vitest + Playwright
+- **Code Quality**: ESLint, Prettier, Husky
 
 ---
 

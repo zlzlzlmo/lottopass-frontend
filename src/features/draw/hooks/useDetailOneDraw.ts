@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { DetailDraw } from "lottopass-shared";
+import { DetailDraw } from "@/types";
 import { drawService } from "@/api";
 
 interface UseDetailOneDrawOptions {

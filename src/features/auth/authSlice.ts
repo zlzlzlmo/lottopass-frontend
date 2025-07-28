@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserProfile } from "lottopass-shared";
+import { UserProfile } from "@/types";
 
 interface AuthState {
   user: UserProfile | null;

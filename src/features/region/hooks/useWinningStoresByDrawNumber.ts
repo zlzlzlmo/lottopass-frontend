@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { WinningRegion } from "lottopass-shared";
+import { WinningRegion } from "@/types";
 import { regionService } from "@/api";
 
 interface UseWinningStoresByDrawNumberOptions {

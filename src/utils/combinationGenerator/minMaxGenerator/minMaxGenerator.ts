@@ -1,4 +1,4 @@
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 import { BaseCombinationGenerator } from "../baseCombinationGenerator";
 
 export class MinMaxGenerator extends BaseCombinationGenerator {

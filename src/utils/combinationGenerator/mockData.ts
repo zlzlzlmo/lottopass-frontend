@@ -1,4 +1,4 @@
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 
 export const mockLottoDraws: LottoDraw[] = [
   {

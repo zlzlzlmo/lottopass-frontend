@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 
 export const createSearchParams = (
   numbers: number[],

@@ -1,7 +1,7 @@
 import { Card, Button, Typography, Tag, Space } from "antd";
 import { formatNumberWithCommas } from "../../../utils/number";
 import { getBallColor } from "../../../utils/ballColor";
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 import styles from "./RoundCard.module.scss";
 import COLORS from "@/constants/colors";
 

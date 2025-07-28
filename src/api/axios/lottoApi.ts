@@ -1,5 +1,5 @@
 // API 관련 코드
-import { FindAllResponse, LottoDraw, DetailDraw } from "lottopass-shared";
+import { FindAllResponse, LottoDraw, DetailDraw } from "@/types";
 import { API_URLS } from "../../constants/apiUrls";
 import axiosInstance from "./axiosConfig";
 

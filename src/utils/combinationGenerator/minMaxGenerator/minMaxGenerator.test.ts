@@ -1,4 +1,4 @@
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 import { MinMaxGenerator } from "./minMaxGenerator";
 import { describe, expect } from "vitest";
 

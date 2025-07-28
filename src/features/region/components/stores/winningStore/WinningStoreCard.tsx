@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, Button, Modal } from "antd";
 import { EnvironmentOutlined } from "@ant-design/icons";
-import { WinningRegion } from "lottopass-shared";
+import { WinningRegion } from "@/types";
 import styles from "./WinningStoreCard.module.scss";
 import { openMap } from "../../../../../utils/map";
 import { useAppSelector } from "@/redux/hooks";

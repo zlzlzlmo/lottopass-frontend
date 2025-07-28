@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { regionService } from "@/api";
-import { StoreInfo } from "lottopass-shared";
+import { StoreInfo } from "@/types";
 
 export const useAllStoresByRegion = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);

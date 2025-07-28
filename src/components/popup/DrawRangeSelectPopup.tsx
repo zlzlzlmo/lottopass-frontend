@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import RangeSelector from "../common/rangeSelector/RangeSelector";
 import { useRangeSelector } from "@/features/range/hooks/useRangeSelect";
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 import FlexContainer from "../common/container/FlexContainer";
 import { LoadingIndicator } from "../common";
 

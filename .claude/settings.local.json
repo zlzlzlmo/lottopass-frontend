@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__exa__web_search_exa",
+      "mcp__exa__github_search_exa",
+      "mcp__exa__crawling_exa",
+      "mcp__supabase-community-supabase-mcp__list_projects",
+      "mcp__supabase-community-supabase-mcp__get_project",
+      "mcp__supabase-community-supabase-mcp__get_project_url",
+      "mcp__supabase-community-supabase-mcp__get_anon_key"
+    ],
+    "deny": []
+  }
+}

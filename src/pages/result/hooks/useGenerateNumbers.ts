@@ -9,7 +9,7 @@ import { DrawMinCountGenerator } from "@/utils/combinationGenerator/drawMinCount
 import { MinMaxGenerator } from "@/utils/combinationGenerator/minMaxGenerator/minMaxGenerator";
 import { EvenOddGenerator } from "@/utils/combinationGenerator/evenOddGenerator/evenOddGenerator";
 import { useEffect, useState } from "react";
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 
 export interface QueryParams {
   selectedNumbers?: number[];

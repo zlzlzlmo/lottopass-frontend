@@ -1,7 +1,7 @@
 import { Collapse, Typography } from "antd";
 import React from "react";
 
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 import { QueryParams } from "./hooks/useGenerateNumbers";
 
 const { Panel } = Collapse;

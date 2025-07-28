@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "antd";
 import RangeSelector from "../common/rangeSelector/RangeSelector";
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 import ControlNumberItem from "../common/numberSelector/ControlNumberItem";
 import { useRangeSelector } from "@/features/range/hooks/useRangeSelect";
 import { LoadingIndicator } from "../common";

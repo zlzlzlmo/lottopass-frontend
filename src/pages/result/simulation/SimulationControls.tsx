@@ -8,7 +8,7 @@ import {
   Space,
   Card,
 } from "antd";
-import { LottoDraw } from "lottopass-shared";
+import { LottoDraw } from "@/types";
 import FlexContainer from "@/components/common/container/FlexContainer";
 import NumberContainer from "@/components/common/number/NumberContainer";
 
