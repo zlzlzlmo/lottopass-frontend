@@ -1,0 +1,188 @@
+@use '@/styles/variables' as *;
+@use '@/styles/functions' as *;
+
+.shareCard {
+  width: 600px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: rem(16);
+  padding: rem(32);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 rem(20) rem(40) rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    transform: rotate(45deg);
+  }
+
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: rem(24);
+    position: relative;
+    z-index: 1;
+
+    .logo {
+      font-size: rem(24);
+      font-weight: bold;
+      letter-spacing: rem(2);
+    }
+
+    .date {
+      font-size: rem(14);
+      opacity: 0.9;
+    }
+  }
+
+  .cardBody {
+    text-align: center;
+    margin: rem(32) 0;
+    position: relative;
+    z-index: 1;
+
+    .title {
+      font-size: rem(28);
+      font-weight: bold;
+      margin: 0 0 rem(8) 0;
+    }
+
+    .subtitle {
+      font-size: rem(16);
+      opacity: 0.9;
+      margin: 0 0 rem(24) 0;
+    }
+
+    .drawNumber {
+      font-size: rem(20);
+      margin-bottom: rem(24);
+      padding: rem(8) rem(16);
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: rem(24);
+      display: inline-block;
+    }
+
+    .numbersContainer {
+      margin: rem(32) 0;
+
+      .numbers {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: rem(12);
+        flex-wrap: wrap;
+
+        .ballWrapper {
+          animation: bounce 0.5s ease-out;
+        }
+
+        .plus {
+          font-size: rem(24);
+          font-weight: bold;
+          margin: 0 rem(8);
+        }
+      }
+    }
+
+    .result {
+      margin-top: rem(32);
+
+      .rank {
+        font-size: rem(32);
+        font-weight: bold;
+        margin-bottom: rem(8);
+        text-shadow: rem(2) rem(2) rem(4) rgba(0, 0, 0, 0.2);
+      }
+
+      .prize {
+        font-size: rem(24);
+        opacity: 0.9;
+      }
+    }
+
+    .statsGrid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: rem(16);
+      margin-top: rem(24);
+
+      .statItem {
+        background: rgba(255, 255, 255, 0.1);
+        padding: rem(16);
+        border-radius: rem(12);
+
+        .statLabel {
+          font-size: rem(14);
+          opacity: 0.8;
+          margin-bottom: rem(4);
+        }
+
+        .statValue {
+          font-size: rem(20);
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .cardFooter {
+    text-align: center;
+    margin-top: rem(32);
+    position: relative;
+    z-index: 1;
+
+    p {
+      margin: rem(4) 0;
+      font-size: rem(14);
+      opacity: 0.8;
+    }
+
+    .watermark {
+      font-size: rem(12);
+      opacity: 0.6;
+    }
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Generated numbers card variant
+.generatedCard {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+// Statistics card variant
+.statsCard {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+// Dark theme variant
+.darkCard {
+  background: linear-gradient(135deg, #2b2b2b 0%, #1a1a1a 100%);
+  color: #ffffff;
+
+  .cardBody {
+    .drawNumber,
+    .statItem {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}

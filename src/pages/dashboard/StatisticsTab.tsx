@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Card, Row, Col, Typography, Progress, Divider, Tooltip } from "antd";
-import { BarChartOutlined } from "@ant-design/icons";
+import { Card, Row, Col, Typography, Progress, Divider, Tooltip, Button } from "antd";
+import { BarChartOutlined, ShareAltOutlined } from "@ant-design/icons";
 import { useAppSelector } from "@/redux/hooks";
 import { drawService } from "@/api";
 import { DetailDraw } from "@/types";
 import { Record as RecordEntity } from "@/api/recordService";
 import COLORS from "@/constants/colors";
 import LottoBall from "@/components/common/number/LottoBall";
+import { ShareCardModal, useShareCard } from "@/features/share-card";
 
 const { Title, Text } = Typography;
 
@@ -27,6 +28,14 @@ const StatisticsTab: React.FC<StatisticsTabProps> = ({ filteredRecords }) => {
   const [groupedDetails, setGroupedDetails] =
     useState<Record<number, DetailDraw[]>>();
   const [loading, setLoading] = useState(false);
+  
+  const {
+    isModalVisible,
+    cardData,
+    openShareCard,
+    closeShareCard,
+    createStatsCard,
+  } = useShareCard();
 
   const groupDetailDrawsByDrawNumber = (
     detailDraws: DetailDraw[][]
@@ -126,6 +135,16 @@ const StatisticsTab: React.FC<StatisticsTabProps> = ({ filteredRecords }) => {
   const totalCombinationLen = filteredRecords
     .map((record) => record.combinations)
     .flat().length;
+  
+  const handleShare = () => {
+    const totalSpent = filteredRecords.length * 5000;
+    const totalWon = calculateTotalPrizes();
+    const favoriteNumbers = numberFrequencies.slice(0, 6).map(item => item.number);
+    const winRate = totalSpent > 0 ? (totalWon / totalSpent) * 100 : 0;
+    
+    const cardData = createStatsCard(totalSpent, totalWon, favoriteNumbers, winRate);
+    openShareCard(cardData);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -186,6 +205,15 @@ const StatisticsTab: React.FC<StatisticsTabProps> = ({ filteredRecords }) => {
 
       <Divider style={{ margin: "30px 0" }} />
 
+      <div style={{ textAlign: "right", marginBottom: 16 }}>
+        <Button
+          icon={<ShareAltOutlined />}
+          onClick={handleShare}
+        >
+          통계 공유하기
+        </Button>
+      </div>
+
       <Card style={{ borderRadius: "10px" }}>
         <Title level={5} style={{ marginBottom: "20px" }}>
           구매 번호 빈도
@@ -224,6 +252,14 @@ const StatisticsTab: React.FC<StatisticsTabProps> = ({ filteredRecords }) => {
           </Text>
         </div>
       </Card>
+      
+      {cardData && (
+        <ShareCardModal
+          visible={isModalVisible}
+          onClose={closeShareCard}
+          cardData={cardData}
+        />
+      )}
     </div>
   );
 };

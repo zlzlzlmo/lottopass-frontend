@@ -3,6 +3,7 @@ import styles from "./ResultPage.module.scss";
 import Layout from "../../components/layout/Layout";
 import { useSearchParams } from "react-router-dom";
 import { Button, Space } from "antd";
+import { ShareAltOutlined } from "@ant-design/icons";
 
 import LuckyNumberCard from "@/components/common/card/LuckyNumberCard";
 import StatisticsPopup from "@/components/popup/StatisticPopup";
@@ -14,6 +15,7 @@ import LogoLoading from "@/components/common/loading/LogoLoading";
 import { ErrorMessage } from "@/components/common";
 import { useResultManagement } from "./hooks/useResultManagement";
 import { QueryParams } from "./hooks/useGenerateNumbers";
+import { ShareCardModal, useShareCard } from "@/features/share-card";
 
 const ResultPage: React.FC = () => {
   const {
@@ -32,10 +34,26 @@ const ResultPage: React.FC = () => {
   const [searchParams] = useSearchParams();
 
   const queryParams = parseQueryParams(searchParams) as QueryParams;
+  
+  const {
+    isModalVisible,
+    cardData,
+    openShareCard,
+    closeShareCard,
+    createNumbersCard,
+  } = useShareCard();
 
   const handleViewStatistics = (index: number) => {
     setNumbers(results[index]);
     setVisible(true);
+  };
+
+  const handleShare = () => {
+    const cardData = createNumbersCard(
+      results,
+      queryParams.method || '자동 생성'
+    );
+    openShareCard(cardData);
   };
 
   if (isLoading) {
@@ -91,16 +109,35 @@ const ResultPage: React.FC = () => {
           }
 
           <div style={{ marginTop: 20, textAlign: "center" }}>
-            <Button
-              type="primary"
-              shape="round"
-              size="large"
-              onClick={addNewCombination}
-            >
-              +
-            </Button>
+            <Space size="middle">
+              <Button
+                type="primary"
+                shape="round"
+                size="large"
+                onClick={addNewCombination}
+              >
+                +
+              </Button>
+              <Button
+                type="default"
+                shape="round"
+                size="large"
+                icon={<ShareAltOutlined />}
+                onClick={handleShare}
+              >
+                공유하기
+              </Button>
+            </Space>
           </div>
         </div>
+        
+        {cardData && (
+          <ShareCardModal
+            visible={isModalVisible}
+            onClose={closeShareCard}
+            cardData={cardData}
+          />
+        )}
       </Container>
     </Layout>
   );
