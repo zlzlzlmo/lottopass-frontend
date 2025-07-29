@@ -26,7 +26,7 @@ Claude Code has been configured with powerful custom commands to accelerate deve
 - `/generate-docs [scope]` - Auto-generate documentation
 
 ### Product Planning & Strategy
-- `/product-ideas [options]` - Generate strategic product ideas and improvements
+- `/product-ideas [options]` - Generate strategic product ideas and improvements (Korean market aware)
 - `/analyze-project [options]` - Comprehensive project analysis and health check
 - `/improve-ux [options]` - UI/UX improvement suggestions and best practices
 - `/suggest-features [options]` - Innovative feature ideas based on user needs
@@ -299,6 +299,14 @@ The project uses Vite path aliases for clean imports:
 4. **Winning Stores** (`/winning-stores`): Find lottery winners by region
 5. **History** (`/history`): Browse all lottery draws
 6. **Dashboard** (`/dashboard`): User's saved combinations and statistics (auth required)
+
+### Korean Market Considerations
+
+- **Regulatory Compliance**: No mobile lottery purchases allowed (PC web only)
+- **Purchase Limits**: 5,000원 weekly limit for online purchases
+- **Target Demographics**: 40-50대 중심의 보수적 시장
+- **Key Features**: QR 당첨 확인, 판매점 찾기, 소비 관리
+- See `KOREAN_LOTTO_ANALYSIS.md` for detailed market analysis
 
 ### Testing Strategy
 - Vitest for unit and integration tests

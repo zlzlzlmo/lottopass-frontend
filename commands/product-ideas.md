@@ -1,7 +1,7 @@
 # /product-ideas
 
 ## Description
-Analyzes the current codebase and generates strategic product ideas for features, UI/UX improvements, and architectural enhancements.
+Analyzes the current codebase and generates strategic product ideas for features, UI/UX improvements, and architectural enhancements. For Korean lottery (로또) projects, it considers local regulations and market characteristics.
 
 ## Usage
 ```bash
@@ -9,9 +9,10 @@ Analyzes the current codebase and generates strategic product ideas for features
 ```
 
 ## Options
-- `--focus <area>` - Specific area to focus on: `features`, `ui-ux`, `architecture`, `performance`, `monetization`
-- `--persona <type>` - Target user persona: `casual`, `power-user`, `enterprise`
+- `--focus <area>` - Specific area to focus on: `features`, `ui-ux`, `architecture`, `performance`, `monetization`, `korean-market`
+- `--persona <type>` - Target user persona: `casual`, `power-user`, `enterprise`, `korean-40s`, `korean-50s`
 - `--timeline <period>` - Implementation timeline: `quick-win` (1-2 weeks), `medium` (1-2 months), `long-term` (3+ months)
+- `--market <region>` - Target market: `global`, `korea` (considers local regulations)
 
 ## Examples
 ```bash
@@ -26,6 +27,12 @@ Analyzes the current codebase and generates strategic product ideas for features
 
 # Long-term architecture improvements
 /product-ideas --focus architecture --timeline long-term
+
+# Korean market specific ideas
+/product-ideas --market korea --persona korean-40s --focus features
+
+# Quick wins for Korean lottery market
+/product-ideas --market korea --timeline quick-win --focus korean-market
 ```
 
 ## Implementation
@@ -125,3 +132,5 @@ Phase 3 (Month 4-6): Architecture improvements
 - Considers current tech stack limitations
 - Aligns with monorepo structure
 - Respects existing user flows
+- For Korean market: Considers local regulations (no mobile purchases, 5,000원 weekly limit)
+- References KOREAN_LOTTO_ANALYSIS.md for market-specific insights

@@ -1,5 +1,10 @@
 import { withTamagui } from '@tamagui/next-plugin';
 import { join } from 'path';
+import withBundleAnalyzer from '@next/bundle-analyzer';
+
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 const tamaguiPlugin = withTamagui({
   config: '@lottopass/ui/src/theme/config',
@@ -62,4 +67,4 @@ const nextConfig = {
   },
 };
 
-export default tamaguiPlugin(nextConfig);
+export default bundleAnalyzer(tamaguiPlugin(nextConfig));

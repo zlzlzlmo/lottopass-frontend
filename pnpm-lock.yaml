@@ -402,7 +402,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/typescript-config
       '@next/bundle-analyzer':
-        specifier: ^15.1.6
+        specifier: ^15.4.4
         version: 15.4.4
       '@tailwindcss/forms':
         specifier: ^0.5.10

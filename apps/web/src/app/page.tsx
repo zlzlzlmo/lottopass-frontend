@@ -1,8 +1,10 @@
 import { Suspense } from 'react';
 import { HeroSection } from '@/components/home/HeroSection';
-import { FeatureCards } from '@/components/home/FeatureCards';
-import { LatestDrawSection } from '@/components/home/LatestDrawSection';
-import { QuickNumberGeneration } from '@/components/home/QuickNumberGeneration';
+import { 
+  FeatureCards, 
+  LatestDrawSection, 
+  QuickNumberGeneration 
+} from '@/components/home/LazyComponents';
 import { Loader2 } from 'lucide-react';
 
 function LoadingFallback() {
