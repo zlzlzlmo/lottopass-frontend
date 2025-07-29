@@ -18,8 +18,6 @@ import {
   WinningStoresPage,
 } from "./pages";
 import ScrollToTop from "./components/common/scroll/ScrollToTop";
-import SimulationNumberGenrationPage from "./pages/simulationNumberGeneration/SimulationNumberGenrationPage";
-import SimulationResultPage from "./pages/result/simulation/SimulationResultPage";
 import SignupPage from "./pages/signup/SignupPage";
 import LoginPage from "./pages/login/LoginPage";
 import AppInitializer from "./AppInitializer";
@@ -37,16 +35,11 @@ const App: React.FC = () => {
   const routes = [
     { path: ROUTES.HOME.path, element: <HomePage /> },
     { path: ROUTES.NUMBER_GENERATION.path, element: <NumberGenerationPage /> },
-    {
-      path: ROUTES.S_NUMBER_GENERATION.path,
-      element: <SimulationNumberGenrationPage />,
-    },
     { path: ROUTES.WINNING_STORES.path, element: <WinningStoresPage /> },
     { path: ROUTES.HISTORY.path, element: <HistoryPage /> },
     { path: ROUTES.HISTORY_DETAIL.path, element: <DetailPage /> },
     { path: ROUTES.ALL_STORES.path, element: <AllStoresPage /> },
     { path: ROUTES.RESULT.path, element: <ResultPage /> },
-    { path: ROUTES.SIMULATION_RESULT.path, element: <SimulationResultPage /> },
     { path: ROUTES.STATISTIC.path, element: <StatisticPage /> },
     { path: ROUTES.SIGNUP.path, element: <SignupPage /> },
     { path: ROUTES.LOGIN.path, element: <LoginPage /> },

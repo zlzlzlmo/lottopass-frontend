@@ -5,6 +5,17 @@ export type { DrawResult } from './services/draw.service';
 export { StatisticsService } from './services/statistics.service';
 export type { NumberFrequency, StatisticsResult } from './services/statistics.service';
 
+// Repositories
+export {
+  RepositoryManager,
+  getRepository,
+  type LotteryRepository,
+  type UserRepository,
+  type StoreRepository,
+  type UserStats,
+  type Store,
+} from './repositories';
+
 // Hooks
 export {
   useDrawResult,

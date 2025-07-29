@@ -17,16 +17,20 @@
     "build:web": "turbo build --filter=@lottopass/web",
     "build:mobile": "turbo build --filter=@lottopass/mobile",
     "test": "turbo test",
+    "test:watch": "turbo test:watch",
+    "test:coverage": "turbo test:coverage",
     "lint": "turbo lint",
     "type-check": "turbo type-check",
     "clean": "turbo clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,json}\"",
     "prepare": "husky"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
+    "@next/bundle-analyzer": "^15.1.7",
     "@types/cheerio": "^0.22.35",
     "@types/react": "^19.1.8",
     "@vercel/node": "^5.3.7",
@@ -56,6 +60,7 @@
     "@supabase/auth-ui-react": "^0.4.7",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/supabase-js": "^2.52.1",
+    "@tamagui/toast": "^1.110.3",
     "@tanstack/react-query": "^5.83.0",
     "@tanstack/react-query-devtools": "^5.83.0",
     "@testing-library/dom": "^10.4.1",
@@ -85,6 +90,7 @@
     "react-router-dom": "^6.30.1",
     "sass": "^1.89.2",
     "tailwind-merge": "^3.3.1",
+    "tamagui": "^1.110.3",
     "vite": "^6.3.5",
     "vitest": "^3.2.4"
   }

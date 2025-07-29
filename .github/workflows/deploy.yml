@@ -1,0 +1,117 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20.x'
+  PNPM_VERSION: '9.12.0'
+
+jobs:
+  deploy-web:
+    runs-on: ubuntu-latest
+    name: Deploy Web to Vercel
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: pnpm/action-setup@v3
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+          
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+        
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        
+      - name: Post deployment notification
+        uses: actions/github-script@v7
+        if: always()
+        with:
+          script: |
+            const status = '${{ job.status }}' === 'success' ? '✅' : '❌';
+            const comment = `${status} Web deployment to production ${status === '✅' ? 'succeeded' : 'failed'}!`;
+            
+            if (context.eventName === 'pull_request') {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            }
+
+  deploy-storybook:
+    runs-on: ubuntu-latest
+    name: Deploy Storybook
+    if: false # Enable when Storybook is set up
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: pnpm/action-setup@v3
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+          
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        
+      - name: Build Storybook
+        run: pnpm build-storybook
+        
+      - name: Deploy to Chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          
+  post-deploy-checks:
+    runs-on: ubuntu-latest
+    name: Post-Deployment Checks
+    needs: [deploy-web]
+    steps:
+      - name: Wait for deployment
+        run: sleep 30
+        
+      - name: Health check
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://lottopass.vercel.app)
+          if [ $response -eq 200 ]; then
+            echo "Health check passed"
+          else
+            echo "Health check failed with status code: $response"
+            exit 1
+          fi
+          
+      - name: Run smoke tests
+        run: |
+          # Add smoke tests here
+          echo "Running smoke tests..."
+          
+      - name: Notify deployment status
+        uses: 8398a7/action-slack@v3
+        if: always()
+        with:
+          status: ${{ job.status }}
+          text: |
+            Deployment Status: ${{ job.status }}
+            Commit: ${{ github.sha }}
+            Author: ${{ github.actor }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

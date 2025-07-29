@@ -79,9 +79,6 @@ export const ResetPasswordPage = lazyWithRetry(
   () => import('@/pages/auth/ResetPasswordPage')
 );
 
-export const CallbackPage = lazyWithRetry(
-  () => import('@/pages/auth/CallbackPage')
-);
 
 // 프리로드 함수들
 export const preloadStatistics = () => StatisticPage.preload();

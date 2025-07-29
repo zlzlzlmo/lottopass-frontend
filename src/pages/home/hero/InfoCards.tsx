@@ -21,17 +21,6 @@ const cards = [
     gradient: "from-primary/5 to-primary/10",
   },
   {
-    title: "당첨 시뮬레이션",
-    description: "과거 회차와 함께 시뮬레이션을 실행해 당첨 가능성을 확인하세요.",
-    buttonText: "시뮬레이션 실행하기",
-    icon: Dice5,
-    animation: "/lottie/simulation.lottie",
-    link: ROUTES.S_NUMBER_GENERATION.path,
-    color: "text-secondary",
-    bgColor: "bg-secondary/10",
-    gradient: "from-secondary/5 to-secondary/10",
-  },
-  {
     title: "통계 분석",
     description: "로또 데이터를 분석하여 당첨 패턴을 발견하세요.",
     buttonText: "통계 확인하기",

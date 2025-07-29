@@ -20,7 +20,6 @@ import {
   ResultPage,
   FindPasswordPage,
   ResetPasswordPage,
-  CallbackPage,
   preloadRouteComponents
 } from "@/routes/LazyRoutes";
 import NotFound from "@/pages/notFound/NotFound";
@@ -82,14 +81,6 @@ function AppContent() {
           element={
             <SuspenseWrapper>
               <ResetPasswordPage />
-            </SuspenseWrapper>
-          } 
-        />
-        <Route 
-          path={ROUTES.CALLBACK.path} 
-          element={
-            <SuspenseWrapper>
-              <CallbackPage />
             </SuspenseWrapper>
           } 
         />
