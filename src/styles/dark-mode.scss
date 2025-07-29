@@ -1,0 +1,127 @@
+// Dark Mode Variables
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-card: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2a2a2a;
+  --bg-card: #2f2f2f;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --border-color: #404040;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+
+  // Ant Design Component Overrides
+  .ant-layout {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+  }
+
+  .ant-card {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+  }
+
+  .ant-modal-content {
+    background: var(--bg-card);
+    color: var(--text-primary);
+  }
+
+  .ant-tabs-tab {
+    color: var(--text-secondary);
+    
+    &.ant-tabs-tab-active {
+      color: var(--text-primary);
+    }
+  }
+
+  .ant-input,
+  .ant-input-number,
+  .ant-select-selector,
+  .ant-picker {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+  }
+
+  .ant-btn {
+    &.ant-btn-default {
+      background: var(--bg-secondary);
+      border-color: var(--border-color);
+      color: var(--text-primary);
+
+      &:hover {
+        background: var(--bg-card);
+        border-color: var(--text-secondary);
+      }
+    }
+  }
+
+  .ant-table {
+    background: var(--bg-card);
+    color: var(--text-primary);
+
+    .ant-table-thead > tr > th {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border-color: var(--border-color);
+    }
+
+    .ant-table-tbody > tr > td {
+      border-color: var(--border-color);
+    }
+
+    .ant-table-tbody > tr:hover > td {
+      background: var(--bg-secondary);
+    }
+  }
+
+  .ant-statistic-title {
+    color: var(--text-secondary);
+  }
+
+  .ant-dropdown-menu {
+    background: var(--bg-card);
+    
+    .ant-dropdown-menu-item {
+      color: var(--text-primary);
+      
+      &:hover {
+        background: var(--bg-secondary);
+      }
+    }
+  }
+
+  // Chart.js
+  .chartjs-render-monitor {
+    filter: brightness(0.9);
+  }
+
+  // Custom Components
+  .spending-summary-card {
+    .ant-card-body {
+      background: var(--bg-card);
+    }
+  }
+
+  .lotto-ball {
+    filter: brightness(0.85);
+  }
+
+  // Scrollbar
+  &::-webkit-scrollbar {
+    background: var(--bg-secondary);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+  }
+}

@@ -31,7 +31,8 @@
     "react-dom": "^19.0.0",
     "react-native-web": "^0.19.12",
     "tailwind-merge": "^3.3.1",
-    "tamagui": "^1.110.3"
+    "tamagui": "^1.110.3",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@lottopass/eslint-config": "workspace:*",

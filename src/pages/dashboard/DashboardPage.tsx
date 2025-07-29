@@ -12,6 +12,8 @@ import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import { useDashboardRecords } from "./hooks/useDashboardRecords";
 import { ErrorMessage, LoadingIndicator } from "@/components/common";
 import QRScanner from "@/components/QRScanner";
+import { SpendingReportTab } from "@/features/spending-report";
+import { useAppSelector } from "@/redux/hooks";
 
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
@@ -27,6 +29,8 @@ const DashboardPage: React.FC = () => {
     handleDateChange,
     handleRefetch,
   } = useDashboardRecords();
+  
+  const user = useAppSelector((state) => state.auth.user);
 
   if (isError) {
     return (
@@ -50,9 +54,10 @@ const DashboardPage: React.FC = () => {
           <LoadingIndicator />
         ) : (
           <Tabs defaultValue="calendar" className="mt-6">
-            <TabsList className="grid w-full grid-cols-2">
+            <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="calendar">캘린더</TabsTrigger>
               <TabsTrigger value="statistics">통계</TabsTrigger>
+              <TabsTrigger value="spending">지출 리포트</TabsTrigger>
             </TabsList>
             <TabsContent value="calendar">
               <CalendarTab
@@ -62,6 +67,9 @@ const DashboardPage: React.FC = () => {
             </TabsContent>
             <TabsContent value="statistics">
               <StatisticsTab filteredRecords={filteredRecords} />
+            </TabsContent>
+            <TabsContent value="spending">
+              <SpendingReportTab userId={user?.id} />
             </TabsContent>
           </Tabs>
         )}
