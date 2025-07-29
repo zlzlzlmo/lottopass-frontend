@@ -98,7 +98,7 @@ export const LazyLoad: React.FC<LazyLoadProps> = ({
   children,
   threshold = 0.1,
   rootMargin = '50px',
-  placeholder = <div>Loading...</div>
+  placeholder = <div>Loading...</div>,
 }) => {
   const [isIntersecting, setIsIntersecting] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);

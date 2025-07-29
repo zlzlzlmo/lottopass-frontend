@@ -1,18 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { RefreshControl } from 'react-native';
-import { 
-  YStack, 
-  ScrollView, 
-  Heading, 
-  Text, 
-  Button, 
-  Card, 
-  CardHeader, 
-  CardContent,
-  XStack,
-  Spinner
-} from '@lottopass/ui';
-import { LottoBall } from '@lottopass/ui';
+import { RefreshControl, ScrollView, View, Text, ActivityIndicator } from 'react-native';
+import { Card, CardHeader, CardContent, CardTitle } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
+import { LottoBall } from '../components/ui/LottoBall';
 import { useLatestDraw } from '@lottopass/api-client';
 import { formatDate, formatPrize, formatTimeUntilDraw } from '@lottopass/shared';
 import { useNavigation } from '@react-navigation/native';
@@ -46,9 +36,9 @@ export default function HomeScreen() {
 
   if (isLoading && !refreshing) {
     return (
-      <YStack flex={1} alignItems="center" justifyContent="center">
-        <Spinner size="large" />
-      </YStack>
+      <View className="flex-1 items-center justify-center">
+        <ActivityIndicator size="large" color="#3B82F6" />
+      </View>
     );
   }
 
@@ -63,72 +53,66 @@ export default function HomeScreen() {
 
   return (
     <ScrollView
-      flex={1}
-      backgroundColor="$background"
+      className="flex-1 bg-gray-50"
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
-      <YStack padding="$4" gap="$4">
+      <View className="p-4 gap-4">
         {/* Hero Section */}
-        <Card backgroundColor="$primary" padding="$6">
-          <YStack gap="$3" alignItems="center">
-            <Heading level={3} color="white" textAlign="center">
+        <View className="bg-primary rounded-lg p-6">
+          <View className="gap-3 items-center">
+            <Text className="text-2xl font-bold text-white text-center">
               당신의 행운을 찾아드립니다
-            </Heading>
-            <Text color="white" opacity={0.9} textAlign="center">
+            </Text>
+            <Text className="text-white opacity-90 text-center">
               AI 기반 번호 분석과 통계로 더 스마트한 로또 번호를 생성하세요
             </Text>
             {timeUntilDraw && (
-              <YStack
-                backgroundColor="rgba(255,255,255,0.2)"
-                paddingHorizontal="$4"
-                paddingVertical="$2"
-                borderRadius="$4"
-              >
-                <Text color="white" weight="semibold">
+              <View className="bg-white/20 px-4 py-2 rounded-lg">
+                <Text className="text-white font-semibold">
                   다음 추첨까지 {timeUntilDraw}
                 </Text>
-              </YStack>
+              </View>
             )}
-          </YStack>
-        </Card>
+          </View>
+        </View>
 
         {/* Latest Draw */}
         {latestDraw && (
-          <Card variant="elevated">
+          <Card className="shadow-lg">
             <CardHeader>
-              <XStack justifyContent="space-between" alignItems="center">
-                <Heading level={5}>제 {latestDraw.drwNo}회 당첨번호</Heading>
-                <Text variant="caption" color="muted">
+              <View className="flex-row justify-between items-center">
+                <CardTitle>제 {latestDraw.drwNo}회 당첨번호</CardTitle>
+                <Text className="text-sm text-gray-500">
                   {formatDate(latestDraw.drwNoDate)}
                 </Text>
-              </XStack>
+              </View>
             </CardHeader>
             <CardContent>
-              <YStack gap="$4">
+              <View className="gap-4">
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                  <XStack gap="$2" paddingVertical="$2">
+                  <View className="flex-row gap-2 py-2">
                     {numbers.map((number, index) => (
                       <LottoBall key={index} number={number} size="medium" />
                     ))}
-                    <XStack alignItems="center" gap="$2">
-                      <Text size="$5" color="muted">+</Text>
+                    <View className="flex-row items-center gap-2">
+                      <Text className="text-xl text-gray-500">+</Text>
                       <LottoBall number={latestDraw.bnusNo} size="medium" isBonus />
-                    </XStack>
-                  </XStack>
+                    </View>
+                  </View>
                 </ScrollView>
 
-                <YStack gap="$2" paddingTop="$2">
-                  <XStack justifyContent="space-between">
-                    <Text variant="label">1등 당첨금</Text>
-                    <Text weight="semibold">{formatPrize(latestDraw.firstWinamnt)}</Text>
-                  </XStack>
-                  <XStack justifyContent="space-between">
-                    <Text variant="label">1등 당첨자</Text>
-                    <Text weight="semibold">{latestDraw.firstPrzwnerCo}명</Text>
-                  </XStack>
-                </YStack>
+                <View className="gap-2 pt-2">
+                  <View className="flex-row justify-between">
+                    <Text className="text-gray-600">1등 당첨금</Text>
+                    <Text className="font-semibold">{formatPrize(latestDraw.firstWinamnt)}</Text>
+                  </View>
+                  <View className="flex-row justify-between">
+                    <Text className="text-gray-600">1등 당첨자</Text>
+                    <Text className="font-semibold">{latestDraw.firstPrzwnerCo}명</Text>
+                  </View>
+                </View>
 
                 <Button
                   size="small"
@@ -137,59 +121,53 @@ export default function HomeScreen() {
                 >
                   상세보기
                 </Button>
-              </YStack>
+              </View>
             </CardContent>
           </Card>
         )}
 
         {/* Quick Actions */}
-        <YStack gap="$3">
-          <Heading level={5}>빠른 메뉴</Heading>
-          <XStack gap="$3" flexWrap="wrap">
+        <View className="gap-3">
+          <Text className="text-lg font-semibold">빠른 메뉴</Text>
+          <View className="flex-row flex-wrap gap-3">
             <Card
-              interactive
               onPress={() => navigation.navigate('Main', { screen: 'NumberGeneration' })}
-              flex={1}
-              minWidth={140}
+              className="flex-1 min-w-[140px]"
             >
               <CardContent>
-                <YStack gap="$2" alignItems="center" paddingVertical="$3">
-                  <Text fontSize="$8">🎲</Text>
-                  <Text weight="medium">번호 생성</Text>
-                </YStack>
+                <View className="gap-2 items-center py-3">
+                  <Text className="text-3xl">🎲</Text>
+                  <Text className="font-medium">번호 생성</Text>
+                </View>
               </CardContent>
             </Card>
 
             <Card
-              interactive
               onPress={() => navigation.navigate('Main', { screen: 'Statistics' })}
-              flex={1}
-              minWidth={140}
+              className="flex-1 min-w-[140px]"
             >
               <CardContent>
-                <YStack gap="$2" alignItems="center" paddingVertical="$3">
-                  <Text fontSize="$8">📊</Text>
-                  <Text weight="medium">통계 분석</Text>
-                </YStack>
+                <View className="gap-2 items-center py-3">
+                  <Text className="text-3xl">📊</Text>
+                  <Text className="font-medium">통계 분석</Text>
+                </View>
               </CardContent>
             </Card>
 
             <Card
-              interactive
               onPress={() => navigation.navigate('Main', { screen: 'Stores' })}
-              flex={1}
-              minWidth={140}
+              className="flex-1 min-w-[140px]"
             >
               <CardContent>
-                <YStack gap="$2" alignItems="center" paddingVertical="$3">
-                  <Text fontSize="$8">🏪</Text>
-                  <Text weight="medium">판매점 찾기</Text>
-                </YStack>
+                <View className="gap-2 items-center py-3">
+                  <Text className="text-3xl">🏪</Text>
+                  <Text className="font-medium">판매점 찾기</Text>
+                </View>
               </CardContent>
             </Card>
-          </XStack>
-        </YStack>
-      </YStack>
+          </View>
+        </View>
+      </View>
     </ScrollView>
   );
 }

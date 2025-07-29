@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Anchor } from "antd";
 import { useAppSelector } from "@/redux/hooks";
 import Layout from "@/components/layout/Layout";
 import ViewContainer from "./view/ViewContainer";
 import Container from "@/components/layout/container/Container";
 import Banner from "@/components/common/banner/Banner";
-
-const { Link } = Anchor;
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export type ViewType = "ball" | "match" | "numberPair";
 
@@ -21,21 +20,47 @@ const StatisticPage: React.FC = () => {
     <Layout>
       <Container>
         <Banner>🚀 당첨 확률, 이제는 데이터로 예측하세요!</Banner>
-        <Anchor
-          affix={false}
-          onClick={(e) => {
-            e.preventDefault();
-            const target = e.target as HTMLAnchorElement;
-            const href = target.getAttribute("href") || defaultViewType;
-            setViewType(href.replace("#", "") as ViewType);
-            setCurrentActiveLink(href);
-          }}
-          getCurrentAnchor={() => currentActiveLink} // 현재 활성 링크 설정
-        >
-          <Link href="#ball" title="번호들 출현 횟수 보기" />
-          <Link href="#match" title="전 회차와 매치 수 보기" />
-          <Link href="#numberPair" title="자주 등장한 번호 조합" />
-        </Anchor>
+        <div className="flex flex-wrap gap-2 mb-6">
+          <Button
+            variant={viewType === "ball" ? "default" : "outline"}
+            onClick={() => {
+              setViewType("ball");
+              setCurrentActiveLink("#ball");
+            }}
+            className={cn(
+              "transition-all",
+              viewType === "ball" && "shadow-lg"
+            )}
+          >
+            번호들 출현 횟수 보기
+          </Button>
+          <Button
+            variant={viewType === "match" ? "default" : "outline"}
+            onClick={() => {
+              setViewType("match");
+              setCurrentActiveLink("#match");
+            }}
+            className={cn(
+              "transition-all",
+              viewType === "match" && "shadow-lg"
+            )}
+          >
+            전 회차와 매치 수 보기
+          </Button>
+          <Button
+            variant={viewType === "numberPair" ? "default" : "outline"}
+            onClick={() => {
+              setViewType("numberPair");
+              setCurrentActiveLink("#numberPair");
+            }}
+            className={cn(
+              "transition-all",
+              viewType === "numberPair" && "shadow-lg"
+            )}
+          >
+            자주 등장한 번호 조합
+          </Button>
+        </div>
         <ViewContainer viewType={viewType} data={data} />
       </Container>
     </Layout>

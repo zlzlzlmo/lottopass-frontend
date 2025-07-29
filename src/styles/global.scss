@@ -1,3 +1,5 @@
+@use "./variables" as *;
+@use "./functions" as *;
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
 *,
@@ -10,9 +12,25 @@ body {
   font-family: "Poppins", sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  color: #333;
+  color: $text-color;
   margin: 0;
   padding: 0;
+  background: $bg-dark;
+  min-height: 100vh;
+  position: relative;
+  
+  // Aurora background effect
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    @include aurora-gradient(45deg);
+    opacity: 0.3;
+    z-index: -1;
+  }
 }
 
 h1,

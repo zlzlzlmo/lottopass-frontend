@@ -1,9 +1,8 @@
 import React from "react";
-import { Tabs } from "antd";
 import Layout from "@/components/layout/Layout";
 import Container from "@/components/layout/container/Container";
 import Banner from "@/components/common/banner/Banner";
-
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import dayjs from "dayjs";
 import CalendarTab from "./CalendarTab";
 import DatePickerRange from "./DatePickerRange";
@@ -16,8 +15,6 @@ import QRScanner from "@/components/QRScanner";
 
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
-
-const { TabPane } = Tabs;
 
 const DashboardPage: React.FC = () => {
   const {
@@ -52,17 +49,20 @@ const DashboardPage: React.FC = () => {
         {isLoading ? (
           <LoadingIndicator />
         ) : (
-          <Tabs defaultActiveKey="1" style={{ marginTop: "20px" }}>
-            <TabPane tab="캘린더" key="1">
+          <Tabs defaultValue="calendar" className="mt-6">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="calendar">캘린더</TabsTrigger>
+              <TabsTrigger value="statistics">통계</TabsTrigger>
+            </TabsList>
+            <TabsContent value="calendar">
               <CalendarTab
                 filteredRecords={filteredRecords}
                 onDelete={deleteRecord}
               />
-            </TabPane>
-
-            <TabPane tab="통계" key="2">
+            </TabsContent>
+            <TabsContent value="statistics">
               <StatisticsTab filteredRecords={filteredRecords} />
-            </TabPane>
+            </TabsContent>
           </Tabs>
         )}
       </Container>

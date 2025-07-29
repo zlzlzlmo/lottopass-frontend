@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useTheme } from 'tamagui';
+import { Text } from 'react-native';
 import { useAuthStore } from '@lottopass/stores';
 
 // Screens
@@ -17,7 +17,6 @@ import DrawDetailScreen from '../screens/DrawDetailScreen';
 import SimulationScreen from '../screens/SimulationScreen';
 
 // Icons (using text for now, replace with actual icons)
-import { Text } from '@lottopass/ui';
 
 export type RootStackParamList = {
   Main: undefined;
@@ -39,21 +38,26 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
 function MainTabs() {
-  const theme = useTheme();
-  
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: theme.primary.val,
-        tabBarInactiveTintColor: theme.color.val,
+        tabBarActiveTintColor: '#3B82F6',
+        tabBarInactiveTintColor: '#6B7280',
         tabBarStyle: {
-          backgroundColor: theme.background.val,
-          borderTopColor: theme.borderColor.val,
+          backgroundColor: '#FFFFFF',
+          borderTopColor: '#E5E7EB',
+          borderTopWidth: 1,
+          paddingBottom: 4,
+          paddingTop: 4,
+          height: 56,
         },
         headerStyle: {
-          backgroundColor: theme.primary.val,
+          backgroundColor: '#3B82F6',
         },
         headerTintColor: 'white',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
       }}
     >
       <Tab.Screen
@@ -61,7 +65,7 @@ function MainTabs() {
         component={HomeScreen}
         options={{
           title: '홈',
-          tabBarIcon: ({ color }) => <Text color={color}>🏠</Text>,
+          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 24 }}>🏠</Text>,
         }}
       />
       <Tab.Screen
@@ -69,7 +73,7 @@ function MainTabs() {
         component={NumberGenerationScreen}
         options={{
           title: '번호 생성',
-          tabBarIcon: ({ color }) => <Text color={color}>🎲</Text>,
+          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 24 }}>🎲</Text>,
         }}
       />
       <Tab.Screen
@@ -77,7 +81,7 @@ function MainTabs() {
         component={StatisticsScreen}
         options={{
           title: '통계',
-          tabBarIcon: ({ color }) => <Text color={color}>📊</Text>,
+          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 24 }}>📊</Text>,
         }}
       />
       <Tab.Screen
@@ -85,7 +89,7 @@ function MainTabs() {
         component={StoresScreen}
         options={{
           title: '판매점',
-          tabBarIcon: ({ color }) => <Text color={color}>🏪</Text>,
+          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 24 }}>🏪</Text>,
         }}
       />
       <Tab.Screen
@@ -93,7 +97,7 @@ function MainTabs() {
         component={ProfileScreen}
         options={{
           title: '내 정보',
-          tabBarIcon: ({ color }) => <Text color={color}>👤</Text>,
+          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 24 }}>👤</Text>,
         }}
       />
     </Tab.Navigator>
@@ -102,14 +106,13 @@ function MainTabs() {
 
 export function AppNavigator() {
   const { isAuthenticated } = useAuthStore();
-  const theme = useTheme();
 
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: theme.primary.val,
+            backgroundColor: '#3B82F6',
           },
           headerTintColor: 'white',
           headerTitleStyle: {

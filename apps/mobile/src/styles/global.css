@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* 로또 공 스타일 */
+  .lotto-ball {
+    @apply flex items-center justify-center rounded-full font-bold shadow-md;
+  }
+  
+  .lotto-ball-sm {
+    @apply h-8 w-8 text-xs;
+  }
+  
+  .lotto-ball-md {
+    @apply h-10 w-10 text-sm;
+  }
+  
+  .lotto-ball-lg {
+    @apply h-12 w-12 text-base;
+  }
+  
+  .lotto-ball-yellow {
+    @apply bg-ball-yellow text-white;
+  }
+  
+  .lotto-ball-blue {
+    @apply bg-ball-blue text-white;
+  }
+  
+  .lotto-ball-red {
+    @apply bg-ball-red text-white;
+  }
+  
+  .lotto-ball-green {
+    @apply bg-ball-green text-white;
+  }
+  
+  .lotto-ball-purple {
+    @apply bg-ball-purple text-white;
+  }
+  
+  .lotto-ball-gray {
+    @apply bg-ball-gray text-white;
+  }
+}

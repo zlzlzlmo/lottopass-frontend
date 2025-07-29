@@ -1,11 +1,10 @@
 import 'react-native-gesture-handler';
+import './src/styles/global.css';
 import { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { TamaguiProvider } from 'tamagui';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { config } from '@lottopass/ui';
 import { ApiProvider } from '@lottopass/api-client';
 import { AppNavigator } from './src/navigation/AppNavigator';
 import { NotificationProvider } from './src/providers/NotificationProvider';
@@ -31,17 +30,15 @@ export default function App() {
   }
 
   return (
-    <TamaguiProvider config={config} defaultTheme="light">
-      <ApiProvider enableDevtools={__DEV__}>
-        <SafeAreaProvider>
-          <NotificationProvider>
-            <LocationProvider>
-              <StatusBar style="auto" />
-              <AppNavigator />
-            </LocationProvider>
-          </NotificationProvider>
-        </SafeAreaProvider>
-      </ApiProvider>
-    </TamaguiProvider>
+    <ApiProvider enableDevtools={__DEV__}>
+      <SafeAreaProvider>
+        <NotificationProvider>
+          <LocationProvider>
+            <StatusBar style="auto" />
+            <AppNavigator />
+          </LocationProvider>
+        </NotificationProvider>
+      </SafeAreaProvider>
+    </ApiProvider>
   );
 }

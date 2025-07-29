@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import styles from "./HistoryPage.module.scss";
 import Layout from "../../components/layout/Layout";
 import RoundCard from "../../components/common/card/RoundCard";
 import SkeletonRoundCard from "../../components/common/skeleton/SkeletonRoundCard";
-
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "@/redux/hooks";
 import useSingleIntersection from "@/hooks/useSingleIntersection";
@@ -47,7 +45,7 @@ const HistoryPage: React.FC = () => {
           <strong>{allDraws.length}회</strong> 데이터가 제공됩니다.
         </Banner>
 
-        <div className={styles.cards}>
+        <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
           {allDraws.slice(0, visibleItems).map((round) => (
             <RoundCard
               key={round.drawNumber}
@@ -62,7 +60,7 @@ const HistoryPage: React.FC = () => {
             ))}
         </div>
         {visibleItems < allDraws.length && (
-          <div ref={observerRef} className={styles.observer} />
+          <div ref={observerRef} className="h-10" />
         )}
       </Container>
     </Layout>

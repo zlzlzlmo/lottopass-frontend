@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
-import {
-  YStack,
-  XStack,
-  ScrollView,
-  Heading,
-  Text,
-  Button,
-  Card,
-  CardContent,
-  RadioGroup,
+import { ScrollView, View, Text, ActivityIndicator } from 'react-native';
+import { 
+  Button, 
+  Card, 
+  CardContent, 
+  RadioGroup, 
   Label,
   Separator,
-} from '@lottopass/ui';
-import { LottoBall, LottoNumberGrid } from '@lottopass/ui';
+  LottoBall,
+  LottoNumberGrid
+} from '../components/ui';
 import { useGenerateNumbers } from '@lottopass/api-client';
 import { useLottoStore, useUIStore } from '@lottopass/stores';
 import { generateId, type GenerationMethod } from '@lottopass/shared';
@@ -89,47 +86,45 @@ export default function NumberGenerationScreen() {
   };
 
   return (
-    <ScrollView flex={1} backgroundColor="$background">
-      <YStack padding="$4" gap="$4">
-        <Heading level={4}>번호 생성</Heading>
+    <ScrollView className="flex-1 bg-gray-50">
+      <View className="p-4 gap-4">
+        <Text className="text-2xl font-bold">번호 생성</Text>
 
         {/* Generation Method Selection */}
         <Card>
           <CardContent>
-            <YStack gap="$3">
-              <Text weight="semibold">생성 방식 선택</Text>
+            <View className="gap-3">
+              <Text className="font-semibold">생성 방식 선택</Text>
               <RadioGroup
                 value={selectedMethod}
                 onValueChange={(value) => setSelectedMethod(value as GenerationMethod)}
               >
-                <YStack gap="$2">
+                <View className="gap-2">
                   {generationMethods.map((method) => (
-                    <XStack key={method.value} gap="$3" alignItems="center">
+                    <View key={method.value} className="flex-row gap-3 items-start">
                       <RadioGroup.Item value={method.value} id={method.value}>
                         <RadioGroup.Indicator />
                       </RadioGroup.Item>
-                      <Label htmlFor={method.value} flex={1}>
-                        <YStack gap="$1">
-                          <Text weight="medium">{method.label}</Text>
-                          <Text variant="caption" color="muted">
-                            {method.description}
-                          </Text>
-                        </YStack>
-                      </Label>
-                    </XStack>
+                      <View className="flex-1">
+                        <Text className="font-medium">{method.label}</Text>
+                        <Text className="text-sm text-gray-500">
+                          {method.description}
+                        </Text>
+                      </View>
+                    </View>
                   ))}
-                </YStack>
+                </View>
               </RadioGroup>
-            </YStack>
+            </View>
           </CardContent>
         </Card>
 
         {/* Include Numbers */}
         <Card>
           <CardContent>
-            <YStack gap="$3">
-              <XStack justifyContent="space-between" alignItems="center">
-                <Text weight="semibold">포함할 번호</Text>
+            <View className="gap-3">
+              <View className="flex-row justify-between items-center">
+                <Text className="font-semibold">포함할 번호</Text>
                 <Button
                   size="small"
                   variant="ghost"
@@ -137,19 +132,18 @@ export default function NumberGenerationScreen() {
                 >
                   {showIncludeGrid ? '닫기' : '선택'}
                 </Button>
-              </XStack>
+              </View>
               
               {includeNumbers.length > 0 && (
-                <XStack gap="$2" flexWrap="wrap">
+                <View className="flex-row gap-2 flex-wrap">
                   {includeNumbers.sort((a, b) => a - b).map((number) => (
                     <LottoBall
                       key={number}
                       number={number}
                       size="small"
-                      onPress={() => toggleIncludeNumber(number)}
                     />
                   ))}
-                </XStack>
+                </View>
               )}
               
               {showIncludeGrid && (
@@ -162,16 +156,16 @@ export default function NumberGenerationScreen() {
                   />
                 </>
               )}
-            </YStack>
+            </View>
           </CardContent>
         </Card>
 
         {/* Exclude Numbers */}
         <Card>
           <CardContent>
-            <YStack gap="$3">
-              <XStack justifyContent="space-between" alignItems="center">
-                <Text weight="semibold">제외할 번호</Text>
+            <View className="gap-3">
+              <View className="flex-row justify-between items-center">
+                <Text className="font-semibold">제외할 번호</Text>
                 <Button
                   size="small"
                   variant="ghost"
@@ -179,19 +173,18 @@ export default function NumberGenerationScreen() {
                 >
                   {showExcludeGrid ? '닫기' : '선택'}
                 </Button>
-              </XStack>
+              </View>
               
               {excludeNumbers.length > 0 && (
-                <XStack gap="$2" flexWrap="wrap">
+                <View className="flex-row gap-2 flex-wrap">
                   {excludeNumbers.sort((a, b) => a - b).map((number) => (
                     <LottoBall
                       key={number}
                       number={number}
                       size="small"
-                      onPress={() => toggleExcludeNumber(number)}
                     />
                   ))}
-                </XStack>
+                </View>
               )}
               
               {showExcludeGrid && (
@@ -204,21 +197,21 @@ export default function NumberGenerationScreen() {
                   />
                 </>
               )}
-            </YStack>
+            </View>
           </CardContent>
         </Card>
 
         {/* Generated Numbers */}
         {generatedNumbers.length > 0 && (
-          <Card variant="elevated" backgroundColor="$backgroundPress">
+          <Card className="bg-primary/5">
             <CardContent>
-              <YStack gap="$3" alignItems="center">
-                <Text weight="semibold">생성된 번호</Text>
-                <XStack gap="$2" flexWrap="wrap" justifyContent="center">
+              <View className="gap-3 items-center">
+                <Text className="font-semibold">생성된 번호</Text>
+                <View className="flex-row gap-2 flex-wrap justify-center">
                   {generatedNumbers.map((number, index) => (
                     <LottoBall key={index} number={number} size="large" />
                   ))}
-                </XStack>
+                </View>
                 <Button
                   size="small"
                   variant="secondary"
@@ -226,7 +219,7 @@ export default function NumberGenerationScreen() {
                 >
                   시뮬레이션 실행
                 </Button>
-              </YStack>
+              </View>
             </CardContent>
           </Card>
         )}
@@ -237,11 +230,11 @@ export default function NumberGenerationScreen() {
           variant="primary"
           onPress={handleGenerate}
           disabled={isPending || (includeNumbers.length > 6)}
-          fullWidth
+          className="w-full"
         >
           {isPending ? '생성 중...' : '번호 생성하기'}
         </Button>
-      </YStack>
+      </View>
     </ScrollView>
   );
 }

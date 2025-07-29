@@ -1,26 +1,30 @@
 import { Suspense } from 'react';
-import { Stack, YStack, XStack } from '@lottopass/ui';
 import { HeroSection } from '@/components/home/HeroSection';
 import { FeatureCards } from '@/components/home/FeatureCards';
 import { LatestDrawSection } from '@/components/home/LatestDrawSection';
 import { QuickNumberGeneration } from '@/components/home/QuickNumberGeneration';
+import { Loader2 } from 'lucide-react';
+
+function LoadingFallback() {
+  return (
+    <div className="flex items-center justify-center h-64">
+      <Loader2 className="h-8 w-8 animate-spin text-primary" />
+    </div>
+  );
+}
 
 export default function HomePage() {
   return (
-    <YStack flex={1} backgroundColor="$background">
+    <main className="min-h-screen bg-white">
       <HeroSection />
       
-      <Stack paddingHorizontal="$4" paddingVertical="$8" maxWidth={1200} marginHorizontal="auto" width="100%">
-        <YStack gap="$8">
-          <Suspense fallback={<Stack height={200} />}>
-            <LatestDrawSection />
-          </Suspense>
-          
-          <QuickNumberGeneration />
-          
-          <FeatureCards />
-        </YStack>
-      </Stack>
-    </YStack>
+      <Suspense fallback={<LoadingFallback />}>
+        <LatestDrawSection />
+      </Suspense>
+      
+      <QuickNumberGeneration />
+      
+      <FeatureCards />
+    </main>
   );
 }

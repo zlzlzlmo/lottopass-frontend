@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    
+    /* 로또 서비스를 위한 밝고 친근한 색상 팔레트 */
+    
+    /* 기본 색상 */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    
+    /* 카드 */
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    
+    /* Primary - 밝은 파랑 */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary - 행운의 녹색 */
+    --secondary: 158 64% 52%;
+    --secondary-foreground: 0 0% 100%;
+    
+    /* Muted */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    
+    /* Accent - 활기찬 노랑 */
+    --accent: 39 96% 50%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Destructive */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Border */
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 217 91% 60%;
+    
+    /* 차트 색상 - 로또 공 색상 */
+    --chart-1: 45 100% 51%;    /* 노랑 */
+    --chart-2: 207 90% 54%;    /* 파랑 */
+    --chart-3: 4 90% 58%;      /* 빨강 */
+    --chart-4: 122 39% 49%;    /* 초록 */
+    --chart-5: 282 68% 50%;    /* 보라 */
+    
+    /* 로또 공 색상 변수 */
+    --ball-yellow: 45 100% 51%;
+    --ball-blue: 207 90% 54%;
+    --ball-red: 4 90% 58%;
+    --ball-green: 122 39% 49%;
+    --ball-purple: 282 68% 50%;
+    --ball-gray: 0 0% 60%;
+  }
+  
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+    
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+    
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+    
+    --primary: 217 91% 60%;
+    --primary-foreground: 222.2 84% 4.9%;
+    
+    --secondary: 158 64% 52%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    
+    --accent: 39 96% 50%;
+    --accent-foreground: 222.2 84% 4.9%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+    
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 217 91% 60%;
+    
+    /* 다크 모드에서도 로또 공 색상은 동일하게 유지 */
+    --chart-1: 45 100% 51%;
+    --chart-2: 207 90% 54%;
+    --chart-3: 4 90% 58%;
+    --chart-4: 122 39% 49%;
+    --chart-5: 282 68% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* 로또 공 스타일 */
+  .lotto-ball {
+    @apply flex items-center justify-center rounded-full text-white font-bold shadow-md;
+  }
+  
+  .lotto-ball-sm {
+    @apply h-8 w-8 text-xs;
+  }
+  
+  .lotto-ball-md {
+    @apply h-10 w-10 text-sm;
+  }
+  
+  .lotto-ball-lg {
+    @apply h-12 w-12 text-base;
+  }
+  
+  .lotto-ball-yellow {
+    @apply bg-ball-yellow;
+  }
+  
+  .lotto-ball-blue {
+    @apply bg-ball-blue;
+  }
+  
+  .lotto-ball-red {
+    @apply bg-ball-red;
+  }
+  
+  .lotto-ball-green {
+    @apply bg-ball-green;
+  }
+  
+  .lotto-ball-purple {
+    @apply bg-ball-purple;
+  }
+  
+  .lotto-ball-gray {
+    @apply bg-ball-gray;
+  }
+}

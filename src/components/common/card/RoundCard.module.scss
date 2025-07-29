@@ -1,9 +1,33 @@
 .card {
   width: 100%;
   margin-bottom: 16px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  @include card-glass();
+  @include hover-scale(1.02);
+  position: relative;
+  overflow: hidden;
+  
+  // Animated gradient border
+  &::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    @include aurora-gradient(45deg);
+    border-radius: 16px;
+    opacity: 0.5;
+    z-index: -1;
+  }
+  
+  :global(.ant-card-head) {
+    background: transparent;
+    border-bottom: 1px solid $glass-border;
+  }
+  
+  :global(.ant-card-body) {
+    background: transparent;
+  }
 }
 
 .cardHeader {
@@ -25,9 +49,9 @@
 }
 
 .number {
-  width: 40px;
-  height: 40px;
-  font-size: 14px;
+  width: 45px;
+  height: 45px;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
   display: flex;
@@ -35,6 +59,25 @@
   align-items: center;
   border-radius: 50%;
   color: #fff;
+  position: relative;
+  @include smooth-transition();
+  
+  // Glass effect on balls
+  &::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 50%);
+  }
+  
+  &:hover {
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .bonusPlus {

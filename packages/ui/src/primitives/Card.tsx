@@ -10,25 +10,21 @@ export const Card = styled(Stack, {
   shadowOffset: { width: 0, height: 2 },
   shadowOpacity: 0.1,
   shadowRadius: 3,
-  elevation: 3,
   
   variants: {
     variant: {
       elevated: {
         shadowOpacity: 0.15,
         shadowRadius: 8,
-        elevation: 5,
       },
       outlined: {
         borderWidth: 1,
         borderColor: '$borderColor',
         shadowOpacity: 0,
-        elevation: 0,
       },
       ghost: {
         backgroundColor: 'transparent',
         shadowOpacity: 0,
-        elevation: 0,
         padding: 0,
       },
     },

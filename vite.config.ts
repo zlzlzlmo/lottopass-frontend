@@ -52,6 +52,7 @@ export default defineConfig({
           @use "@/styles/variables" as *;
           @use "@/styles/functions" as *;
         `, // 변수와 함수 파일 자동 import
+        api: 'modern-compiler'
       },
     },
     postcss: {

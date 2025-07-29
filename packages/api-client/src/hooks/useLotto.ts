@@ -4,8 +4,6 @@ import { QUERY_KEYS } from '@lottopass/shared';
 import type { 
   GenerateNumbersInput, 
   SaveCombinationInput,
-  LottoDraw,
-  DrawStatistics,
   SavedCombination
 } from '@lottopass/shared';
 

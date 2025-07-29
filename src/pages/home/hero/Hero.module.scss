@@ -1,24 +1,62 @@
 @use "sass:color";
 
 .hero {
-  padding: 0 30px 20px 30px;
+  padding: 40px 30px;
   text-align: center;
+  position: relative;
 
   .content {
     max-width: 800px;
     margin: 0 auto;
+    @include card-glass();
+    position: relative;
+    overflow: hidden;
+    
+    // Subtle gradient overlay
+    &::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(
+        circle,
+        rgba($aurora-purple, 0.1) 0%,
+        transparent 70%
+      );
+      animation: rotate 20s linear infinite;
+    }
+    
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
     .heroHighlight {
-      color: $primary-color;
+      background: linear-gradient(135deg, $aurora-purple, $aurora-pink);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       font-weight: bold;
       font-family: "Poppins", sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
     }
 
     .heroText {
-      font-family: "Roboto", sans-serif;
-      font-size: 1.2rem;
+      font-family: "Poppins", sans-serif;
+      font-size: 1.1rem;
       line-height: 1.6;
-      color: color.adjust($text-color, $lightness: -20%);
+      color: $text-color-secondary;
+      position: relative;
+      z-index: 1;
     }
   }
 }

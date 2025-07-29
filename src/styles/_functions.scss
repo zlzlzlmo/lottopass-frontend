@@ -1,3 +1,80 @@
+@use "./variables" as *;
+
 @function px-to-rem($px, $base: 16px) {
   @return #{$px / $base}rem;
+}
+
+// Glass Effect Mixin
+@mixin glass-effect($opacity: 0.1, $blur: 10px) {
+  background: rgba(255, 255, 255, $opacity);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid $glass-border;
+  box-shadow: $glass-shadow;
+}
+
+// Aurora Gradient Mixin
+@mixin aurora-gradient($direction: 135deg) {
+  background: linear-gradient(
+    $direction,
+    $aurora-purple 0%,
+    $aurora-blue 20%,
+    $aurora-cyan 40%,
+    $aurora-green 60%,
+    $aurora-yellow 80%,
+    $aurora-pink 100%
+  );
+  background-size: 400% 400%;
+  animation: aurora-shift 15s ease infinite;
+}
+
+// Animated Aurora Background
+@keyframes aurora-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+// Smooth Transition Mixin
+@mixin smooth-transition($properties: all, $duration: 0.3s) {
+  transition: $properties $duration cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Hover Scale Effect
+@mixin hover-scale($scale: 1.05) {
+  @include smooth-transition(transform);
+  
+  &:hover {
+    transform: scale($scale);
+  }
+}
+
+// Card Glass Style
+@mixin card-glass() {
+  @include glass-effect(0.1, 10px);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+// Button Glass Style
+@mixin button-glass($color: $primary-color) {
+  @include glass-effect(0.2, 8px);
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  color: $color;
+  border: 1px solid rgba($color, 0.3);
+  
+  &:hover {
+    background: rgba($color, 0.1);
+    border-color: rgba($color, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 48px 0 rgba($color, 0.3);
+  }
 }

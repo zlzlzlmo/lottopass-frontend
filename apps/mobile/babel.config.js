@@ -3,15 +3,7 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
-      [
-        '@tamagui/babel-plugin',
-        {
-          components: ['tamagui'],
-          config: '@lottopass/ui/src/theme/config',
-          logTimings: true,
-          disableExtraction: process.env.NODE_ENV === 'development',
-        },
-      ],
+      'nativewind/babel',
       'react-native-reanimated/plugin',
       [
         'module-resolver',
@@ -25,6 +17,7 @@ module.exports = function (api) {
             '@/hooks': './src/hooks',
             '@/utils': './src/utils',
             '@/constants': './src/constants',
+            '@/styles': './src/styles',
           },
         },
       ],

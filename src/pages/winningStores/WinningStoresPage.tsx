@@ -1,7 +1,5 @@
 import React from "react";
-import styles from "./WinningStoresPage.module.scss";
 import Layout from "../../components/layout/Layout";
-import { Spin } from "antd";
 import WinningStoreList from "../../features/region/components/stores/winningStore/WinningStoreList";
 import { useWinningStoresByRegion } from "@/features/region/hooks/useWinningStoresByRegion";
 import SearchRegions from "@/features/region/components/SearchRegions";
@@ -9,6 +7,7 @@ import { showError } from "@/utils/error";
 import Container from "@/components/layout/container/Container";
 import Banner from "@/components/common/banner/Banner";
 import PlaceholderContent from "../../components/common/PlaceholderContent";
+import { Loader2 } from "lucide-react";
 
 const WinningStoresPage: React.FC = () => {
   const { data, isLoading, isError, handleClick } = useWinningStoresByRegion();
@@ -29,10 +28,11 @@ const WinningStoresPage: React.FC = () => {
         {data.length <= 0 ? (
           <PlaceholderContent />
         ) : (
-          <div className={styles.results}>
+          <div className="w-full mt-4">
             {isLoading && (
-              <div className={styles.loading}>
-                <Spin size="large" tip="로딩 중..." />
+              <div className="text-center py-8">
+                <Loader2 className="h-12 w-12 animate-spin mx-auto text-primary" />
+                <p className="mt-2 text-muted-foreground">로딩 중...</p>
               </div>
             )}
 

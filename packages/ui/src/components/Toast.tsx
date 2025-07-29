@@ -1,19 +1,10 @@
 import React from 'react';
-import { Toast as TamaguiToast, useToastController, useToastState } from '@tamagui/toast';
+import { Toast as TamaguiToast, useToastController, useToastState, ToastViewport } from '@tamagui/toast';
 import { YStack, XStack } from 'tamagui';
 import { Text } from '../primitives/Text';
 import { Button } from '../primitives/Button';
 
-export function ToastViewport() {
-  return (
-    <TamaguiToast.Viewport
-      flexDirection="column-reverse"
-      top={50}
-      left={0}
-      right={0}
-    />
-  );
-}
+export { ToastViewport };
 
 interface ToastProps {
   id: string;
@@ -71,14 +62,14 @@ export function Toast({
         opacity={0.95}
       >
         <TamaguiToast.Title>
-          <Text color="white" weight="semibold">
+          <Text weight="semibold">
             {title}
           </Text>
         </TamaguiToast.Title>
         
         {message && (
           <TamaguiToast.Description>
-            <Text color="white" variant="caption">
+            <Text variant="caption">
               {message}
             </Text>
           </TamaguiToast.Description>
@@ -106,7 +97,7 @@ export function Toast({
             top="$1"
             right="$1"
             circular
-            icon="X"
+            icon={"X" as any}
           />
         </TamaguiToast.Close>
       </YStack>
