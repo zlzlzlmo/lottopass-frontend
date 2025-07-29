@@ -12,6 +12,7 @@ import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import COLORS from "@/constants/colors";
 import { clearUser } from "@/features/auth/authSlice";
 import FlexContainer from "@/components/common/container/FlexContainer";
+import { DarkModeToggle } from "@/components/common/DarkModeToggle";
 
 const Header: React.FC = () => {
   const [isDrawerVisible, setDrawerVisible] = useState(false);
@@ -144,6 +145,7 @@ const Header: React.FC = () => {
           ))}
 
         <div style={{ marginTop: "auto" }}>
+          <DarkModeToggle showLabel className="mb-4 w-full" />
           {user ? (
             <>
               <Button

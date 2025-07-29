@@ -25,9 +25,9 @@ export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-primary to-primary/80 text-white">
       {/* 배경 패턴 */}
-      <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" />
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 h-96 w-96 rounded-full bg-secondary/20 blur-3xl" />
-      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-accent/20 blur-3xl" />
+      <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" aria-hidden="true" />
+      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 h-96 w-96 rounded-full bg-secondary/20 blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 h-96 w-96 rounded-full bg-accent/20 blur-3xl" aria-hidden="true" />
       
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
         <div className="mx-auto max-w-3xl text-center">
@@ -50,8 +50,12 @@ export function HeroSection() {
 
           {/* 다음 추첨 시간 */}
           {timeUntilDraw && (
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
-              <div className="h-2 w-2 bg-accent rounded-full animate-pulse" />
+            <div 
+              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8"
+              role="status"
+              aria-live="polite"
+            >
+              <div className="h-2 w-2 bg-accent rounded-full animate-pulse" aria-hidden="true" />
               <span className="text-sm font-medium">
                 다음 추첨까지 {timeUntilDraw}
               </span>
