@@ -2,6 +2,33 @@
 
 This document outlines the coding standards and conventions for the LottoPass project. These guidelines are based on industry best practices and are designed to work seamlessly with AI coding assistants.
 
+## 🎯 MVP Development Principles
+
+### Focus on Simplicity
+1. **Working code over perfect code** - Get it working first, optimize later
+2. **Clear over clever** - Write code that's easy to understand
+3. **YAGNI (You Aren't Gonna Need It)** - Don't build features "just in case"
+4. **Avoid premature optimization** - Profile first, optimize second
+
+### MVP Anti-patterns to Avoid
+```typescript
+// ❌ Over-engineered for MVP
+class LotteryNumberGeneratorFactory {
+  private static instance: LotteryNumberGeneratorFactory;
+  private strategies: Map<string, GeneratorStrategy>;
+  // ... 100 lines of abstraction
+}
+
+// ✅ Simple and effective for MVP
+function generateLotteryNumbers(): number[] {
+  const numbers = new Set<number>();
+  while (numbers.size < 6) {
+    numbers.add(Math.floor(Math.random() * 45) + 1);
+  }
+  return Array.from(numbers).sort((a, b) => a - b);
+}
+```
+
 ## TypeScript
 
 ### General Rules
@@ -32,6 +59,11 @@ This document outlines the coding standards and conventions for the LottoPass pr
        return data.value;
      }
      throw new Error('Invalid data');
+   }
+   
+   // 🎯 MVP Alternative: If type checking is blocking progress
+   function processData(data: { value: string }) {
+     return data.value; // Simple interface, move fast
    }
    ```
 

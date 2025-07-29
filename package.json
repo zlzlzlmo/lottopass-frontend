@@ -79,6 +79,7 @@
     "dayjs": "^1.11.13",
     "framer-motion": "^12.23.11",
     "happy-dom": "^17.6.1",
+    "html2canvas": "^1.4.1",
     "html5-qrcode": "^2.3.8",
     "jsdom": "^26.1.0",
     "lucide-react": "^0.532.0",

@@ -55,7 +55,18 @@ export class HttpLotteryRepository implements LotteryRepository {
     }
 
     this.cacheStats.misses++;
-    const results = await this.drawService.getMultipleDrawResults(limit, offset);
+    // Get the latest draw to determine the range
+    const latestDraw = await this.getLatestDraw();
+    const startRound = Math.max(1, latestDraw.drwNo - offset - limit + 1);
+    const endRound = latestDraw.drwNo - offset;
+    
+    // Generate array of round numbers
+    const rounds = Array.from(
+      { length: Math.min(limit, endRound - startRound + 1) },
+      (_, i) => endRound - i
+    ).filter(round => round >= 1);
+    
+    const results = await this.drawService.getMultipleDrawResults(rounds);
     this.setCache(cacheKey, results);
     return results;
   }
@@ -70,7 +81,18 @@ export class HttpLotteryRepository implements LotteryRepository {
     }
 
     this.cacheStats.misses++;
-    const results = await this.drawService.getDrawResultsInRange(startDate, endDate);
+    // Convert dates to round numbers
+    // Lottery draws happen every Saturday
+    const firstDrawDate = new Date('2002-12-07'); // First lottery draw in Korea
+    const weeksFromFirst = (date: Date) => {
+      const diff = date.getTime() - firstDrawDate.getTime();
+      return Math.floor(diff / (7 * 24 * 60 * 60 * 1000)) + 1;
+    };
+    
+    const startRound = Math.max(1, weeksFromFirst(startDate));
+    const endRound = weeksFromFirst(endDate);
+    
+    const results = await this.drawService.getDrawResultsInRange(startRound, endRound);
     this.setCache(cacheKey, results);
     return results;
   }

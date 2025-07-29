@@ -2,6 +2,31 @@
 
 This guide provides best practices for leveraging AI coding assistants (Claude Code, GitHub Copilot, etc.) in the LottoPass project.
 
+## 🎯 MVP Development Focus
+
+### MVP 단계 핵심 원칙
+1. **핵심 기능에만 집중** - 사용자가 실제로 필요로 하는 기능만 구현
+2. **빠른 출시** - 완벽함보다는 작동하는 제품을 우선
+3. **피드백 수집** - 실사용자의 의견을 빠르게 반영
+4. **점진적 개선** - MVP 이후 단계적으로 기능 추가
+
+### ✅ MVP에 포함되어야 하는 것
+- **로또 번호 생성** - 기본 랜덤, 통계 기반 생성
+- **당첨 번호 확인** - 최신 회차 및 과거 당첨 번호
+- **기본 통계** - 번호별 출현 빈도
+- **반응형 UI** - 모바일/태블릿/데스크탑 지원
+- **기본 인증** - 회원가입/로그인 (Supabase)
+- **번호 저장** - 생성한 번호 저장 및 조회
+
+### ❌ MVP에서 제외해야 하는 것
+- **성능 모니터링** - Analytics, Web Vitals, APM
+- **고급 최적화** - 코드 스플리팅, 번들 최적화, 캐싱 전략
+- **복잡한 기능** - AI 예측, 고급 패턴 분석, 추천 시스템
+- **부가 기능** - 소셜 공유, 알림, 위젯
+- **국제화** - 다국어 지원 (한국어만)
+- **고급 보안** - 2FA, 생체 인증
+- **상세 로깅** - 분산 추적, 로그 집계
+
 ## Table of Contents
 1. [Effective Prompting](#effective-prompting)
 2. [Context Management](#context-management)
@@ -34,20 +59,22 @@ Performance: Should handle 1000+ draws efficiently
 
 ### Prompt Templates
 
-#### 1. Feature Implementation
+#### 1. Feature Implementation (MVP Focused)
 ```
 Task: Implement [feature name]
-Context: [Current project state, dependencies]
+Context: MVP stage - focus on core functionality
 Requirements:
-- [Functional requirement 1]
-- [Functional requirement 2]
-- Must integrate with [existing system]
+- [Core functional requirement 1]
+- [Core functional requirement 2]
+- Must work on mobile devices
 Technical specs:
-- Framework: [React/Next.js]
-- State management: [Zustand/TanStack Query]
-- Styling: [Tailwind/CSS Modules]
+- Framework: Next.js 15 / React 19
+- State management: Zustand (simple)
+- Styling: Tailwind CSS
 Constraints:
-- Performance: [specific metrics]
+- Keep it simple and working
+- Skip complex optimizations
+- No performance monitoring
 - Browser support: [requirements]
 Examples: [Optional reference code]
 ```

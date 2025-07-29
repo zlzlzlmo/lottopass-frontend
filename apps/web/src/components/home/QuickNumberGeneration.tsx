@@ -31,12 +31,14 @@ export function QuickNumberGeneration() {
           });
           showToast({
             type: 'success',
+            title: '성공',
             message: '번호가 생성되었습니다!',
           });
         },
         onError: () => {
           showToast({
             type: 'error',
+            title: '오류',
             message: '번호 생성에 실패했습니다.',
           });
         },

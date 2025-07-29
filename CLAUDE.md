@@ -6,6 +6,31 @@ This file provides comprehensive guidance to Claude Code (claude.ai/code) when w
 
 LottoPass is a modern lottery statistics and information platform built as a monorepo supporting both web and mobile applications. The project uses cutting-edge technologies and follows enterprise-grade architectural patterns.
 
+## MVP Development Guidelines
+
+### 🚀 MVP 단계에서 집중해야 할 것들
+1. **핵심 기능 구현** - 로또 번호 생성, 당첨 확인, 기본 통계
+2. **사용자 경험** - 직관적인 UI/UX, 빠른 로딩
+3. **안정성** - 오류 없는 기본 기능 동작
+4. **모바일 반응형** - 모든 디바이스에서 작동
+
+### ❌ MVP 단계에서 하지 말아야 할 것들
+1. **성능 모니터링** - Analytics, Speed Insights, Web Vitals
+2. **고급 최적화** - 마이크로 최적화, 번들 크기 극한 최적화
+3. **복잡한 인프라** - 멀티 리전, 로드 밸런싱, 캐싱 레이어
+4. **A/B 테스팅** - 실험 프레임워크, 피처 플래그
+5. **고급 보안 기능** - 2FA, 생체 인증, 고급 암호화
+6. **상세한 로깅/모니터링** - APM, 분산 추적, 로그 집계
+7. **국제화(i18n)** - 다국어 지원 (한국어만 우선)
+
+### ✅ MVP 이후 단계에서 추가할 것들
+- 성능 모니터링 및 최적화
+- 상세한 에러 트래킹 (Sentry)
+- 고급 캐싱 전략
+- PWA 기능
+- 다국어 지원
+- 고급 애니메이션 및 트랜지션
+
 ## Custom Commands
 
 Claude Code has been configured with powerful custom commands to accelerate development. Use these commands to automate common tasks:
@@ -17,11 +42,11 @@ Claude Code has been configured with powerful custom commands to accelerate deve
 ### Testing & Quality
 - `/test-component <path>` - Generate and run component tests
 - `/check-a11y <path>` - Check and fix accessibility issues
-- `/perf-audit [app]` - Run performance audit and get optimization suggestions
+- `/perf-audit [app]` - Run performance audit and get optimization suggestions (⚠️ MVP 이후 사용)
 
 ### Code Generation & Optimization
 - `/api-types <endpoint>` - Generate TypeScript types from API responses
-- `/optimize-bundle [app]` - Analyze and optimize bundle size
+- `/optimize-bundle [app]` - Analyze and optimize bundle size (⚠️ MVP 이후 사용)
 - `/refactor-imports [path]` - Clean up and optimize import statements
 - `/generate-docs [scope]` - Auto-generate documentation
 
@@ -33,7 +58,7 @@ Claude Code has been configured with powerful custom commands to accelerate deve
 - `/review-architecture [options]` - Deep technical architecture review and optimization
 
 ### DevOps & Monitoring
-- `/setup-monitoring <service>` - Configure application monitoring
+- `/setup-monitoring <service>` - Configure application monitoring (⚠️ MVP 이후 사용)
 
 See `commands/` directory for detailed documentation of each command.
 
