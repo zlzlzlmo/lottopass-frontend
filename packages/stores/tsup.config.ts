@@ -8,6 +8,7 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   treeshake: true,
-  external: ['react', 'zustand', 'immer'],
-  minify: process.env.NODE_ENV === 'production'
+  external: ['react', 'zustand', 'immer', '@supabase/supabase-js'],
+  minify: process.env.NODE_ENV === 'production',
+  platform: 'browser'
 });

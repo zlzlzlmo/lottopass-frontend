@@ -1,15 +1,16 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { LottoBall } from '@/components/ui/lotto-ball';
 import { useGenerateNumbers } from '@lottopass/api-client';
-import { useLottoStore, useUIStore } from '@lottopass/stores';
 import { generateId } from '@lottopass/shared';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useLottoStore, useUIStore } from '@lottopass/stores';
 import { Sparkles, RefreshCw, ArrowRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { LottoBall } from '@/components/ui/lotto-ball';
 
 export function QuickNumberGeneration() {
   const router = useRouter();
@@ -54,12 +55,8 @@ export function QuickNumberGeneration() {
             <Sparkles className="h-3 w-3 mr-1" />
             AI 추천
           </Badge>
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-            빠른 번호 생성
-          </h2>
-          <p className="mt-3 text-lg text-gray-600">
-            한 번의 클릭으로 행운의 번호를 받아보세요
-          </p>
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900">빠른 번호 생성</h2>
+          <p className="mt-3 text-lg text-gray-600">한 번의 클릭으로 행운의 번호를 받아보세요</p>
         </div>
 
         <Card className="border-2">
@@ -87,14 +84,13 @@ export function QuickNumberGeneration() {
                       disabled={isPending}
                       className="group"
                     >
-                      <RefreshCw className={`h-4 w-4 mr-2 ${isPending ? 'animate-spin' : 'group-hover:rotate-180 transition-transform duration-300'}`} />
+                      <RefreshCw
+                        className={`h-4 w-4 mr-2 ${isPending ? 'animate-spin' : 'group-hover:rotate-180 transition-transform duration-300'}`}
+                      />
                       다시 생성
                     </Button>
-                    
-                    <Button
-                      onClick={() => router.push('/number-generation')}
-                      className="group"
-                    >
+
+                    <Button onClick={() => router.push('/number-generation')} className="group">
                       더 많은 옵션
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
@@ -110,7 +106,7 @@ export function QuickNumberGeneration() {
                     <p className="text-lg text-gray-600 mb-8">
                       버튼을 눌러 행운의 번호를 받아보세요
                     </p>
-                    
+
                     <Button
                       size="lg"
                       onClick={handleQuickGenerate}

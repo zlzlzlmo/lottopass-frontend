@@ -1,10 +1,26 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseKey);
+let supabase: SupabaseClient | null = null;
+
+// Lazy initialization to avoid issues with SSR
+const getSupabaseClient = () => {
+  if (!supabase && typeof window !== 'undefined') {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+    if (supabaseUrl && supabaseKey) {
+      supabase = createClient(supabaseUrl, supabaseKey, {
+        auth: {
+          persistSession: true,
+          storageKey: 'supabase.auth.token',
+          storage: window.localStorage,
+        },
+      });
+    }
+  }
+  return supabase;
+};
 
 interface User {
   id: string;
@@ -37,7 +53,10 @@ export const useAuthStore = create<AuthState>()(
         signIn: async (email: string, password: string) => {
           set({ isLoading: true });
           try {
-            const { data, error } = await supabase.auth.signInWithPassword({
+            const client = getSupabaseClient();
+            if (!client) throw new Error('Supabase client not initialized');
+            
+            const { data, error } = await client.auth.signInWithPassword({
               email,
               password,
             });
@@ -68,7 +87,10 @@ export const useAuthStore = create<AuthState>()(
         signUp: async (email: string, password: string, name?: string) => {
           set({ isLoading: true });
           try {
-            const { data, error } = await supabase.auth.signUp({
+            const client = getSupabaseClient();
+            if (!client) throw new Error('Supabase client not initialized');
+            
+            const { data, error } = await client.auth.signUp({
               email,
               password,
               options: {
@@ -101,7 +123,10 @@ export const useAuthStore = create<AuthState>()(
         signOut: async () => {
           set({ isLoading: true });
           try {
-            const { error } = await supabase.auth.signOut();
+            const client = getSupabaseClient();
+            if (!client) throw new Error('Supabase client not initialized');
+            
+            const { error } = await client.auth.signOut();
             if (error) throw error;
             
             set({ 
@@ -119,7 +144,17 @@ export const useAuthStore = create<AuthState>()(
         checkAuth: async () => {
           set({ isLoading: true });
           try {
-            const { data: { user: authUser } } = await supabase.auth.getUser();
+            const client = getSupabaseClient();
+            if (!client) {
+              set({ 
+                user: null, 
+                isAuthenticated: false, 
+                isLoading: false 
+              });
+              return;
+            }
+            
+            const { data: { user: authUser } } = await client.auth.getUser();
             
             if (authUser) {
               const user: User = {

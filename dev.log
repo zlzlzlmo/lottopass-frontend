@@ -1,0 +1,743 @@
+
+> lottopass@1.0.0 dev
+> turbo dev
+
+turbo 2.5.5
+
+• Packages in scope: @lottopass/api-client, @lottopass/core, @lottopass/eslint-config, @lottopass/mobile, @lottopass/shared, @lottopass/stores, @lottopass/typescript-config, @lottopass/ui, @lottopass/ui-universal, @lottopass/web
+• Running dev in 10 packages
+• Remote caching disabled
+@lottopass/stores:dev: cache bypass, force executing b14aac29e132db60
+@lottopass/api-client:dev: cache bypass, force executing 619d7c88cb5bc2dd
+@lottopass/mobile:dev: cache bypass, force executing b1fb4c8dc4ea2a60
+@lottopass/web:dev: cache bypass, force executing aa602a88198f2dd1
+@lottopass/shared:dev: cache bypass, force executing 37d5742faf096388
+@lottopass/core:dev: cache bypass, force executing ba342c66d15e6292
+@lottopass/ui-universal:dev: cache bypass, force executing 65803ca278289398
+@lottopass/ui:dev: cache bypass, force executing b0012e9597766d2b
+@lottopass/stores:dev: 
+@lottopass/stores:dev: > @lottopass/stores@0.0.0 dev /Users/seunghoon/Documents/lottopass-frontend/packages/stores
+@lottopass/stores:dev: > tsup --watch
+@lottopass/stores:dev: 
+@lottopass/web:dev: 
+@lottopass/web:dev: > @lottopass/web@0.1.0 dev /Users/seunghoon/Documents/lottopass-frontend/apps/web
+@lottopass/web:dev: > next dev
+@lottopass/web:dev: 
+@lottopass/mobile:dev: 
+@lottopass/mobile:dev: > @lottopass/mobile@1.0.0 dev /Users/seunghoon/Documents/lottopass-frontend/apps/mobile
+@lottopass/mobile:dev: > expo start
+@lottopass/mobile:dev: 
+@lottopass/ui-universal:dev: 
+@lottopass/ui-universal:dev: > @lottopass/ui-universal@0.0.0 dev /Users/seunghoon/Documents/lottopass-frontend/packages/ui-universal
+@lottopass/ui-universal:dev: > tsup --watch
+@lottopass/ui-universal:dev: 
+@lottopass/core:dev: 
+@lottopass/core:dev: > @lottopass/core@0.0.0 dev /Users/seunghoon/Documents/lottopass-frontend/packages/core
+@lottopass/core:dev: > tsup --watch
+@lottopass/core:dev: 
+@lottopass/shared:dev: 
+@lottopass/shared:dev: > @lottopass/shared@0.0.0 dev /Users/seunghoon/Documents/lottopass-frontend/packages/shared
+@lottopass/shared:dev: > tsup --watch
+@lottopass/shared:dev: 
+@lottopass/ui:dev: 
+@lottopass/ui:dev: > @lottopass/ui@0.0.0 dev /Users/seunghoon/Documents/lottopass-frontend/packages/ui
+@lottopass/ui:dev: > tsup --watch
+@lottopass/ui:dev: 
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: > @lottopass/api-client@0.0.0 dev /Users/seunghoon/Documents/lottopass-frontend/packages/api-client
+@lottopass/api-client:dev: > tsup --watch
+@lottopass/api-client:dev: 
+@lottopass/stores:dev: CLI Building entry: src/index.ts
+@lottopass/stores:dev: CLI Using tsconfig: tsconfig.json
+@lottopass/stores:dev: CLI tsup v8.5.0
+@lottopass/stores:dev: CLI Using tsup config: /Users/seunghoon/Documents/lottopass-frontend/packages/stores/tsup.config.ts
+@lottopass/core:dev: CLI Building entry: src/index.ts
+@lottopass/core:dev: CLI Using tsconfig: tsconfig.json
+@lottopass/core:dev: CLI tsup v8.5.0
+@lottopass/core:dev: CLI Using tsup config: /Users/seunghoon/Documents/lottopass-frontend/packages/core/tsup.config.ts
+@lottopass/core:dev: CLI Running in watch mode
+@lottopass/stores:dev: CLI Running in watch mode
+@lottopass/api-client:dev: CLI Building entry: src/index.ts
+@lottopass/api-client:dev: CLI Using tsconfig: tsconfig.json
+@lottopass/api-client:dev: CLI tsup v8.5.0
+@lottopass/api-client:dev: CLI Using tsup config: /Users/seunghoon/Documents/lottopass-frontend/packages/api-client/tsup.config.ts
+@lottopass/api-client:dev: CLI Running in watch mode
+@lottopass/ui-universal:dev: CLI Building entry: src/index.ts
+@lottopass/ui-universal:dev: CLI Using tsconfig: tsconfig.json
+@lottopass/ui-universal:dev: CLI tsup v8.5.0
+@lottopass/ui-universal:dev: CLI Using tsup config: /Users/seunghoon/Documents/lottopass-frontend/packages/ui-universal/tsup.config.ts
+@lottopass/ui-universal:dev: CLI Running in watch mode
+@lottopass/ui:dev: CLI Building entry: src/index.ts
+@lottopass/ui:dev: CLI Using tsconfig: tsconfig.json
+@lottopass/ui:dev: CLI tsup v8.5.0
+@lottopass/ui:dev: CLI Using tsup config: /Users/seunghoon/Documents/lottopass-frontend/packages/ui/tsup.config.ts
+@lottopass/ui:dev: CLI Running in watch mode
+@lottopass/core:dev: CLI Target: es2020
+@lottopass/stores:dev: CLI Target: es2022
+@lottopass/core:dev: CLI Cleaning output folder
+@lottopass/ui:dev: CLI Target: es2022
+@lottopass/api-client:dev: CLI Target: es2020
+@lottopass/ui-universal:dev: CLI Target: es2020
+@lottopass/core:dev: CJS Build start
+@lottopass/core:dev: ESM Build start
+@lottopass/shared:dev: CLI Building entry: src/index.ts
+@lottopass/shared:dev: CLI Using tsconfig: tsconfig.json
+@lottopass/shared:dev: CLI tsup v8.5.0
+@lottopass/shared:dev: CLI Using tsup config: /Users/seunghoon/Documents/lottopass-frontend/packages/shared/tsup.config.ts
+@lottopass/shared:dev: CLI Running in watch mode
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/stores:dev: CLI Cleaning output folder
+@lottopass/stores:dev: CJS Build start
+@lottopass/stores:dev: ESM Build start
+@lottopass/ui:dev: CLI Cleaning output folder
+@lottopass/ui:dev: CJS Build start
+@lottopass/ui:dev: ESM Build start
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/ui-universal:dev: CLI Cleaning output folder
+@lottopass/ui-universal:dev: CJS Build start
+@lottopass/ui-universal:dev: ESM Build start
+@lottopass/shared:dev: CLI Target: es2022
+@lottopass/shared:dev: CLI Cleaning output folder
+@lottopass/shared:dev: CJS Build start
+@lottopass/shared:dev: ESM Build start
+@lottopass/ui-universal:dev: ESM dist/index.mjs     3.63 KB
+@lottopass/ui-universal:dev: ESM dist/index.mjs.map 6.26 KB
+@lottopass/ui-universal:dev: ESM ⚡️ Build success in 55ms
+@lottopass/ui-universal:dev: CJS dist/index.js     5.50 KB
+@lottopass/ui-universal:dev: CJS dist/index.js.map 6.69 KB
+@lottopass/ui-universal:dev: CJS ⚡️ Build success in 56ms
+@lottopass/ui-universal:dev: CLI Watching for changes in "."
+@lottopass/ui-universal:dev: CLI Ignoring changes in "**/{.git,node_modules}/**" | "dist"
+@lottopass/core:dev: 
+@lottopass/core:dev:  WARN  [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m"import.meta" is not available with the "cjs" output format and will be empty[0m [empty-import-meta]
+@lottopass/core:dev: 
+@lottopass/core:dev:     src/services/draw.service.ts:30:26:
+@lottopass/core:dev: [37m      30 │     this.baseUrl = typeof [32mimport.meta[37m.env !== 'undefined' && impor...
+@lottopass/core:dev:          ╵                           [32m~~~~~~~~~~~[0m
+@lottopass/core:dev: 
+@lottopass/core:dev:   You need to set the output format to "esm" for "import.meta" to work correctly.
+@lottopass/core:dev: 
+@lottopass/core:dev: 
+@lottopass/core:dev: 
+@lottopass/core:dev: 
+@lottopass/core:dev:  WARN  [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m"import.meta" is not available with the "cjs" output format and will be empty[0m [empty-import-meta]
+@lottopass/core:dev: 
+@lottopass/core:dev:     src/services/draw.service.ts:30:61:
+@lottopass/core:dev: [37m      30 │ ...ta.env !== 'undefined' && [32mimport.meta[37m.env?.VITE_API_BASE_URL ||...
+@lottopass/core:dev:          ╵                              [32m~~~~~~~~~~~[0m
+@lottopass/core:dev: 
+@lottopass/core:dev:   You need to set the output format to "esm" for "import.meta" to work correctly.
+@lottopass/core:dev: 
+@lottopass/core:dev: 
+@lottopass/core:dev: 
+@lottopass/core:dev: CJS dist/index.js     21.29 KB
+@lottopass/core:dev: CJS dist/index.js.map 40.99 KB
+@lottopass/core:dev: CJS ⚡️ Build success in 115ms
+@lottopass/core:dev: ESM dist/index.mjs     18.65 KB
+@lottopass/core:dev: ESM dist/index.mjs.map 40.05 KB
+@lottopass/core:dev: ESM ⚡️ Build success in 115ms
+@lottopass/core:dev: CLI Watching for changes in "."
+@lottopass/core:dev: CLI Ignoring changes in "**/{.git,node_modules}/**" | "dist"
+@lottopass/mobile:dev: Starting project at /Users/seunghoon/Documents/lottopass-frontend/apps/mobile
+@lottopass/ui:dev: ESM dist/index.mjs     8.99 KB
+@lottopass/ui:dev: ESM dist/index.mjs.map 29.82 KB
+@lottopass/ui:dev: ESM ⚡️ Build success in 517ms
+@lottopass/ui:dev: CJS dist/index.js     10.85 KB
+@lottopass/ui:dev: CJS dist/index.js.map 29.82 KB
+@lottopass/ui:dev: CJS ⚡️ Build success in 519ms
+@lottopass/shared:dev: CJS dist/index.js     13.21 KB
+@lottopass/shared:dev: CJS dist/index.js.map 22.47 KB
+@lottopass/shared:dev: CJS ⚡️ Build success in 506ms
+@lottopass/shared:dev: ESM dist/index.mjs     11.46 KB
+@lottopass/shared:dev: ESM dist/index.mjs.map 22.39 KB
+@lottopass/shared:dev: ESM ⚡️ Build success in 506ms
+@lottopass/ui:dev: CLI Watching for changes in "."
+@lottopass/ui:dev: CLI Ignoring changes in "**/{.git,node_modules}/**" | "dist"
+@lottopass/shared:dev: CLI Watching for changes in "."
+@lottopass/shared:dev: CLI Ignoring changes in "**/{.git,node_modules}/**" | "dist"
+@lottopass/mobile:dev: Starting Metro Bundler
+@lottopass/shared:dev: DTS Build start
+@lottopass/mobile:dev: Waiting on http://localhost:8081
+@lottopass/mobile:dev: Logs for your project will appear below.
+@lottopass/web:dev:    ▲ Next.js 15.1.6
+@lottopass/web:dev:    - Local:        http://localhost:3000
+@lottopass/web:dev:    - Network:      http://192.168.45.222:3000
+@lottopass/web:dev:    - Environments: .env.local
+@lottopass/web:dev: 
+@lottopass/web:dev:  ✓ Starting...
+@lottopass/api-client:dev: DTS Build start
+@lottopass/ui-universal:dev: DTS Build start
+@lottopass/ui-universal:dev: DTS ⚡️ Build success in 4228ms
+@lottopass/shared:dev: DTS ⚡️ Build success in 4997ms
+@lottopass/api-client:dev: ESM dist/index.mjs     572.80 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.10 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 6007ms
+@lottopass/api-client:dev: CJS dist/index.js     575.11 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.10 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 6008ms
+@lottopass/api-client:dev: CLI Watching for changes in "."
+@lottopass/api-client:dev: CLI Ignoring changes in "**/{.git,node_modules}/**" | "dist"
+@lottopass/core:dev: DTS Build start
+@lottopass/core:dev: DTS ⚡️ Build success in 5780ms
+@lottopass/api-client:dev: DTS ⚡️ Build success in 5082ms
+@lottopass/stores:dev: DTS Build start
+@lottopass/stores:dev: DTS ⚡️ Build success in 5518ms
+@lottopass/ui:dev: DTS Build start
+@lottopass/ui:dev: DTS ⚡️ Build success in 7027ms
+@lottopass/stores:dev: ESM dist/index.mjs     798.71 KB
+@lottopass/stores:dev: ESM dist/index.mjs.map 1.83 MB
+@lottopass/stores:dev: ESM ⚡️ Build success in 10361ms
+@lottopass/stores:dev: CJS dist/index.js     799.04 KB
+@lottopass/stores:dev: CJS dist/index.js.map 1.83 MB
+@lottopass/stores:dev: CJS ⚡️ Build success in 10361ms
+@lottopass/stores:dev: CLI Watching for changes in "."
+@lottopass/stores:dev: CLI Ignoring changes in "**/{.git,node_modules}/**" | "dist"
+@lottopass/web:dev:  ✓ Ready in 8.6s
+@lottopass/web:dev:  ○ Compiling / ...
+@lottopass/web:dev: [33m
+@lottopass/web:dev:   ➡ [tamagui] built config and components (631ms)[0m
+@lottopass/web:dev:   [tamagui] skipped loading 1 module, see: https://tamagui.dev/docs/intro/errors#warning-001
+@lottopass/web:dev:   [tamagui] skipped loading 1 module, see: https://tamagui.dev/docs/intro/errors#warning-001
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at processTicksAndRejections (node:internal/process/task_queues:95:5)
+@lottopass/web:dev:     at runNextTicks (node:internal/process/task_queues:64:3)
+@lottopass/web:dev:     at process.processImmediate (node:internal/timers:447:9)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at processTicksAndRejections (node:internal/process/task_queues:95:5)
+@lottopass/web:dev:     at runNextTicks (node:internal/process/task_queues:64:3)
+@lottopass/web:dev:     at process.processImmediate (node:internal/timers:447:9)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at processTicksAndRejections (node:internal/process/task_queues:95:5)
+@lottopass/web:dev:     at runNextTicks (node:internal/process/task_queues:64:3)
+@lottopass/web:dev:     at process.processImmediate (node:internal/timers:447:9)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at processTicksAndRejections (node:internal/process/task_queues:95:5)
+@lottopass/web:dev:     at runNextTicks (node:internal/process/task_queues:64:3)
+@lottopass/web:dev:     at process.processImmediate (node:internal/timers:447:9)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at processTicksAndRejections (node:internal/process/task_queues:95:5)
+@lottopass/web:dev:     at runNextTicks (node:internal/process/task_queues:64:3)
+@lottopass/web:dev:     at process.processImmediate (node:internal/timers:447:9)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at processTicksAndRejections (node:internal/process/task_queues:95:5)
+@lottopass/web:dev:     at runNextTicks (node:internal/process/task_queues:64:3)
+@lottopass/web:dev:     at process.processImmediate (node:internal/timers:447:9)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at processTicksAndRejections (node:internal/process/task_queues:95:5)
+@lottopass/web:dev:     at runNextTicks (node:internal/process/task_queues:64:3)
+@lottopass/web:dev:     at process.processImmediate (node:internal/timers:447:9)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at processTicksAndRejections (node:internal/process/task_queues:95:5)
+@lottopass/web:dev:     at runNextTicks (node:internal/process/task_queues:64:3)
+@lottopass/web:dev:     at process.processImmediate (node:internal/timers:447:9)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at processTicksAndRejections (node:internal/process/task_queues:95:5)
+@lottopass/web:dev:     at runNextTicks (node:internal/process/task_queues:64:3)
+@lottopass/web:dev:     at process.processImmediate (node:internal/timers:447:9)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: Missing theme displayName, an error occurred when importing your config Got config: [Function (anonymous)] {
+@lottopass/web:dev:   displayName: 'ProxyWorm - Check excludeReactNativeWebExports',
+@lottopass/web:dev:   _isProxyWorm: true
+@lottopass/web:dev: }
+@lottopass/web:dev: Looking for theme: displayName
+@lottopass/web:dev: Tamagui Webpack Loader Error:
+@lottopass/web:dev:    Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev: Error: Missing theme displayName, an error occurred when importing your config
+@lottopass/web:dev:     at parseWithConfig (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:174:114)
+@lottopass/web:dev:     at Object.parse (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/createExtractor.js:91:14)
+@lottopass/web:dev:     at processTicksAndRejections (node:internal/process/task_queues:95:5)
+@lottopass/web:dev:     at runNextTicks (node:internal/process/task_queues:64:3)
+@lottopass/web:dev:     at process.processImmediate (node:internal/timers:447:9)
+@lottopass/web:dev:     at async extractToClassNames (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+static@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28._ylyxywbboompnblg3xp7rnwj2e/node_modules/@tamagui/static/dist/extractor/extractToClassNames.js:64:15)
+@lottopass/web:dev:     at async Object.loader (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tamagui-loader@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_3xds2gn7bfjry2httc2pfuybsq/node_modules/tamagui-loader/dist/cjs/loader.cjs:84:19)
+@lottopass/web:dev: 
+@lottopass/web:dev: [Error: Cannot apply unknown utility class `h-10`]
+@lottopass/web:dev:  ⚠ ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/render/index.js
+@lottopass/web:dev: Attempted import error: 'hydrate' is not exported from 'react-dom' (imported as 'domLegacyHydrate').
+@lottopass/web:dev: 
+@lottopass/web:dev: Import trace for requested module:
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/render/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/views/Anchor.mjs
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/index.mjs
+@lottopass/web:dev: ./src/app/NextTamaguiProvider.tsx
+@lottopass/web:dev: 
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/unmountComponentAtNode/index.js
+@lottopass/web:dev: Attempted import error: 'unmountComponentAtNode' is not exported from 'react-dom' (imported as 'unmountComponentAtNode').
+@lottopass/web:dev: 
+@lottopass/web:dev: Import trace for requested module:
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/unmountComponentAtNode/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/views/Anchor.mjs
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/index.mjs
+@lottopass/web:dev: ./src/app/NextTamaguiProvider.tsx
+@lottopass/web:dev:  ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+@lottopass/web:dev: ⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+@lottopass/web:dev: ⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+@lottopass/web:dev:  GET / 200 in 7795ms
+@lottopass/web:dev:  GET / 200 in 106ms
+@lottopass/web:dev:  ⚠ ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/render/index.js
+@lottopass/web:dev: Attempted import error: 'hydrate' is not exported from 'react-dom' (imported as 'domLegacyHydrate').
+@lottopass/web:dev: 
+@lottopass/web:dev: Import trace for requested module:
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/render/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/views/Anchor.mjs
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/index.mjs
+@lottopass/web:dev: ./src/app/NextTamaguiProvider.tsx
+@lottopass/web:dev: 
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/unmountComponentAtNode/index.js
+@lottopass/web:dev: Attempted import error: 'unmountComponentAtNode' is not exported from 'react-dom' (imported as 'unmountComponentAtNode').
+@lottopass/web:dev: 
+@lottopass/web:dev: Import trace for requested module:
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/unmountComponentAtNode/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/views/Anchor.mjs
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/index.mjs
+@lottopass/web:dev: ./src/app/NextTamaguiProvider.tsx
+@lottopass/web:dev: <w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|javascript/dynamic|/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/next@15.1.6_@babel+core@7.28.0_react-dom@19.1.1_react@19.1.1__react@19.1.1_sass@1.89.2/node_modules/next/dist/build/webpack/loaders/next-flight-client-module-loader.js!/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/next@15.1.6_@babel+core@7.28.0_react-dom@19.1.1_react@19.1.1__react@19.1.1_sass@1.89.2/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js??ruleSet[1].rules[15].oneOf[6].use[1]!/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+web@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@_kdr4ar6nxoodg37w5tl23z2jr4/node_modules/@tamagui/web/dist/cjs/createComponent.cjs|ssr': No serializer registered for ConstDependency
+@lottopass/web:dev: <w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 72 items } -> ConstDependency
+@lottopass/web:dev: <w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|javascript/dynamic|/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/next@15.1.6_@babel+core@7.28.0_react-dom@19.1.1_react@19.1.1__react@19.1.1_sass@1.89.2/node_modules/next/dist/build/webpack/loaders/next-flight-client-module-loader.js!/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/next@15.1.6_@babel+core@7.28.0_react-dom@19.1.1_react@19.1.1__react@19.1.1_sass@1.89.2/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js??ruleSet[1].rules[15].oneOf[6].use[1]!/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+web@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@_kdr4ar6nxoodg37w5tl23z2jr4/node_modules/@tamagui/web/dist/cjs/helpers/getSplitStyles.cjs|ssr': No serializer registered for ConstDependency
+@lottopass/web:dev: <w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 63 items } -> ConstDependency
+@lottopass/web:dev: <w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|javascript/dynamic|/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/next@15.1.6_@babel+core@7.28.0_react-dom@19.1.1_react@19.1.1__react@19.1.1_sass@1.89.2/node_modules/next/dist/build/webpack/loaders/next-flight-client-module-loader.js!/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/next@15.1.6_@babel+core@7.28.0_react-dom@19.1.1_react@19.1.1__react@19.1.1_sass@1.89.2/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js??ruleSet[1].rules[15].oneOf[6].use[1]!/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+web@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@_kdr4ar6nxoodg37w5tl23z2jr4/node_modules/@tamagui/web/dist/cjs/hooks/useMedia.cjs|ssr': No serializer registered for ConstDependency
+@lottopass/web:dev: <w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 10 items } -> ConstDependency
+@lottopass/web:dev: <w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|javascript/dynamic|/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/next@15.1.6_@babel+core@7.28.0_react-dom@19.1.1_react@19.1.1__react@19.1.1_sass@1.89.2/node_modules/next/dist/build/webpack/loaders/next-flight-client-module-loader.js!/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/next@15.1.6_@babel+core@7.28.0_react-dom@19.1.1_react@19.1.1__react@19.1.1_sass@1.89.2/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js??ruleSet[1].rules[16].oneOf[5].use[1]!/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+web@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@_kdr4ar6nxoodg37w5tl23z2jr4/node_modules/@tamagui/web/dist/cjs/createComponent.cjs|app-pages-browser': No serializer registered for ConstDependency
+@lottopass/web:dev: <w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 72 items } -> ConstDependency
+@lottopass/web:dev: <w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|javascript/dynamic|/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/next@15.1.6_@babel+core@7.28.0_react-dom@19.1.1_react@19.1.1__react@19.1.1_sass@1.89.2/node_modules/next/dist/build/webpack/loaders/next-flight-client-module-loader.js!/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/next@15.1.6_@babel+core@7.28.0_react-dom@19.1.1_react@19.1.1__react@19.1.1_sass@1.89.2/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js??ruleSet[1].rules[16].oneOf[5].use[1]!/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+web@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@_kdr4ar6nxoodg37w5tl23z2jr4/node_modules/@tamagui/web/dist/cjs/helpers/getSplitStyles.cjs|app-pages-browser': No serializer registered for ConstDependency
+@lottopass/web:dev: <w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 63 items } -> ConstDependency
+@lottopass/web:dev: <w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|javascript/dynamic|/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/next@15.1.6_@babel+core@7.28.0_react-dom@19.1.1_react@19.1.1__react@19.1.1_sass@1.89.2/node_modules/next/dist/build/webpack/loaders/next-flight-client-module-loader.js!/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/next@15.1.6_@babel+core@7.28.0_react-dom@19.1.1_react@19.1.1__react@19.1.1_sass@1.89.2/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js??ruleSet[1].rules[16].oneOf[5].use[1]!/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/@tamagui+web@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@_kdr4ar6nxoodg37w5tl23z2jr4/node_modules/@tamagui/web/dist/cjs/hooks/useMedia.cjs|app-pages-browser': No serializer registered for ConstDependency
+@lottopass/web:dev: <w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 10 items } -> ConstDependency
+@lottopass/web:dev:  ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+@lottopass/web:dev:  ⚠ ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/render/index.js
+@lottopass/web:dev: Attempted import error: 'hydrate' is not exported from 'react-dom' (imported as 'domLegacyHydrate').
+@lottopass/web:dev: 
+@lottopass/web:dev: Import trace for requested module:
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/render/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/views/Anchor.mjs
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/index.mjs
+@lottopass/web:dev: ./src/app/NextTamaguiProvider.tsx
+@lottopass/web:dev: 
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/unmountComponentAtNode/index.js
+@lottopass/web:dev: Attempted import error: 'unmountComponentAtNode' is not exported from 'react-dom' (imported as 'unmountComponentAtNode').
+@lottopass/web:dev: 
+@lottopass/web:dev: Import trace for requested module:
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/unmountComponentAtNode/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/views/Anchor.mjs
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/index.mjs
+@lottopass/web:dev: ./src/app/NextTamaguiProvider.tsx
+@lottopass/web:dev:  ⚠ ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/render/index.js
+@lottopass/web:dev: Attempted import error: 'hydrate' is not exported from 'react-dom' (imported as 'domLegacyHydrate').
+@lottopass/web:dev: 
+@lottopass/web:dev: Import trace for requested module:
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/render/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/views/Anchor.mjs
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/index.mjs
+@lottopass/web:dev: ./src/app/NextTamaguiProvider.tsx
+@lottopass/web:dev: 
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/unmountComponentAtNode/index.js
+@lottopass/web:dev: Attempted import error: 'unmountComponentAtNode' is not exported from 'react-dom' (imported as 'unmountComponentAtNode').
+@lottopass/web:dev: 
+@lottopass/web:dev: Import trace for requested module:
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/unmountComponentAtNode/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/views/Anchor.mjs
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/index.mjs
+@lottopass/web:dev: ./src/app/NextTamaguiProvider.tsx
+@lottopass/web:dev:  ⚠ ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/render/index.js
+@lottopass/web:dev: Attempted import error: 'hydrate' is not exported from 'react-dom' (imported as 'domLegacyHydrate').
+@lottopass/web:dev: 
+@lottopass/web:dev: Import trace for requested module:
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/render/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/views/Anchor.mjs
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/index.mjs
+@lottopass/web:dev: ./src/app/NextTamaguiProvider.tsx
+@lottopass/web:dev: 
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/unmountComponentAtNode/index.js
+@lottopass/web:dev: Attempted import error: 'unmountComponentAtNode' is not exported from 'react-dom' (imported as 'unmountComponentAtNode').
+@lottopass/web:dev: 
+@lottopass/web:dev: Import trace for requested module:
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/exports/unmountComponentAtNode/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/react-native-web@0.19.13_react-dom@19.1.1_react@19.1.1__react@19.1.1/node_modules/react-native-web/dist/index.js
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/views/Anchor.mjs
+@lottopass/web:dev: ../../node_modules/.pnpm/tamagui@1.132.15_react-dom@19.1.1_react@19.1.1__react-native@0.80.2_@babel+core@7.28.0_@types_nl55gizg2fcslx3l5kipbe3ama/node_modules/tamagui/dist/esm/index.mjs
+@lottopass/web:dev: ./src/app/NextTamaguiProvider.tsx
+@lottopass/web:dev:  ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+@lottopass/web:dev: ⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+@lottopass/web:dev: ⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217
+@lottopass/web:dev:  GET /manifest.json 404 in 7696ms
+@lottopass/web:dev:  GET /favicon-32x32.png 404 in 7230ms
+@lottopass/web:dev:  GET / 200 in 1651ms
+@lottopass/web:dev:  GET /favicon-32x32.png 404 in 391ms
+@lottopass/web:dev:  GET /manifest.json 404 in 257ms
+@lottopass/web:dev:  GET / 200 in 117ms
+@lottopass/web:dev:  GET /favicon-32x32.png 404 in 311ms
+@lottopass/web:dev:  GET /manifest.json 404 in 326ms
+@lottopass/web:dev:  ⚠ Found a change in next.config.mjs. Restarting the server to apply the changes...
+@lottopass/web:dev:    ▲ Next.js 15.1.6
+@lottopass/web:dev:    - Local:        http://localhost:3000
+@lottopass/web:dev:    - Network:      http://192.168.45.222:3000
+@lottopass/web:dev:    - Environments: .env.local
+@lottopass/web:dev: 
+@lottopass/web:dev:  ✓ Starting...
+@lottopass/web:dev:  ✓ Ready in 5.3s
+@lottopass/api-client:dev:  ELIFECYCLE  Command failed.
+@lottopass/shared:dev:  ELIFECYCLE  Command failed.
+@lottopass/ui-universal:dev:  ELIFECYCLE  Command failed.
+@lottopass/stores:dev:  ELIFECYCLE  Command failed.
+@lottopass/ui:dev:  ELIFECYCLE  Command failed.
+@lottopass/core:dev:  ELIFECYCLE  Command failed.
+@lottopass/web:dev: [?25h
+  x Internal errors encountered: external process killed a task,external
+  | process killed a task
+

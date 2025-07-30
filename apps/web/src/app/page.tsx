@@ -1,11 +1,12 @@
-import { Suspense } from 'react';
-import { HeroSection } from '@/components/home/HeroSection';
-import { 
-  FeatureCards, 
-  LatestDrawSection, 
-  QuickNumberGeneration 
-} from '@/components/home/LazyComponents';
 import { Loader2 } from 'lucide-react';
+import { Suspense } from 'react';
+
+import { HeroSection } from '@/components/home/HeroSection';
+import {
+  FeatureCards,
+  LatestDrawSection,
+  QuickNumberGeneration,
+} from '@/components/home/LazyComponents';
 
 function LoadingFallback() {
   return (
@@ -19,13 +20,13 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-white">
       <HeroSection />
-      
+
       <Suspense fallback={<LoadingFallback />}>
         <LatestDrawSection />
       </Suspense>
-      
+
       <QuickNumberGeneration />
-      
+
       <FeatureCards />
     </main>
   );

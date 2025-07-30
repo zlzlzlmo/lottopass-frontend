@@ -22,14 +22,7 @@ export function LottoBall({ number, size = 'md', className }: LottoBallProps) {
   };
 
   return (
-    <div
-      className={cn(
-        'lotto-ball',
-        getBallColor(number),
-        sizeClasses[size],
-        className
-      )}
-    >
+    <div className={cn('lotto-ball', getBallColor(number), sizeClasses[size], className)}>
       {number}
     </div>
   );

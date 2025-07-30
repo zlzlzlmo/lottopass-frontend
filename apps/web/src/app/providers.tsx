@@ -17,8 +17,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
   }, [isAuthenticated]);
 
   return (
-    <ApiProvider enableDevtools={process.env.NODE_ENV === 'development'}>
-      {children}
-    </ApiProvider>
+    <ApiProvider enableDevtools={process.env.NODE_ENV === 'development'}>{children}</ApiProvider>
   );
 }

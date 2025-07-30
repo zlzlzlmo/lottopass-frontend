@@ -1,8 +1,9 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { BarChart3, Store, Dice5, Wallet } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
 const features = [
@@ -54,7 +55,7 @@ export function FeatureCards() {
             로또 당첨을 위한 모든 도구가 준비되어 있습니다
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature) => {
             const Icon = feature.icon;
@@ -65,16 +66,16 @@ export function FeatureCards() {
                 onClick={() => router.push(feature.href)}
               >
                 <CardHeader>
-                  <div className={cn(
-                    "w-12 h-12 rounded-lg flex items-center justify-center mb-4",
-                    feature.bgColor
-                  )}>
-                    <Icon className={cn("h-6 w-6", feature.color)} />
+                  <div
+                    className={cn(
+                      'w-12 h-12 rounded-lg flex items-center justify-center mb-4',
+                      feature.bgColor
+                    )}
+                  >
+                    <Icon className={cn('h-6 w-6', feature.color)} />
                   </div>
                   <CardTitle className="text-xl">{feature.title}</CardTitle>
-                  <CardDescription className="text-sm">
-                    {feature.description}
-                  </CardDescription>
+                  <CardDescription className="text-sm">{feature.description}</CardDescription>
                 </CardHeader>
               </Card>
             );

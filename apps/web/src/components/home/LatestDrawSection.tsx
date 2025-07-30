@@ -1,11 +1,12 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { LottoBall } from '@/components/ui/lotto-ball';
 import { useLatestDraw } from '@lottopass/api-client';
 import { formatDate, formatPrize } from '@lottopass/shared';
 import { Loader2, Trophy, Users, DollarSign } from 'lucide-react';
+
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { LottoBall } from '@/components/ui/lotto-ball';
 
 export function LatestDrawSection() {
   const { data: latestDraw, isLoading, error } = useLatestDraw();
@@ -30,9 +31,7 @@ export function LatestDrawSection() {
         <div className="mx-auto max-w-4xl">
           <Card>
             <CardContent className="p-8">
-              <p className="text-center text-destructive">
-                최신 회차 정보를 불러올 수 없습니다.
-              </p>
+              <p className="text-center text-destructive">최신 회차 정보를 불러올 수 없습니다.</p>
             </CardContent>
           </Card>
         </div>
@@ -59,16 +58,14 @@ export function LatestDrawSection() {
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">
             제 {latestDraw.drwNo}회 로또 6/45
           </h2>
-          <p className="mt-2 text-lg text-gray-600">
-            추첨일: {formatDate(latestDraw.drwNoDate)}
-          </p>
+          <p className="mt-2 text-lg text-gray-600">추첨일: {formatDate(latestDraw.drwNoDate)}</p>
         </div>
 
         <Card className="overflow-hidden">
           <CardHeader className="bg-gradient-to-r from-primary/5 to-secondary/5">
             <CardTitle className="text-center text-2xl">당첨번호</CardTitle>
           </CardHeader>
-          
+
           <CardContent className="p-8">
             {/* 당첨 번호 */}
             <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
@@ -79,8 +76,8 @@ export function LatestDrawSection() {
                 <span className="text-2xl text-gray-400">+</span>
                 <div className="relative">
                   <LottoBall number={latestDraw.bnusNo} size="lg" />
-                  <Badge 
-                    variant="secondary" 
+                  <Badge
+                    variant="secondary"
                     className="absolute -top-2 -right-2 text-xs px-1.5 py-0"
                   >
                     보너스
@@ -100,17 +97,15 @@ export function LatestDrawSection() {
                   {formatPrize(latestDraw.firstWinamnt)}
                 </p>
               </div>
-              
+
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-secondary/10 mb-3">
                   <Users className="h-6 w-6 text-secondary" />
                 </div>
                 <p className="text-sm text-gray-600 mb-1">1등 당첨자</p>
-                <p className="text-2xl font-bold text-secondary">
-                  {latestDraw.firstPrzwnerCo}명
-                </p>
+                <p className="text-2xl font-bold text-secondary">{latestDraw.firstPrzwnerCo}명</p>
               </div>
-              
+
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-accent/10 mb-3">
                   <DollarSign className="h-6 w-6 text-accent" />
@@ -126,7 +121,8 @@ export function LatestDrawSection() {
             {latestDraw.firstAccumamnt && (
               <div className="mt-6 pt-6 border-t text-center">
                 <p className="text-sm text-gray-600">
-                  누적 당첨금: <span className="font-semibold">{formatPrize(latestDraw.firstAccumamnt)}</span>
+                  누적 당첨금:{' '}
+                  <span className="font-semibold">{formatPrize(latestDraw.firstAccumamnt)}</span>
                 </p>
               </div>
             )}
