@@ -5,7 +5,7 @@ const LOTTO_MIN = 1;
 const LOTTO_MAX = 45;
 const LOTTO_COUNT = 6;
 
-export class NumberGenerator {
+export class NumberGeneratorService {
   static generate(config: GenerationConfig): GeneratorResult {
     let numbers: number[];
 

@@ -2,6 +2,7 @@ import { Loader2 } from 'lucide-react';
 import { Suspense } from 'react';
 
 import { HeroSection } from '@/components/home/HeroSection';
+import { WinningStoresSection } from '@/components/home/WinningStoresSection';
 import {
   FeatureCards,
   LatestDrawSection,
@@ -26,6 +27,10 @@ export default function HomePage() {
       </Suspense>
 
       <QuickNumberGeneration />
+
+      <Suspense fallback={<LoadingFallback />}>
+        <WinningStoresSection />
+      </Suspense>
 
       <FeatureCards />
     </main>

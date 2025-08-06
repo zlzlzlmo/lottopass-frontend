@@ -1,9 +1,16 @@
 'use client';
 
-import { useLatestDraw } from '@lottopass/api-client';
-import { formatDate, formatPrize } from '@lottopass/shared';
+// React 관련
+import React from 'react';
+
+// 외부 라이브러리
 import { Loader2, Trophy, Users, DollarSign } from 'lucide-react';
 
+// 내부 패키지 (모노레포)
+import { useLatestDraw } from '@lottopass/api-client';
+import { formatDate, formatPrize } from '@lottopass/shared';
+
+// UI 컴포넌트
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { LottoBall } from '@/components/ui/lotto-ball';

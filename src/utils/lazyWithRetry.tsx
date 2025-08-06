@@ -1,6 +1,6 @@
 import React from 'react';
 
-type ComponentImport<T = any> = () => Promise<{ default: React.ComponentType<T> }>;
+type ComponentImport<T = Record<string, unknown>> = () => Promise<{ default: React.ComponentType<T> }>;
 
 interface RetryOptions {
   maxRetries?: number;
@@ -11,8 +11,8 @@ interface RetryOptions {
  * 동적 임포트 실패 시 재시도 로직을 포함한 lazy loading
  * 네트워크 문제나 청크 로딩 실패 시 자동 재시도
  */
-export function lazyWithRetry<T extends React.ComponentType<any>>(
-  componentImport: ComponentImport<T>,
+export function lazyWithRetry<T extends React.ComponentType<Record<string, unknown>>>(
+  componentImport: ComponentImport<React.ComponentProps<T>>,
   options: RetryOptions = {}
 ): React.LazyExoticComponent<T> {
   const { maxRetries = 3, retryDelay = 1000 } = options;
@@ -47,10 +47,10 @@ export function lazyWithRetry<T extends React.ComponentType<any>>(
 /**
  * 프리로드 가능한 lazy 컴포넌트 생성
  */
-export function lazyWithPreload<T extends React.ComponentType<any>>(
-  factory: ComponentImport<T>
+export function lazyWithPreload<T extends React.ComponentType<Record<string, unknown>>>(
+  factory: ComponentImport<React.ComponentProps<T>>
 ) {
-  let componentPromise: Promise<{ default: T }> | null = null;
+  let componentPromise: Promise<{ default: React.ComponentType<React.ComponentProps<T>> }> | null = null;
   
   const load = () => {
     if (!componentPromise) {
@@ -62,17 +62,18 @@ export function lazyWithPreload<T extends React.ComponentType<any>>(
   const Component = React.lazy(load);
   
   // 프리로드 메서드 추가
-  (Component as any).preload = load;
+  const ComponentWithPreload = Component as typeof Component & { preload: typeof load };
+  ComponentWithPreload.preload = load;
   
-  return Component as React.LazyExoticComponent<T> & { preload: () => Promise<{ default: T }> };
+  return ComponentWithPreload;
 }
 
 /**
  * 조건부 동적 임포트
  */
-export function lazyIf<T extends React.ComponentType<any>>(
+export function lazyIf<T extends React.ComponentType<Record<string, unknown>>>(
   condition: boolean | (() => boolean),
-  factory: ComponentImport<T>,
+  factory: ComponentImport<React.ComponentProps<T>>,
   fallback?: T
 ): React.ComponentType<React.ComponentProps<T>> {
   const shouldLoad = typeof condition === 'function' ? condition() : condition;

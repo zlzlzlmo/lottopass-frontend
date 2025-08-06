@@ -63,35 +63,31 @@ const nextConfig = {
         assert: false,
       };
       
-      // Ignore node-specific modules in browser
-      config.plugins.push(
-        new webpack.IgnorePlugin({
-          resourceRegExp: /^(@supabase\/node-fetch|node-fetch|stream|http|https|url|whatwg-url|zlib|querystring)$/,
-        })
-      );
-      
-      // Provide empty modules for @supabase/node-fetch
-      config.plugins.push(
-        new webpack.NormalModuleReplacementPlugin(
-          /@supabase\/node-fetch/,
-          join(process.cwd(), 'src/lib/empty-module.js')
-        )
-      );
-      
-      // Replace process.env references
+      // Define process.env for client-side
       config.plugins.push(
         new webpack.DefinePlugin({
-          'process.env.NEXT_PUBLIC_SUPABASE_URL': JSON.stringify(process.env.NEXT_PUBLIC_SUPABASE_URL || ''),
-          'process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY': JSON.stringify(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''),
+          'process.env': JSON.stringify(process.env),
+          'global': 'globalThis',
         })
       );
       
-      // Provide polyfills for node-fetch
+      // Provide browser polyfills
       config.plugins.push(
         new webpack.ProvidePlugin({
-          fetch: ['node-fetch', 'default'],
+          Buffer: ['buffer', 'Buffer'],
+          process: 'process/browser',
         })
       );
+      
+      // Handle @supabase modules
+      config.module.rules.push({
+        test: /\.m?js$/,
+        include: /node_modules\/@supabase/,
+        type: 'javascript/auto',
+        resolve: {
+          fullySpecified: false,
+        },
+      });
     }
     
     // Add polyfills for React 19 compatibility

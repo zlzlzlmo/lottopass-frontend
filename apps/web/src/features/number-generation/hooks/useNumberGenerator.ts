@@ -3,7 +3,7 @@
 import { useState, useCallback } from 'react';
 import { GenerationMethod } from '@lottopass/shared';
 import { GenerationConfig, GeneratorResult } from '../types';
-import { NumberGenerator } from '../utils';
+import { NumberGeneratorService } from '../utils';
 
 export function useNumberGenerator() {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -31,7 +31,7 @@ export function useNumberGenerator() {
         method,
       };
       
-      const result = NumberGenerator.generate(finalConfig);
+      const result = NumberGeneratorService.generate(finalConfig);
       setGeneratedNumbers(prev => [result, ...prev.slice(0, 9)]); // 최대 10개 유지
       setSelectedNumbers(result.numbers);
       

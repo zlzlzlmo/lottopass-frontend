@@ -8,6 +8,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://lottopass.com'),
   title: 'LottoPass - 로또 통계 및 번호 생성',
   description: '똑똑한 로또 번호 생성과 당첨 통계 분석 서비스',
   keywords: ['로또', '로또번호생성', '로또통계', '로또당첨', '로또분석'],

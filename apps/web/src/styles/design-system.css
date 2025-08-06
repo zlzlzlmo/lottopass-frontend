@@ -1,0 +1,231 @@
+/* LottoPass Design System - Inspired by Toss Securities */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Colors - Light Mode */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 217 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 217 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 217 100% 50%;
+    --radius: 0.75rem;
+
+    /* Typography */
+    --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    --font-mono: "Fira Code", Consolas, Monaco, monospace;
+    
+    /* Spacing */
+    --spacing-unit: 0.25rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    
+    /* Animations */
+    --animation-fast: 150ms;
+    --animation-base: 300ms;
+    --animation-slow: 500ms;
+    
+    /* Z-index */
+    --z-base: 0;
+    --z-dropdown: 10;
+    --z-sticky: 20;
+    --z-fixed: 30;
+    --z-modal-backdrop: 40;
+    --z-modal: 50;
+    --z-popover: 60;
+    --z-tooltip: 70;
+  }
+
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 11%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 11%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 217 100% 60%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 217 100% 60%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 62.8% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 217 100% 60%;
+  }
+}
+
+@layer components {
+  /* Card Component - Toss Style */
+  .card-toss {
+    @apply bg-card text-card-foreground rounded-2xl border-0 shadow-sm hover:shadow-md transition-shadow duration-300;
+  }
+  
+  /* Button Variants - Toss Style */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-xl font-medium transition-all duration-200 active:scale-[0.98];
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 px-6 py-3 rounded-xl font-medium transition-all duration-200;
+  }
+  
+  .btn-ghost {
+    @apply hover:bg-accent/10 text-foreground px-6 py-3 rounded-xl font-medium transition-all duration-200;
+  }
+  
+  /* Navigation - Toss Style */
+  .nav-item {
+    @apply text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium px-4 py-2 rounded-lg hover:bg-accent/5;
+  }
+  
+  .nav-item-active {
+    @apply text-foreground bg-accent/10 font-semibold;
+  }
+  
+  /* Input - Toss Style */
+  .input-toss {
+    @apply w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200;
+  }
+  
+  /* Data Display - Toss Style */
+  .stat-card {
+    @apply p-6 rounded-2xl bg-card border-0 shadow-sm;
+  }
+  
+  .stat-value {
+    @apply text-3xl font-bold text-foreground;
+  }
+  
+  .stat-label {
+    @apply text-sm text-muted-foreground mt-1;
+  }
+  
+  .stat-change {
+    @apply text-sm font-medium mt-2 flex items-center gap-1;
+  }
+  
+  .stat-change-positive {
+    @apply text-green-600 dark:text-green-400;
+  }
+  
+  .stat-change-negative {
+    @apply text-red-600 dark:text-red-400;
+  }
+  
+  /* List Items - Toss Style */
+  .list-item-toss {
+    @apply py-4 px-4 hover:bg-accent/5 transition-colors duration-200 cursor-pointer rounded-xl;
+  }
+  
+  /* Badge - Toss Style */
+  .badge-toss {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .badge-primary {
+    @apply bg-primary/10 text-primary;
+  }
+  
+  .badge-success {
+    @apply bg-green-500/10 text-green-700 dark:text-green-400;
+  }
+  
+  .badge-warning {
+    @apply bg-yellow-500/10 text-yellow-700 dark:text-yellow-400;
+  }
+  
+  .badge-danger {
+    @apply bg-red-500/10 text-red-700 dark:text-red-400;
+  }
+  
+  /* Bottom Sheet - Mobile Style */
+  .bottom-sheet {
+    @apply fixed bottom-0 left-0 right-0 bg-card rounded-t-3xl shadow-lg z-50 transform transition-transform duration-300;
+  }
+  
+  /* Skeleton Loader */
+  .skeleton {
+    @apply animate-pulse bg-muted rounded-lg;
+  }
+}
+
+@layer utilities {
+  /* Animations */
+  .animate-slide-up {
+    animation: slideUp var(--animation-base) ease-out;
+  }
+  
+  .animate-slide-down {
+    animation: slideDown var(--animation-base) ease-out;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn var(--animation-base) ease-out;
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideDown {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Safe Area - Mobile */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

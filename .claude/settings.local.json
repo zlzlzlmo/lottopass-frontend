@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__exa__deep_researcher_start",
+      "mcp__exa__deep_researcher_check",
+      "mcp__exa__web_search_exa",
+      "Bash(find:*)",
+      "Bash(git checkout:*)",
+      "Bash(pnpm install:*)"
+    ],
+    "deny": []
+  }
+}

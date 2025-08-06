@@ -12,7 +12,7 @@ import type {
 
 export const lottoService = {
   async getLatestDraw(): Promise<LottoDraw> {
-    const response = await apiClient.get<ApiResponse<LottoDraw>>('lotto/draws/latest');
+    const response = await apiClient.get<ApiResponse<LottoDraw>>('api/lottery/draws/latest');
     return response.data;
   },
 
@@ -31,7 +31,7 @@ export const lottoService = {
 
   async getDrawByNumber(drawNumber: number): Promise<LottoDraw> {
     const response = await apiClient.get<ApiResponse<LottoDraw>>(
-      `lotto/draws/${drawNumber}`
+      `api/lottery/draws/${drawNumber}`
     );
     return response.data;
   },

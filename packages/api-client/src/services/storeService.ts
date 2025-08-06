@@ -9,9 +9,17 @@ import type {
 
 export const storeService = {
   async searchStores(params: StoreSearchParams): Promise<PaginatedResponse<Store>> {
+    const searchParams: Record<string, string> = {};
+    if (params.sido) searchParams.sido = params.sido;
+    if (params.sigungu) searchParams.sigungu = params.sigungu;
+    if (params.keyword) searchParams.keyword = params.keyword;
+    if (params.onlyWinners !== undefined) searchParams.onlyWinners = String(params.onlyWinners);
+    if (params.limit !== undefined) searchParams.limit = String(params.limit);
+    if (params.offset !== undefined) searchParams.offset = String(params.offset);
+    
     const response = await apiClient.get<ApiResponse<PaginatedResponse<Store>>>(
       'stores',
-      { searchParams: params }
+      { searchParams }
     );
     return response.data;
   },

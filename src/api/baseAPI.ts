@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance, AxiosError } from "axios";
 import { FindAllResponse } from "@/types";
 
 export class BaseApiService {
@@ -29,50 +28,62 @@ export class BaseApiService {
 
   protected async get<T>(
     url: string,
-    params?: any
+    params?: Record<string, unknown>
   ): Promise<FindAllResponse<T>> {
     try {
       const response = await this.axiosInstance.get(url, { params });
       return response.data;
-    } catch (error: any) {
-      throw new Error(error.response?.data?.message || "GET 요청 실패");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw new Error(error.response?.data?.message || "GET 요청 실패");
+      }
+      throw new Error("GET 요청 실패");
     }
   }
 
   protected async post<T>(
     url: string,
-    body?: any
+    body?: unknown
   ): Promise<FindAllResponse<T>> {
     try {
       const response = await this.axiosInstance.post(url, body);
       return response.data;
-    } catch (error: any) {
-      throw new Error(error.response?.data?.message || "POST 요청 실패");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw new Error(error.response?.data?.message || "POST 요청 실패");
+      }
+      throw new Error("POST 요청 실패");
     }
   }
 
-  protected async put<T>(url: string, body?: any): Promise<FindAllResponse<T>> {
+  protected async put<T>(url: string, body?: unknown): Promise<FindAllResponse<T>> {
     try {
       const response = await this.axiosInstance.put(url, body);
       return response.data;
-    } catch (error: any) {
-      console.log("PUT 요청 실패:", error.response?.data?.message);
-      throw new Error(error.response?.data?.message || "PUT 요청 실패");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log("PUT 요청 실패:", error.response?.data?.message);
+        throw new Error(error.response?.data?.message || "PUT 요청 실패");
+      }
+      throw new Error("PUT 요청 실패");
     }
   }
 
   protected async delete<T>(
     url: string,
-    body?: any
+    body?: unknown
   ): Promise<FindAllResponse<T>> {
     try {
       const response = await this.axiosInstance.delete(url, {
         data: body,
       });
       return response.data;
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
-      throw new Error(error.response?.data?.message || "DELETE 요청 실패");
+      if (axios.isAxiosError(error)) {
+        throw new Error(error.response?.data?.message || "DELETE 요청 실패");
+      }
+      throw new Error("DELETE 요청 실패");
     }
   }
 

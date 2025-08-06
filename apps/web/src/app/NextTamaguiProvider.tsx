@@ -15,7 +15,7 @@ export function NextTamaguiProvider({ children }: { children: React.ReactNode })
   return (
     <NextThemeProvider
       onChangeTheme={(next) => {
-        setTheme(next as string);
+        setTheme(next as any);
       }}
     >
       <TamaguiProvider config={config} themeClassNameOnRoot defaultTheme={theme}>

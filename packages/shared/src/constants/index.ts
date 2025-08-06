@@ -1,4 +1,5 @@
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || process.env.EXPO_PUBLIC_API_URL || 'https://api.lottopass.com';
+// API URL은 이제 상대 경로 사용 (Next.js API Routes)
+export const API_BASE_URL = '';
 
 export const ROUTES = {
   HOME: '/',

@@ -1,18 +1,27 @@
+// React 관련
 import React, { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+
+// 외부 라이브러리
 import { Drawer, Button } from "antd";
 import {
   MenuOutlined,
   ArrowLeftOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import styles from "./Header.module.scss";
-import { ROUTES } from "../../../constants/routes";
+
+// 상태 관리
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import { clearUser } from "@features/auth/authSlice";
+
+// 컴포넌트 및 상수
+import FlexContainer from "@components/common/container/FlexContainer";
+import { DarkModeToggle } from "@components/common/DarkModeToggle";
+import { ROUTES } from "@/constants/routes";
 import COLORS from "@/constants/colors";
-import { clearUser } from "@/features/auth/authSlice";
-import FlexContainer from "@/components/common/container/FlexContainer";
-import { DarkModeToggle } from "@/components/common/DarkModeToggle";
+
+// 스타일
+import styles from "./Header.module.scss";
 
 const Header: React.FC = () => {
   const [isDrawerVisible, setDrawerVisible] = useState(false);

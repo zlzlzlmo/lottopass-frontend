@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useRef } from "react";
 import { Button, Modal, message, Typography } from "antd";
 import { CloseOutlined, QrcodeOutlined } from "@ant-design/icons";
@@ -53,8 +52,8 @@ const QRScanner: React.FC = () => {
       const combinations = data.slice(1).map((v) => parseLottoNumber(v));
       const transactionId = data[data.length - 1].substring(12);
       return { drawNumber, combinations, transactionId };
-    } catch (error: any) {
-      console.error("QR 코드 파싱 실패:", error.message);
+    } catch (error) {
+      console.error("QR 코드 파싱 실패:", error instanceof Error ? error.message : error);
       return null;
     }
   };
@@ -78,8 +77,8 @@ const QRScanner: React.FC = () => {
           navigate(ROUTES.DASHBOARD.path);
         },
       });
-    } catch (error: any) {
-      message.error(error.message);
+    } catch (error) {
+      message.error(error instanceof Error ? error.message : "저장에 실패했습니다.");
     }
   };
   const startScanner = async () => {

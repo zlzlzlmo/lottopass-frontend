@@ -1,5 +1,5 @@
 import ky from 'ky';
-import type { KyInstance } from 'ky';
+import type { KyInstance, Options as KyOptions } from 'ky';
 import { API_BASE_URL, STORAGE_KEYS } from '@lottopass/shared';
 
 class ApiClient {
@@ -78,23 +78,23 @@ class ApiClient {
   }
 
   // HTTP Methods
-  async get<T>(url: string, options?: any): Promise<T> {
+  async get<T>(url: string, options?: KyOptions): Promise<T> {
     return this.client.get(url, options).json<T>();
   }
 
-  async post<T>(url: string, data?: any, options?: any): Promise<T> {
+  async post<T>(url: string, data?: unknown, options?: KyOptions): Promise<T> {
     return this.client.post(url, { json: data, ...options }).json<T>();
   }
 
-  async put<T>(url: string, data?: any, options?: any): Promise<T> {
+  async put<T>(url: string, data?: unknown, options?: KyOptions): Promise<T> {
     return this.client.put(url, { json: data, ...options }).json<T>();
   }
 
-  async patch<T>(url: string, data?: any, options?: any): Promise<T> {
+  async patch<T>(url: string, data?: unknown, options?: KyOptions): Promise<T> {
     return this.client.patch(url, { json: data, ...options }).json<T>();
   }
 
-  async delete<T>(url: string, options?: any): Promise<T> {
+  async delete<T>(url: string, options?: KyOptions): Promise<T> {
     return this.client.delete(url, options).json<T>();
   }
 }

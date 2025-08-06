@@ -1,0 +1,1195 @@
+
+> lottopass@1.0.0 dev
+> turbo dev
+
+turbo 2.5.5
+
+• Packages in scope: @lottopass/api-client, @lottopass/core, @lottopass/eslint-config, @lottopass/mobile, @lottopass/shared, @lottopass/stores, @lottopass/typescript-config, @lottopass/ui, @lottopass/ui-universal, @lottopass/web
+• Running dev in 10 packages
+• Remote caching disabled
+@lottopass/api-client:dev: cache bypass, force executing 14529f1fc81fe290
+@lottopass/ui-universal:dev: cache bypass, force executing 1162f770ee2d080c
+@lottopass/shared:dev: cache bypass, force executing da4ef0b0c846eb15
+@lottopass/ui:dev: cache bypass, force executing a01e19b7ea35ca68
+@lottopass/web:dev: cache bypass, force executing 41fe4b2bccb448f2
+@lottopass/stores:dev: cache bypass, force executing eac99678d051a5b0
+@lottopass/mobile:dev: cache bypass, force executing 90ac88fb218804dc
+@lottopass/core:dev: cache bypass, force executing 7bc6ecb71eed91c5
+@lottopass/shared:dev: 
+@lottopass/shared:dev: > @lottopass/shared@0.0.0 dev /Users/seunghoon/Documents/lottopass-frontend/packages/shared
+@lottopass/shared:dev: > tsup --watch
+@lottopass/shared:dev: 
+@lottopass/web:dev: 
+@lottopass/web:dev: > @lottopass/web@0.1.0 dev /Users/seunghoon/Documents/lottopass-frontend/apps/web
+@lottopass/web:dev: > next dev
+@lottopass/web:dev: 
+@lottopass/ui:dev: 
+@lottopass/ui:dev: > @lottopass/ui@0.0.0 dev /Users/seunghoon/Documents/lottopass-frontend/packages/ui
+@lottopass/ui:dev: > tsup --watch
+@lottopass/ui:dev: 
+@lottopass/stores:dev: 
+@lottopass/stores:dev: > @lottopass/stores@0.0.0 dev /Users/seunghoon/Documents/lottopass-frontend/packages/stores
+@lottopass/stores:dev: > tsup --watch
+@lottopass/stores:dev: 
+@lottopass/mobile:dev: 
+@lottopass/mobile:dev: > @lottopass/mobile@1.0.0 dev /Users/seunghoon/Documents/lottopass-frontend/apps/mobile
+@lottopass/mobile:dev: > expo start
+@lottopass/mobile:dev: 
+@lottopass/core:dev: 
+@lottopass/core:dev: > @lottopass/core@0.0.0 dev /Users/seunghoon/Documents/lottopass-frontend/packages/core
+@lottopass/core:dev: > tsup --watch
+@lottopass/core:dev: 
+@lottopass/ui-universal:dev: 
+@lottopass/ui-universal:dev: > @lottopass/ui-universal@0.0.0 dev /Users/seunghoon/Documents/lottopass-frontend/packages/ui-universal
+@lottopass/ui-universal:dev: > tsup --watch
+@lottopass/ui-universal:dev: 
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: > @lottopass/api-client@0.0.0 dev /Users/seunghoon/Documents/lottopass-frontend/packages/api-client
+@lottopass/api-client:dev: > tsup --watch
+@lottopass/api-client:dev: 
+@lottopass/ui-universal:dev: CLI Building entry: src/index.ts
+@lottopass/ui-universal:dev: CLI Using tsconfig: tsconfig.json
+@lottopass/ui-universal:dev: CLI tsup v8.5.0
+@lottopass/ui-universal:dev: CLI Using tsup config: /Users/seunghoon/Documents/lottopass-frontend/packages/ui-universal/tsup.config.ts
+@lottopass/ui-universal:dev: CLI Running in watch mode
+@lottopass/ui:dev: CLI Building entry: src/index.ts
+@lottopass/ui:dev: CLI Using tsconfig: tsconfig.json
+@lottopass/ui:dev: CLI tsup v8.5.0
+@lottopass/ui:dev: CLI Using tsup config: /Users/seunghoon/Documents/lottopass-frontend/packages/ui/tsup.config.ts
+@lottopass/ui:dev: CLI Running in watch mode
+@lottopass/api-client:dev: CLI Building entry: src/index.ts
+@lottopass/api-client:dev: CLI Using tsconfig: tsconfig.json
+@lottopass/api-client:dev: CLI tsup v8.5.0
+@lottopass/api-client:dev: CLI Using tsup config: /Users/seunghoon/Documents/lottopass-frontend/packages/api-client/tsup.config.ts
+@lottopass/api-client:dev: CLI Running in watch mode
+@lottopass/shared:dev: CLI Building entry: src/index.ts
+@lottopass/shared:dev: CLI Using tsconfig: tsconfig.json
+@lottopass/shared:dev: CLI tsup v8.5.0
+@lottopass/shared:dev: CLI Using tsup config: /Users/seunghoon/Documents/lottopass-frontend/packages/shared/tsup.config.ts
+@lottopass/shared:dev: CLI Running in watch mode
+@lottopass/ui-universal:dev: CLI Target: es2020
+@lottopass/ui:dev: CLI Target: es2022
+@lottopass/shared:dev: CLI Target: es2022
+@lottopass/api-client:dev: CLI Target: es2020
+@lottopass/shared:dev: CLI Cleaning output folder
+@lottopass/ui-universal:dev: CLI Cleaning output folder
+@lottopass/shared:dev: CJS Build start
+@lottopass/shared:dev: ESM Build start
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/ui-universal:dev: CJS Build start
+@lottopass/ui-universal:dev: ESM Build start
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/ui:dev: CLI Cleaning output folder
+@lottopass/ui:dev: CJS Build start
+@lottopass/ui:dev: ESM Build start
+@lottopass/stores:dev: CLI Building entry: src/index.ts
+@lottopass/stores:dev: CLI Using tsconfig: tsconfig.json
+@lottopass/stores:dev: CLI tsup v8.5.0
+@lottopass/stores:dev: CLI Using tsup config: /Users/seunghoon/Documents/lottopass-frontend/packages/stores/tsup.config.ts
+@lottopass/stores:dev: CLI Running in watch mode
+@lottopass/stores:dev: CLI Target: es2022
+@lottopass/stores:dev: CLI Cleaning output folder
+@lottopass/stores:dev: CJS Build start
+@lottopass/stores:dev: ESM Build start
+@lottopass/core:dev: CLI Building entry: src/index.ts
+@lottopass/core:dev: CLI Using tsconfig: tsconfig.json
+@lottopass/core:dev: CLI tsup v8.5.0
+@lottopass/core:dev: CLI Using tsup config: /Users/seunghoon/Documents/lottopass-frontend/packages/core/tsup.config.ts
+@lottopass/core:dev: CLI Running in watch mode
+@lottopass/core:dev: CLI Target: es2020
+@lottopass/ui-universal:dev: CJS dist/index.js     5.50 KB
+@lottopass/ui-universal:dev: CJS dist/index.js.map 6.69 KB
+@lottopass/ui-universal:dev: CJS ⚡️ Build success in 305ms
+@lottopass/ui-universal:dev: ESM dist/index.mjs     3.63 KB
+@lottopass/ui-universal:dev: ESM dist/index.mjs.map 6.26 KB
+@lottopass/ui-universal:dev: ESM ⚡️ Build success in 309ms
+@lottopass/ui-universal:dev: CLI Watching for changes in "."
+@lottopass/ui-universal:dev: CLI Ignoring changes in "**/{.git,node_modules}/**" | "dist"
+@lottopass/core:dev: CLI Cleaning output folder
+@lottopass/core:dev: CJS Build start
+@lottopass/core:dev: ESM Build start
+@lottopass/core:dev: ✘ [ERROR] Expected "(" but found "!=="
+@lottopass/core:dev: 
+@lottopass/core:dev:     src/services/draw.service.ts:71:24:
+@lottopass/core:dev:       71 │       if (typeof import !== 'undefined' && import.meta?.env?.DEV) {
+@lottopass/core:dev:          │                         ~~~
+@lottopass/core:dev:          ╵                         (
+@lottopass/core:dev: 
+@lottopass/core:dev: ✘ [ERROR] Expected "(" but found "!=="
+@lottopass/core:dev: 
+@lottopass/core:dev:     src/services/draw.service.ts:71:24:
+@lottopass/core:dev:       71 │       if (typeof import !== 'undefined' && import.meta?.env?.DEV) {
+@lottopass/core:dev:          │                         ~~~
+@lottopass/core:dev:          ╵                         (
+@lottopass/core:dev: 
+@lottopass/core:dev: ESM Build failed
+@lottopass/core:dev: CJS Build failed
+@lottopass/core:dev: Error: Build failed with 1 error:
+@lottopass/core:dev: src/services/draw.service.ts:71:24: ERROR: Expected "(" but found "!=="
+@lottopass/core:dev:     at failureErrorWithLog (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/esbuild@0.25.8/node_modules/esbuild/lib/main.js:1467:15)
+@lottopass/core:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/esbuild@0.25.8/node_modules/esbuild/lib/main.js:926:25
+@lottopass/core:dev:     at runOnEndCallbacks (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/esbuild@0.25.8/node_modules/esbuild/lib/main.js:1307:45)
+@lottopass/core:dev:     at buildResponseToResult (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/esbuild@0.25.8/node_modules/esbuild/lib/main.js:924:7)
+@lottopass/core:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/esbuild@0.25.8/node_modules/esbuild/lib/main.js:951:16
+@lottopass/core:dev:     at responseCallbacks.<computed> (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/esbuild@0.25.8/node_modules/esbuild/lib/main.js:603:9)
+@lottopass/core:dev:     at handleIncomingPacket (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/esbuild@0.25.8/node_modules/esbuild/lib/main.js:658:12)
+@lottopass/core:dev:     at Socket.readFromStdout (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/esbuild@0.25.8/node_modules/esbuild/lib/main.js:581:7)
+@lottopass/core:dev:     at Socket.emit (node:events:524:28)
+@lottopass/core:dev:     at addChunk (node:internal/streams/readable:561:12)
+@lottopass/stores:dev: ✘ [ERROR] Could not resolve "@/api"
+@lottopass/stores:dev: 
+@lottopass/stores:dev:     src/draw.store.ts:3:28:
+@lottopass/stores:dev:       3 │ import { drawService } from '@/api';
+@lottopass/stores:dev:         ╵                             ~~~~~~~
+@lottopass/stores:dev: 
+@lottopass/stores:dev:   You can mark the path "@/api" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+@lottopass/stores:dev: 
+@lottopass/stores:dev: ✘ [ERROR] Could not resolve "@/api"
+@lottopass/stores:dev: 
+@lottopass/stores:dev:     src/draw.store.ts:3:28:
+@lottopass/stores:dev:       3 │ import { drawService } from '@/api';
+@lottopass/stores:dev:         ╵                             ~~~~~~~
+@lottopass/stores:dev: 
+@lottopass/stores:dev:   You can mark the path "@/api" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+@lottopass/stores:dev: 
+@lottopass/stores:dev: ESM Build failed
+@lottopass/stores:dev: CJS Build failed
+@lottopass/stores:dev: Error: Build failed with 1 error:
+@lottopass/stores:dev: src/draw.store.ts:3:28: ERROR: Could not resolve "@/api"
+@lottopass/stores:dev:     at failureErrorWithLog (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/esbuild@0.25.8/node_modules/esbuild/lib/main.js:1467:15)
+@lottopass/stores:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/esbuild@0.25.8/node_modules/esbuild/lib/main.js:926:25
+@lottopass/stores:dev:     at runOnEndCallbacks (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/esbuild@0.25.8/node_modules/esbuild/lib/main.js:1307:45)
+@lottopass/stores:dev:     at buildResponseToResult (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/esbuild@0.25.8/node_modules/esbuild/lib/main.js:924:7)
+@lottopass/stores:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/esbuild@0.25.8/node_modules/esbuild/lib/main.js:951:16
+@lottopass/stores:dev:     at responseCallbacks.<computed> (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/esbuild@0.25.8/node_modules/esbuild/lib/main.js:603:9)
+@lottopass/stores:dev:     at handleIncomingPacket (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/esbuild@0.25.8/node_modules/esbuild/lib/main.js:658:12)
+@lottopass/stores:dev:     at Socket.readFromStdout (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/esbuild@0.25.8/node_modules/esbuild/lib/main.js:581:7)
+@lottopass/stores:dev:     at Socket.emit (node:events:524:28)
+@lottopass/stores:dev:     at addChunk (node:internal/streams/readable:561:12)
+@lottopass/mobile:dev: Starting project at /Users/seunghoon/Documents/lottopass-frontend/apps/mobile
+@lottopass/shared:dev: ESM dist/index.mjs     11.37 KB
+@lottopass/shared:dev: ESM dist/index.mjs.map 22.29 KB
+@lottopass/shared:dev: ESM ⚡️ Build success in 824ms
+@lottopass/shared:dev: CJS dist/index.js     13.12 KB
+@lottopass/shared:dev: CJS dist/index.js.map 22.37 KB
+@lottopass/shared:dev: CJS ⚡️ Build success in 824ms
+@lottopass/shared:dev: CLI Watching for changes in "."
+@lottopass/shared:dev: CLI Ignoring changes in "**/{.git,node_modules}/**" | "dist"
+@lottopass/ui:dev: CJS dist/index.js     10.85 KB
+@lottopass/ui:dev: CJS dist/index.js.map 29.82 KB
+@lottopass/ui:dev: CJS ⚡️ Build success in 991ms
+@lottopass/ui:dev: ESM dist/index.mjs     8.99 KB
+@lottopass/ui:dev: ESM dist/index.mjs.map 29.82 KB
+@lottopass/ui:dev: ESM ⚡️ Build success in 992ms
+@lottopass/ui:dev: CLI Watching for changes in "."
+@lottopass/ui:dev: CLI Ignoring changes in "**/{.git,node_modules}/**" | "dist"
+@lottopass/ui:dev: DTS Build start
+@lottopass/stores:dev: DTS Build start
+@lottopass/core:dev: DTS Build start
+@lottopass/web:dev:  ⚠ Port 3000 is in use, trying 3001 instead.
+@lottopass/mobile:dev: Starting Metro Bundler
+@lottopass/mobile:dev: Waiting on http://localhost:8081
+@lottopass/mobile:dev: Logs for your project will appear below.
+@lottopass/web:dev:    ▲ Next.js 15.1.6
+@lottopass/web:dev:    - Local:        http://localhost:3001
+@lottopass/web:dev:    - Network:      http://192.168.45.222:3001
+@lottopass/web:dev:    - Environments: .env.local
+@lottopass/web:dev: 
+@lottopass/web:dev:  ✓ Starting...
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: src/index.ts(8,1): error TS2308: Module './hooks' has already exported a member named 'useLatestDraw'. Consider explicitly re-exporting to resolve the ambiguity.
+@lottopass/api-client:dev: src/index.ts(8,1): error TS2308: Module './hooks' has already exported a member named 'useRegions'. Consider explicitly re-exporting to resolve the ambiguity.
+@lottopass/api-client:dev: src/index.ts(8,1): error TS2308: Module './hooks' has already exported a member named 'useWinningStores'. Consider explicitly re-exporting to resolve the ambiguity.
+@lottopass/api-client:dev: src/index.ts(20,8): error TS2307: Cannot find module '@lottopass/shared/types/lottery' or its corresponding type declarations.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: DTS Build failed
+@lottopass/api-client:dev: Error: error occurred in dts build
+@lottopass/api-client:dev:     at Worker.<anonymous> (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/index.js:1545:26)
+@lottopass/api-client:dev:     at Worker.emit (node:events:524:28)
+@lottopass/api-client:dev:     at MessagePort.<anonymous> (node:internal/worker:268:53)
+@lottopass/api-client:dev:     at [nodejs.internal.kHybridDispatch] (node:internal/event_target:831:20)
+@lottopass/api-client:dev:     at MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)
+@lottopass/api-client:dev: RollupError: [plugin dts] src/index.ts: Failed to compile. Check the logs above.
+@lottopass/api-client:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/api-client:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/api-client:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/api-client:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/api-client:dev: CJS dist/index.js     582.50 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 12662ms
+@lottopass/api-client:dev: ESM dist/index.mjs     579.97 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 12663ms
+@lottopass/api-client:dev: CLI Watching for changes in "."
+@lottopass/api-client:dev: CLI Ignoring changes in "**/{.git,node_modules}/**" | "dist"
+@lottopass/core:dev: src/services/draw.service.ts(71,18): error TS1109: Expression expected.
+@lottopass/core:dev: src/services/draw.service.ts(71,25): error TS1109: Expression expected.
+@lottopass/core:dev: src/services/draw.service.ts(71,65): error TS1005: ';' expected.
+@lottopass/core:dev: src/services/draw.service.ts(73,9): error TS1128: Declaration or statement expected.
+@lottopass/core:dev: src/services/draw.service.ts(216,16): error TS1109: Expression expected.
+@lottopass/core:dev: src/services/draw.service.ts(216,23): error TS1109: Expression expected.
+@lottopass/core:dev: src/services/draw.service.ts(216,63): error TS1005: ';' expected.
+@lottopass/core:dev: src/services/draw.service.ts(71,57): error TS2339: Property 'env' does not exist on type 'ImportMeta'.
+@lottopass/core:dev: src/services/draw.service.ts(216,55): error TS2339: Property 'env' does not exist on type 'ImportMeta'.
+@lottopass/core:dev: 
+@lottopass/core:dev: DTS Build failed
+@lottopass/core:dev: RollupError: [plugin dts] src/services/draw.service.ts: Failed to compile. Check the logs above.
+@lottopass/core:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/core:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/core:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/core:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/core:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/core:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/stores:dev: src/draw.store.ts(3,29): error TS2307: Cannot find module '@/api' or its corresponding type declarations.
+@lottopass/stores:dev: 
+@lottopass/stores:dev: DTS Build failed
+@lottopass/stores:dev: RollupError: [plugin dts] src/draw.store.ts: Failed to compile. Check the logs above.
+@lottopass/stores:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/stores:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/stores:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/stores:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/stores:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/stores:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/shared:dev: DTS Build start
+@lottopass/shared:dev: DTS ⚡️ Build success in 10300ms
+@lottopass/web:dev:  ✓ Ready in 17.5s
+@lottopass/ui-universal:dev: DTS Build start
+@lottopass/ui-universal:dev: DTS ⚡️ Build success in 8440ms
+@lottopass/ui:dev: DTS ⚡️ Build success in 19794ms
+@lottopass/stores:dev: DTS Build start
+@lottopass/stores:dev: src/user.store.ts(3,35): error TS2307: Cannot find module '@lottopass/core' or its corresponding type declarations.
+@lottopass/stores:dev: src/user.store.ts(116,63): error TS7006: Parameter 'nums' implicitly has an 'any' type.
+@lottopass/stores:dev: src/user.store.ts(116,69): error TS7006: Parameter 'index' implicitly has an 'any' type.
+@lottopass/stores:dev: 
+@lottopass/stores:dev: DTS Build failed
+@lottopass/stores:dev: RollupError: [plugin dts] src/user.store.ts: Failed to compile. Check the logs above.
+@lottopass/stores:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/stores:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/stores:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/stores:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/stores:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/stores:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/stores:dev: src/draw.store.ts(3,29): error TS2307: Cannot find module '@/api' or its corresponding type declarations.
+@lottopass/stores:dev: 
+@lottopass/stores:dev: src/lottery.store.ts(3,35): error TS2307: Cannot find module '@lottopass/core' or its corresponding type declarations.
+@lottopass/stores:dev: src/lottery.store.ts(145,51): error TS7006: Parameter 'result' implicitly has an 'any' type.
+@lottopass/stores:dev: 
+@lottopass/stores:dev: DTS Build start
+@lottopass/stores:dev: src/draw.store.ts(3,29): error TS2307: Cannot find module '@lottopass/core' or its corresponding type declarations.
+@lottopass/stores:dev: src/draw.store.ts(31,31): error TS2552: Cannot find name 'drawService'. Did you mean 'DrawService'?
+@lottopass/stores:dev: src/draw.store.ts(42,30): error TS2552: Cannot find name 'drawService'. Did you mean 'DrawService'?
+@lottopass/stores:dev: src/draw.store.ts(53,30): error TS2552: Cannot find name 'drawService'. Did you mean 'DrawService'?
+@lottopass/stores:dev: 
+@lottopass/stores:dev: DTS Build failed
+@lottopass/stores:dev: RollupError: [plugin dts] src/draw.store.ts: Failed to compile. Check the logs above.
+@lottopass/stores:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/stores:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/stores:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/stores:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/stores:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/stores:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/stores:dev: src/lottery.store.ts(3,35): error TS2307: Cannot find module '@lottopass/core' or its corresponding type declarations.
+@lottopass/stores:dev: src/lottery.store.ts(145,51): error TS7006: Parameter 'result' implicitly has an 'any' type.
+@lottopass/stores:dev: 
+@lottopass/stores:dev: src/user.store.ts(3,35): error TS2307: Cannot find module '@lottopass/core' or its corresponding type declarations.
+@lottopass/stores:dev: src/user.store.ts(116,63): error TS7006: Parameter 'nums' implicitly has an 'any' type.
+@lottopass/stores:dev: src/user.store.ts(116,69): error TS7006: Parameter 'index' implicitly has an 'any' type.
+@lottopass/stores:dev: 
+@lottopass/stores:dev: DTS Build start
+@lottopass/stores:dev: src/lottery.store.ts(3,35): error TS2307: Cannot find module '@lottopass/core' or its corresponding type declarations.
+@lottopass/stores:dev: src/lottery.store.ts(145,51): error TS7006: Parameter 'result' implicitly has an 'any' type.
+@lottopass/stores:dev: 
+@lottopass/stores:dev: DTS Build failed
+@lottopass/stores:dev: RollupError: [plugin dts] src/lottery.store.ts: Failed to compile. Check the logs above.
+@lottopass/stores:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/stores:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/stores:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/stores:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/stores:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/stores:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/stores:dev: src/draw.store.ts(3,29): error TS2307: Cannot find module '@lottopass/core' or its corresponding type declarations.
+@lottopass/stores:dev: 
+@lottopass/stores:dev: src/user.store.ts(3,35): error TS2307: Cannot find module '@lottopass/core' or its corresponding type declarations.
+@lottopass/stores:dev: src/user.store.ts(116,63): error TS7006: Parameter 'nums' implicitly has an 'any' type.
+@lottopass/stores:dev: src/user.store.ts(116,69): error TS7006: Parameter 'index' implicitly has an 'any' type.
+@lottopass/stores:dev: 
+@lottopass/core:dev: DTS Build start
+@lottopass/core:dev: src/services/draw.service.ts(216,16): error TS1109: Expression expected.
+@lottopass/core:dev: src/services/draw.service.ts(216,23): error TS1109: Expression expected.
+@lottopass/core:dev: src/services/draw.service.ts(216,63): error TS1005: ';' expected.
+@lottopass/core:dev: src/services/draw.service.ts(216,55): error TS2339: Property 'env' does not exist on type 'ImportMeta'.
+@lottopass/core:dev: 
+@lottopass/core:dev: DTS Build failed
+@lottopass/core:dev: RollupError: [plugin dts] src/services/draw.service.ts: Failed to compile. Check the logs above.
+@lottopass/core:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/core:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/core:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/core:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/core:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/core:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/core:dev: DTS Build start
+@lottopass/core:dev: DTS ⚡️ Build success in 768ms
+@lottopass/web:dev:  ○ Compiling /api/lottery/draws/latest ...
+@lottopass/web:dev:  ✓ Compiled /api/lottery/draws/latest in 759ms (328 modules)
+@lottopass/web:dev:  GET /api/lottery/draws/latest 200 in 1066ms
+@lottopass/web:dev:  ✓ Compiled /api/lottery/statistics in 152ms (330 modules)
+@lottopass/web:dev:  GET /api/lottery/draws/latest 200 in 84ms
+@lottopass/web:dev:  ✓ Compiled /api/lottery/draws/[round] in 63ms (332 modules)
+@lottopass/web:dev: Error: Route "/api/lottery/draws/[round]" used `params.round`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+@lottopass/web:dev:     at round (src/app/api/lottery/draws/[round]/route.ts:92:34)
+@lottopass/web:dev:   90 | ) {
+@lottopass/web:dev:   91 |   try {
+@lottopass/web:dev: > 92 |     const round = parseInt(params.round);
+@lottopass/web:dev:      |                                  ^
+@lottopass/web:dev:   93 |     
+@lottopass/web:dev:   94 |     if (isNaN(round) || round < 1) {
+@lottopass/web:dev:   95 |       return NextResponse.json(
+@lottopass/web:dev: Error: Route "/api/lottery/draws/[round]" used `params.round`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+@lottopass/web:dev:     at round (src/app/api/lottery/draws/[round]/route.ts:92:34)
+@lottopass/web:dev:   90 | ) {
+@lottopass/web:dev:   91 |   try {
+@lottopass/web:dev: > 92 |     const round = parseInt(params.round);
+@lottopass/web:dev:      |                                  ^
+@lottopass/web:dev:   93 |     
+@lottopass/web:dev:   94 |     if (isNaN(round) || round < 1) {
+@lottopass/web:dev:   95 |       return NextResponse.json(
+@lottopass/web:dev: Error: Route "/api/lottery/draws/[round]" used `params.round`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+@lottopass/web:dev:     at round (src/app/api/lottery/draws/[round]/route.ts:92:34)
+@lottopass/web:dev:   90 | ) {
+@lottopass/web:dev:   91 |   try {
+@lottopass/web:dev: > 92 |     const round = parseInt(params.round);
+@lottopass/web:dev:      |                                  ^
+@lottopass/web:dev:   93 |     
+@lottopass/web:dev:   94 |     if (isNaN(round) || round < 1) {
+@lottopass/web:dev:   95 |       return NextResponse.json(
+@lottopass/web:dev: Error: Route "/api/lottery/draws/[round]" used `params.round`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+@lottopass/web:dev:     at round (src/app/api/lottery/draws/[round]/route.ts:92:34)
+@lottopass/web:dev:   90 | ) {
+@lottopass/web:dev:   91 |   try {
+@lottopass/web:dev: > 92 |     const round = parseInt(params.round);
+@lottopass/web:dev:      |                                  ^
+@lottopass/web:dev:   93 |     
+@lottopass/web:dev:   94 |     if (isNaN(round) || round < 1) {
+@lottopass/web:dev:   95 |       return NextResponse.json(
+@lottopass/web:dev: Error: Route "/api/lottery/draws/[round]" used `params.round`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+@lottopass/web:dev:     at round (src/app/api/lottery/draws/[round]/route.ts:92:34)
+@lottopass/web:dev:   90 | ) {
+@lottopass/web:dev:   91 |   try {
+@lottopass/web:dev: > 92 |     const round = parseInt(params.round);
+@lottopass/web:dev:      |                                  ^
+@lottopass/web:dev:   93 |     
+@lottopass/web:dev:   94 |     if (isNaN(round) || round < 1) {
+@lottopass/web:dev:   95 |       return NextResponse.json(
+@lottopass/web:dev: Error: Route "/api/lottery/draws/[round]" used `params.round`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+@lottopass/web:dev:     at round (src/app/api/lottery/draws/[round]/route.ts:92:34)
+@lottopass/web:dev:   90 | ) {
+@lottopass/web:dev:   91 |   try {
+@lottopass/web:dev: > 92 |     const round = parseInt(params.round);
+@lottopass/web:dev:      |                                  ^
+@lottopass/web:dev:   93 |     
+@lottopass/web:dev:   94 |     if (isNaN(round) || round < 1) {
+@lottopass/web:dev:   95 |       return NextResponse.json(
+@lottopass/web:dev: Error: Route "/api/lottery/draws/[round]" used `params.round`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+@lottopass/web:dev:     at round (src/app/api/lottery/draws/[round]/route.ts:92:34)
+@lottopass/web:dev:   90 | ) {
+@lottopass/web:dev:   91 |   try {
+@lottopass/web:dev: > 92 |     const round = parseInt(params.round);
+@lottopass/web:dev:      |                                  ^
+@lottopass/web:dev:   93 |     
+@lottopass/web:dev:   94 |     if (isNaN(round) || round < 1) {
+@lottopass/web:dev:   95 |       return NextResponse.json(
+@lottopass/web:dev: Error: Route "/api/lottery/draws/[round]" used `params.round`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+@lottopass/web:dev:     at round (src/app/api/lottery/draws/[round]/route.ts:92:34)
+@lottopass/web:dev:   90 | ) {
+@lottopass/web:dev:   91 |   try {
+@lottopass/web:dev: > 92 |     const round = parseInt(params.round);
+@lottopass/web:dev:      |                                  ^
+@lottopass/web:dev:   93 |     
+@lottopass/web:dev:   94 |     if (isNaN(round) || round < 1) {
+@lottopass/web:dev:   95 |       return NextResponse.json(
+@lottopass/web:dev: Error: Route "/api/lottery/draws/[round]" used `params.round`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+@lottopass/web:dev:     at round (src/app/api/lottery/draws/[round]/route.ts:92:34)
+@lottopass/web:dev:   90 | ) {
+@lottopass/web:dev:   91 |   try {
+@lottopass/web:dev: > 92 |     const round = parseInt(params.round);
+@lottopass/web:dev:      |                                  ^
+@lottopass/web:dev:   93 |     
+@lottopass/web:dev:   94 |     if (isNaN(round) || round < 1) {
+@lottopass/web:dev:   95 |       return NextResponse.json(
+@lottopass/web:dev: Error: Route "/api/lottery/draws/[round]" used `params.round`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+@lottopass/web:dev:     at round (src/app/api/lottery/draws/[round]/route.ts:92:34)
+@lottopass/web:dev:   90 | ) {
+@lottopass/web:dev:   91 |   try {
+@lottopass/web:dev: > 92 |     const round = parseInt(params.round);
+@lottopass/web:dev:      |                                  ^
+@lottopass/web:dev:   93 |     
+@lottopass/web:dev:   94 |     if (isNaN(round) || round < 1) {
+@lottopass/web:dev:   95 |       return NextResponse.json(
+@lottopass/web:dev:  GET /api/lottery/draws/1181 200 in 682ms
+@lottopass/web:dev:  GET /api/lottery/draws/1173 200 in 737ms
+@lottopass/web:dev:  GET /api/lottery/draws/1176 200 in 740ms
+@lottopass/web:dev:  GET /api/lottery/draws/1177 200 in 742ms
+@lottopass/web:dev:  GET /api/lottery/draws/1180 200 in 744ms
+@lottopass/web:dev:  GET /api/lottery/draws/1179 200 in 744ms
+@lottopass/web:dev:  GET /api/lottery/draws/1175 200 in 743ms
+@lottopass/web:dev:  GET /api/lottery/draws/1178 200 in 746ms
+@lottopass/web:dev:  GET /api/lottery/draws/1182 200 in 748ms
+@lottopass/web:dev:  GET /api/lottery/draws/1174 200 in 755ms
+@lottopass/web:dev:  GET /api/lottery/statistics?recent=10 200 in 1028ms
+@lottopass/stores:dev: DTS Build start
+@lottopass/stores:dev: src/draw.store.ts(43,42): error TS2339: Property 'getDrawByRound' does not exist on type 'DrawService'.
+@lottopass/stores:dev: 
+@lottopass/stores:dev: DTS Build failed
+@lottopass/stores:dev: RollupError: [plugin dts] src/draw.store.ts: Failed to compile. Check the logs above.
+@lottopass/stores:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/stores:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/stores:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/stores:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/stores:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/stores:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/stores:dev: src/authStore.ts(4,15): error TS2305: Module '"@lottopass/shared"' has no exported member 'User'.
+@lottopass/stores:dev: src/authStore.ts(4,21): error TS2305: Module '"@lottopass/shared"' has no exported member 'AuthTokens'.
+@lottopass/stores:dev: 
+@lottopass/stores:dev: src/lottoStore.ts(5,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'LottoDraw'.
+@lottopass/stores:dev: src/lottoStore.ts(6,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'GeneratedNumbers'.
+@lottopass/stores:dev: src/lottoStore.ts(7,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'SavedCombination'.
+@lottopass/stores:dev: src/lottoStore.ts(8,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'DrawStatistics'.
+@lottopass/stores:dev: src/lottoStore.ts(76,16): error TS7006: Parameter 'item' implicitly has an 'any' type.
+@lottopass/stores:dev: src/lottoStore.ts(93,16): error TS7006: Parameter 'item' implicitly has an 'any' type.
+@lottopass/stores:dev: src/lottoStore.ts(100,16): error TS7006: Parameter 'item' implicitly has an 'any' type.
+@lottopass/stores:dev: 
+@lottopass/stores:dev: DTS Build start
+@lottopass/stores:dev: src/authStore.ts(4,15): error TS2305: Module '"@lottopass/shared"' has no exported member 'User'.
+@lottopass/stores:dev: src/authStore.ts(4,21): error TS2305: Module '"@lottopass/shared"' has no exported member 'AuthTokens'.
+@lottopass/stores:dev: 
+@lottopass/stores:dev: DTS Build failed
+@lottopass/stores:dev: RollupError: [plugin dts] src/authStore.ts: Failed to compile. Check the logs above.
+@lottopass/stores:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/stores:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/stores:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/stores:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/stores:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/stores:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/stores:dev: src/lottoStore.ts(5,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'LottoDraw'.
+@lottopass/stores:dev: src/lottoStore.ts(6,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'GeneratedNumbers'.
+@lottopass/stores:dev: src/lottoStore.ts(7,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'SavedCombination'.
+@lottopass/stores:dev: src/lottoStore.ts(8,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'DrawStatistics'.
+@lottopass/stores:dev: src/lottoStore.ts(76,16): error TS7006: Parameter 'item' implicitly has an 'any' type.
+@lottopass/stores:dev: src/lottoStore.ts(93,16): error TS7006: Parameter 'item' implicitly has an 'any' type.
+@lottopass/stores:dev: src/lottoStore.ts(100,16): error TS7006: Parameter 'item' implicitly has an 'any' type.
+@lottopass/stores:dev: 
+@lottopass/stores:dev: DTS Build start
+@lottopass/stores:dev: src/lottoStore.ts(5,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'LottoDraw'.
+@lottopass/stores:dev: src/lottoStore.ts(6,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'GeneratedNumbers'.
+@lottopass/stores:dev: src/lottoStore.ts(7,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'SavedCombination'.
+@lottopass/stores:dev: src/lottoStore.ts(8,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'DrawStatistics'.
+@lottopass/stores:dev: src/lottoStore.ts(76,16): error TS7006: Parameter 'item' implicitly has an 'any' type.
+@lottopass/stores:dev: src/lottoStore.ts(93,16): error TS7006: Parameter 'item' implicitly has an 'any' type.
+@lottopass/stores:dev: src/lottoStore.ts(100,16): error TS7006: Parameter 'item' implicitly has an 'any' type.
+@lottopass/stores:dev: 
+@lottopass/stores:dev: DTS Build failed
+@lottopass/stores:dev: RollupError: [plugin dts] src/lottoStore.ts: Failed to compile. Check the logs above.
+@lottopass/stores:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/stores:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/stores:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/stores:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/stores:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/stores:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/stores:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/stores:dev: src/authStore.ts(4,15): error TS2305: Module '"@lottopass/shared"' has no exported member 'User'.
+@lottopass/stores:dev: src/authStore.ts(4,21): error TS2305: Module '"@lottopass/shared"' has no exported member 'AuthTokens'.
+@lottopass/stores:dev: 
+@lottopass/api-client:dev: CLI Change detected: change src/index.ts
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: src/index.ts(24,3): error TS2724: '"@lottopass/shared"' has no exported member named 'LotteryDraw'. Did you mean 'LottoDraw'?
+@lottopass/api-client:dev: src/index.ts(25,3): error TS2724: '"@lottopass/shared"' has no exported member named 'LotteryNumber'. Did you mean 'LottoNumber'?
+@lottopass/api-client:dev: src/index.ts(26,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'DhlotteryResponse'.
+@lottopass/api-client:dev: src/index.ts(27,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'WinningStore'.
+@lottopass/api-client:dev: src/index.ts(30,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'DrawRangeParams'.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: DTS Build failed
+@lottopass/api-client:dev: RollupError: [plugin dts] src/index.ts: Failed to compile. Check the logs above.
+@lottopass/api-client:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/api-client:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/api-client:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/api-client:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/api-client:dev: ESM dist/index.mjs     581.32 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 1470ms
+@lottopass/api-client:dev: CJS dist/index.js     583.99 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 1470ms
+@lottopass/api-client:dev: CLI Change detected: change src/lottery/client.ts
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/api-client:dev: src/index.ts(24,3): error TS2724: '"@lottopass/shared"' has no exported member named 'LotteryDraw'. Did you mean 'LottoDraw'?
+@lottopass/api-client:dev: src/index.ts(25,3): error TS2724: '"@lottopass/shared"' has no exported member named 'LotteryNumber'. Did you mean 'LottoNumber'?
+@lottopass/api-client:dev: src/index.ts(26,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'DhlotteryResponse'.
+@lottopass/api-client:dev: src/index.ts(27,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'WinningStore'.
+@lottopass/api-client:dev: src/index.ts(30,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'DrawRangeParams'.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: DTS Build failed
+@lottopass/api-client:dev: RollupError: [plugin dts] src/index.ts: Failed to compile. Check the logs above.
+@lottopass/api-client:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/api-client:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/api-client:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/api-client:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/api-client:dev: CJS dist/index.js     583.99 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 1487ms
+@lottopass/api-client:dev: ESM dist/index.mjs     581.32 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 1488ms
+@lottopass/api-client:dev: CLI Change detected: change src/lottery/hooks.ts
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/api-client:dev: src/index.ts(24,3): error TS2724: '"@lottopass/shared"' has no exported member named 'LotteryDraw'. Did you mean 'LottoDraw'?
+@lottopass/api-client:dev: src/index.ts(25,3): error TS2724: '"@lottopass/shared"' has no exported member named 'LotteryNumber'. Did you mean 'LottoNumber'?
+@lottopass/api-client:dev: src/index.ts(26,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'DhlotteryResponse'.
+@lottopass/api-client:dev: src/index.ts(27,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'WinningStore'.
+@lottopass/api-client:dev: src/index.ts(30,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'DrawRangeParams'.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: DTS Build failed
+@lottopass/api-client:dev: RollupError: [plugin dts] src/index.ts: Failed to compile. Check the logs above.
+@lottopass/api-client:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/api-client:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/api-client:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/api-client:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/api-client:dev: CJS dist/index.js     583.99 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 1001ms
+@lottopass/api-client:dev: ESM dist/index.mjs     581.32 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 1001ms
+@lottopass/api-client:dev: CLI Change detected: change src/index.ts
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: src/lottery/client.ts(2,3): error TS2724: '"@lottopass/shared"' has no exported member named 'LotteryDraw'. Did you mean 'LottoDraw'?
+@lottopass/api-client:dev: src/lottery/client.ts(4,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'WinningStore'.
+@lottopass/api-client:dev: src/lottery/client.ts(28,35): error TS2339: Property 'message' does not exist on type 'string'.
+@lottopass/api-client:dev: src/lottery/client.ts(42,35): error TS2339: Property 'message' does not exist on type 'string'.
+@lottopass/api-client:dev: src/lottery/client.ts(57,28): error TS7006: Parameter 'draw' implicitly has an 'any' type.
+@lottopass/api-client:dev: src/lottery/client.ts(112,17): error TS2339: Property 'round' does not exist on type 'StoreSearchParams'.
+@lottopass/api-client:dev: src/lottery/client.ts(112,60): error TS2339: Property 'round' does not exist on type 'StoreSearchParams'.
+@lottopass/api-client:dev: src/lottery/client.ts(113,17): error TS2339: Property 'rank' does not exist on type 'StoreSearchParams'.
+@lottopass/api-client:dev: src/lottery/client.ts(113,58): error TS2339: Property 'rank' does not exist on type 'StoreSearchParams'.
+@lottopass/api-client:dev: src/lottery/client.ts(114,17): error TS2339: Property 'region' does not exist on type 'StoreSearchParams'.
+@lottopass/api-client:dev: src/lottery/client.ts(114,62): error TS2339: Property 'region' does not exist on type 'StoreSearchParams'.
+@lottopass/api-client:dev: src/lottery/client.ts(115,17): error TS2339: Property 'district' does not exist on type 'StoreSearchParams'.
+@lottopass/api-client:dev: src/lottery/client.ts(115,66): error TS2339: Property 'district' does not exist on type 'StoreSearchParams'.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: DTS Build failed
+@lottopass/api-client:dev: RollupError: [plugin dts] src/lottery/client.ts: Failed to compile. Check the logs above.
+@lottopass/api-client:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/api-client:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/api-client:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/api-client:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/api-client:dev: src/lottery/hooks.ts(4,3): error TS2724: '"@lottopass/shared"' has no exported member named 'LotteryDraw'. Did you mean 'LottoDraw'?
+@lottopass/api-client:dev: src/lottery/hooks.ts(5,3): error TS6196: 'NumberStatistics' is declared but never used.
+@lottopass/api-client:dev: src/lottery/hooks.ts(6,3): error TS2305: Module '"@lottopass/shared"' has no exported member 'WinningStore'.
+@lottopass/api-client:dev: src/lottery/hooks.ts(6,3): error TS6196: 'WinningStore' is declared but never used.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: src/services/storeService.ts(14,9): error TS2322: Type 'StoreSearchParams' is not assignable to type 'SearchParamsOption'.
+@lottopass/api-client:dev:   Type 'StoreSearchParams' is not assignable to type 'Record<string, string | number | boolean>'.
+@lottopass/api-client:dev:     Index signature for type 'string' is missing in type 'StoreSearchParams'.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: ESM dist/index.mjs     581.32 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 1270ms
+@lottopass/api-client:dev: CJS dist/index.js     583.99 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 1270ms
+@lottopass/shared:dev: CLI Change detected: change src/types/index.ts
+@lottopass/shared:dev: CLI Cleaning output folder
+@lottopass/shared:dev: CJS Build start
+@lottopass/shared:dev: ESM Build start
+@lottopass/shared:dev: DTS Build start
+@lottopass/shared:dev: CJS dist/index.js     13.12 KB
+@lottopass/shared:dev: CJS dist/index.js.map 22.37 KB
+@lottopass/shared:dev: CJS ⚡️ Build success in 206ms
+@lottopass/shared:dev: ESM dist/index.mjs     11.37 KB
+@lottopass/shared:dev: ESM dist/index.mjs.map 22.29 KB
+@lottopass/shared:dev: ESM ⚡️ Build success in 207ms
+@lottopass/shared:dev: src/types/index.ts(2,1): error TS2308: Module './lotto' has already exported a member named 'NumberStatistics'. Consider explicitly re-exporting to resolve the ambiguity.
+@lottopass/shared:dev: src/types/index.ts(3,1): error TS2308: Module './lottery' has already exported a member named 'StoreSearchParams'. Consider explicitly re-exporting to resolve the ambiguity.
+@lottopass/shared:dev: 
+@lottopass/shared:dev: DTS Build failed
+@lottopass/shared:dev: RollupError: [plugin dts] src/types/index.ts: Failed to compile. Check the logs above.
+@lottopass/shared:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/shared:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/shared:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/shared:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/shared:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/shared:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/shared:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/shared:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/shared:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/shared:dev: CLI Change detected: change src/types/index.ts
+@lottopass/shared:dev: CLI Cleaning output folder
+@lottopass/shared:dev: CJS Build start
+@lottopass/shared:dev: ESM Build start
+@lottopass/shared:dev: ESM dist/index.mjs     11.37 KB
+@lottopass/shared:dev: ESM dist/index.mjs.map 22.29 KB
+@lottopass/shared:dev: ESM ⚡️ Build success in 69ms
+@lottopass/shared:dev: CJS dist/index.js     13.12 KB
+@lottopass/shared:dev: CJS dist/index.js.map 22.37 KB
+@lottopass/shared:dev: CJS ⚡️ Build success in 69ms
+@lottopass/shared:dev: DTS Build start
+@lottopass/shared:dev: DTS ⚡️ Build success in 1099ms
+@lottopass/api-client:dev: CLI Change detected: change src/lottery/client.ts
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: src/lottery/hooks.ts(74,17): error TS4058: Return type of exported function has or is using name 'WinningStore' from external module "/Users/seunghoon/Documents/lottopass-frontend/packages/api-client/src/lottery/client" but cannot be named.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: DTS Build failed
+@lottopass/api-client:dev: RollupError: [plugin dts] src/index.ts: Failed to compile. Check the logs above.
+@lottopass/api-client:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/api-client:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/api-client:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/api-client:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/api-client:dev: CJS dist/index.js     583.99 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 1759ms
+@lottopass/api-client:dev: ESM dist/index.mjs     581.32 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 1759ms
+@lottopass/api-client:dev: CLI Change detected: change src/lottery/hooks.ts
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/api-client:dev: src/lottery/hooks.ts(90,17): error TS4058: Return type of exported function has or is using name 'WinningStore' from external module "/Users/seunghoon/Documents/lottopass-frontend/packages/api-client/src/lottery/client" but cannot be named.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: DTS Build failed
+@lottopass/api-client:dev: RollupError: [plugin dts] src/index.ts: Failed to compile. Check the logs above.
+@lottopass/api-client:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/api-client:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/api-client:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/api-client:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/api-client:dev: ESM dist/index.mjs     581.32 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 1533ms
+@lottopass/api-client:dev: CJS dist/index.js     583.99 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 1534ms
+@lottopass/api-client:dev: CLI Change detected: change src/lottery/hooks.ts
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: src/lottery/hooks.ts(90,17): error TS4058: Return type of exported function has or is using name 'WinningStore' from external module "/Users/seunghoon/Documents/lottopass-frontend/packages/api-client/src/lottery/client" but cannot be named.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: DTS Build failed
+@lottopass/api-client:dev: RollupError: [plugin dts] src/index.ts: Failed to compile. Check the logs above.
+@lottopass/api-client:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/api-client:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/api-client:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/api-client:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/api-client:dev: CJS dist/index.js     584.12 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 1840ms
+@lottopass/api-client:dev: ESM dist/index.mjs     581.45 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 1840ms
+@lottopass/api-client:dev: CLI Change detected: change src/lottery/hooks.ts
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: src/lottery/hooks.ts(90,17): error TS4058: Return type of exported function has or is using name 'WinningStore' from external module "/Users/seunghoon/Documents/lottopass-frontend/packages/api-client/src/lottery/client" but cannot be named.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: DTS Build failed
+@lottopass/api-client:dev: RollupError: [plugin dts] src/index.ts: Failed to compile. Check the logs above.
+@lottopass/api-client:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/api-client:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/api-client:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/api-client:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/api-client:dev: CJS dist/index.js     584.12 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 2005ms
+@lottopass/api-client:dev: ESM dist/index.mjs     581.45 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 2005ms
+@lottopass/api-client:dev: CLI Change detected: change src/lottery/client.ts
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/api-client:dev: src/lottery/client.ts(2,3): error TS6196: 'LottoDraw' is declared but never used.
+@lottopass/api-client:dev: src/lottery/client.ts(39,34): error TS2552: Cannot find name 'LotteryDraw'. Did you mean 'LottoDraw'?
+@lottopass/api-client:dev: src/lottery/client.ts(41,29): error TS2552: Cannot find name 'LotteryDraw'. Did you mean 'LottoDraw'?
+@lottopass/api-client:dev: src/lottery/client.ts(44,35): error TS2339: Property 'message' does not exist on type 'string'.
+@lottopass/api-client:dev: src/lottery/client.ts(53,48): error TS2552: Cannot find name 'LotteryDraw'. Did you mean 'LottoDraw'?
+@lottopass/api-client:dev: src/lottery/client.ts(55,29): error TS2552: Cannot find name 'LotteryDraw'. Did you mean 'LottoDraw'?
+@lottopass/api-client:dev: src/lottery/client.ts(58,35): error TS2339: Property 'message' does not exist on type 'string'.
+@lottopass/api-client:dev: src/lottery/client.ts(67,53): error TS2552: Cannot find name 'LotteryDraw'. Did you mean 'LottoDraw'?
+@lottopass/api-client:dev: src/lottery/client.ts(73,28): error TS7006: Parameter 'draw' implicitly has an 'any' type.
+@lottopass/api-client:dev: src/lottery/client.ts(73,43): error TS2552: Cannot find name 'LotteryDraw'. Did you mean 'LottoDraw'?
+@lottopass/api-client:dev: src/lottery/client.ts(79,72): error TS2552: Cannot find name 'LotteryDraw'. Did you mean 'LottoDraw'?
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: DTS Build failed
+@lottopass/api-client:dev: RollupError: [plugin dts] src/lottery/client.ts: Failed to compile. Check the logs above.
+@lottopass/api-client:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/api-client:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/api-client:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/api-client:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/api-client:dev: src/lottery/hooks.ts(5,3): error TS6196: 'NumberStatistics' is declared but never used.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: src/services/storeService.ts(14,9): error TS2322: Type 'StoreSearchParams' is not assignable to type 'SearchParamsOption'.
+@lottopass/api-client:dev:   Type 'StoreSearchParams' is not assignable to type 'Record<string, string | number | boolean>'.
+@lottopass/api-client:dev:     Index signature for type 'string' is missing in type 'StoreSearchParams'.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: CJS dist/index.js     584.12 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 1652ms
+@lottopass/api-client:dev: ESM dist/index.mjs     581.45 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 1653ms
+@lottopass/api-client:dev: CLI Change detected: change src/lottery/client.ts
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/api-client:dev: src/lottery/client.ts(44,35): error TS2339: Property 'message' does not exist on type 'string'.
+@lottopass/api-client:dev: src/lottery/client.ts(58,35): error TS2339: Property 'message' does not exist on type 'string'.
+@lottopass/api-client:dev: src/lottery/client.ts(181,43): error TS2339: Property 'round' does not exist on type 'LottoDraw'.
+@lottopass/api-client:dev: src/lottery/client.ts(191,25): error TS2339: Property 'round' does not exist on type 'LottoDraw'.
+@lottopass/api-client:dev: src/lottery/client.ts(201,16): error TS2339: Property 'numbers' does not exist on type 'LottoDraw'.
+@lottopass/api-client:dev: src/lottery/client.ts(207,62): error TS2339: Property 'bonusNumber' does not exist on type 'LottoDraw'.
+@lottopass/api-client:dev: src/lottery/client.ts(214,27): error TS2339: Property 'round' does not exist on type 'LottoDraw'.
+@lottopass/api-client:dev: src/lottery/client.ts(216,30): error TS2551: Property 'drawDate' does not exist on type 'LottoDraw'. Did you mean 'drwNoDate'?
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: DTS Build failed
+@lottopass/api-client:dev: RollupError: [plugin dts] src/lottery/client.ts: Failed to compile. Check the logs above.
+@lottopass/api-client:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/api-client:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/api-client:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/api-client:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/api-client:dev: src/lottery/hooks.ts(5,3): error TS6196: 'NumberStatistics' is declared but never used.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: src/services/storeService.ts(14,9): error TS2322: Type 'StoreSearchParams' is not assignable to type 'SearchParamsOption'.
+@lottopass/api-client:dev:   Type 'StoreSearchParams' is not assignable to type 'Record<string, string | number | boolean>'.
+@lottopass/api-client:dev:     Index signature for type 'string' is missing in type 'StoreSearchParams'.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: ESM dist/index.mjs     581.45 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 1353ms
+@lottopass/api-client:dev: CJS dist/index.js     584.12 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 1353ms
+@lottopass/api-client:dev: CLI Change detected: change src/lottery/client.ts
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/api-client:dev: src/lottery/client.ts(44,35): error TS2339: Property 'message' does not exist on type 'string'.
+@lottopass/api-client:dev: src/lottery/client.ts(58,35): error TS2339: Property 'message' does not exist on type 'string'.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: DTS Build failed
+@lottopass/api-client:dev: RollupError: [plugin dts] src/lottery/client.ts: Failed to compile. Check the logs above.
+@lottopass/api-client:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/api-client:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/api-client:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/api-client:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/api-client:dev: src/lottery/hooks.ts(5,3): error TS6196: 'NumberStatistics' is declared but never used.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: src/services/storeService.ts(14,9): error TS2322: Type 'StoreSearchParams' is not assignable to type 'SearchParamsOption'.
+@lottopass/api-client:dev:   Type 'StoreSearchParams' is not assignable to type 'Record<string, string | number | boolean>'.
+@lottopass/api-client:dev:     Index signature for type 'string' is missing in type 'StoreSearchParams'.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: ESM dist/index.mjs     581.62 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 1291ms
+@lottopass/api-client:dev: CJS dist/index.js     584.29 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 1291ms
+@lottopass/api-client:dev: CLI Change detected: change src/lottery/client.ts
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/api-client:dev: src/lottery/hooks.ts(5,3): error TS6196: 'NumberStatistics' is declared but never used.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: DTS Build failed
+@lottopass/api-client:dev: RollupError: [plugin dts] src/lottery/hooks.ts: Failed to compile. Check the logs above.
+@lottopass/api-client:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/api-client:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/api-client:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/api-client:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/api-client:dev: src/services/storeService.ts(14,9): error TS2322: Type 'StoreSearchParams' is not assignable to type 'SearchParamsOption'.
+@lottopass/api-client:dev:   Type 'StoreSearchParams' is not assignable to type 'Record<string, string | number | boolean>'.
+@lottopass/api-client:dev:     Index signature for type 'string' is missing in type 'StoreSearchParams'.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: ESM dist/index.mjs     581.58 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 1358ms
+@lottopass/api-client:dev: CJS dist/index.js     584.25 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 1358ms
+@lottopass/api-client:dev: CLI Change detected: change src/lottery/hooks.ts
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/api-client:dev: src/services/storeService.ts(14,9): error TS2322: Type 'StoreSearchParams' is not assignable to type 'SearchParamsOption'.
+@lottopass/api-client:dev:   Type 'StoreSearchParams' is not assignable to type 'Record<string, string | number | boolean>'.
+@lottopass/api-client:dev:     Index signature for type 'string' is missing in type 'StoreSearchParams'.
+@lottopass/api-client:dev: 
+@lottopass/api-client:dev: DTS Build failed
+@lottopass/api-client:dev: RollupError: [plugin dts] src/services/storeService.ts: Failed to compile. Check the logs above.
+@lottopass/api-client:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/api-client:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/api-client:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/api-client:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/api-client:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/api-client:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/api-client:dev: ESM dist/index.mjs     581.58 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 1600ms
+@lottopass/api-client:dev: CJS dist/index.js     584.25 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 1601ms
+@lottopass/api-client:dev: CLI Change detected: change src/services/storeService.ts
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: DTS ⚡️ Build success in 1652ms
+@lottopass/api-client:dev: CJS dist/index.js     584.69 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 1918ms
+@lottopass/api-client:dev: ESM dist/index.mjs     582.02 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 1918ms
+@lottopass/web:dev:  ✓ Compiled in 258ms
+@lottopass/api-client:dev: CLI Change detected: change src/services/lottoService.ts
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: DTS ⚡️ Build success in 1270ms
+@lottopass/api-client:dev: ESM dist/index.mjs     582.02 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 1613ms
+@lottopass/api-client:dev: CJS dist/index.js     584.69 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 1613ms
+@lottopass/api-client:dev: CLI Change detected: change src/services/lottoService.ts
+@lottopass/api-client:dev: DTS Build start
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/api-client:dev: DTS ⚡️ Build success in 809ms
+@lottopass/api-client:dev: ESM dist/index.mjs     582.02 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 983ms
+@lottopass/api-client:dev: CJS dist/index.js     584.70 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 984ms
+@lottopass/shared:dev: CLI Change detected: change src/constants/index.ts
+@lottopass/api-client:dev: CLI Change detected: change src/client.ts
+@lottopass/api-client:dev: CLI Change detected: change src/index.ts
+@lottopass/api-client:dev: CLI Change detected: change src/services/lottoService.ts
+@lottopass/shared:dev: CLI Change detected: change src/types/index.ts
+@lottopass/api-client:dev: CLI Change detected: change src/services/storeService.ts
+@lottopass/shared:dev: CLI Cleaning output folder
+@lottopass/shared:dev: CJS Build start
+@lottopass/shared:dev: ESM Build start
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/stores:dev: DTS Build start
+@lottopass/core:dev: DTS Build start
+@lottopass/shared:dev: DTS Build start
+@lottopass/shared:dev: CJS dist/index.js     13.12 KB
+@lottopass/shared:dev: CJS dist/index.js.map 22.37 KB
+@lottopass/shared:dev: CJS ⚡️ Build success in 533ms
+@lottopass/shared:dev: ESM dist/index.mjs     11.37 KB
+@lottopass/shared:dev: ESM dist/index.mjs.map 22.29 KB
+@lottopass/shared:dev: ESM ⚡️ Build success in 531ms
+@lottopass/api-client:dev: DTS Build start
+@lottopass/web:dev:  ⚠ Found a change in next.config.mjs. Restarting the server to apply the changes...
+@lottopass/web:dev:    ▲ Next.js 15.1.6
+@lottopass/web:dev:    - Local:        http://localhost:3001
+@lottopass/web:dev:    - Network:      http://192.168.45.222:3001
+@lottopass/web:dev:    - Environments: .env.local
+@lottopass/web:dev: 
+@lottopass/web:dev:  ✓ Starting...
+@lottopass/shared:dev: DTS ⚡️ Build success in 5224ms
+@lottopass/core:dev: DTS ⚡️ Build success in 6414ms
+@lottopass/api-client:dev: DTS ⚡️ Build success in 6098ms
+@lottopass/stores:dev: DTS ⚡️ Build success in 9458ms
+@lottopass/stores:dev: DTS Build start
+@lottopass/api-client:dev: ESM dist/index.mjs     582.02 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.12 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 9784ms
+@lottopass/api-client:dev: CJS dist/index.js     584.70 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.12 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 9789ms
+@lottopass/stores:dev: DTS ⚡️ Build success in 1591ms
+@lottopass/web:dev:  ✓ Ready in 11.8s
+@lottopass/api-client:dev: CLI Change detected: change src/client.ts
+@lottopass/api-client:dev: CLI Change detected: change src/index.ts
+@lottopass/api-client:dev: CLI Change detected: change src/services/lottoService.ts
+@lottopass/api-client:dev: CLI Change detected: change src/services/storeService.ts
+@lottopass/shared:dev: CLI Change detected: change src/constants/index.ts
+@lottopass/shared:dev: CLI Change detected: change src/types/index.ts
+@lottopass/api-client:dev: CLI Cleaning output folder
+@lottopass/api-client:dev: CJS Build start
+@lottopass/api-client:dev: ESM Build start
+@lottopass/shared:dev: CLI Cleaning output folder
+@lottopass/shared:dev: CJS Build start
+@lottopass/shared:dev: ESM Build start
+@lottopass/web:dev:  ⚠ Found a change in next.config.mjs. Restarting the server to apply the changes...
+@lottopass/core:dev: DTS Build start
+@lottopass/shared:dev: DTS Build start
+@lottopass/stores:dev: DTS Build start
+@lottopass/api-client:dev: DTS Build start
+@lottopass/shared:dev: CJS dist/index.js     13.12 KB
+@lottopass/shared:dev: CJS dist/index.js.map 22.37 KB
+@lottopass/shared:dev: CJS ⚡️ Build success in 611ms
+@lottopass/shared:dev: ESM dist/index.mjs     11.37 KB
+@lottopass/shared:dev: ESM dist/index.mjs.map 22.29 KB
+@lottopass/shared:dev: ESM ⚡️ Build success in 611ms
+@lottopass/web:dev: node:internal/modules/esm/resolve:873
+@lottopass/web:dev:   throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+@lottopass/web:dev:         ^
+@lottopass/web:dev: 
+@lottopass/web:dev: Error: Cannot find package '@tamagui/next-plugin' imported from /Users/seunghoon/Documents/lottopass-frontend/apps/web/next.config.mjs
+@lottopass/web:dev:     at packageResolve (node:internal/modules/esm/resolve:873:9)
+@lottopass/web:dev:     at moduleResolve (node:internal/modules/esm/resolve:946:18)
+@lottopass/web:dev:     at defaultResolve (node:internal/modules/esm/resolve:1188:11)
+@lottopass/web:dev:     at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:642:12)
+@lottopass/web:dev:     at #cachedDefaultResolve (node:internal/modules/esm/loader:591:25)
+@lottopass/web:dev:     at ModuleLoader.resolve (node:internal/modules/esm/loader:574:38)
+@lottopass/web:dev:     at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:236:38)
+@lottopass/web:dev:     at ModuleJob._link (node:internal/modules/esm/module_job:130:49) {
+@lottopass/web:dev:   code: 'ERR_MODULE_NOT_FOUND'
+@lottopass/web:dev: }
+@lottopass/web:dev: 
+@lottopass/web:dev: Node.js v20.19.4
+@lottopass/web:dev: [?25h
+@lottopass/shared:dev: DTS ⚡️ Build success in 4455ms
+@lottopass/core:dev: DTS ⚡️ Build success in 4860ms
+@lottopass/api-client:dev: DTS ⚡️ Build success in 4441ms
+@lottopass/api-client:dev: ESM dist/index.mjs     573.81 KB
+@lottopass/api-client:dev: ESM dist/index.mjs.map 1.10 MB
+@lottopass/api-client:dev: ESM ⚡️ Build success in 5040ms
+@lottopass/api-client:dev: CJS dist/index.js     576.12 KB
+@lottopass/api-client:dev: CJS dist/index.js.map 1.10 MB
+@lottopass/api-client:dev: CJS ⚡️ Build success in 5041ms
+@lottopass/stores:dev: DTS ⚡️ Build success in 4937ms
+@lottopass/shared:dev: CLI Change detected: change src/types/index.ts
+@lottopass/shared:dev: CLI Cleaning output folder
+@lottopass/shared:dev: CJS Build start
+@lottopass/shared:dev: ESM Build start
+@lottopass/shared:dev: CJS dist/index.js     13.12 KB
+@lottopass/shared:dev: CJS dist/index.js.map 22.37 KB
+@lottopass/shared:dev: CJS ⚡️ Build success in 100ms
+@lottopass/shared:dev: ESM dist/index.mjs     11.37 KB
+@lottopass/shared:dev: ESM dist/index.mjs.map 22.29 KB
+@lottopass/shared:dev: ESM ⚡️ Build success in 100ms
+@lottopass/shared:dev: DTS Build start
+@lottopass/shared:dev: src/types/index.ts(4,1): error TS2308: Module './lotto' has already exported a member named 'NumberStatistics'. Consider explicitly re-exporting to resolve the ambiguity.
+@lottopass/shared:dev: src/types/index.ts(4,1): error TS2308: Module './store' has already exported a member named 'StoreSearchParams'. Consider explicitly re-exporting to resolve the ambiguity.
+@lottopass/shared:dev: 
+@lottopass/shared:dev: DTS Build failed
+@lottopass/shared:dev: RollupError: [plugin dts] src/types/index.ts: Failed to compile. Check the logs above.
+@lottopass/shared:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/shared:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/shared:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/shared:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/shared:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/shared:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/shared:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/shared:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/shared:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/shared:dev: CLI Change detected: change src/types/index.ts
+@lottopass/shared:dev: CLI Cleaning output folder
+@lottopass/shared:dev: CJS Build start
+@lottopass/shared:dev: ESM Build start
+@lottopass/shared:dev: DTS Build start
+@lottopass/shared:dev: CJS dist/index.js     13.12 KB
+@lottopass/shared:dev: CJS dist/index.js.map 22.37 KB
+@lottopass/shared:dev: CJS ⚡️ Build success in 93ms
+@lottopass/shared:dev: ESM dist/index.mjs     11.37 KB
+@lottopass/shared:dev: ESM dist/index.mjs.map 22.29 KB
+@lottopass/shared:dev: ESM ⚡️ Build success in 93ms
+@lottopass/shared:dev: DTS ⚡️ Build success in 827ms
+@lottopass/core:dev: DTS Build start
+@lottopass/core:dev: src/services/draw.service.ts(60,20): error TS6133: 'baseUrl' is declared but its value is never read.
+@lottopass/core:dev: 
+@lottopass/core:dev: DTS Build failed
+@lottopass/core:dev: RollupError: [plugin dts] src/services/draw.service.ts: Failed to compile. Check the logs above.
+@lottopass/core:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/core:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/core:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/core:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/core:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/core:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/core:dev: DTS Build start
+@lottopass/core:dev: src/services/draw.service.ts(60,20): error TS6133: 'baseUrl' is declared but its value is never read.
+@lottopass/core:dev: src/services/draw.service.ts(264,42): error TS2339: Property 'cache' does not exist on type 'DrawService'.
+@lottopass/core:dev: src/services/draw.service.ts(265,15): error TS2769: No overload matches this call.
+@lottopass/core:dev:   Overload 1 of 2, '(predicate: (value: unknown, index: number, array: unknown[]) => value is unknown, thisArg?: any): unknown[]', gave the following error.
+@lottopass/core:dev:     Argument of type '([_, entry]: [any, any]) => boolean' is not assignable to parameter of type '(value: unknown, index: number, array: unknown[]) => value is unknown'.
+@lottopass/core:dev:       Types of parameters '__0' and 'value' are incompatible.
+@lottopass/core:dev:         Type 'unknown' is not assignable to type '[any, any]'.
+@lottopass/core:dev:   Overload 2 of 2, '(predicate: (value: unknown, index: number, array: unknown[]) => unknown, thisArg?: any): unknown[]', gave the following error.
+@lottopass/core:dev:     Argument of type '([_, entry]: [any, any]) => boolean' is not assignable to parameter of type '(value: unknown, index: number, array: unknown[]) => unknown'.
+@lottopass/core:dev:       Types of parameters '__0' and 'value' are incompatible.
+@lottopass/core:dev:         Type 'unknown' is not assignable to type '[any, any]'.
+@lottopass/core:dev: src/services/draw.service.ts(265,67): error TS2339: Property 'cacheTTL' does not exist on type 'DrawService'.
+@lottopass/core:dev: src/services/draw.service.ts(268,18): error TS2339: Property 'cache' does not exist on type 'DrawService'.
+@lottopass/core:dev: src/services/draw.service.ts(278,10): error TS2339: Property 'cache' does not exist on type 'DrawService'.
+@lottopass/core:dev: 
+@lottopass/core:dev: DTS Build failed
+@lottopass/core:dev: RollupError: [plugin dts] src/services/draw.service.ts: Failed to compile. Check the logs above.
+@lottopass/core:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/core:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/core:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/core:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/core:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/core:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/core:dev: DTS Build start
+@lottopass/core:dev: src/services/draw.service.ts(66,20): error TS6133: 'baseUrl' is declared but its value is never read.
+@lottopass/core:dev: 
+@lottopass/core:dev: DTS Build failed
+@lottopass/core:dev: RollupError: [plugin dts] src/services/draw.service.ts: Failed to compile. Check the logs above.
+@lottopass/core:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/core:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/core:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/core:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/core:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/core:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40
+@lottopass/core:dev: DTS Build start
+@lottopass/core:dev: src/services/draw.service.ts(66,20): error TS6133: 'baseUrl' is declared but its value is never read.
+@lottopass/core:dev: src/services/draw.service.ts(285,29): error TS2339: Property 'getFromCache' does not exist on type 'DrawService'.
+@lottopass/core:dev: src/services/draw.service.ts(313,20): error TS2339: Property 'saveToCache' does not exist on type 'DrawService'.
+@lottopass/core:dev: 
+@lottopass/core:dev: DTS Build failed
+@lottopass/core:dev: RollupError: [plugin dts] src/services/draw.service.ts: Failed to compile. Check the logs above.
+@lottopass/core:dev:     at getRollupError (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:285:41)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/parseAst.js:281:42)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:913:32)
+@lottopass/core:dev:     at Object.error (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:22313:42)
+@lottopass/core:dev:     at generateDtsFromTs (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6376:22)
+@lottopass/core:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:59
+@lottopass/core:dev:     at _nullishCoalesce (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:1:472)
+@lottopass/core:dev:     at Object.transform (/Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/tsup@8.5.0_@swc+core@1.13.2_jiti@2.5.1_postcss@8.5.6_typescript@5.8.3_yaml@2.8.0/node_modules/tsup/dist/rollup.js:6383:18)
+@lottopass/core:dev:     at /Users/seunghoon/Documents/lottopass-frontend/node_modules/.pnpm/rollup@4.46.1/node_modules/rollup/dist/shared/rollup.js:3392:40

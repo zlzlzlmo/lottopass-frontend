@@ -1,11 +1,18 @@
+// React 관련
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ROUTES } from "./constants/routes";
-import "./styles/global.scss";
 
+// 외부 라이브러리
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { fetchAllDraws } from "./features/draw/drawSlice";
-import { useAppDispatch } from "./redux/hooks";
+
+// 상태 관리
+import { fetchAllDraws } from "@features/draw/drawSlice";
+import { useAppDispatch } from "@/redux/hooks";
+
+// 컨텍스트 및 프로바이더
+import { SupabaseAuthProvider } from "@/context/SupabaseAuthContext";
+
+// 페이지 컴포넌트
 import {
   AllStoresPage,
   DetailPage,
@@ -16,18 +23,23 @@ import {
   ResultPage,
   StatisticPage,
   WinningStoresPage,
-} from "./pages";
-import ScrollToTop from "./components/common/scroll/ScrollToTop";
-import SignupPage from "./pages/signup/SignupPage";
-import LoginPage from "./pages/login/LoginPage";
-import AppInitializer from "./AppInitializer";
-import UserProfileUpdatePage from "./pages/auth/UserProfileUpdatePage";
-import MyPage from "./pages/my/MyPage";
-import DeleteAccountPage from "./pages/auth/DeleteAccountPage";
-import FindPasswordPage from "./pages/findPassword/FindPasswordPage";
-import DashboardPage from "./pages/dashboard/DashboardPage";
-import AuthGuard from "./AuthGuard";
-import { SupabaseAuthProvider } from "./context/SupabaseAuthContext";
+} from "@pages";
+import SignupPage from "@pages/signup/SignupPage";
+import LoginPage from "@pages/login/LoginPage";
+import UserProfileUpdatePage from "@pages/auth/UserProfileUpdatePage";
+import MyPage from "@pages/my/MyPage";
+import DeleteAccountPage from "@pages/auth/DeleteAccountPage";
+import FindPasswordPage from "@pages/findPassword/FindPasswordPage";
+import DashboardPage from "@pages/dashboard/DashboardPage";
+
+// 공통 컴포넌트
+import ScrollToTop from "@components/common/scroll/ScrollToTop";
+import AppInitializer from "@/AppInitializer";
+import AuthGuard from "@/AuthGuard";
+
+// 상수 및 스타일
+import { ROUTES } from "@/constants/routes";
+import "@/styles/global.scss";
 
 const queryClient = new QueryClient();
 

@@ -1,7 +1,12 @@
+// React 관련
+import { forwardRef } from 'react';
+import type { ComponentProps } from 'react';
+
+// 외부 라이브러리
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
-import * as React from 'react';
 
+// 유틸리티
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
@@ -32,12 +37,12 @@ const buttonVariants = cva(
   }
 );
 
-interface ButtonProps extends React.ComponentProps<'button'>, VariantProps<typeof buttonVariants> {
+interface ButtonProps extends ComponentProps<'button'>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   loading?: boolean;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     { className, variant, size, asChild = false, loading = false, disabled, children, ...props },
     ref

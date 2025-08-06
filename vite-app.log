@@ -1,0 +1,98 @@
+
+  VITE v6.3.5  ready in 181 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://192.168.45.222:5173/
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+  ╷
+7 │ @import "./dark-mode.scss";
+  │         ^^^^^^^^^^^^^^^^^^
+  ╵
+    src/styles/global.scss 7:9  root stylesheet
+
+10:31:01 PM [vite] (client) Pre-transform error: [sass] 2 arguments required, but only 1 was passed.
+   ╷
+10 │   border-radius: rem(16);
+   │                  ^^^^^^^
+   ╵
+  src/features/share-card/components/ShareCard.module.scss 10:18  root stylesheet
+  Plugin: vite:css
+  File: /Users/seunghoon/Documents/lottopass-frontend/src/features/share-card/components/ShareCard.module.scss:10:18
+  [sass] 2 arguments required, but only 1 was passed.
+     ╷
+  10 │   border-radius: rem(16);
+     │                  ^^^^^^^
+     ╵
+    src/features/share-card/components/ShareCard.module.scss 10:18  root stylesheet
+10:31:01 PM [vite] (client) Pre-transform error: [sass] 2 arguments required, but only 1 was passed.
+   ╷
+10 │   border-radius: rem(16);
+   │                  ^^^^^^^
+   ╵
+  src/features/share-card/components/ShareCard.module.scss 10:18  root stylesheet
+  Plugin: vite:css
+  File: /Users/seunghoon/Documents/lottopass-frontend/src/features/share-card/components/ShareCard.module.scss:10:18
+  [sass] 2 arguments required, but only 1 was passed.
+     ╷
+  10 │   border-radius: rem(16);
+     │                  ^^^^^^^
+     ╵
+    src/features/share-card/components/ShareCard.module.scss 10:18  root stylesheet
+10:31:01 PM [vite] (client) Pre-transform error: [sass] 2 arguments required, but only 1 was passed.
+   ╷
+10 │   border-radius: rem(16);
+   │                  ^^^^^^^
+   ╵
+  src/features/share-card/components/ShareCard.module.scss 10:18  root stylesheet
+  Plugin: vite:css
+  File: /Users/seunghoon/Documents/lottopass-frontend/src/features/share-card/components/ShareCard.module.scss:10:18
+  [sass] 2 arguments required, but only 1 was passed.
+     ╷
+  10 │   border-radius: rem(16);
+     │                  ^^^^^^^
+     ╵
+    src/features/share-card/components/ShareCard.module.scss 10:18  root stylesheet
+10:32:01 PM [vite] (client) hmr update /src/components/layout/header/Header.tsx
+8:00:20 AM [vite] (client) hmr update /src/App.tsx
+8:00:21 AM [vite] (client) page reload src/api/baseAPI.ts
+8:00:21 AM [vite] (client) page reload src/api/baseAPI.ts
+8:00:21 AM [vite] (client) hmr update /src/components/QRScanner.tsx
+8:00:21 AM [vite] (client) hmr update /src/components/layout/header/Header.tsx
+8:00:21 AM [vite] (client) hmr update /src/utils/lazyWithRetry.tsx
+8:00:21 AM [vite] (client) hmr update /src/App.tsx
+8:00:21 AM [vite] (client) page reload src/api/baseAPI.ts
+8:00:21 AM [vite] (client) hmr update /src/components/QRScanner.tsx
+8:00:21 AM [vite] (client) hmr update /src/components/layout/header/Header.tsx
+8:00:21 AM [vite] (client) hmr update /src/utils/lazyWithRetry.tsx
+8:01:03 AM [vite] (client) hmr update /src/App.tsx
+8:01:03 AM [vite] (client) page reload src/api/baseAPI.ts
+8:01:03 AM [vite] (client) hmr update /src/components/QRScanner.tsx
+8:01:03 AM [vite] (client) hmr update /src/components/layout/header/Header.tsx
+8:01:03 AM [vite] (client) hmr update /src/utils/lazyWithRetry.tsx
+8:01:03 AM [vite] (client) hmr update /src/App.tsx
+8:01:03 AM [vite] (client) page reload src/api/baseAPI.ts
+8:01:03 AM [vite] (client) hmr update /src/components/QRScanner.tsx
+8:01:03 AM [vite] (client) hmr update /src/components/layout/header/Header.tsx
+8:01:03 AM [vite] (client) hmr update /src/utils/lazyWithRetry.tsx
+8:23:23 AM [vite] (client) page reload apps/web/.next/server/app/index.html
+8:23:23 AM [vite] (client) page reload apps/web/.next/export/404.html
+8:23:23 AM [vite] (client) page reload apps/web/.next/export/500.html
+8:23:23 AM [vite] (client) page reload apps/web/.next/server/app/_not-found.html
+8:23:23 AM [vite] (client) page reload apps/web/.next/server/app/test.html
+8:23:23 AM [vite] (client) page reload apps/web/.next/server/pages/404.html
+8:23:23 AM [vite] (client) page reload apps/web/.next/server/app/index.html
+8:23:23 AM [vite] (client) page reload apps/web/.next/server/app/statistics.html
+8:23:23 AM [vite] (client) page reload apps/web/.next/server/app/number-generation.html
+8:23:23 AM [vite] (client) page reload apps/web/.next/export/500.html
+8:23:23 AM [vite] (client) page reload apps/web/.next/server/pages/500.html
+8:23:23 AM [vite] (client) page reload apps/web/.next/export/404.html
+8:24:22 AM [vite] (client) page reload apps/web/.next/server/app/_not-found.html
+8:24:22 AM [vite] (client) page reload apps/web/.next/server/app/index.html
+8:24:22 AM [vite] (client) page reload apps/web/.next/server/app/number-generation.html
+8:24:22 AM [vite] (client) page reload apps/web/.next/server/app/statistics.html
+8:24:22 AM [vite] (client) page reload apps/web/.next/server/app/test.html
+8:24:22 AM [vite] (client) page reload apps/web/.next/server/pages/404.html
+8:24:22 AM [vite] (client) page reload apps/web/.next/server/pages/500.html
